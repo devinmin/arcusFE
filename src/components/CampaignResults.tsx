@@ -12,6 +12,7 @@ interface CampaignResultsProps {
 export function CampaignResults({ url, industry, data, onRetry }: CampaignResultsProps) {
   const [selectedTab, setSelectedTab] = useState(0);
   const [showBrandIntelligence, setShowBrandIntelligence] = useState(false);
+  const [showConfirmModal, setShowConfirmModal] = useState(false);
 
   const results = [
     {
@@ -113,6 +114,15 @@ export function CampaignResults({ url, industry, data, onRetry }: CampaignResult
   const colorClass = colorClasses[selectedResult.color as keyof typeof colorClasses];
   const iconColorClass = iconColorClasses[selectedResult.color as keyof typeof iconColorClasses];
 
+  const handleConfirmNewCampaign = () => {
+    setShowConfirmModal(false);
+    onRetry();
+  };
+
+  const handleDownloadIndividual = () => {
+    console.log('Download individual:', selectedResult.title);
+  };
+
   return (
     <div className="max-w-7xl mx-auto">
       <div className="flex items-center justify-between mb-8">
@@ -135,7 +145,7 @@ export function CampaignResults({ url, industry, data, onRetry }: CampaignResult
             Download All
           </button>
           <button
-            onClick={onRetry}
+            onClick={() => setShowConfirmModal(true)}
             className="flex items-center gap-2 px-6 py-3 bg-white text-gray-700 border-2 border-gray-200 rounded-lg font-medium hover:border-gray-300 hover:bg-gray-50 transition-all"
           >
             <RefreshCw className="w-5 h-5" />
@@ -251,7 +261,7 @@ export function CampaignResults({ url, industry, data, onRetry }: CampaignResult
 
           <div className="flex-1 flex flex-col">
             <div className="p-6 border-b border-gray-200 bg-gray-50">
-              <div className="flex items-center gap-3">
+              <div className="flex items-center gap-3 mb-3">
                 <div className={`w-10 h-10 ${iconColorClass} rounded-lg flex items-center justify-center`}>
                   <Icon className="w-5 h-5 text-white" />
                 </div>
@@ -262,6 +272,15 @@ export function CampaignResults({ url, industry, data, onRetry }: CampaignResult
                 <span className={`px-3 py-1 text-xs font-medium rounded-full ${colorClass}`}>
                   {selectedResult.badge}
                 </span>
+              </div>
+              <div className="flex justify-end">
+                <button
+                  onClick={handleDownloadIndividual}
+                  className="flex items-center gap-2 px-4 py-2 bg-white text-gray-700 border border-gray-300 rounded-lg text-sm font-medium hover:bg-gray-50 hover:border-gray-400 transition-all"
+                >
+                  <Download className="w-4 h-4" />
+                  Download {selectedResult.title}
+                </button>
               </div>
             </div>
 
@@ -335,6 +354,47 @@ export function CampaignResults({ url, industry, data, onRetry }: CampaignResult
           </div>
         </div>
       </div>
+
+      {showConfirmModal && (
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+          <div className="bg-white rounded-xl shadow-2xl max-w-md w-full overflow-hidden">
+            <div className="p-6">
+              <div className="flex items-start gap-4 mb-4">
+                <div className="flex-shrink-0 w-12 h-12 bg-orange-100 rounded-full flex items-center justify-center">
+                  <RefreshCw className="w-6 h-6 text-orange-600" />
+                </div>
+                <div className="flex-1">
+                  <h3 className="text-xl font-bold text-gray-900 mb-2">Start New Campaign?</h3>
+                  <p className="text-gray-600 text-sm leading-relaxed">
+                    Creating a new campaign will clear your current results. Make sure you've downloaded any content you want to keep before proceeding.
+                  </p>
+                </div>
+              </div>
+
+              <div className="bg-orange-50 border border-orange-200 rounded-lg p-4 mb-6">
+                <p className="text-sm text-orange-800 font-medium">
+                  This action cannot be undone. All current deliverables and brand intelligence will be lost.
+                </p>
+              </div>
+
+              <div className="flex gap-3">
+                <button
+                  onClick={() => setShowConfirmModal(false)}
+                  className="flex-1 px-4 py-3 bg-white text-gray-700 border-2 border-gray-200 rounded-lg font-medium hover:bg-gray-50 hover:border-gray-300 transition-all"
+                >
+                  Cancel
+                </button>
+                <button
+                  onClick={handleConfirmNewCampaign}
+                  className="flex-1 px-4 py-3 bg-gradient-to-r from-orange-600 to-red-600 text-white rounded-lg font-semibold hover:from-orange-700 hover:to-red-700 transition-all hover:shadow-lg"
+                >
+                  Yes, Start New Campaign
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 }
