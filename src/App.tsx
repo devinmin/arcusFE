@@ -556,25 +556,6 @@ function App() {
         </div>
       </section>
 
-      {/* Stats Section */}
-      <section className="py-16 px-6 bg-gray-50">
-        <div className="max-w-7xl mx-auto">
-          <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
-            {[
-              { value: '10x', label: 'Faster Execution' },
-              { value: '85%', label: 'Cost Reduction' },
-              { value: '24/7', label: 'Always Working' },
-              { value: '500+', label: 'Happy Customers' }
-            ].map((stat, index) => (
-              <div key={index} className="text-center p-6 rounded-2xl bg-white border border-gray-100 hover:shadow-lg transition-shadow">
-                <div className="text-4xl font-bold text-slate-700 mb-2">{stat.value}</div>
-                <div className="text-gray-600">{stat.label}</div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
       {/* Marketing Channels Showcase */}
       <section className="py-20 px-6 bg-white">
         <div className="max-w-7xl mx-auto">
