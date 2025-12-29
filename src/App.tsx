@@ -400,7 +400,7 @@ function App() {
               <a href="#features" className="text-gray-600 hover:text-gray-900 transition-colors">Features</a>
               <a href="#how-it-works" className="text-gray-600 hover:text-gray-900 transition-colors">How it Works</a>
               <button className="px-6 py-2.5 bg-white text-slate-700 border-2 border-slate-700 rounded-full hover:bg-slate-50 transition-all hover:shadow-lg hover:scale-105">
-                Join the Waitlist
+                Try Arcus
               </button>
               <button
                 onClick={() => setShowCodeModal(true)}
@@ -441,7 +441,7 @@ function App() {
                 <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
               </button>
               <button className="px-8 py-4 bg-white text-gray-900 rounded-full font-medium border-2 border-gray-200 hover:border-slate-600 transition-all hover:shadow-lg">
-                Join the Waitlist
+                Try Arcus
               </button>
             </div>
           </div>
@@ -748,7 +748,7 @@ function App() {
               <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
             </button>
             <button className="px-8 py-4 bg-transparent text-white rounded-full font-medium border-2 border-white/30 hover:bg-white/10 transition-all">
-              Join the Waitlist
+              Try Arcus
             </button>
           </div>
         </div>
