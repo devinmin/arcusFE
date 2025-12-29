@@ -444,9 +444,38 @@ function App() {
                 Join the Waitlist
               </button>
             </div>
+          </div>
+        </div>
+      </section>
 
-            <div className="mt-16 text-center">
-              <p className="text-sm text-gray-500">Trusted by several brands</p>
+      {/* Trust Section */}
+      <section className="py-16 px-6 bg-white border-b border-gray-100">
+        <div className="max-w-5xl mx-auto">
+          <div className="text-center mb-8">
+            <p className="text-sm font-medium text-gray-500 uppercase tracking-wider mb-8">Trusted by several brands</p>
+          </div>
+
+          <div className="bg-slate-50 rounded-2xl p-8 md:p-12 border border-gray-100">
+            <div className="max-w-3xl mx-auto text-center">
+              <div className="mb-6">
+                <div className="flex justify-center mb-4">
+                  {[...Array(5)].map((_, i) => (
+                    <Sparkles key={i} className="w-5 h-5 text-slate-600 fill-slate-600" />
+                  ))}
+                </div>
+              </div>
+              <blockquote className="text-xl md:text-2xl text-gray-900 font-medium leading-relaxed mb-6">
+                "Arcus AI transformed our marketing completely. What used to take our team weeks now happens automatically. The ROI has been incredible."
+              </blockquote>
+              <div className="flex items-center justify-center space-x-3">
+                <div className="w-12 h-12 bg-slate-600 rounded-full flex items-center justify-center text-white font-bold">
+                  JD
+                </div>
+                <div className="text-left">
+                  <p className="font-semibold text-gray-900">Jane Doe</p>
+                  <p className="text-sm text-gray-600">Head of Marketing, Tech Company</p>
+                </div>
+              </div>
             </div>
           </div>
         </div>
