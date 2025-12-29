@@ -1,6 +1,10 @@
 import { ArrowRight, Sparkles, Target, TrendingUp, Users, Zap, CheckCircle2, BarChart3, X, Globe, Briefcase } from 'lucide-react';
 import { useState, useEffect } from 'react';
 import { supabase, Campaign } from './lib/supabase';
+import { AnalyzingScreen } from './components/AnalyzingScreen';
+import { CampaignResults } from './components/CampaignResults';
+
+type CampaignStatus = 'idle' | 'analyzing' | 'complete';
 
 function App() {
   const [scrolled, setScrolled] = useState(false);
@@ -12,6 +16,7 @@ function App() {
   const [campaignUrl, setCampaignUrl] = useState('');
   const [campaignIndustry, setCampaignIndustry] = useState('');
   const [campaignError, setCampaignError] = useState('');
+  const [campaignStatus, setCampaignStatus] = useState<CampaignStatus>('idle');
 
   useEffect(() => {
     const handleScroll = () => {
@@ -66,11 +71,22 @@ function App() {
         return;
       }
 
-      console.log('Starting campaign for:', { url: campaignUrl, industry: campaignIndustry });
+      setCampaignStatus('analyzing');
+
+      setTimeout(() => {
+        setCampaignStatus('complete');
+      }, 12000);
     } catch (error) {
       console.error('Error starting campaign:', error);
       setCampaignError('An error occurred. Please try again.');
     }
+  };
+
+  const handleRetryCampaign = () => {
+    setCampaignStatus('idle');
+    setCampaignUrl('');
+    setCampaignIndustry('');
+    setCampaignError('');
   };
 
   if (currentCampaign) {
@@ -99,7 +115,11 @@ function App() {
         </nav>
 
         <div className="max-w-7xl mx-auto px-6 py-12">
-          {isEmpty ? (
+          {campaignStatus === 'analyzing' ? (
+            <AnalyzingScreen url={campaignUrl} industry={campaignIndustry} />
+          ) : campaignStatus === 'complete' ? (
+            <CampaignResults url={campaignUrl} industry={campaignIndustry} onRetry={handleRetryCampaign} />
+          ) : isEmpty ? (
             <div className="flex flex-col items-center justify-center min-h-[70vh]">
               <div className="w-full max-w-2xl">
                 <div className="text-center mb-8">
