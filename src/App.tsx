@@ -4,6 +4,7 @@ import { supabase, Campaign } from './lib/supabase';
 import { generateCampaign, CampaignResult } from './lib/api';
 import { AnalyzingScreen } from './components/AnalyzingScreen';
 import { CampaignResults } from './components/CampaignResults';
+import ComingSoon from './components/ComingSoon';
 
 type CampaignStatus = 'idle' | 'analyzing' | 'complete';
 
@@ -19,6 +20,7 @@ function App() {
   const [campaignError, setCampaignError] = useState('');
   const [campaignStatus, setCampaignStatus] = useState<CampaignStatus>('idle');
   const [campaignData, setCampaignData] = useState<CampaignResult | null>(null);
+  const [showComingSoon, setShowComingSoon] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -108,6 +110,10 @@ function App() {
     setCampaignError('');
     setCampaignData(null);
   };
+
+  if (showComingSoon) {
+    return <ComingSoon onBack={() => setShowComingSoon(false)} />;
+  }
 
   if (currentCampaign) {
     const isEmpty = currentCampaign.active_campaigns_count === 0 &&
@@ -759,8 +765,8 @@ function App() {
       {/* Footer */}
       <footer className="py-12 px-6 bg-gray-900">
         <div className="max-w-7xl mx-auto">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-8">
-            <div className="col-span-1">
+          <div className="grid grid-cols-1 md:grid-cols-[2fr_1fr_1fr] gap-8 mb-8">
+            <div>
               <div className="mb-4">
                 <img src="/arcusai.png" alt="Arcus AI" className="h-8 brightness-0 invert" />
               </div>
@@ -773,17 +779,17 @@ function App() {
               <h4 className="font-semibold text-white mb-4">Product</h4>
               <ul className="space-y-2">
                 <li><a href="#services" className="text-gray-400 hover:text-white transition-colors">Services</a></li>
-                <li><a href="#" className="text-gray-400 hover:text-white transition-colors">Use Cases</a></li>
+                <li><button onClick={() => setShowComingSoon(true)} className="text-gray-400 hover:text-white transition-colors text-left">Use Cases</button></li>
               </ul>
             </div>
 
             <div>
               <h4 className="font-semibold text-white mb-4">Company</h4>
               <ul className="space-y-2">
-                <li><a href="#" className="text-gray-400 hover:text-white transition-colors">About</a></li>
-                <li><a href="#" className="text-gray-400 hover:text-white transition-colors">Blog</a></li>
-                <li><a href="#" className="text-gray-400 hover:text-white transition-colors">Careers</a></li>
-                <li><a href="#" className="text-gray-400 hover:text-white transition-colors">Contact</a></li>
+                <li><button onClick={() => setShowComingSoon(true)} className="text-gray-400 hover:text-white transition-colors text-left">About</button></li>
+                <li><button onClick={() => setShowComingSoon(true)} className="text-gray-400 hover:text-white transition-colors text-left">Blog</button></li>
+                <li><button onClick={() => setShowComingSoon(true)} className="text-gray-400 hover:text-white transition-colors text-left">Careers</button></li>
+                <li><button onClick={() => setShowComingSoon(true)} className="text-gray-400 hover:text-white transition-colors text-left">Contact</button></li>
               </ul>
             </div>
           </div>
