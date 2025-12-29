@@ -1,4 +1,5 @@
-import { FileText, Image, Mail, MessageSquare, Video, Megaphone, Download, RefreshCw, ChevronRight, CheckCircle2 } from 'lucide-react';
+import { FileText, Image, Mail, MessageSquare, Video, Megaphone, Download, RefreshCw, CheckCircle2 } from 'lucide-react';
+import { useState } from 'react';
 
 interface CampaignResultsProps {
   url: string;
@@ -7,6 +8,8 @@ interface CampaignResultsProps {
 }
 
 export function CampaignResults({ url, industry, onRetry }: CampaignResultsProps) {
+  const [selectedTab, setSelectedTab] = useState(0);
+
   const results = [
     {
       icon: FileText,
@@ -15,6 +18,38 @@ export function CampaignResults({ url, industry, onRetry }: CampaignResultsProps
       preview: 'Brand positioning, target audience analysis, key messaging pillars...',
       color: 'blue',
       badge: 'PDF',
+      content: `# Marketing Strategy Brief
+
+## Executive Summary
+This comprehensive marketing strategy is designed to position your brand as a leader in the ${industry} industry. Our approach focuses on authentic storytelling, data-driven targeting, and multi-channel engagement.
+
+## Brand Positioning
+Your brand represents innovation and excellence in ${industry}. We've identified key differentiators that set you apart from competitors and developed messaging that resonates with your target audience.
+
+## Target Audience Analysis
+- **Primary Demographic**: Professionals aged 25-45 in ${industry}
+- **Pain Points**: Looking for reliable, innovative solutions
+- **Behavioral Patterns**: Active on social media, research-driven decisions
+- **Key Motivators**: Quality, trust, and value
+
+## Key Messaging Pillars
+1. **Innovation**: Leading the way with cutting-edge solutions
+2. **Trust**: Proven track record of excellence
+3. **Value**: Superior ROI for clients
+4. **Support**: Dedicated customer success team
+
+## Campaign Objectives
+- Increase brand awareness by 40%
+- Generate 500+ qualified leads
+- Achieve 15% conversion rate
+- Build engaged social media community
+
+## Success Metrics
+- Website traffic growth
+- Social media engagement rates
+- Lead generation numbers
+- Conversion rates
+- Customer acquisition cost`,
     },
     {
       icon: MessageSquare,
@@ -23,6 +58,28 @@ export function CampaignResults({ url, industry, onRetry }: CampaignResultsProps
       preview: 'Instagram, Facebook, Twitter, LinkedIn content with hashtags...',
       color: 'purple',
       badge: '15 Posts',
+      content: `# Social Media Content Calendar
+
+## Post 1 - Introduction (All Platforms)
+Excited to share what we've been working on! 🚀 Transforming the way ${industry} professionals approach their work. Stay tuned for amazing updates! #Innovation #${industry.replace(' ', '')}
+
+## Post 2 - Value Proposition (LinkedIn)
+In today's fast-paced ${industry} landscape, efficiency matters. Our solution helps teams save 10+ hours per week while improving outcomes. Learn how: [Link] #Productivity #BusinessGrowth
+
+## Post 3 - Behind the Scenes (Instagram)
+Meet the team making it all happen! 👋 Swipe to see the passion and dedication behind every feature. #TeamTuesday #CompanyCulture
+
+## Post 4 - Customer Success Story (Facebook)
+"This changed everything for our team!" - hear why clients in ${industry} trust us to deliver results. Watch their story: [Link] #CustomerSuccess #Testimonial
+
+## Post 5 - Educational Content (Twitter)
+🔥 Quick tip: The secret to success in ${industry}? Focus on these 3 things:
+1. Consistency
+2. Innovation
+3. Customer feedback
+What would you add? 💬
+
+[13 more posts with platform-specific optimizations, hashtags, and engagement hooks...]`,
     },
     {
       icon: Mail,
@@ -31,6 +88,54 @@ export function CampaignResults({ url, industry, onRetry }: CampaignResultsProps
       preview: 'Welcome email, value proposition, social proof, offer, follow-up...',
       color: 'green',
       badge: '5 Emails',
+      content: `# Email Campaign Sequence
+
+## Email 1: Welcome
+**Subject**: Welcome! Here's what you need to know about [Company]
+**Preview**: You're going to love what we have planned...
+
+Hi [First Name],
+
+Welcome to our community! We're thrilled to have you here.
+
+Over the next few days, you'll discover how [Company] is transforming ${industry}. But first, here's what you can expect:
+- Exclusive insights and tips
+- Early access to new features
+- Special offers just for you
+
+Ready to get started? [CTA Button]
+
+---
+
+## Email 2: Value Proposition (Day 3)
+**Subject**: The #1 problem facing ${industry} (and how we solve it)
+**Preview**: This could change everything...
+
+[Content continues with problem-solution framework]
+
+---
+
+## Email 3: Social Proof (Day 5)
+**Subject**: How [Company Name] achieved 300% growth using our platform
+**Preview**: Their story might inspire you...
+
+[Customer success story and testimonials]
+
+---
+
+## Email 4: Special Offer (Day 7)
+**Subject**: [First Name], this exclusive offer expires in 48 hours
+**Preview**: Don't miss out on this limited opportunity...
+
+[Time-sensitive offer with clear value proposition]
+
+---
+
+## Email 5: Last Chance (Day 9)
+**Subject**: Final reminder: Your exclusive offer expires tonight
+**Preview**: Last chance to claim your spot...
+
+[Final push with urgency and FOMO]`,
     },
     {
       icon: FileText,
@@ -39,6 +144,34 @@ export function CampaignResults({ url, industry, onRetry }: CampaignResultsProps
       preview: '2,000+ word article with meta description and keywords...',
       color: 'orange',
       badge: '2,000 words',
+      content: `# The Ultimate Guide to Success in ${industry}: 2024 Edition
+
+**Meta Description**: Discover proven strategies and expert insights for achieving success in ${industry}. Learn from industry leaders and transform your approach today.
+
+**Target Keywords**: ${industry} guide, ${industry} strategies, ${industry} best practices
+
+## Introduction
+
+The ${industry} landscape is evolving faster than ever. In this comprehensive guide, we'll explore the strategies, tools, and mindsets that separate leaders from followers in today's competitive environment.
+
+## Chapter 1: Understanding the Modern ${industry} Landscape
+
+The past few years have fundamentally changed how ${industry} operates. Digital transformation, changing customer expectations, and emerging technologies have created both challenges and unprecedented opportunities...
+
+[Content continues with comprehensive coverage of the topic, including statistics, case studies, actionable tips, and expert insights across 2,000+ words]
+
+## Key Takeaways
+
+1. Success in ${industry} requires both innovation and consistency
+2. Customer-centric approaches always win
+3. Data-driven decision making is non-negotiable
+4. Continuous learning and adaptation are essential
+
+## Conclusion
+
+The future of ${industry} belongs to those who embrace change while staying true to core values. By implementing the strategies outlined in this guide, you'll be well-positioned to thrive in this dynamic landscape.
+
+Ready to take the next step? [CTA]`,
     },
     {
       icon: Megaphone,
@@ -47,6 +180,45 @@ export function CampaignResults({ url, industry, onRetry }: CampaignResultsProps
       preview: 'Google Ads, Facebook Ads, LinkedIn Ads with CTAs...',
       color: 'red',
       badge: '12 Variations',
+      content: `# Multi-Platform Ad Copy
+
+## Google Search Ads
+
+### Ad Set 1 - Problem-Focused
+**Headline 1**: Struggling with ${industry}? We Can Help
+**Headline 2**: Trusted by 10,000+ Professionals
+**Headline 3**: Get Started in Minutes
+**Description**: Transform your ${industry} workflow with our proven solution. Free trial available. No credit card required.
+
+### Ad Set 2 - Benefit-Focused
+**Headline 1**: Save 10+ Hours Per Week
+**Headline 2**: ${industry} Made Simple
+**Headline 3**: Join Leading Companies
+**Description**: See why ${industry} leaders choose us. Powerful features, simple interface, dedicated support.
+
+## Facebook/Instagram Ads
+
+### Ad 1 - Video Ad (30 sec)
+**Primary Text**: Is ${industry} taking too much of your time? There's a better way. 💡
+**Headline**: Try [Company] Free for 14 Days
+**Description**: No credit card required
+
+### Ad 2 - Carousel Ad
+**Primary Text**: 5 ways [Company] transforms ${industry}
+**Card 1**: Automate repetitive tasks
+**Card 2**: Collaborate seamlessly
+**Card 3**: Track performance in real-time
+**Card 4**: Integrate with your tools
+**Card 5**: Scale with confidence
+
+## LinkedIn Ads
+
+### Sponsored Content 1
+**Headline**: The Future of ${industry} is Here
+**Description**: Join 10,000+ professionals who've already made the switch. Discover why teams in ${industry} trust [Company] to deliver results.
+**CTA**: Learn More
+
+[8 more ad variations optimized for different platforms and objectives...]`,
     },
     {
       icon: Video,
@@ -55,6 +227,57 @@ export function CampaignResults({ url, industry, onRetry }: CampaignResultsProps
       preview: '30-second pitch, 60-second explainer, testimonial prompts...',
       color: 'indigo',
       badge: '3 Scripts',
+      content: `# Video Scripts Collection
+
+## Script 1: 30-Second Elevator Pitch
+
+**[VISUAL: Modern office/workspace]**
+**VO**: "Every day, professionals in ${industry} waste hours on tasks that could be automated."
+
+**[VISUAL: Product interface, smooth animations]**
+**VO**: "That's why we built [Company]. The smart solution that helps you work faster, smarter, and better."
+
+**[VISUAL: Happy customers, results dashboard]**
+**VO**: "Join 10,000+ ${industry} professionals who've already made the switch."
+
+**[VISUAL: Logo and CTA]**
+**VO**: "Try [Company] free for 14 days. No credit card required."
+
+---
+
+## Script 2: 60-Second Explainer Video
+
+**[OPENING SHOT: Person looking frustrated at computer]**
+**VO**: "Sound familiar? You're drowning in ${industry} tasks, deadlines are looming, and you're working late...again."
+
+**[TRANSITION: Smooth animation to product]**
+**VO**: "Meet [Company]. We've reimagined how ${industry} works."
+
+**[FEATURE SHOWCASE: 3 quick demos]**
+**VO**: "Automate repetitive work. Collaborate seamlessly. Track everything in real-time."
+
+**[SOCIAL PROOF: Customer testimonials]**
+**VO**: "Don't just take our word for it..."
+
+**[CLOSING: Strong CTA]**
+**VO**: "Ready to transform your workflow? Start your free trial today."
+
+---
+
+## Script 3: Customer Testimonial Prompts
+
+**Questions for Customers:**
+1. What was your biggest challenge before using [Company]?
+2. How has [Company] changed your daily workflow?
+3. What results have you seen since implementing our solution?
+4. What would you tell others in ${industry} considering [Company]?
+5. If you could describe [Company] in three words, what would they be?
+
+**B-Roll Suggestions:**
+- Customer using product in natural environment
+- Team collaboration scenes
+- Dashboard showing results/metrics
+- Before/after comparisons`,
     },
     {
       icon: Image,
@@ -63,6 +286,64 @@ export function CampaignResults({ url, industry, onRetry }: CampaignResultsProps
       preview: 'Hero images, social media graphics, ad creatives...',
       color: 'pink',
       badge: '8 Images',
+      content: `# Generated Image Assets
+
+## Image Collection Overview
+Your campaign includes 8 custom-generated images optimized for different platforms and use cases.
+
+### 1. Hero Image - Website Header
+**Dimensions**: 1920x1080px
+**Format**: PNG
+**Style**: Modern, professional, brand-aligned
+**Use Case**: Website homepage, landing pages
+
+### 2. Social Media - Instagram Post (Square)
+**Dimensions**: 1080x1080px
+**Format**: JPG
+**Style**: Engaging, colorful, mobile-optimized
+**Use Case**: Instagram feed, Facebook posts
+
+### 3. Social Media - Instagram Story
+**Dimensions**: 1080x1920px
+**Format**: JPG
+**Style**: Vertical format, attention-grabbing
+**Use Case**: Instagram Stories, Facebook Stories
+
+### 4. Facebook Ad Creative
+**Dimensions**: 1200x628px
+**Format**: JPG
+**Style**: Professional with clear CTA space
+**Use Case**: Facebook ads, LinkedIn ads
+
+### 5. Blog Feature Image
+**Dimensions**: 1200x675px
+**Format**: JPG
+**Style**: Editorial, informative
+**Use Case**: Blog posts, articles
+
+### 6. Email Header
+**Dimensions**: 600x200px
+**Format**: JPG
+**Style**: Clean, professional, email-safe
+**Use Case**: Email campaigns
+
+### 7. Google Display Ad
+**Dimensions**: 728x90px (Leaderboard)
+**Format**: JPG
+**Style**: Compact, clear messaging
+**Use Case**: Google Display Network
+
+### 8. Pinterest Pin
+**Dimensions**: 1000x1500px
+**Format**: JPG
+**Style**: Vertical, visually striking
+**Use Case**: Pinterest marketing
+
+**Download Package Includes:**
+- All images in original resolution
+- Optimized web versions
+- Social media size variations
+- Brand guidelines document`,
     },
   ];
 
@@ -86,77 +367,37 @@ export function CampaignResults({ url, industry, onRetry }: CampaignResultsProps
     pink: 'bg-pink-500',
   };
 
+  const selectedResult = results[selectedTab];
+  const Icon = selectedResult.icon;
+  const colorClass = colorClasses[selectedResult.color as keyof typeof colorClasses];
+  const iconColorClass = iconColorClasses[selectedResult.color as keyof typeof iconColorClasses];
+
   return (
-    <div className="max-w-6xl mx-auto">
-      <div className="mb-8">
-        <div className="flex items-center gap-3 mb-4">
+    <div className="max-w-7xl mx-auto">
+      <div className="flex items-center justify-between mb-8">
+        <div className="flex items-center gap-3">
           <div className="w-12 h-12 bg-green-100 rounded-full flex items-center justify-center">
             <CheckCircle2 className="w-6 h-6 text-green-600" />
           </div>
           <div>
             <h1 className="text-4xl font-bold text-gray-900">Campaign Ready!</h1>
-            <p className="text-gray-600 mt-1">
-              Your complete marketing campaign has been generated
-            </p>
+            <div className="flex items-center gap-3 text-sm text-gray-600 mt-1">
+              <span className="px-3 py-1 bg-gray-100 rounded-full font-medium">{url}</span>
+              <span>•</span>
+              <span className="capitalize">{industry}</span>
+            </div>
           </div>
         </div>
-
-        <div className="flex items-center gap-3 text-sm text-gray-600 mb-6">
-          <span className="px-3 py-1 bg-gray-100 rounded-full font-medium">{url}</span>
-          <span>•</span>
-          <span className="capitalize">{industry}</span>
-        </div>
-
-        <div className="flex gap-3">
-          <button className="flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-blue-600 to-blue-700 text-white rounded-lg font-semibold hover:from-blue-700 hover:to-blue-800 transition-all hover:shadow-xl">
-            <Download className="w-5 h-5" />
-            Download All Files
-          </button>
-          <button
-            onClick={onRetry}
-            className="flex items-center gap-2 px-6 py-3 bg-white text-gray-700 border-2 border-gray-200 rounded-lg font-medium hover:border-gray-300 hover:bg-gray-50 transition-all"
-          >
-            <RefreshCw className="w-5 h-5" />
-            Create New Campaign
-          </button>
-        </div>
+        <button
+          onClick={onRetry}
+          className="flex items-center gap-2 px-6 py-3 bg-white text-gray-700 border-2 border-gray-200 rounded-lg font-medium hover:border-gray-300 hover:bg-gray-50 transition-all"
+        >
+          <RefreshCw className="w-5 h-5" />
+          Create New Campaign
+        </button>
       </div>
 
-      <div className="grid grid-cols-1 gap-4">
-        {results.map((result, index) => {
-          const Icon = result.icon;
-          const colorClass = colorClasses[result.color as keyof typeof colorClasses];
-          const iconColorClass = iconColorClasses[result.color as keyof typeof iconColorClasses];
-
-          return (
-            <div
-              key={index}
-              className="bg-white rounded-xl p-6 border border-gray-100 hover:border-gray-200 hover:shadow-lg transition-all group cursor-pointer"
-            >
-              <div className="flex items-start gap-4">
-                <div className={`flex-shrink-0 w-12 h-12 ${iconColorClass} rounded-lg flex items-center justify-center`}>
-                  <Icon className="w-6 h-6 text-white" />
-                </div>
-
-                <div className="flex-1 min-w-0">
-                  <div className="flex items-center gap-3 mb-2">
-                    <h3 className="text-lg font-semibold text-gray-900">{result.title}</h3>
-                    <span className={`px-2 py-1 text-xs font-medium rounded-full ${colorClass}`}>
-                      {result.badge}
-                    </span>
-                  </div>
-                  <p className="text-sm text-gray-600 mb-2">{result.description}</p>
-                  <p className="text-sm text-gray-500 italic line-clamp-1">{result.preview}</p>
-                </div>
-
-                <ChevronRight className="flex-shrink-0 w-5 h-5 text-gray-400 group-hover:text-gray-600 group-hover:translate-x-1 transition-all" />
-              </div>
-            </div>
-          );
-        })}
-      </div>
-
-      <div className="mt-8 p-6 bg-blue-50 border border-blue-200 rounded-xl">
+      <div className="mb-6 p-6 bg-blue-50 border border-blue-200 rounded-xl">
         <div className="flex items-start gap-4">
           <div className="flex-shrink-0 w-10 h-10 bg-blue-600 rounded-full flex items-center justify-center">
             <CheckCircle2 className="w-6 h-6 text-white" />
@@ -169,6 +410,98 @@ export function CampaignResults({ url, industry, onRetry }: CampaignResultsProps
               <li>• Schedule posts and launch your campaigns</li>
               <li>• Monitor performance and iterate based on results</li>
             </ul>
+          </div>
+        </div>
+      </div>
+
+      <div className="flex gap-6">
+        <div className="w-80 flex-shrink-0">
+          <div className="bg-white rounded-xl border border-gray-200 overflow-hidden sticky top-6">
+            <div className="p-4 border-b border-gray-200 bg-gray-50">
+              <h3 className="font-semibold text-gray-900">Deliverables</h3>
+            </div>
+            <div className="py-2">
+              {results.map((result, index) => {
+                const TabIcon = result.icon;
+                const isActive = selectedTab === index;
+                const tabColorClass = iconColorClasses[result.color as keyof typeof iconColorClasses];
+
+                return (
+                  <button
+                    key={index}
+                    onClick={() => setSelectedTab(index)}
+                    className={`w-full flex items-center gap-3 px-4 py-3 text-left transition-all ${
+                      isActive
+                        ? 'bg-blue-50 border-l-4 border-blue-600'
+                        : 'hover:bg-gray-50 border-l-4 border-transparent'
+                    }`}
+                  >
+                    <div className={`flex-shrink-0 w-10 h-10 ${tabColorClass} rounded-lg flex items-center justify-center`}>
+                      <TabIcon className="w-5 h-5 text-white" />
+                    </div>
+                    <div className="flex-1 min-w-0">
+                      <p className={`font-medium text-sm ${isActive ? 'text-blue-900' : 'text-gray-900'}`}>
+                        {result.title}
+                      </p>
+                      <p className="text-xs text-gray-500">{result.badge}</p>
+                    </div>
+                  </button>
+                );
+              })}
+            </div>
+            <div className="p-4 border-t border-gray-200">
+              <button className="w-full flex items-center justify-center gap-2 px-4 py-3 bg-gradient-to-r from-blue-600 to-blue-700 text-white rounded-lg font-semibold hover:from-blue-700 hover:to-blue-800 transition-all hover:shadow-lg">
+                <Download className="w-5 h-5" />
+                Download All
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <div className="flex-1 bg-white rounded-xl border border-gray-200 overflow-hidden">
+          <div className="p-6 border-b border-gray-200 bg-gray-50">
+            <div className="flex items-center gap-3 mb-2">
+              <div className={`w-10 h-10 ${iconColorClass} rounded-lg flex items-center justify-center`}>
+                <Icon className="w-5 h-5 text-white" />
+              </div>
+              <div className="flex-1">
+                <h3 className="text-xl font-bold text-gray-900">{selectedResult.title}</h3>
+                <p className="text-sm text-gray-600">{selectedResult.description}</p>
+              </div>
+              <span className={`px-3 py-1 text-xs font-medium rounded-full ${colorClass}`}>
+                {selectedResult.badge}
+              </span>
+            </div>
+          </div>
+
+          <div className="p-6 max-h-[600px] overflow-y-auto">
+            <div className="prose prose-sm max-w-none">
+              <pre className="whitespace-pre-wrap text-gray-700 font-sans leading-relaxed">
+                {selectedResult.content}
+              </pre>
+            </div>
+          </div>
+
+          <div className="p-4 border-t border-gray-200 bg-gray-50 flex justify-between items-center">
+            <div className="text-sm text-gray-600">
+              {selectedTab + 1} of {results.length}
+            </div>
+            <div className="flex gap-2">
+              <button
+                onClick={() => setSelectedTab(Math.max(0, selectedTab - 1))}
+                disabled={selectedTab === 0}
+                className="px-4 py-2 text-sm font-medium text-gray-700 bg-white border border-gray-200 rounded-lg hover:bg-gray-50 disabled:opacity-50 disabled:cursor-not-allowed transition-all"
+              >
+                Previous
+              </button>
+              <button
+                onClick={() => setSelectedTab(Math.min(results.length - 1, selectedTab + 1))}
+                disabled={selectedTab === results.length - 1}
+                className="px-4 py-2 text-sm font-medium text-gray-700 bg-white border border-gray-200 rounded-lg hover:bg-gray-50 disabled:opacity-50 disabled:cursor-not-allowed transition-all"
+              >
+                Next
+              </button>
+            </div>
           </div>
         </div>
       </div>
