@@ -154,7 +154,7 @@ export function AnalyzingScreen({ url, industry }: AnalyzingScreenProps) {
     <div className="min-h-screen bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900 flex items-center justify-center p-6">
       <div className="max-w-4xl w-full">
         <div className="text-center mb-12">
-          <div className="inline-flex items-center gap-3 bg-white/10 backdrop-blur-sm px-6 py-3 rounded-full mb-6">
+          <div className="inline-flex items-center gap-3 px-6 py-3 mb-6">
             <Loader2 className="w-5 h-5 text-purple-400 animate-spin" />
             <span className="text-white font-medium">Generating Campaign</span>
           </div>
@@ -180,7 +180,7 @@ export function AnalyzingScreen({ url, industry }: AnalyzingScreenProps) {
           </div>
         </div>
 
-        <div className="bg-white/5 backdrop-blur-sm border border-white/10 rounded-2xl p-6 mb-8">
+        <div className="mb-8">
           <div className="flex items-start gap-4">
             <div className={`p-3 rounded-xl ${colorClasses[currentStageData?.color as keyof typeof colorClasses]}`}>
               {currentStageData && <currentStageData.icon className="w-6 h-6" />}
@@ -209,9 +209,9 @@ export function AnalyzingScreen({ url, industry }: AnalyzingScreenProps) {
                 key={stage.id}
                 className={`
                   flex items-center gap-4 p-4 rounded-xl transition-all duration-300
-                  ${status === 'completed' ? 'bg-white/5 border border-green-500/20' : ''}
-                  ${status === 'active' ? 'bg-white/10 border border-purple-500/30 scale-[1.02]' : ''}
-                  ${status === 'pending' ? 'bg-white/5 border border-white/5 opacity-50' : ''}
+                  ${status === 'completed' ? 'border-l-2 border-green-500/40' : ''}
+                  ${status === 'active' ? 'border-l-2 border-purple-500/60 scale-[1.01]' : ''}
+                  ${status === 'pending' ? 'opacity-50' : ''}
                 `}
               >
                 <div className={`
