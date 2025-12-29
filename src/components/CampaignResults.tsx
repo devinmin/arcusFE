@@ -1,6 +1,9 @@
-import { FileText, Image, Mail, MessageSquare, Video, Megaphone, Download, RefreshCw, CheckCircle2, Brain } from 'lucide-react';
+import { FileText, Image, Mail, MessageSquare, Video, Megaphone, Download, RefreshCw, CheckCircle2, Brain, Presentation } from 'lucide-react';
 import { useState } from 'react';
 import { CampaignResult } from '../lib/api';
+import { VideoPlayer } from './VideoPlayer';
+import { PowerPointDownload } from './PowerPointDownload';
+import { BrandIntelligence } from './BrandIntelligence';
 
 interface CampaignResultsProps {
   url: string;
@@ -16,12 +19,18 @@ export function CampaignResults({ url, industry, data, onRetry }: CampaignResult
   const results = [
     {
       icon: Brain,
-      title: 'Brand Intelligence Report',
-      description: 'Comprehensive analysis of brand identity, voice, and positioning',
-      preview: 'Brand analysis, competitive insights, market positioning...',
+      title: 'Brand Intelligence',
+      description: 'Extracted brand data, colors, fonts, and visual assets',
+      preview: 'Complete brand analysis with color palette, typography, voice analysis...',
       color: 'slate',
-      badge: 'ANALYSIS',
-      content: data?.brandIntelligence || 'Content not available',
+      badge: 'JSON',
+      isBrandIntelligence: true,
+      brandData: {
+        json: data?.deliverables.brandContext.json || null,
+        extractedImages: data?.deliverables.brandContext.extractedImages || [],
+        guidelines: data?.deliverables.brandContext.colorsAndFonts || null,
+      },
+      content: data?.deliverables.brandContext.colorsAndFonts || 'Content not available',
     },
     {
       icon: FileText,
@@ -70,11 +79,14 @@ export function CampaignResults({ url, industry, data, onRetry }: CampaignResult
     },
     {
       icon: Video,
-      title: 'Video Scripts',
-      description: 'Scripts for promotional videos',
-      preview: '30-second pitch, 60-second explainer, testimonial prompts...',
+      title: 'Hero Video',
+      description: '30-second promotional video',
+      preview: 'Complete video with scenes, voiceover, and music...',
       color: 'indigo',
-      badge: '3 Scripts',
+      badge: data?.deliverables.video.duration ? `${data.deliverables.video.duration}s` : 'Script',
+      isVideo: data?.deliverables.video.url ? true : false,
+      videoUrl: data?.deliverables.video.url || null,
+      thumbnail: data?.deliverables.video.thumbnail || null,
       content: data?.deliverables.videoScript || 'Content not available',
     },
     {
@@ -83,17 +95,73 @@ export function CampaignResults({ url, industry, data, onRetry }: CampaignResult
       description: 'AI-generated visuals for your campaign',
       preview: 'Hero images, social media graphics, ad creatives...',
       color: 'pink',
-      badge: `${data?.deliverables.images?.length || 0} Images`,
+      badge: `${Object.values(data?.deliverables.images || {}).filter(Boolean).length} Images`,
       isImageGallery: true,
-      images: data?.deliverables.images?.map((url, idx) => ({
-        title: `Campaign Image ${idx + 1}`,
-        dimensions: '1024x1024px',
-        format: 'PNG',
-        style: 'AI-generated, campaign-specific',
-        useCase: 'Marketing materials',
-        url,
-      })) || [],
+      images: [
+        {
+          title: 'Hero Image',
+          dimensions: '1920x1080px',
+          format: 'PNG',
+          style: 'Website/landing page use',
+          useCase: 'Homepage, hero sections',
+          url: data?.deliverables.images.hero,
+        },
+        {
+          title: 'Social Media Post',
+          dimensions: '1080x1080px',
+          format: 'PNG',
+          style: 'Instagram/Facebook post',
+          useCase: 'Feed posts, carousels',
+          url: data?.deliverables.images.socialPost,
+        },
+        {
+          title: 'Social Media Story',
+          dimensions: '1080x1920px',
+          format: 'PNG',
+          style: 'Instagram/Facebook story',
+          useCase: 'Stories, Reels',
+          url: data?.deliverables.images.socialStory,
+        },
+        {
+          title: 'Email Banner',
+          dimensions: '600x200px',
+          format: 'PNG',
+          style: 'Email header',
+          useCase: 'Email campaigns',
+          url: data?.deliverables.images.emailBanner,
+        },
+        {
+          title: 'Ad Creative',
+          dimensions: '1200x628px',
+          format: 'PNG',
+          style: 'Facebook/LinkedIn ad',
+          useCase: 'Paid social advertising',
+          url: data?.deliverables.images.adCreative,
+        },
+        {
+          title: 'Blog Featured Image',
+          dimensions: '1200x630px',
+          format: 'PNG',
+          style: 'Blog post header',
+          useCase: 'Blog articles, SEO',
+          url: data?.deliverables.images.blogFeatured,
+        },
+      ].filter(img => img.url),
       content: '',
+    },
+    {
+      icon: Presentation,
+      title: 'Campaign Deck',
+      description: 'Professional PowerPoint presentation',
+      preview: 'Complete client-ready deck with all deliverables...',
+      color: 'indigo',
+      badge: data?.deliverables.campaignDeck.slideCount
+        ? `${data.deliverables.campaignDeck.slideCount} Slides`
+        : 'N/A',
+      isPowerPoint: data?.deliverables.campaignDeck.url ? true : false,
+      downloadUrl: data?.deliverables.campaignDeck.url || null,
+      slideCount: data?.deliverables.campaignDeck.slideCount || 0,
+      content: 'PowerPoint presentation ready for download',
     },
   ];
 
@@ -227,7 +295,25 @@ export function CampaignResults({ url, industry, data, onRetry }: CampaignResult
             </div>
 
             <div className="p-6 max-h-[600px] overflow-y-auto flex-1">
-              {selectedResult.isImageGallery ? (
+              {selectedResult.isBrandIntelligence && selectedResult.brandData?.json ? (
+                <BrandIntelligence
+                  jsonData={selectedResult.brandData.json}
+                  extractedImages={selectedResult.brandData.extractedImages}
+                  guidelines={selectedResult.brandData.guidelines}
+                />
+              ) : selectedResult.isVideo && selectedResult.videoUrl ? (
+                <VideoPlayer
+                  videoUrl={selectedResult.videoUrl}
+                  thumbnail={selectedResult.thumbnail}
+                  title={selectedResult.title}
+                />
+              ) : selectedResult.isPowerPoint && selectedResult.downloadUrl ? (
+                <PowerPointDownload
+                  downloadUrl={selectedResult.downloadUrl}
+                  slideCount={selectedResult.slideCount}
+                  title={selectedResult.title}
+                />
+              ) : selectedResult.isImageGallery ? (
                 <div className="grid grid-cols-1 gap-6">
                   {selectedResult.images?.map((image, idx) => (
                     <div key={idx} className="bg-gray-50 rounded-lg overflow-hidden border border-gray-200">

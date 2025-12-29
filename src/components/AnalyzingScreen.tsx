@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { Loader2, Globe, Sparkles, FileText, Mail, MessageSquare, Megaphone, Video, Image, CheckCircle2 } from 'lucide-react';
+import { Loader2, Globe, Sparkles, FileText, Mail, MessageSquare, Megaphone, Video, Image, CheckCircle2, Camera, Palette, MessageCircle, Presentation } from 'lucide-react';
 
 interface AnalyzingScreenProps {
   url: string;
@@ -18,82 +18,106 @@ interface ProgressStage {
 const STAGES: ProgressStage[] = [
   {
     id: 1,
-    label: 'Analyzing Website',
-    description: 'Fetching and parsing your website content',
-    icon: Globe,
-    duration: 15,
+    label: 'Extracting Visual Assets',
+    description: 'Capturing screenshots and images from website',
+    icon: Camera,
+    duration: 20,
     color: 'blue',
   },
   {
     id: 2,
-    label: 'Extracting Brand DNA',
-    description: 'Identifying brand colors, voice, and personality',
-    icon: Sparkles,
-    duration: 15,
+    label: 'Analyzing Brand Identity',
+    description: 'Extracting colors, typography, and visual patterns',
+    icon: Palette,
+    duration: 25,
     color: 'purple',
   },
   {
     id: 3,
-    label: 'Creating Strategic Brief',
-    description: 'Developing comprehensive marketing strategy',
-    icon: FileText,
-    duration: 25,
+    label: 'Analyzing Voice & Messaging',
+    description: 'Understanding tone, key phrases, and emotional triggers',
+    icon: MessageCircle,
+    duration: 20,
     color: 'indigo',
   },
   {
     id: 4,
-    label: 'Writing Social Media',
-    description: 'Generating 15 posts across platforms',
-    icon: MessageSquare,
-    duration: 20,
-    color: 'pink',
+    label: 'Creating Strategic Brief',
+    description: 'Developing comprehensive marketing strategy',
+    icon: FileText,
+    duration: 30,
+    color: 'cyan',
   },
   {
     id: 5,
-    label: 'Crafting Email Sequence',
-    description: 'Creating 5-part email campaign',
-    icon: Mail,
-    duration: 20,
-    color: 'green',
+    label: 'Writing Social Media',
+    description: 'Instagram, LinkedIn, Twitter posts',
+    icon: MessageSquare,
+    duration: 25,
+    color: 'pink',
   },
   {
     id: 6,
-    label: 'Developing Blog Article',
-    description: 'Writing 2000+ word SEO-optimized content',
-    icon: FileText,
+    label: 'Crafting Email Sequence',
+    description: '3-email campaign with subject lines',
+    icon: Mail,
     duration: 25,
-    color: 'orange',
+    color: 'green',
   },
   {
     id: 7,
-    label: 'Creating Ad Copy',
-    description: 'Generating ad variations for multiple platforms',
-    icon: Megaphone,
-    duration: 20,
-    color: 'red',
+    label: 'Developing Blog Article',
+    description: '1500+ word SEO-optimized content',
+    icon: FileText,
+    duration: 30,
+    color: 'orange',
   },
   {
     id: 8,
+    label: 'Creating Ad Copy',
+    description: 'Facebook, Google, LinkedIn ad variations',
+    icon: Megaphone,
+    duration: 25,
+    color: 'red',
+  },
+  {
+    id: 9,
     label: 'Scripting Video Content',
-    description: 'Developing video scripts and prompts',
+    description: '30-second hero video script',
     icon: Video,
     duration: 20,
     color: 'violet',
   },
   {
-    id: 9,
+    id: 10,
     label: 'Generating Images',
-    description: 'Creating AI-generated campaign visuals',
+    description: 'Creating 6 campaign visuals with brand colors',
     icon: Image,
-    duration: 30,
-    color: 'cyan',
+    duration: 40,
+    color: 'pink',
   },
   {
-    id: 10,
+    id: 11,
+    label: 'Generating Video',
+    description: 'Creating 30-second hero video',
+    icon: Video,
+    duration: 60,
+    color: 'purple',
+  },
+  {
+    id: 12,
+    label: 'Creating PowerPoint Deck',
+    description: 'Building 12+ slide presentation',
+    icon: Presentation,
+    duration: 30,
+    color: 'indigo',
+  },
+  {
+    id: 13,
     label: 'Finalizing Campaign',
     description: 'Organizing deliverables and preparing results',
     icon: CheckCircle2,
-    duration: 10,
+    duration: 15,
     color: 'emerald',
   },
 ];
@@ -232,7 +256,7 @@ export function AnalyzingScreen({ url, industry }: AnalyzingScreenProps) {
 
         <div className="mt-8 text-center">
           <p className="text-sm text-gray-600">
-            This typically takes 2-3 minutes. Please don't close this window.
+            This typically takes 5-6 minutes. Please don't close this window.
           </p>
         </div>
       </div>

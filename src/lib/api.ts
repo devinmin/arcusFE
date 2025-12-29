@@ -10,15 +10,35 @@ export interface CampaignResult {
   success: boolean;
   campaignId: string;
   outputFolder: string;
-  brandIntelligence: string | null;
   deliverables: {
+    brandContext: {
+      json: string | null;
+      extractedImages: string[];
+      colorsAndFonts: string | null;
+    };
     strategicBrief: string | null;
     socialMedia: string | null;
     emailSequence: string | null;
     blogArticle: string | null;
     adCopy: string | null;
     videoScript: string | null;
-    images: string[];
+    campaignDeck: {
+      url: string | null;
+      slideCount: number;
+    };
+    video: {
+      url: string | null;
+      duration: number | null;
+      thumbnail: string | null;
+    };
+    images: {
+      hero: string | null;
+      socialPost: string | null;
+      socialStory: string | null;
+      emailBanner: string | null;
+      adCreative: string | null;
+      blogFeatured: string | null;
+    };
   };
   error?: string;
 }
@@ -36,7 +56,31 @@ export const generateCampaign = async (
     success: true,
     campaignId,
     outputFolder: `/campaigns/${campaignId}`,
-    brandIntelligence: `# BRAND INTELLIGENCE REPORT
+    deliverables: {
+      brandContext: {
+        json: `{
+  "websiteUrl": "${website}",
+  "industry": "${industry}",
+  "colors": {
+    "primary": "#2563eb",
+    "secondary": "#7c3aed",
+    "accent": "#06b6d4"
+  },
+  "typography": {
+    "primaryFont": "Inter, sans-serif",
+    "headingFont": "Poppins, sans-serif"
+  },
+  "voiceTone": ["Professional", "Trustworthy", "Innovative", "Customer-Focused"],
+  "targetAudience": "Business professionals aged 25-45 in ${industry} sector",
+  "brandArchetype": "The Expert / The Innovator",
+  "emotionalTriggers": ["Confidence", "Aspiration", "Security"]
+}`,
+        extractedImages: [
+          'https://images.pexels.com/photos/3184291/pexels-photo-3184291.jpeg',
+          'https://images.pexels.com/photos/3183150/pexels-photo-3183150.jpeg',
+          'https://images.pexels.com/photos/3184338/pexels-photo-3184338.jpeg',
+        ],
+        colorsAndFonts: `# BRAND INTELLIGENCE REPORT
 
 **Website Analyzed:** ${website}
 **Industry:** ${industry}
@@ -292,7 +336,7 @@ export const generateCampaign = async (
 **Document Status:** ✅ Complete
 **Analysis Depth:** Comprehensive
 **Ready for:** Campaign Development`,
-    deliverables: {
+      },
       strategicBrief: `# Strategic Marketing Brief for ${industry}\n\n## Campaign Overview\nWebsite: ${website}\nIndustry: ${industry}\n\n## Target Audience\nPrimary demographic: Business professionals aged 25-45\nSecondary demographic: Marketing teams and decision-makers\n\n## Campaign Objectives\n1. Increase brand awareness by 40%\n2. Generate qualified leads\n3. Drive website traffic by 60%\n4. Establish thought leadership\n\n## Key Messages\n- Innovation-driven solutions\n- Proven ROI and results\n- Industry expertise\n\n## Campaign Timeline\n- Launch: Q1 2024\n- Duration: 12 weeks\n- Review points: Weekly\n\n## Budget Allocation\n- Social Media: 30%\n- Content Marketing: 25%\n- Paid Advertising: 25%\n- Email Marketing: 20%`,
 
       socialMedia: `# Social Media Content Calendar\n\n## Week 1-2: Awareness Phase\n\n### LinkedIn Post 1\n🚀 Innovation meets execution in the ${industry} space.\n\nDiscover how leading companies are transforming their approach to [key benefit].\n\nLearn more: ${website}\n\n#Innovation #${industry} #DigitalTransformation\n\n### Twitter Thread\n1/ The ${industry} landscape is evolving. Here's what you need to know 🧵\n\n2/ Traditional approaches are no longer enough. Modern solutions require:\n✅ Data-driven insights\n✅ Scalable technology\n✅ Customer-first thinking\n\n3/ That's where we come in. ${website}\n\n### Instagram Post\n[Image: Modern office workspace]\n\nCaption: Behind every great campaign is a team dedicated to excellence. Meet the future of ${industry}.\n\n## Week 3-4: Engagement Phase\n\n### LinkedIn Post 2\nCase Study Alert 📊\n\nHow we helped [Company] achieve 150% ROI in just 90 days.\n\nKey results:\n• 60% increase in qualified leads\n• 40% reduction in customer acquisition cost\n• 3x improvement in conversion rates\n\nRead the full story: [link]\n\n### Facebook Post\nExcited to announce our latest innovation in ${industry}! 🎉\n\nJoin thousands of satisfied customers who trust us with their [key benefit].\n\nDiscover the difference: ${website}`,
@@ -305,12 +349,23 @@ export const generateCampaign = async (
 
       videoScript: `# Video Marketing Script\n\n## 30-Second Brand Overview\n\n**[SCENE 1: Opening - 0:00-0:05]**\nVisuals: Dynamic montage of successful businesses\nVoiceover: "In today's fast-paced ${industry} world, standing still means falling behind."\n\n**[SCENE 2: Problem - 0:05-0:15]**\nVisuals: Split screen showing traditional vs modern approaches\nVoiceover: "Traditional methods are holding you back. You need solutions that scale, adapt, and deliver results."\n\n**[SCENE 3: Solution - 0:15-0:25]**\nVisuals: Product interface and happy customers\nVoiceover: "Introducing [Company Name] - the AI-powered platform trusted by industry leaders to transform their operations."\n\n**[SCENE 4: Call to Action - 0:25-0:30]**\nVisuals: Logo and website URL\nVoiceover: "Join 10,000+ companies achieving extraordinary results. Visit ${website} today."\n\nText Overlay: "${website} | Start Free Trial"\n\n---\n\n## 60-Second Product Demo\n\n**[SCENE 1: Hook - 0:00-0:08]**\nVisuals: Engaging opening animation\nVoiceover: "What if you could automate 80% of your ${industry} operations while improving quality? Let me show you how."\n\n**[SCENE 2: Pain Points - 0:08-0:18]**\nVisuals: Common problems with X marks\nVoiceover: "We know you're dealing with rising costs, increasing complexity, and limited resources. You're not alone."\n\n**[SCENE 3: Solution Overview - 0:18-0:35]**\nVisuals: Platform walkthrough\nVoiceover: "Our platform combines AI automation with human expertise to deliver:\n- Faster results\n- Lower costs\n- Better outcomes\n- Complete peace of mind"\n\n**[SCENE 4: Social Proof - 0:35-0:45]**\nVisuals: Customer testimonials and stats\nVoiceover: "Don't just take our word for it. Over 10,000 companies trust us to power their success."\nText Overlay: "150% Average ROI | 4.9/5 Customer Rating"\n\n**[SCENE 5: Call to Action - 0:45-0:60]**\nVisuals: Clear CTA with contact information\nVoiceover: "Ready to transform your ${industry} operations? Start your free trial today. No credit card required. Visit ${website} or call us now."\n\nText Overlay: "${website} | 1-800-XXX-XXXX | Start Free Trial"\n\n---\n\n## 2-Minute Customer Success Story\n\n**[SCENE 1: Introduction - 0:00-0:20]**\nVisuals: Customer facility/office\nVoiceover: "Meet [Customer Name], a leading company in the ${industry} space. Just 6 months ago, they were struggling with [specific challenges]."\n\n[Customer Interview]\nCustomer: "We were spending too much time on manual processes. We knew there had to be a better way."\n\n**[SCENE 2: The Challenge - 0:20-0:45]**\nVisuals: B-roll of old processes\nVoiceover: "Like many companies in ${industry}, they faced:\n- Rising operational costs\n- Slow time-to-market\n- Difficulty scaling\n- Limited visibility into performance"\n\n[Customer Interview]\nCustomer: "We needed a solution that could grow with us and deliver measurable results."\n\n**[SCENE 3: The Solution - 0:45-1:20]**\nVisuals: Implementation process and platform usage\nVoiceover: "After implementing [Company Name], everything changed. Within just 30 days, they saw dramatic improvements."\n\n[Customer Interview]\nCustomer: "The onboarding was seamless. Within a week, we were seeing results. Within a month, we knew we'd made the right choice."\n\n**[SCENE 4: Results - 1:20-1:45]**\nVisuals: Impressive metrics and graphs\nVoiceover: "The numbers speak for themselves:\n- 60% reduction in operational costs\n- 3x faster time-to-market\n- 95% customer satisfaction\n- 200% ROI in first quarter"\n\n[Customer Interview]\nCustomer: "It's been transformative. We're not just keeping up anymore - we're leading our industry."\n\n**[SCENE 5: Call to Action - 1:45-2:00]**\nVisuals: Company logo and contact information\nVoiceover: "Ready to achieve similar results? Join thousands of companies transforming their ${industry} operations with [Company Name]."\n\n[Customer Interview]\nCustomer: "If you're serious about growth, this is a no-brainer."\n\nVoiceover: "Visit ${website} to start your free trial today."\n\nText Overlay: "${website} | Book Free Demo | No Credit Card Required"\n\n---\n\n**Production Notes:**\n- Use clean, modern visuals\n- Keep animations smooth and professional\n- Include captions for accessibility\n- Use upbeat, inspiring background music\n- Ensure brand colors and fonts are consistent throughout`,
 
-      images: [
-        'https://images.pexels.com/photos/3184291/pexels-photo-3184291.jpeg',
-        'https://images.pexels.com/photos/3183150/pexels-photo-3183150.jpeg',
-        'https://images.pexels.com/photos/3184338/pexels-photo-3184338.jpeg',
-        'https://images.pexels.com/photos/3184360/pexels-photo-3184360.jpeg',
-      ]
+      campaignDeck: {
+        url: null,
+        slideCount: 0,
+      },
+      video: {
+        url: null,
+        duration: null,
+        thumbnail: null,
+      },
+      images: {
+        hero: 'https://images.pexels.com/photos/3184291/pexels-photo-3184291.jpeg',
+        socialPost: 'https://images.pexels.com/photos/3183150/pexels-photo-3183150.jpeg',
+        socialStory: 'https://images.pexels.com/photos/3184338/pexels-photo-3184338.jpeg',
+        emailBanner: 'https://images.pexels.com/photos/3184360/pexels-photo-3184360.jpeg',
+        adCreative: 'https://images.pexels.com/photos/3184287/pexels-photo-3184287.jpeg',
+        blogFeatured: 'https://images.pexels.com/photos/3183197/pexels-photo-3183197.jpeg',
+      },
     }
   };
 };
