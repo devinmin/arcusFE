@@ -4,7 +4,7 @@ export default {
   theme: {
     extend: {
       fontFamily: {
-        sans: ['Poppins', 'sans-serif'],
+        sans: ['proxima-nova', 'Open Sans', 'arial', 'sans-serif'],
       },
     },
   },
