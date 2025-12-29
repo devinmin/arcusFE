@@ -286,64 +286,74 @@ Ready to take the next step? [CTA]`,
       preview: 'Hero images, social media graphics, ad creatives...',
       color: 'pink',
       badge: '8 Images',
-      content: `# Generated Image Assets
-
-## Image Collection Overview
-Your campaign includes 8 custom-generated images optimized for different platforms and use cases.
-
-### 1. Hero Image - Website Header
-**Dimensions**: 1920x1080px
-**Format**: PNG
-**Style**: Modern, professional, brand-aligned
-**Use Case**: Website homepage, landing pages
-
-### 2. Social Media - Instagram Post (Square)
-**Dimensions**: 1080x1080px
-**Format**: JPG
-**Style**: Engaging, colorful, mobile-optimized
-**Use Case**: Instagram feed, Facebook posts
-
-### 3. Social Media - Instagram Story
-**Dimensions**: 1080x1920px
-**Format**: JPG
-**Style**: Vertical format, attention-grabbing
-**Use Case**: Instagram Stories, Facebook Stories
-
-### 4. Facebook Ad Creative
-**Dimensions**: 1200x628px
-**Format**: JPG
-**Style**: Professional with clear CTA space
-**Use Case**: Facebook ads, LinkedIn ads
-
-### 5. Blog Feature Image
-**Dimensions**: 1200x675px
-**Format**: JPG
-**Style**: Editorial, informative
-**Use Case**: Blog posts, articles
-
-### 6. Email Header
-**Dimensions**: 600x200px
-**Format**: JPG
-**Style**: Clean, professional, email-safe
-**Use Case**: Email campaigns
-
-### 7. Google Display Ad
-**Dimensions**: 728x90px (Leaderboard)
-**Format**: JPG
-**Style**: Compact, clear messaging
-**Use Case**: Google Display Network
-
-### 8. Pinterest Pin
-**Dimensions**: 1000x1500px
-**Format**: JPG
-**Style**: Vertical, visually striking
-**Use Case**: Pinterest marketing
-
-**Download Package Includes:**
-- All images in original resolution
-- Optimized web versions
-- Social media size variations
-- Brand guidelines document`,
+      isImageGallery: true,
+      images: [
+        {
+          title: 'Hero Image - Website Header',
+          dimensions: '1920x1080px',
+          format: 'PNG',
+          style: 'Modern, professional, brand-aligned',
+          useCase: 'Website homepage, landing pages',
+          url: 'https://images.pexels.com/photos/3184291/pexels-photo-3184291.jpeg?auto=compress&cs=tinysrgb&w=1920',
+        },
+        {
+          title: 'Social Media - Instagram Post',
+          dimensions: '1080x1080px',
+          format: 'JPG',
+          style: 'Engaging, colorful, mobile-optimized',
+          useCase: 'Instagram feed, Facebook posts',
+          url: 'https://images.pexels.com/photos/3184338/pexels-photo-3184338.jpeg?auto=compress&cs=tinysrgb&w=1080',
+        },
+        {
+          title: 'Social Media - Instagram Story',
+          dimensions: '1080x1920px',
+          format: 'JPG',
+          style: 'Vertical format, attention-grabbing',
+          useCase: 'Instagram Stories, Facebook Stories',
+          url: 'https://images.pexels.com/photos/3184360/pexels-photo-3184360.jpeg?auto=compress&cs=tinysrgb&w=1080',
+        },
+        {
+          title: 'Facebook Ad Creative',
+          dimensions: '1200x628px',
+          format: 'JPG',
+          style: 'Professional with clear CTA space',
+          useCase: 'Facebook ads, LinkedIn ads',
+          url: 'https://images.pexels.com/photos/3184287/pexels-photo-3184287.jpeg?auto=compress&cs=tinysrgb&w=1200',
+        },
+        {
+          title: 'Blog Feature Image',
+          dimensions: '1200x675px',
+          format: 'JPG',
+          style: 'Editorial, informative',
+          useCase: 'Blog posts, articles',
+          url: 'https://images.pexels.com/photos/3184465/pexels-photo-3184465.jpeg?auto=compress&cs=tinysrgb&w=1200',
+        },
+        {
+          title: 'Email Header',
+          dimensions: '600x200px',
+          format: 'JPG',
+          style: 'Clean, professional, email-safe',
+          useCase: 'Email campaigns',
+          url: 'https://images.pexels.com/photos/3184296/pexels-photo-3184296.jpeg?auto=compress&cs=tinysrgb&w=600',
+        },
+        {
+          title: 'Google Display Ad',
+          dimensions: '728x90px',
+          format: 'JPG',
+          style: 'Compact, clear messaging',
+          useCase: 'Google Display Network',
+          url: 'https://images.pexels.com/photos/3184325/pexels-photo-3184325.jpeg?auto=compress&cs=tinysrgb&w=728',
+        },
+        {
+          title: 'Pinterest Pin',
+          dimensions: '1000x1500px',
+          format: 'JPG',
+          style: 'Vertical, visually striking',
+          useCase: 'Pinterest marketing',
+          url: 'https://images.pexels.com/photos/3184398/pexels-photo-3184398.jpeg?auto=compress&cs=tinysrgb&w=1000',
+        },
+      ],
+      content: '',
     },
   ];
 
@@ -475,11 +485,49 @@ Your campaign includes 8 custom-generated images optimized for different platfor
           </div>
 
           <div className="p-6 max-h-[600px] overflow-y-auto">
-            <div className="prose prose-sm max-w-none">
-              <pre className="whitespace-pre-wrap text-gray-700 font-sans leading-relaxed">
-                {selectedResult.content}
-              </pre>
-            </div>
+            {selectedResult.isImageGallery ? (
+              <div className="grid grid-cols-1 gap-6">
+                {selectedResult.images?.map((image, idx) => (
+                  <div key={idx} className="bg-gray-50 rounded-lg overflow-hidden border border-gray-200">
+                    <div className="aspect-video bg-gray-900 flex items-center justify-center overflow-hidden">
+                      <img
+                        src={image.url}
+                        alt={image.title}
+                        className="w-full h-full object-cover"
+                      />
+                    </div>
+                    <div className="p-4">
+                      <div className="flex items-start justify-between mb-2">
+                        <h4 className="font-semibold text-gray-900">{image.title}</h4>
+                        <span className="px-2 py-1 text-xs font-medium bg-gray-200 text-gray-700 rounded">
+                          {image.format}
+                        </span>
+                      </div>
+                      <div className="grid grid-cols-2 gap-3 text-sm">
+                        <div>
+                          <p className="text-gray-500 text-xs">Dimensions</p>
+                          <p className="font-medium text-gray-900">{image.dimensions}</p>
+                        </div>
+                        <div>
+                          <p className="text-gray-500 text-xs">Use Case</p>
+                          <p className="font-medium text-gray-900">{image.useCase}</p>
+                        </div>
+                      </div>
+                      <div className="mt-2">
+                        <p className="text-gray-500 text-xs">Style</p>
+                        <p className="text-sm text-gray-700">{image.style}</p>
+                      </div>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            ) : (
+              <div className="prose prose-sm max-w-none">
+                <pre className="whitespace-pre-wrap text-gray-700 font-sans leading-relaxed">
+                  {selectedResult.content}
+                </pre>
+              </div>
+            )}
           </div>
 
           <div className="p-4 border-t border-gray-200 bg-gray-50 flex justify-between items-center">
