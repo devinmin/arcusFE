@@ -1,13 +1,15 @@
 import { FileText, Image, Mail, MessageSquare, Video, Megaphone, Download, RefreshCw, CheckCircle2 } from 'lucide-react';
 import { useState } from 'react';
+import { CampaignResult } from '../lib/api';
 
 interface CampaignResultsProps {
   url: string;
   industry: string;
+  data: CampaignResult | null;
   onRetry: () => void;
 }
 
-export function CampaignResults({ url, industry, onRetry }: CampaignResultsProps) {
+export function CampaignResults({ url, industry, data, onRetry }: CampaignResultsProps) {
   const [selectedTab, setSelectedTab] = useState(0);
 
   const results = [
@@ -18,38 +20,7 @@ export function CampaignResults({ url, industry, onRetry }: CampaignResultsProps
       preview: 'Brand positioning, target audience analysis, key messaging pillars...',
       color: 'blue',
       badge: 'PDF',
-      content: `# Marketing Strategy Brief
-
-## Executive Summary
-This comprehensive marketing strategy is designed to position your brand as a leader in the ${industry} industry. Our approach focuses on authentic storytelling, data-driven targeting, and multi-channel engagement.
-
-## Brand Positioning
-Your brand represents innovation and excellence in ${industry}. We've identified key differentiators that set you apart from competitors and developed messaging that resonates with your target audience.
-
-## Target Audience Analysis
-- **Primary Demographic**: Professionals aged 25-45 in ${industry}
-- **Pain Points**: Looking for reliable, innovative solutions
-- **Behavioral Patterns**: Active on social media, research-driven decisions
-- **Key Motivators**: Quality, trust, and value
-
-## Key Messaging Pillars
-1. **Innovation**: Leading the way with cutting-edge solutions
-2. **Trust**: Proven track record of excellence
-3. **Value**: Superior ROI for clients
-4. **Support**: Dedicated customer success team
-
-## Campaign Objectives
-- Increase brand awareness by 40%
-- Generate 500+ qualified leads
-- Achieve 15% conversion rate
-- Build engaged social media community
-
-## Success Metrics
-- Website traffic growth
-- Social media engagement rates
-- Lead generation numbers
-- Conversion rates
-- Customer acquisition cost`,
+      content: data?.deliverables.strategicBrief || 'Content not available',
     },
     {
       icon: MessageSquare,
@@ -58,28 +29,7 @@ Your brand represents innovation and excellence in ${industry}. We've identified
       preview: 'Instagram, Facebook, Twitter, LinkedIn content with hashtags...',
       color: 'purple',
       badge: '15 Posts',
-      content: `# Social Media Content Calendar
-
-## Post 1 - Introduction (All Platforms)
-Excited to share what we've been working on! 🚀 Transforming the way ${industry} professionals approach their work. Stay tuned for amazing updates! #Innovation #${industry.replace(' ', '')}
-
-## Post 2 - Value Proposition (LinkedIn)
-In today's fast-paced ${industry} landscape, efficiency matters. Our solution helps teams save 10+ hours per week while improving outcomes. Learn how: [Link] #Productivity #BusinessGrowth
-
-## Post 3 - Behind the Scenes (Instagram)
-Meet the team making it all happen! 👋 Swipe to see the passion and dedication behind every feature. #TeamTuesday #CompanyCulture
-
-## Post 4 - Customer Success Story (Facebook)
-"This changed everything for our team!" - hear why clients in ${industry} trust us to deliver results. Watch their story: [Link] #CustomerSuccess #Testimonial
-
-## Post 5 - Educational Content (Twitter)
-🔥 Quick tip: The secret to success in ${industry}? Focus on these 3 things:
-1. Consistency
-2. Innovation
-3. Customer feedback
-What would you add? 💬
-
-[13 more posts with platform-specific optimizations, hashtags, and engagement hooks...]`,
+      content: data?.deliverables.socialMedia || 'Content not available',
     },
     {
       icon: Mail,
@@ -88,54 +38,7 @@ What would you add? 💬
       preview: 'Welcome email, value proposition, social proof, offer, follow-up...',
       color: 'green',
       badge: '5 Emails',
-      content: `# Email Campaign Sequence
-
-## Email 1: Welcome
-**Subject**: Welcome! Here's what you need to know about [Company]
-**Preview**: You're going to love what we have planned...
-
-Hi [First Name],
-
-Welcome to our community! We're thrilled to have you here.
-
-Over the next few days, you'll discover how [Company] is transforming ${industry}. But first, here's what you can expect:
-- Exclusive insights and tips
-- Early access to new features
-- Special offers just for you
-
-Ready to get started? [CTA Button]
-
----
-
-## Email 2: Value Proposition (Day 3)
-**Subject**: The #1 problem facing ${industry} (and how we solve it)
-**Preview**: This could change everything...
-
-[Content continues with problem-solution framework]
-
----
-
-## Email 3: Social Proof (Day 5)
-**Subject**: How [Company Name] achieved 300% growth using our platform
-**Preview**: Their story might inspire you...
-
-[Customer success story and testimonials]
-
----
-
-## Email 4: Special Offer (Day 7)
-**Subject**: [First Name], this exclusive offer expires in 48 hours
-**Preview**: Don't miss out on this limited opportunity...
-
-[Time-sensitive offer with clear value proposition]
-
----
-
-## Email 5: Last Chance (Day 9)
-**Subject**: Final reminder: Your exclusive offer expires tonight
-**Preview**: Last chance to claim your spot...
-
-[Final push with urgency and FOMO]`,
+      content: data?.deliverables.emailSequence || 'Content not available',
     },
     {
       icon: FileText,
@@ -144,34 +47,7 @@ Ready to get started? [CTA Button]
       preview: '2,000+ word article with meta description and keywords...',
       color: 'orange',
       badge: '2,000 words',
-      content: `# The Ultimate Guide to Success in ${industry}: 2024 Edition
-
-**Meta Description**: Discover proven strategies and expert insights for achieving success in ${industry}. Learn from industry leaders and transform your approach today.
-
-**Target Keywords**: ${industry} guide, ${industry} strategies, ${industry} best practices
-
-## Introduction
-
-The ${industry} landscape is evolving faster than ever. In this comprehensive guide, we'll explore the strategies, tools, and mindsets that separate leaders from followers in today's competitive environment.
-
-## Chapter 1: Understanding the Modern ${industry} Landscape
-
-The past few years have fundamentally changed how ${industry} operates. Digital transformation, changing customer expectations, and emerging technologies have created both challenges and unprecedented opportunities...
-
-[Content continues with comprehensive coverage of the topic, including statistics, case studies, actionable tips, and expert insights across 2,000+ words]
-
-## Key Takeaways
-
-1. Success in ${industry} requires both innovation and consistency
-2. Customer-centric approaches always win
-3. Data-driven decision making is non-negotiable
-4. Continuous learning and adaptation are essential
-
-## Conclusion
-
-The future of ${industry} belongs to those who embrace change while staying true to core values. By implementing the strategies outlined in this guide, you'll be well-positioned to thrive in this dynamic landscape.
-
-Ready to take the next step? [CTA]`,
+      content: data?.deliverables.blogArticle || 'Content not available',
     },
     {
       icon: Megaphone,
@@ -180,45 +56,7 @@ Ready to take the next step? [CTA]`,
       preview: 'Google Ads, Facebook Ads, LinkedIn Ads with CTAs...',
       color: 'red',
       badge: '12 Variations',
-      content: `# Multi-Platform Ad Copy
-
-## Google Search Ads
-
-### Ad Set 1 - Problem-Focused
-**Headline 1**: Struggling with ${industry}? We Can Help
-**Headline 2**: Trusted by 10,000+ Professionals
-**Headline 3**: Get Started in Minutes
-**Description**: Transform your ${industry} workflow with our proven solution. Free trial available. No credit card required.
-
-### Ad Set 2 - Benefit-Focused
-**Headline 1**: Save 10+ Hours Per Week
-**Headline 2**: ${industry} Made Simple
-**Headline 3**: Join Leading Companies
-**Description**: See why ${industry} leaders choose us. Powerful features, simple interface, dedicated support.
-
-## Facebook/Instagram Ads
-
-### Ad 1 - Video Ad (30 sec)
-**Primary Text**: Is ${industry} taking too much of your time? There's a better way. 💡
-**Headline**: Try [Company] Free for 14 Days
-**Description**: No credit card required
-
-### Ad 2 - Carousel Ad
-**Primary Text**: 5 ways [Company] transforms ${industry}
-**Card 1**: Automate repetitive tasks
-**Card 2**: Collaborate seamlessly
-**Card 3**: Track performance in real-time
-**Card 4**: Integrate with your tools
-**Card 5**: Scale with confidence
-
-## LinkedIn Ads
-
-### Sponsored Content 1
-**Headline**: The Future of ${industry} is Here
-**Description**: Join 10,000+ professionals who've already made the switch. Discover why teams in ${industry} trust [Company] to deliver results.
-**CTA**: Learn More
-
-[8 more ad variations optimized for different platforms and objectives...]`,
+      content: data?.deliverables.adCopy || 'Content not available',
     },
     {
       icon: Video,
@@ -227,57 +65,7 @@ Ready to take the next step? [CTA]`,
       preview: '30-second pitch, 60-second explainer, testimonial prompts...',
       color: 'indigo',
       badge: '3 Scripts',
-      content: `# Video Scripts Collection
-
-## Script 1: 30-Second Elevator Pitch
-
-**[VISUAL: Modern office/workspace]**
-**VO**: "Every day, professionals in ${industry} waste hours on tasks that could be automated."
-
-**[VISUAL: Product interface, smooth animations]**
-**VO**: "That's why we built [Company]. The smart solution that helps you work faster, smarter, and better."
-
-**[VISUAL: Happy customers, results dashboard]**
-**VO**: "Join 10,000+ ${industry} professionals who've already made the switch."
-
-**[VISUAL: Logo and CTA]**
-**VO**: "Try [Company] free for 14 days. No credit card required."
-
----
-
-## Script 2: 60-Second Explainer Video
-
-**[OPENING SHOT: Person looking frustrated at computer]**
-**VO**: "Sound familiar? You're drowning in ${industry} tasks, deadlines are looming, and you're working late...again."
-
-**[TRANSITION: Smooth animation to product]**
-**VO**: "Meet [Company]. We've reimagined how ${industry} works."
-
-**[FEATURE SHOWCASE: 3 quick demos]**
-**VO**: "Automate repetitive work. Collaborate seamlessly. Track everything in real-time."
-
-**[SOCIAL PROOF: Customer testimonials]**
-**VO**: "Don't just take our word for it..."
-
-**[CLOSING: Strong CTA]**
-**VO**: "Ready to transform your workflow? Start your free trial today."
-
----
-
-## Script 3: Customer Testimonial Prompts
-
-**Questions for Customers:**
-1. What was your biggest challenge before using [Company]?
-2. How has [Company] changed your daily workflow?
-3. What results have you seen since implementing our solution?
-4. What would you tell others in ${industry} considering [Company]?
-5. If you could describe [Company] in three words, what would they be?
-
-**B-Roll Suggestions:**
-- Customer using product in natural environment
-- Team collaboration scenes
-- Dashboard showing results/metrics
-- Before/after comparisons`,
+      content: data?.deliverables.videoScript || 'Content not available',
     },
     {
       icon: Image,
@@ -285,74 +73,16 @@ Ready to take the next step? [CTA]`,
       description: 'AI-generated visuals for your campaign',
       preview: 'Hero images, social media graphics, ad creatives...',
       color: 'pink',
-      badge: '8 Images',
+      badge: `${data?.deliverables.images?.length || 0} Images`,
       isImageGallery: true,
-      images: [
-        {
-          title: 'Hero Image - Website Header',
-          dimensions: '1920x1080px',
-          format: 'PNG',
-          style: 'Modern, professional, brand-aligned',
-          useCase: 'Website homepage, landing pages',
-          url: 'https://images.pexels.com/photos/3184291/pexels-photo-3184291.jpeg?auto=compress&cs=tinysrgb&w=1920',
-        },
-        {
-          title: 'Social Media - Instagram Post',
-          dimensions: '1080x1080px',
-          format: 'JPG',
-          style: 'Engaging, colorful, mobile-optimized',
-          useCase: 'Instagram feed, Facebook posts',
-          url: 'https://images.pexels.com/photos/3184338/pexels-photo-3184338.jpeg?auto=compress&cs=tinysrgb&w=1080',
-        },
-        {
-          title: 'Social Media - Instagram Story',
-          dimensions: '1080x1920px',
-          format: 'JPG',
-          style: 'Vertical format, attention-grabbing',
-          useCase: 'Instagram Stories, Facebook Stories',
-          url: 'https://images.pexels.com/photos/3184360/pexels-photo-3184360.jpeg?auto=compress&cs=tinysrgb&w=1080',
-        },
-        {
-          title: 'Facebook Ad Creative',
-          dimensions: '1200x628px',
-          format: 'JPG',
-          style: 'Professional with clear CTA space',
-          useCase: 'Facebook ads, LinkedIn ads',
-          url: 'https://images.pexels.com/photos/3184287/pexels-photo-3184287.jpeg?auto=compress&cs=tinysrgb&w=1200',
-        },
-        {
-          title: 'Blog Feature Image',
-          dimensions: '1200x675px',
-          format: 'JPG',
-          style: 'Editorial, informative',
-          useCase: 'Blog posts, articles',
-          url: 'https://images.pexels.com/photos/3184465/pexels-photo-3184465.jpeg?auto=compress&cs=tinysrgb&w=1200',
-        },
-        {
-          title: 'Email Header',
-          dimensions: '600x200px',
-          format: 'JPG',
-          style: 'Clean, professional, email-safe',
-          useCase: 'Email campaigns',
-          url: 'https://images.pexels.com/photos/3184296/pexels-photo-3184296.jpeg?auto=compress&cs=tinysrgb&w=600',
-        },
-        {
-          title: 'Google Display Ad',
-          dimensions: '728x90px',
-          format: 'JPG',
-          style: 'Compact, clear messaging',
-          useCase: 'Google Display Network',
-          url: 'https://images.pexels.com/photos/3184325/pexels-photo-3184325.jpeg?auto=compress&cs=tinysrgb&w=728',
-        },
-        {
-          title: 'Pinterest Pin',
-          dimensions: '1000x1500px',
-          format: 'JPG',
-          style: 'Vertical, visually striking',
-          useCase: 'Pinterest marketing',
-          url: 'https://images.pexels.com/photos/3184398/pexels-photo-3184398.jpeg?auto=compress&cs=tinysrgb&w=1000',
-        },
-      ],
+      images: data?.deliverables.images?.map((url, idx) => ({
+        title: `Campaign Image ${idx + 1}`,
+        dimensions: '1024x1024px',
+        format: 'PNG',
+        style: 'AI-generated, campaign-specific',
+        useCase: 'Marketing materials',
+        url,
+      })) || [],
       content: '',
     },
   ];

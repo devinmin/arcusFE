@@ -1,6 +1,7 @@
 import { ArrowRight, Sparkles, Target, TrendingUp, Users, Zap, CheckCircle2, BarChart3, X, Globe, Briefcase } from 'lucide-react';
 import { useState, useEffect } from 'react';
 import { supabase, Campaign } from './lib/supabase';
+import { generateCampaign, CampaignResult } from './lib/api';
 import { AnalyzingScreen } from './components/AnalyzingScreen';
 import { CampaignResults } from './components/CampaignResults';
 
@@ -17,6 +18,7 @@ function App() {
   const [campaignIndustry, setCampaignIndustry] = useState('');
   const [campaignError, setCampaignError] = useState('');
   const [campaignStatus, setCampaignStatus] = useState<CampaignStatus>('idle');
+  const [campaignData, setCampaignData] = useState<CampaignResult | null>(null);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -73,12 +75,23 @@ function App() {
 
       setCampaignStatus('analyzing');
 
-      setTimeout(() => {
+      // Call the real backend API
+      const result = await generateCampaign(
+        campaignUrl,
+        campaignIndustry,
+        `Create a comprehensive marketing campaign for this ${campaignIndustry} business`
+      );
+
+      if (result.success) {
+        setCampaignData(result);
         setCampaignStatus('complete');
-      }, 12000);
-    } catch (error) {
+      } else {
+        throw new Error(result.error || 'Campaign generation failed');
+      }
+    } catch (error: any) {
       console.error('Error starting campaign:', error);
-      setCampaignError('An error occurred. Please try again.');
+      setCampaignError(error.message || 'An error occurred. Please try again.');
+      setCampaignStatus('idle');
     }
   };
 
@@ -87,6 +100,7 @@ function App() {
     setCampaignUrl('');
     setCampaignIndustry('');
     setCampaignError('');
+    setCampaignData(null);
   };
 
   if (currentCampaign) {
@@ -118,7 +132,12 @@ function App() {
           {campaignStatus === 'analyzing' ? (
             <AnalyzingScreen url={campaignUrl} industry={campaignIndustry} />
           ) : campaignStatus === 'complete' ? (
-            <CampaignResults url={campaignUrl} industry={campaignIndustry} onRetry={handleRetryCampaign} />
+            <CampaignResults
+              url={campaignUrl}
+              industry={campaignIndustry}
+              data={campaignData}
+              onRetry={handleRetryCampaign}
+            />
           ) : isEmpty ? (
             <div className="flex flex-col items-center justify-center min-h-[70vh]">
               <div className="w-full max-w-2xl">
