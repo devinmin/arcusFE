@@ -138,28 +138,28 @@ export function AnalyzingScreen({ url, industry }: AnalyzingScreenProps) {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-950 via-slate-900 to-slate-950 flex items-center justify-center p-6">
+    <div className="min-h-screen bg-gray-50 flex items-center justify-center p-6">
       <div className="max-w-4xl w-full">
         <div className="text-center mb-12">
           <div className="inline-flex items-center gap-3 px-6 py-3 mb-6">
-            <Loader2 className="w-5 h-5 text-blue-400 animate-spin" />
-            <span className="text-white font-medium">Generating Campaign</span>
+            <Loader2 className="w-5 h-5 text-blue-500 animate-spin" />
+            <span className="text-gray-900 font-medium">Generating Campaign</span>
           </div>
 
-          <h1 className="text-4xl font-bold text-white mb-4">
+          <h1 className="text-4xl font-bold text-gray-900 mb-4">
             Creating Your Marketing Campaign
           </h1>
-          <p className="text-xl text-gray-300">
+          <p className="text-xl text-gray-600">
             {url} • {industry}
           </p>
         </div>
 
         <div className="mb-12">
           <div className="flex justify-between items-center mb-2">
-            <span className="text-sm text-gray-400">Overall Progress</span>
-            <span className="text-sm font-medium text-white">{Math.round(progress)}%</span>
+            <span className="text-sm text-gray-600">Overall Progress</span>
+            <span className="text-sm font-medium text-gray-900">{Math.round(progress)}%</span>
           </div>
-          <div className="h-2 bg-white/10 rounded-full overflow-hidden">
+          <div className="h-2 bg-gray-200 rounded-full overflow-hidden">
             <div
               className="h-full bg-gradient-to-r from-blue-500 to-cyan-500 transition-all duration-1000 ease-out"
               style={{ width: `${progress}%` }}
@@ -170,16 +170,16 @@ export function AnalyzingScreen({ url, industry }: AnalyzingScreenProps) {
         <div className="mb-8">
           <div className="flex items-start gap-4">
             <div className="p-3">
-              {currentStageData && <currentStageData.icon className="w-7 h-7 text-blue-400" />}
+              {currentStageData && <currentStageData.icon className="w-7 h-7 text-blue-500" />}
             </div>
             <div className="flex-1">
               <div className="flex items-center gap-3 mb-2">
-                <h3 className="text-xl font-semibold text-white">
+                <h3 className="text-xl font-semibold text-gray-900">
                   {currentStageData?.label}
                 </h3>
-                <Loader2 className="w-4 h-4 text-blue-400 animate-spin" />
+                <Loader2 className="w-4 h-4 text-blue-500 animate-spin" />
               </div>
-              <p className="text-gray-300">
+              <p className="text-gray-600">
                 {currentStageData?.description}
               </p>
             </div>
@@ -196,16 +196,16 @@ export function AnalyzingScreen({ url, industry }: AnalyzingScreenProps) {
                 key={stage.id}
                 className={`
                   flex items-center gap-4 p-4 transition-all duration-300
-                  ${status === 'completed' ? 'border-l-2 border-green-500/60' : ''}
-                  ${status === 'active' ? 'border-l-2 border-blue-500/80' : ''}
+                  ${status === 'completed' ? 'border-l-2 border-green-500' : ''}
+                  ${status === 'active' ? 'border-l-2 border-blue-500' : ''}
                   ${status === 'pending' ? 'opacity-40' : ''}
                 `}
               >
                 <div className={`
                   p-2 transition-all
-                  ${status === 'completed' ? 'text-green-400' : ''}
-                  ${status === 'active' ? 'text-blue-400' : ''}
-                  ${status === 'pending' ? 'text-white/30' : ''}
+                  ${status === 'completed' ? 'text-green-500' : ''}
+                  ${status === 'active' ? 'text-blue-500' : ''}
+                  ${status === 'pending' ? 'text-gray-400' : ''}
                 `}>
                   {status === 'completed' ? (
                     <CheckCircle2 className="w-5 h-5" />
@@ -215,15 +215,15 @@ export function AnalyzingScreen({ url, industry }: AnalyzingScreenProps) {
                 </div>
 
                 <div className="flex-1">
-                  <div className="font-medium text-white">{stage.label}</div>
-                  <div className="text-sm text-gray-400">{stage.description}</div>
+                  <div className="font-medium text-gray-900">{stage.label}</div>
+                  <div className="text-sm text-gray-600">{stage.description}</div>
                 </div>
 
                 {status === 'active' && (
-                  <Loader2 className="w-4 h-4 text-blue-400 animate-spin" />
+                  <Loader2 className="w-4 h-4 text-blue-500 animate-spin" />
                 )}
                 {status === 'completed' && (
-                  <CheckCircle2 className="w-4 h-4 text-green-400" />
+                  <CheckCircle2 className="w-4 h-4 text-green-500" />
                 )}
               </div>
             );
@@ -231,7 +231,7 @@ export function AnalyzingScreen({ url, industry }: AnalyzingScreenProps) {
         </div>
 
         <div className="mt-8 text-center">
-          <p className="text-sm text-gray-400">
+          <p className="text-sm text-gray-600">
             This typically takes 2-3 minutes. Please don't close this window.
           </p>
         </div>
