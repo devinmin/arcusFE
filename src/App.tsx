@@ -397,7 +397,7 @@ function App() {
               <img src="/arcusai.png" alt="Arcus AI" className="h-8" />
             </div>
             <div className="hidden md:flex items-center space-x-4">
-              <a href="#features" className="text-gray-600 hover:text-gray-900 transition-colors">Features</a>
+              <a href="#services" className="text-gray-600 hover:text-gray-900 transition-colors">Services</a>
               <a href="#how-it-works" className="text-gray-600 hover:text-gray-900 transition-colors">How it Works</a>
               <button
                 onClick={() => setShowCodeModal(true)}
@@ -627,8 +627,8 @@ function App() {
         </div>
       </section>
 
-      {/* Features Section */}
-      <section id="features" className="py-24 px-6 bg-gray-50">
+      {/* Services Section */}
+      <section id="services" className="py-24 px-6 bg-gray-50">
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-16">
             <h2 className="text-5xl font-bold text-gray-900 mb-4">
