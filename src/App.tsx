@@ -34,16 +34,22 @@ function App() {
     setCodeError('');
 
     try {
-      const { data, error } = await supabase
-        .from('campaigns')
-        .select('*')
-        .eq('access_code', codeInput)
-        .maybeSingle();
+      // Check for hardcoded access code
+      if (codeInput === 'STRINGtheory') {
+        // Create a mock campaign object for the MVP
+        const mockCampaign: Campaign = {
+          id: 'mock-campaign-id',
+          name: 'Arcus Campaign Generator',
+          access_code: 'STRINGtheory',
+          description: 'AI-powered marketing campaign generator',
+          active_campaigns_count: 0,
+          content_generated_count: 0,
+          roi_percentage: 0,
+          created_at: new Date().toISOString(),
+          updated_at: new Date().toISOString(),
+        };
 
-      if (error) throw error;
-
-      if (data) {
-        setCurrentCampaign(data);
+        setCurrentCampaign(mockCampaign);
         setShowCodeModal(false);
         setCodeInput('');
       } else {
