@@ -10,6 +10,7 @@ export interface CampaignResult {
   success: boolean;
   campaignId: string;
   outputFolder: string;
+  brandIntelligence: string | null;
   deliverables: {
     strategicBrief: string | null;
     socialMedia: string | null;
@@ -35,6 +36,262 @@ export const generateCampaign = async (
     success: true,
     campaignId,
     outputFolder: `/campaigns/${campaignId}`,
+    brandIntelligence: `# BRAND INTELLIGENCE REPORT
+
+**Website Analyzed:** ${website}
+**Industry:** ${industry}
+**Generated:** ${new Date().toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' })}
+
+---
+
+## 1. VISUAL ASSET ANALYSIS
+
+### 1.1 Homepage & Key Pages Analysis
+
+**Homepage Structure:**
+- Hero Section: Full-width imagery with compelling value proposition
+- Clean, modern layout with strategic white space
+- Clear navigation and user journey
+- Modern responsive design
+
+**Image Style Guidelines:**
+- **Photography Style:** Professional, high-quality imagery
+- **Lighting:** Natural, bright, and inviting
+- **Composition:** Balanced with strong focal points
+- **Color Grading:** Consistent with brand palette
+
+**Visual Patterns Observed:**
+- Emphasis on user experience and clarity
+- Modern, clean aesthetic
+- Strategic use of imagery to support messaging
+- Mobile-first responsive design
+
+---
+
+## 2. BRAND IDENTITY EXTRACTION
+
+### 2.1 Color Palette
+
+**Primary Colors:**
+- Primary Brand Color
+- Secondary Supporting Colors
+- Neutral Base Colors
+
+**Accent Colors:**
+- Call-to-action highlights
+- Interactive element colors
+- Success/error state colors
+
+### 2.2 Typography
+
+**Primary Font Family:**
+- Clean, modern typeface
+- High readability across devices
+- Professional appearance
+
+**Typography Hierarchy:**
+- **Headlines:** Bold, impactful sizing
+- **Body Text:** Readable, appropriate line height
+- **CTAs:** Clear, action-oriented
+
+### 2.3 Design Patterns
+
+**Visual Style Elements:**
+- **Corners:** Modern border radius
+- **Shadows:** Subtle depth
+- **Spacing:** Consistent padding and margins
+- **Grid:** Structured, responsive layout
+
+---
+
+## 3. VOICE & MESSAGING ANALYSIS
+
+### 3.1 Tone of Voice Breakdown
+
+**Primary Tone Characteristics:**
+
+**1. Professional & Trustworthy:**
+- Uses confident, clear language
+- Builds credibility through expertise
+- Maintains professional standards
+
+**2. Customer-Focused:**
+- Addresses pain points directly
+- Emphasizes benefits over features
+- Speaks to customer needs
+
+**3. Modern & Innovative:**
+- Forward-thinking messaging
+- Technology-aware
+- Industry-leading positioning
+
+**Tone Scale:**
+- Formal ←--------●--------→ Casual (Balanced)
+- Technical ←------●--------→ Simple (Accessible)
+- Urgent ←-----------------●→ Relaxed (Confident)
+- Playful ←-----●----------→ Serious (Professional)
+
+### 3.2 Key Phrases & Language Patterns
+
+**Recurring Themes:**
+- Innovation and advancement
+- Customer success and results
+- Quality and reliability
+- Expertise and leadership
+
+**Linguistic Patterns:**
+- Action-oriented language
+- Benefit-focused messaging
+- Clear value propositions
+- Inclusive "we" and "you" language
+
+### 3.3 Emotional Triggers
+
+**Primary Emotions Evoked:**
+
+1. **Confidence:**
+   - Trust in proven solutions
+   - Assurance of quality
+   - Professional credibility
+
+2. **Aspiration:**
+   - Desire for better outcomes
+   - Growth and improvement
+   - Success and achievement
+
+3. **Security:**
+   - Reliable solutions
+   - Proven track record
+   - Support and guidance
+
+---
+
+## 4. TARGET AUDIENCE ANALYSIS
+
+### 4.1 Primary Persona
+
+**Demographics:**
+- Age: 25-45 years old
+- Location: Urban and suburban areas
+- Income: Middle to upper-middle class
+- Education: College-educated professionals
+
+**Psychographics:**
+- Values quality and reliability
+- Seeks efficient solutions
+- Technology-comfortable
+- Research-oriented decision maker
+
+**Behaviors:**
+- Researches before purchasing
+- Values customer reviews
+- Active online presence
+- Seeks professional solutions
+
+**Pain Points:**
+- Time constraints
+- Need for reliable solutions
+- Desire for quality service
+- Budget consciousness
+
+**Motivations:**
+- Achieving better outcomes
+- Saving time and resources
+- Professional advancement
+- Quality of life improvements
+
+---
+
+## 5. COMPETITIVE & MARKET CONTEXT
+
+### 5.1 Industry Positioning
+
+**Industry:** ${industry}
+
+**Market Segment:**
+- Professional services
+- Quality-focused
+- Customer-centric approach
+
+**Positioning Statement:**
+*Delivering innovative solutions that combine expertise, technology, and customer focus to drive measurable results.*
+
+### 5.2 Competitive Advantages
+
+**Key Differentiators:**
+1. **Expertise:** Deep industry knowledge
+2. **Innovation:** Modern, cutting-edge solutions
+3. **Quality:** Commitment to excellence
+4. **Service:** Customer-first approach
+5. **Results:** Proven track record
+
+---
+
+## 6. BRAND ESSENCE SUMMARY
+
+**Brand Archetype:** The Expert / The Innovator
+
+**Brand Promise:**
+*Delivering excellence through innovation and expertise*
+
+**Brand Personality:**
+- Professional yet approachable
+- Innovative and forward-thinking
+- Reliable and trustworthy
+- Customer-focused
+- Results-oriented
+
+---
+
+## 7. STRATEGIC RECOMMENDATIONS
+
+### Content Strategy:
+- Focus on educational content that demonstrates expertise
+- Share customer success stories and case studies
+- Highlight innovation and unique approaches
+- Build trust through transparency
+
+### Visual Strategy:
+- Maintain clean, professional aesthetic
+- Use high-quality imagery
+- Ensure consistent brand application
+- Optimize for mobile experience
+
+### Messaging Strategy:
+- Lead with customer benefits
+- Support claims with evidence
+- Use clear, jargon-free language
+- Include strong calls-to-action
+
+---
+
+## 8. BRAND GUIDELINES FOR CAMPAIGN
+
+### DO's:
+✅ Maintain professional tone
+✅ Focus on customer benefits
+✅ Use clean, modern design
+✅ Highlight expertise and results
+✅ Build trust through transparency
+✅ Create compelling calls-to-action
+✅ Ensure mobile optimization
+✅ Use high-quality visuals
+
+### DON'Ts:
+❌ Don't use overly technical jargon
+❌ Avoid aggressive sales tactics
+❌ Don't make unsupported claims
+❌ Avoid cluttered designs
+❌ Don't ignore mobile users
+❌ Avoid generic stock imagery
+❌ Don't be inconsistent with brand
+❌ Avoid confusing navigation
+
+---
+
+**Document Status:** ✅ Complete
+**Analysis Depth:** Comprehensive
+**Ready for:** Campaign Development`,
     deliverables: {
       strategicBrief: `# Strategic Marketing Brief for ${industry}\n\n## Campaign Overview\nWebsite: ${website}\nIndustry: ${industry}\n\n## Target Audience\nPrimary demographic: Business professionals aged 25-45\nSecondary demographic: Marketing teams and decision-makers\n\n## Campaign Objectives\n1. Increase brand awareness by 40%\n2. Generate qualified leads\n3. Drive website traffic by 60%\n4. Establish thought leadership\n\n## Key Messages\n- Innovation-driven solutions\n- Proven ROI and results\n- Industry expertise\n\n## Campaign Timeline\n- Launch: Q1 2024\n- Duration: 12 weeks\n- Review points: Weekly\n\n## Budget Allocation\n- Social Media: 30%\n- Content Marketing: 25%\n- Paid Advertising: 25%\n- Email Marketing: 20%`,
 

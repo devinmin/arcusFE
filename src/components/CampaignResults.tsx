@@ -1,4 +1,4 @@
-import { FileText, Image, Mail, MessageSquare, Video, Megaphone, Download, RefreshCw, CheckCircle2 } from 'lucide-react';
+import { FileText, Image, Mail, MessageSquare, Video, Megaphone, Download, RefreshCw, CheckCircle2, Brain, ChevronDown, ChevronUp } from 'lucide-react';
 import { useState } from 'react';
 import { CampaignResult } from '../lib/api';
 
@@ -11,6 +11,7 @@ interface CampaignResultsProps {
 
 export function CampaignResults({ url, industry, data, onRetry }: CampaignResultsProps) {
   const [selectedTab, setSelectedTab] = useState(0);
+  const [showBrandIntelligence, setShowBrandIntelligence] = useState(false);
 
   const results = [
     {
@@ -153,6 +154,57 @@ export function CampaignResults({ url, industry, data, onRetry }: CampaignResult
           </div>
         </div>
       </div>
+
+      {data?.brandIntelligence && (
+        <div className="mb-6 bg-gradient-to-br from-slate-50 to-blue-50 border-2 border-slate-200 rounded-xl overflow-hidden">
+          <button
+            onClick={() => setShowBrandIntelligence(!showBrandIntelligence)}
+            className="w-full p-6 flex items-center justify-between hover:bg-white/50 transition-colors"
+          >
+            <div className="flex items-center gap-4">
+              <div className="flex-shrink-0 w-12 h-12 bg-gradient-to-br from-slate-600 to-slate-700 rounded-xl flex items-center justify-center shadow-lg">
+                <Brain className="w-6 h-6 text-white" />
+              </div>
+              <div className="text-left">
+                <h3 className="text-xl font-bold text-gray-900 mb-1">Brand Intelligence Report</h3>
+                <p className="text-sm text-gray-600">Comprehensive analysis of brand identity, voice, and positioning</p>
+              </div>
+            </div>
+            <div className="flex items-center gap-3">
+              <span className="px-4 py-2 bg-slate-600 text-white text-xs font-semibold rounded-full">
+                ANALYSIS
+              </span>
+              {showBrandIntelligence ? (
+                <ChevronUp className="w-6 h-6 text-gray-600" />
+              ) : (
+                <ChevronDown className="w-6 h-6 text-gray-600" />
+              )}
+            </div>
+          </button>
+
+          {showBrandIntelligence && (
+            <div className="border-t-2 border-slate-200 bg-white">
+              <div className="p-6">
+                <div className="prose prose-sm max-w-none">
+                  <pre className="whitespace-pre-wrap text-gray-700 font-sans leading-relaxed bg-gray-50 p-6 rounded-lg border border-gray-200">
+                    {data.brandIntelligence}
+                  </pre>
+                </div>
+                <div className="mt-6 flex gap-3">
+                  <button className="flex items-center gap-2 px-6 py-3 bg-slate-600 text-white rounded-lg font-medium hover:bg-slate-700 transition-all hover:shadow-lg">
+                    <Download className="w-5 h-5" />
+                    Download Report
+                  </button>
+                  <button className="flex items-center gap-2 px-6 py-3 bg-white text-slate-700 border-2 border-slate-200 rounded-lg font-medium hover:border-slate-300 hover:bg-gray-50 transition-all">
+                    <FileText className="w-5 h-5" />
+                    View as PDF
+                  </button>
+                </div>
+              </div>
+            </div>
+          )}
+        </div>
+      )}
 
       <div className="flex gap-6">
         <div className="w-80 flex-shrink-0">
