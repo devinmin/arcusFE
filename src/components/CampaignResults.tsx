@@ -129,13 +129,19 @@ export function CampaignResults({ url, industry, data, onRetry }: CampaignResult
             </div>
           </div>
         </div>
-        <button
-          onClick={onRetry}
-          className="flex items-center gap-2 px-6 py-3 bg-white text-gray-700 border-2 border-gray-200 rounded-lg font-medium hover:border-gray-300 hover:bg-gray-50 transition-all"
-        >
-          <RefreshCw className="w-5 h-5" />
-          Create New Campaign
-        </button>
+        <div className="flex items-center gap-3">
+          <button className="flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-blue-600 to-blue-700 text-white rounded-lg font-semibold hover:from-blue-700 hover:to-blue-800 transition-all hover:shadow-lg">
+            <Download className="w-5 h-5" />
+            Download All
+          </button>
+          <button
+            onClick={onRetry}
+            className="flex items-center gap-2 px-6 py-3 bg-white text-gray-700 border-2 border-gray-200 rounded-lg font-medium hover:border-gray-300 hover:bg-gray-50 transition-all"
+          >
+            <RefreshCw className="w-5 h-5" />
+            Create New Campaign
+          </button>
+        </div>
       </div>
 
       <div className="mb-6 p-6 bg-blue-50 border border-blue-200 rounded-xl">
@@ -206,9 +212,9 @@ export function CampaignResults({ url, industry, data, onRetry }: CampaignResult
         </div>
       )}
 
-      <div className="flex gap-6">
-        <div className="w-80 flex-shrink-0">
-          <div className="bg-white rounded-xl border border-gray-200 overflow-hidden sticky top-6">
+      <div className="bg-white rounded-xl border border-gray-200 overflow-hidden shadow-sm">
+        <div className="flex">
+          <div className="w-80 flex-shrink-0 border-r border-gray-200">
             <div className="p-4 border-b border-gray-200 bg-gray-50">
               <h3 className="font-semibold text-gray-900">Deliverables</h3>
             </div>
@@ -241,96 +247,90 @@ export function CampaignResults({ url, industry, data, onRetry }: CampaignResult
                 );
               })}
             </div>
-            <div className="p-4 border-t border-gray-200">
-              <button className="w-full flex items-center justify-center gap-2 px-4 py-3 bg-gradient-to-r from-blue-600 to-blue-700 text-white rounded-lg font-semibold hover:from-blue-700 hover:to-blue-800 transition-all hover:shadow-lg">
-                <Download className="w-5 h-5" />
-                Download All
-              </button>
-            </div>
-          </div>
-        </div>
-
-        <div className="flex-1 bg-white rounded-xl border border-gray-200 overflow-hidden">
-          <div className="p-6 border-b border-gray-200 bg-gray-50">
-            <div className="flex items-center gap-3 mb-2">
-              <div className={`w-10 h-10 ${iconColorClass} rounded-lg flex items-center justify-center`}>
-                <Icon className="w-5 h-5 text-white" />
-              </div>
-              <div className="flex-1">
-                <h3 className="text-xl font-bold text-gray-900">{selectedResult.title}</h3>
-                <p className="text-sm text-gray-600">{selectedResult.description}</p>
-              </div>
-              <span className={`px-3 py-1 text-xs font-medium rounded-full ${colorClass}`}>
-                {selectedResult.badge}
-              </span>
-            </div>
           </div>
 
-          <div className="p-6 max-h-[600px] overflow-y-auto">
-            {selectedResult.isImageGallery ? (
-              <div className="grid grid-cols-1 gap-6">
-                {selectedResult.images?.map((image, idx) => (
-                  <div key={idx} className="bg-gray-50 rounded-lg overflow-hidden border border-gray-200">
-                    <div className="aspect-video bg-gray-900 flex items-center justify-center overflow-hidden">
-                      <img
-                        src={image.url}
-                        alt={image.title}
-                        className="w-full h-full object-cover"
-                      />
-                    </div>
-                    <div className="p-4">
-                      <div className="flex items-start justify-between mb-2">
-                        <h4 className="font-semibold text-gray-900">{image.title}</h4>
-                        <span className="px-2 py-1 text-xs font-medium bg-gray-200 text-gray-700 rounded">
-                          {image.format}
-                        </span>
+          <div className="flex-1 flex flex-col">
+            <div className="p-6 border-b border-gray-200 bg-gray-50">
+              <div className="flex items-center gap-3">
+                <div className={`w-10 h-10 ${iconColorClass} rounded-lg flex items-center justify-center`}>
+                  <Icon className="w-5 h-5 text-white" />
+                </div>
+                <div className="flex-1">
+                  <h3 className="text-xl font-bold text-gray-900">{selectedResult.title}</h3>
+                  <p className="text-sm text-gray-600">{selectedResult.description}</p>
+                </div>
+                <span className={`px-3 py-1 text-xs font-medium rounded-full ${colorClass}`}>
+                  {selectedResult.badge}
+                </span>
+              </div>
+            </div>
+
+            <div className="p-6 max-h-[600px] overflow-y-auto flex-1">
+              {selectedResult.isImageGallery ? (
+                <div className="grid grid-cols-1 gap-6">
+                  {selectedResult.images?.map((image, idx) => (
+                    <div key={idx} className="bg-gray-50 rounded-lg overflow-hidden border border-gray-200">
+                      <div className="aspect-video bg-gray-900 flex items-center justify-center overflow-hidden">
+                        <img
+                          src={image.url}
+                          alt={image.title}
+                          className="w-full h-full object-cover"
+                        />
                       </div>
-                      <div className="grid grid-cols-2 gap-3 text-sm">
-                        <div>
-                          <p className="text-gray-500 text-xs">Dimensions</p>
-                          <p className="font-medium text-gray-900">{image.dimensions}</p>
+                      <div className="p-4">
+                        <div className="flex items-start justify-between mb-2">
+                          <h4 className="font-semibold text-gray-900">{image.title}</h4>
+                          <span className="px-2 py-1 text-xs font-medium bg-gray-200 text-gray-700 rounded">
+                            {image.format}
+                          </span>
                         </div>
-                        <div>
-                          <p className="text-gray-500 text-xs">Use Case</p>
-                          <p className="font-medium text-gray-900">{image.useCase}</p>
+                        <div className="grid grid-cols-2 gap-3 text-sm">
+                          <div>
+                            <p className="text-gray-500 text-xs">Dimensions</p>
+                            <p className="font-medium text-gray-900">{image.dimensions}</p>
+                          </div>
+                          <div>
+                            <p className="text-gray-500 text-xs">Use Case</p>
+                            <p className="font-medium text-gray-900">{image.useCase}</p>
+                          </div>
+                        </div>
+                        <div className="mt-2">
+                          <p className="text-gray-500 text-xs">Style</p>
+                          <p className="text-sm text-gray-700">{image.style}</p>
                         </div>
                       </div>
-                      <div className="mt-2">
-                        <p className="text-gray-500 text-xs">Style</p>
-                        <p className="text-sm text-gray-700">{image.style}</p>
-                      </div>
                     </div>
-                  </div>
-                ))}
-              </div>
-            ) : (
-              <div className="prose prose-sm max-w-none">
-                <pre className="whitespace-pre-wrap text-gray-700 font-sans leading-relaxed">
-                  {selectedResult.content}
-                </pre>
-              </div>
-            )}
-          </div>
-
-          <div className="p-4 border-t border-gray-200 bg-gray-50 flex justify-between items-center">
-            <div className="text-sm text-gray-600">
-              {selectedTab + 1} of {results.length}
+                  ))}
+                </div>
+              ) : (
+                <div className="prose prose-sm max-w-none">
+                  <pre className="whitespace-pre-wrap text-gray-700 font-sans leading-relaxed">
+                    {selectedResult.content}
+                  </pre>
+                </div>
+              )}
             </div>
-            <div className="flex gap-2">
-              <button
-                onClick={() => setSelectedTab(Math.max(0, selectedTab - 1))}
-                disabled={selectedTab === 0}
-                className="px-4 py-2 text-sm font-medium text-gray-700 bg-white border border-gray-200 rounded-lg hover:bg-gray-50 disabled:opacity-50 disabled:cursor-not-allowed transition-all"
-              >
-                Previous
-              </button>
-              <button
-                onClick={() => setSelectedTab(Math.min(results.length - 1, selectedTab + 1))}
-                disabled={selectedTab === results.length - 1}
-                className="px-4 py-2 text-sm font-medium text-gray-700 bg-white border border-gray-200 rounded-lg hover:bg-gray-50 disabled:opacity-50 disabled:cursor-not-allowed transition-all"
-              >
-                Next
-              </button>
+
+            <div className="p-4 border-t border-gray-200 bg-gray-50 flex justify-between items-center">
+              <div className="text-sm text-gray-600">
+                {selectedTab + 1} of {results.length}
+              </div>
+              <div className="flex gap-2">
+                <button
+                  onClick={() => setSelectedTab(Math.max(0, selectedTab - 1))}
+                  disabled={selectedTab === 0}
+                  className="px-4 py-2 text-sm font-medium text-gray-700 bg-white border border-gray-200 rounded-lg hover:bg-gray-50 disabled:opacity-50 disabled:cursor-not-allowed transition-all"
+                >
+                  Previous
+                </button>
+                <button
+                  onClick={() => setSelectedTab(Math.min(results.length - 1, selectedTab + 1))}
+                  disabled={selectedTab === results.length - 1}
+                  className="px-4 py-2 text-sm font-medium text-gray-700 bg-white border border-gray-200 rounded-lg hover:bg-gray-50 disabled:opacity-50 disabled:cursor-not-allowed transition-all"
+                >
+                  Next
+                </button>
+              </div>
             </div>
           </div>
         </div>
