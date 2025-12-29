@@ -759,7 +759,7 @@ function App() {
       {/* Footer */}
       <footer className="py-12 px-6 bg-gray-900">
         <div className="max-w-7xl mx-auto">
-          <div className="grid grid-cols-1 md:grid-cols-4 gap-8 mb-8">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-8">
             <div className="col-span-1">
               <div className="mb-4">
                 <img src="/arcusai.png" alt="Arcus AI" className="h-8 brightness-0 invert" />
@@ -772,8 +772,7 @@ function App() {
             <div>
               <h4 className="font-semibold text-white mb-4">Product</h4>
               <ul className="space-y-2">
-                <li><a href="#" className="text-gray-400 hover:text-white transition-colors">Features</a></li>
-                <li><a href="#" className="text-gray-400 hover:text-white transition-colors">Pricing</a></li>
+                <li><a href="#services" className="text-gray-400 hover:text-white transition-colors">Services</a></li>
                 <li><a href="#" className="text-gray-400 hover:text-white transition-colors">Use Cases</a></li>
               </ul>
             </div>
@@ -784,15 +783,7 @@ function App() {
                 <li><a href="#" className="text-gray-400 hover:text-white transition-colors">About</a></li>
                 <li><a href="#" className="text-gray-400 hover:text-white transition-colors">Blog</a></li>
                 <li><a href="#" className="text-gray-400 hover:text-white transition-colors">Careers</a></li>
-              </ul>
-            </div>
-
-            <div>
-              <h4 className="font-semibold text-white mb-4">Support</h4>
-              <ul className="space-y-2">
-                <li><a href="#" className="text-gray-400 hover:text-white transition-colors">Documentation</a></li>
                 <li><a href="#" className="text-gray-400 hover:text-white transition-colors">Contact</a></li>
-                <li><a href="#" className="text-gray-400 hover:text-white transition-colors">Status</a></li>
               </ul>
             </div>
           </div>
