@@ -405,12 +405,14 @@ function App() {
               >
                 Try Arcus
               </button>
-              <button
-                onClick={() => setShowCodeModal(true)}
-                className="px-6 py-2.5 bg-slate-700 text-white rounded-full hover:bg-slate-800 transition-all hover:shadow-lg hover:scale-105"
+              <a
+                href="https://calendar.app.google/bL5Cn6kkYy98fpc46"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="px-6 py-2.5 bg-slate-700 text-white rounded-full hover:bg-slate-800 transition-all hover:shadow-lg hover:scale-105 inline-block"
               >
                 Book a Call
-              </button>
+              </a>
             </div>
           </div>
         </div>
@@ -439,13 +441,15 @@ function App() {
             </p>
 
             <div className="flex flex-col sm:flex-row items-center justify-center space-y-4 sm:space-y-0 sm:space-x-4">
-              <button
-                onClick={() => setShowCodeModal(true)}
+              <a
+                href="https://calendar.app.google/bL5Cn6kkYy98fpc46"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="group px-8 py-4 bg-slate-700 text-white rounded-full font-medium hover:bg-slate-800 transition-all hover:shadow-xl hover:scale-105 flex items-center space-x-2"
               >
                 <span>Book a Call</span>
                 <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
-              </button>
+              </a>
               <button
                 onClick={() => setShowCodeModal(true)}
                 className="px-8 py-4 bg-white text-gray-900 rounded-full font-medium border-2 border-gray-200 hover:border-slate-600 transition-all hover:shadow-lg"
@@ -752,13 +756,15 @@ function App() {
             Join hundreds of companies using AI to scale their marketing effortlessly
           </p>
           <div className="flex flex-col sm:flex-row items-center justify-center space-y-4 sm:space-y-0 sm:space-x-4">
-            <button
-              onClick={() => setShowCodeModal(true)}
+            <a
+              href="https://calendar.app.google/bL5Cn6kkYy98fpc46"
+              target="_blank"
+              rel="noopener noreferrer"
               className="group px-8 py-4 bg-white text-slate-700 rounded-full font-medium hover:shadow-2xl transition-all hover:scale-105 flex items-center space-x-2"
             >
               <span>Book a Call</span>
               <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
-            </button>
+            </a>
             <button
               onClick={() => setShowCodeModal(true)}
               className="px-8 py-4 bg-transparent text-white rounded-full font-medium border-2 border-white/30 hover:bg-white/10 transition-all"
