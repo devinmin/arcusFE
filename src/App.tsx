@@ -565,7 +565,7 @@ function App() {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
             <div className="order-2 md:order-1">
               <img
-                src="https://images.pexels.com/photos/590016/pexels-photo-590016.jpeg?auto=compress&cs=tinysrgb&w=1200"
+                src="https://images.pexels.com/photos/5081917/pexels-photo-5081917.jpeg?auto=compress&cs=tinysrgb&w=1200"
                 alt="Content Creation"
                 className="rounded-2xl shadow-2xl w-full h-[400px] object-cover"
               />
