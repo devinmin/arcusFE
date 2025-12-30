@@ -644,11 +644,11 @@ function App() {
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-16">
             <h2 className="text-5xl font-bold text-gray-900 mb-4">
-              Everything You Need,
-              <span className="block text-slate-700">Nothing You Don't</span>
+              Comprehensive marketing,
+              <span className="block text-slate-700">all in one spot</span>
             </h2>
             <p className="text-xl text-gray-600 max-w-2xl mx-auto">
-              A complete marketing team powered by AI agents, each specialized in their domain
+              A complete marketing effort powered by AI agents, each specialized and trained in their domain
             </p>
           </div>
 
