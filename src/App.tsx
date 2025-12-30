@@ -731,12 +731,12 @@ function App() {
               {
                 step: '02',
                 title: 'We Build Your Strategy',
-                description: 'Our agents analyze your market and create a comprehensive marketing plan'
+                description: 'Our agents and we analyze your market and create a comprehensive marketing plan'
               },
               {
                 step: '03',
                 title: 'Get Results',
-                description: 'Sit back as your AI team executes campaigns, creates content, and drives results'
+                description: 'Sit back as Arcus executes campaigns, creates content, and drives results'
               }
             ].map((step, index) => (
               <div key={index} className="relative">
