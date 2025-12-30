@@ -56,7 +56,7 @@ export default function About({ onClose, onShowComingSoon }: AboutProps) {
             <br />
             autonomous marketing
           </h1>
-          <p className="text-xl text-gray-600">San Francisco · California</p>
+          <p className="text-xl text-gray-600">DC · Los Angeles · Seattle</p>
         </div>
       </div>
 
