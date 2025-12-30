@@ -456,15 +456,15 @@ function App() {
             </div>
 
             <h1 className="text-6xl md:text-7xl font-bold text-gray-900 mb-6 leading-tight">
-              Marketing That
+              Delivering marketing results -
               <span className="block text-slate-700">
-                Runs Itself
+                faster & cheaper.
               </span>
             </h1>
 
             <p className="text-xl text-gray-600 mb-10 leading-relaxed max-w-2xl mx-auto">
-              Arcus AI is your autonomous marketing team. From strategy to execution,
-              let AI agents handle your entire marketing operation while you focus on growth.
+              Arcus AI is your autonomous marketing platform. From strategy to content creation,
+              let AI agents handle your marketing operations with confidence.
             </p>
 
             <div className="flex flex-col sm:flex-row items-center justify-center space-y-4 sm:space-y-0 sm:space-x-4">
@@ -535,22 +535,22 @@ function App() {
             <div className="order-1 md:order-2">
               <h3 className="text-4xl font-bold text-gray-900 mb-6">AI-Powered Strategy</h3>
               <p className="text-lg text-gray-600 mb-4">
-                Our intelligent agents analyze market trends, competitor movements, and audience behavior to craft data-driven marketing strategies that actually work.
+                Our AI agents are trained and vetted by industry leaders. Arcus AI believes in data-driven marketing strategies.
               </p>
               <p className="text-lg text-gray-600">
-                No guesswork. No wasted budget. Just results.
+                We value experiments that proves results.
               </p>
             </div>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center mb-20">
             <div>
-              <h3 className="text-4xl font-bold text-gray-900 mb-6">Social Media Mastery</h3>
+              <h3 className="text-4xl font-bold text-gray-900 mb-6">Industry or contextual mastery</h3>
               <p className="text-lg text-gray-600 mb-4">
-                Engage your audience across all platforms with AI-crafted content that resonates. From posts to stories, reels to tweets.
+                Engage your audience across different channels dependent on where your customers are. We know how to target.
               </p>
               <p className="text-lg text-gray-600">
-                Consistent. On-brand. Always optimized.
+                Consistency mixed with being on-brand for all scenarios.
               </p>
             </div>
             <div>
