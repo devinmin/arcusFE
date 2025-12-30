@@ -739,7 +739,7 @@ function App() {
                   <Briefcase className="w-8 h-8 text-white" />
                 </div>
                 <p className="text-center text-gray-900 font-medium leading-relaxed">
-                  Former agency founders who ran client P&Ls
+                  Former agency leaders who ran client P&Ls
                 </p>
               </div>
 
