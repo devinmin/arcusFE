@@ -735,7 +735,7 @@ function App() {
               },
               {
                 step: '03',
-                title: 'Watch It Work',
+                title: 'Get Results',
                 description: 'Sit back as your AI team executes campaigns, creates content, and drives results'
               }
             ].map((step, index) => (
