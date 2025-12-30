@@ -1,10 +1,15 @@
 import { ArrowLeft, Clock } from 'lucide-react';
+import { useEffect } from 'react';
 
 interface ComingSoonProps {
   onBack: () => void;
 }
 
 export default function ComingSoon({ onBack }: ComingSoonProps) {
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
   return (
     <div className="min-h-screen bg-gradient-to-br from-gray-900 via-blue-900 to-gray-900 flex items-center justify-center px-6">
       <div className="max-w-2xl w-full text-center">

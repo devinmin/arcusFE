@@ -33,6 +33,12 @@ function App() {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
+  useEffect(() => {
+    if (!showAbout && !showComingSoon) {
+      window.scrollTo(0, 0);
+    }
+  }, [showAbout, showComingSoon]);
+
   const handleCodeSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsLoading(true);
@@ -843,7 +849,6 @@ function App() {
               <ul className="space-y-2">
                 <li><button onClick={() => setShowAbout(true)} className="text-gray-400 hover:text-white transition-colors text-left">About</button></li>
                 <li><button onClick={() => setShowComingSoon(true)} className="text-gray-400 hover:text-white transition-colors text-left">Blog</button></li>
-                <li><button onClick={() => setShowComingSoon(true)} className="text-gray-400 hover:text-white transition-colors text-left">Careers</button></li>
                 <li><button onClick={() => setShowComingSoon(true)} className="text-gray-400 hover:text-white transition-colors text-left">Contact</button></li>
               </ul>
             </div>

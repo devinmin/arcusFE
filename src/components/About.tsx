@@ -10,6 +10,8 @@ export default function About({ onClose, onShowComingSoon }: AboutProps) {
   const [scrolled, setScrolled] = useState(false);
 
   useEffect(() => {
+    window.scrollTo(0, 0);
+
     const handleScroll = () => {
       setScrolled(window.scrollY > 50);
     };
@@ -227,7 +229,6 @@ export default function About({ onClose, onShowComingSoon }: AboutProps) {
               <ul className="space-y-2">
                 <li><button onClick={onClose} className="text-gray-400 hover:text-white transition-colors text-left">About</button></li>
                 <li><button onClick={onShowComingSoon} className="text-gray-400 hover:text-white transition-colors text-left">Blog</button></li>
-                <li><button onClick={onShowComingSoon} className="text-gray-400 hover:text-white transition-colors text-left">Careers</button></li>
                 <li><button onClick={onShowComingSoon} className="text-gray-400 hover:text-white transition-colors text-left">Contact</button></li>
               </ul>
             </div>
