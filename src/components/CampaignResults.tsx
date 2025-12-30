@@ -1,6 +1,6 @@
 import { FileText, Image, Mail, MessageSquare, Video, Megaphone, Download, RefreshCw, CheckCircle2, Brain, Presentation } from 'lucide-react';
 import { useState } from 'react';
-import { CampaignResult } from '../lib/api';
+import { CampaignResult, downloadAllCampaign, downloadDeliverable } from '../lib/api';
 import { VideoPlayer } from './VideoPlayer';
 import { PowerPointDownload } from './PowerPointDownload';
 import { BrandIntelligence } from './BrandIntelligence';
@@ -197,8 +197,40 @@ export function CampaignResults({ url, industry, data, onRetry }: CampaignResult
     onRetry();
   };
 
-  const handleDownloadIndividual = () => {
-    console.log('Download individual:', selectedResult.title);
+  const handleDownloadAll = async () => {
+    if (!data?.campaignId) return;
+    try {
+      await downloadAllCampaign(data.campaignId);
+    } catch (error) {
+      console.error('Failed to download all files:', error);
+    }
+  };
+
+  const handleDownloadIndividual = async () => {
+    if (!data?.campaignId) return;
+
+    const fileTypeMap: Record<string, { type: string; filename: string }> = {
+      'Brand Intelligence': { type: 'brand-intelligence', filename: 'brand_intelligence.md' },
+      'Strategic Brief': { type: 'strategic-brief', filename: 'strategic_brief.md' },
+      'Social Media Posts': { type: 'social-media', filename: 'social_media.md' },
+      'Email Sequence': { type: 'email-sequence', filename: 'email_sequence.md' },
+      'Blog Article': { type: 'blog-article', filename: 'blog_article.md' },
+      'Ad Copy': { type: 'ad-copy', filename: 'ad_copy.md' },
+      'Hero Video': { type: 'video-script', filename: 'video_script.md' },
+      'Campaign Deck': { type: 'campaign-deck', filename: 'campaign_deck.md' },
+    };
+
+    const fileInfo = fileTypeMap[selectedResult.title];
+    if (!fileInfo) {
+      console.error('Unknown file type:', selectedResult.title);
+      return;
+    }
+
+    try {
+      await downloadDeliverable(data.campaignId, fileInfo.type, fileInfo.filename);
+    } catch (error) {
+      console.error('Failed to download file:', error);
+    }
   };
 
   return (
@@ -218,7 +250,10 @@ export function CampaignResults({ url, industry, data, onRetry }: CampaignResult
           </div>
         </div>
         <div className="flex items-center gap-3">
-          <button className="flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-blue-600 to-blue-700 text-white rounded-lg font-semibold hover:from-blue-700 hover:to-blue-800 transition-all hover:shadow-lg">
+          <button
+            onClick={handleDownloadAll}
+            className="flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-blue-600 to-blue-700 text-white rounded-lg font-semibold hover:from-blue-700 hover:to-blue-800 transition-all hover:shadow-lg"
+          >
             <Download className="w-5 h-5" />
             Download All
           </button>
