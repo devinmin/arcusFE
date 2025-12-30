@@ -488,35 +488,49 @@ function App() {
         </div>
       </section>
 
-      {/* Trust Section */}
-      <section className="py-16 px-6 bg-white border-b border-gray-100">
-        <div className="max-w-5xl mx-auto">
-          <div className="text-center mb-8">
-            <p className="text-sm font-medium text-gray-500 uppercase tracking-wider mb-8">Trusted by several brands</p>
+      {/* How It Works Section */}
+      <section id="how-it-works" className="py-24 px-6 bg-white">
+        <div className="max-w-7xl mx-auto">
+          <div className="text-center mb-16">
+            <h2 className="text-5xl font-bold text-gray-900 mb-4">
+              Get Started in Minutes
+            </h2>
+            <p className="text-xl text-gray-600">
+              Three simple steps to transform your marketing
+            </p>
           </div>
 
-          <div className="bg-slate-50 rounded-2xl p-8 md:p-12 border border-gray-100">
-            <div className="max-w-3xl mx-auto text-center">
-              <div className="mb-6">
-                <div className="flex justify-center mb-4">
-                  {[...Array(5)].map((_, i) => (
-                    <Sparkles key={i} className="w-5 h-5 text-slate-600 fill-slate-600" />
-                  ))}
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-12 relative">
+            {/* Connection Lines */}
+            <div className="hidden md:block absolute top-12 left-1/6 right-1/6 h-0.5 bg-slate-300" style={{ top: '3rem' }} />
+
+            {[
+              {
+                step: '01',
+                title: 'Connect Your Brand',
+                description: 'Tell us about your business, goals, and target audience in a simple conversation'
+              },
+              {
+                step: '02',
+                title: 'We Build Your Strategy',
+                description: 'Our agents and we analyze your market and create a comprehensive marketing plan'
+              },
+              {
+                step: '03',
+                title: 'Get Results',
+                description: 'Sit back as Arcus executes campaigns, creates content, and drives results'
+              }
+            ].map((step, index) => (
+              <div key={index} className="relative">
+                <div className="flex flex-col items-center text-center">
+                  <div className="w-16 h-16 bg-slate-700 text-white rounded-2xl flex items-center justify-center text-2xl font-bold mb-6 shadow-lg">
+                    {step.step}
+                  </div>
+                  <h3 className="text-2xl font-bold text-gray-900 mb-4">{step.title}</h3>
+                  <p className="text-gray-600 leading-relaxed">{step.description}</p>
                 </div>
               </div>
-              <blockquote className="text-xl md:text-2xl text-gray-900 font-medium leading-relaxed mb-6">
-                "Arcus AI transformed our marketing completely. What used to take our team weeks now happens automatically. The ROI has been incredible."
-              </blockquote>
-              <div className="flex items-center justify-center space-x-3">
-                <div className="w-12 h-12 bg-slate-600 rounded-full flex items-center justify-center text-white font-bold">
-                  JD
-                </div>
-                <div className="text-left">
-                  <p className="font-semibold text-gray-900">Jane Doe</p>
-                  <p className="text-sm text-gray-600">Head of Marketing, Tech Company</p>
-                </div>
-              </div>
-            </div>
+            ))}
           </div>
         </div>
       </section>
@@ -706,49 +720,35 @@ function App() {
         </div>
       </section>
 
-      {/* How It Works Section */}
-      <section id="how-it-works" className="py-24 px-6 bg-white">
-        <div className="max-w-7xl mx-auto">
-          <div className="text-center mb-16">
-            <h2 className="text-5xl font-bold text-gray-900 mb-4">
-              Get Started in Minutes
-            </h2>
-            <p className="text-xl text-gray-600">
-              Three simple steps to transform your marketing
-            </p>
+      {/* Trust Section */}
+      <section className="py-16 px-6 bg-white border-b border-gray-100">
+        <div className="max-w-5xl mx-auto">
+          <div className="text-center mb-8">
+            <p className="text-sm font-medium text-gray-500 uppercase tracking-wider mb-8">Trusted by several brands</p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-12 relative">
-            {/* Connection Lines */}
-            <div className="hidden md:block absolute top-12 left-1/6 right-1/6 h-0.5 bg-slate-300" style={{ top: '3rem' }} />
-
-            {[
-              {
-                step: '01',
-                title: 'Connect Your Brand',
-                description: 'Tell us about your business, goals, and target audience in a simple conversation'
-              },
-              {
-                step: '02',
-                title: 'We Build Your Strategy',
-                description: 'Our agents and we analyze your market and create a comprehensive marketing plan'
-              },
-              {
-                step: '03',
-                title: 'Get Results',
-                description: 'Sit back as Arcus executes campaigns, creates content, and drives results'
-              }
-            ].map((step, index) => (
-              <div key={index} className="relative">
-                <div className="flex flex-col items-center text-center">
-                  <div className="w-16 h-16 bg-slate-700 text-white rounded-2xl flex items-center justify-center text-2xl font-bold mb-6 shadow-lg">
-                    {step.step}
-                  </div>
-                  <h3 className="text-2xl font-bold text-gray-900 mb-4">{step.title}</h3>
-                  <p className="text-gray-600 leading-relaxed">{step.description}</p>
+          <div className="bg-slate-50 rounded-2xl p-8 md:p-12 border border-gray-100">
+            <div className="max-w-3xl mx-auto text-center">
+              <div className="mb-6">
+                <div className="flex justify-center mb-4">
+                  {[...Array(5)].map((_, i) => (
+                    <Sparkles key={i} className="w-5 h-5 text-slate-600 fill-slate-600" />
+                  ))}
                 </div>
               </div>
-            ))}
+              <blockquote className="text-xl md:text-2xl text-gray-900 font-medium leading-relaxed mb-6">
+                "Arcus AI transformed our marketing completely. What used to take our team weeks now happens automatically. The ROI has been incredible."
+              </blockquote>
+              <div className="flex items-center justify-center space-x-3">
+                <div className="w-12 h-12 bg-slate-600 rounded-full flex items-center justify-center text-white font-bold">
+                  JD
+                </div>
+                <div className="text-left">
+                  <p className="font-semibold text-gray-900">Jane Doe</p>
+                  <p className="text-sm text-gray-600">Head of Marketing, Tech Company</p>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </section>
