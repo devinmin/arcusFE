@@ -456,7 +456,7 @@ function App() {
             </div>
 
             <h1 className="text-6xl md:text-7xl font-bold text-gray-900 mb-6 leading-tight">
-              Delivering marketing results -
+              Get marketing results -
               <span className="block text-slate-700">
                 faster & cheaper.
               </span>
