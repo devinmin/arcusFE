@@ -545,7 +545,7 @@ function App() {
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center mb-20">
             <div>
-              <h3 className="text-4xl font-bold text-gray-900 mb-6">Industry or contextual mastery</h3>
+              <h3 className="text-4xl font-bold text-gray-900 mb-6">Industry and contextual mastery</h3>
               <p className="text-lg text-gray-600 mb-4">
                 Engage your audience across different channels dependent on where your customers are. We know how to target.
               </p>
