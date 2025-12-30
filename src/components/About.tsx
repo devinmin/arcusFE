@@ -126,7 +126,7 @@ export default function About({ onClose, onShowComingSoon }: AboutProps) {
             <div className="text-center space-y-4">
               <div className="w-32 h-32 rounded-full mx-auto overflow-hidden">
                 <img
-                  src="/1703046610447.jpeg"
+                  src="/1754614138091.png"
                   alt="Jordan Chen"
                   className="w-full h-full object-cover"
                 />
@@ -166,7 +166,7 @@ export default function About({ onClose, onShowComingSoon }: AboutProps) {
             <div className="text-center space-y-4">
               <div className="w-32 h-32 rounded-full mx-auto overflow-hidden">
                 <img
-                  src="/1754614138091.png"
+                  src="/1703046610447.jpeg"
                   alt="Maya Patel"
                   className="w-full h-full object-cover"
                 />
