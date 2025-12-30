@@ -17,6 +17,7 @@ function App() {
   const [currentCampaign, setCurrentCampaign] = useState<Campaign | null>(null);
   const [campaignUrl, setCampaignUrl] = useState('');
   const [campaignIndustry, setCampaignIndustry] = useState('');
+  const [campaignBrief, setCampaignBrief] = useState('Create a comprehensive marketing campaign');
   const [campaignError, setCampaignError] = useState('');
   const [campaignStatus, setCampaignStatus] = useState<CampaignStatus>('idle');
   const [campaignData, setCampaignData] = useState<CampaignResult | null>(null);
@@ -69,7 +70,7 @@ function App() {
     e.preventDefault();
     setCampaignError('');
 
-    if (!campaignUrl || !campaignIndustry) {
+    if (!campaignUrl || !campaignIndustry || !campaignBrief) {
       setCampaignError('Please fill in all fields');
       return;
     }
@@ -87,7 +88,7 @@ function App() {
       const result = await generateCampaign(
         campaignUrl,
         campaignIndustry,
-        `Create a comprehensive marketing campaign for this ${campaignIndustry} business`
+        campaignBrief
       );
 
       if (result.success) {
@@ -107,6 +108,7 @@ function App() {
     setCampaignStatus('idle');
     setCampaignUrl('');
     setCampaignIndustry('');
+    setCampaignBrief('Create a comprehensive marketing campaign');
     setCampaignError('');
     setCampaignData(null);
   };
@@ -214,6 +216,25 @@ function App() {
                         <option value="other">Other</option>
                       </select>
                       <p className="text-xs text-gray-500 mt-2">Select the industry that best describes your business</p>
+                    </div>
+
+                    <div>
+                      <label htmlFor="brief" className="flex items-center gap-2 text-sm font-semibold text-gray-900 mb-2">
+                        <Sparkles className="w-4 h-4 text-blue-600" />
+                        Campaign Brief
+                      </label>
+                      <textarea
+                        id="brief"
+                        value={campaignBrief}
+                        onChange={(e) => {
+                          setCampaignBrief(e.target.value);
+                          setCampaignError('');
+                        }}
+                        placeholder="Create a comprehensive marketing campaign"
+                        rows={3}
+                        className="w-full px-4 py-3 border-2 border-gray-200 rounded-lg focus:border-blue-500 focus:outline-none transition-colors text-gray-900 resize-none"
+                      />
+                      <p className="text-xs text-gray-500 mt-2">Describe what type of campaign you need (e.g., "Need campaign for summer event sales" or "Need campaign for Superbowl Sunday")</p>
                     </div>
 
                     {campaignError && (
