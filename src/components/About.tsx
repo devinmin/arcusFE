@@ -1,30 +1,50 @@
 import { Linkedin, Sparkles, Target, Users, Mail } from 'lucide-react';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
 interface AboutProps {
   onClose: () => void;
+  onShowComingSoon: () => void;
 }
 
-export default function About({ onClose }: AboutProps) {
+export default function About({ onClose, onShowComingSoon }: AboutProps) {
   const [scrolled, setScrolled] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setScrolled(window.scrollY > 50);
+    };
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
 
   return (
     <div className="min-h-screen bg-white">
-      <nav className={`fixed w-full z-50 transition-all duration-300 ${scrolled ? 'bg-white shadow-md' : 'bg-transparent'}`}>
+      <nav className={`fixed w-full z-50 transition-all duration-300 ${scrolled ? 'bg-white/95 backdrop-blur-md shadow-sm' : 'bg-transparent'}`}>
         <div className="max-w-7xl mx-auto px-6 py-4">
-          <div className="flex justify-between items-center">
-            <div className="flex items-center gap-2">
-              <div className="w-8 h-8 bg-gradient-to-br from-slate-700 to-slate-900 rounded-lg flex items-center justify-center">
-                <Sparkles className="w-4 h-4 text-white" />
-              </div>
-              <span className="text-xl font-bold text-gray-900">Arcus AI</span>
+          <div className="flex items-center justify-between">
+            <div className="flex items-center">
+              <button onClick={onClose}>
+                <img src="/arcusai.png" alt="Arcus AI" className="h-8" />
+              </button>
             </div>
-            <button
-              onClick={onClose}
-              className="px-4 py-2 text-gray-600 hover:text-gray-900 font-medium transition-colors"
-            >
-              Back to Home
-            </button>
+            <div className="hidden md:flex items-center space-x-4">
+              <button onClick={onClose} className="text-gray-600 hover:text-gray-900 transition-colors">Services</button>
+              <button onClick={onClose} className="text-gray-600 hover:text-gray-900 transition-colors">How it Works</button>
+              <button
+                onClick={onClose}
+                className="px-6 py-2.5 bg-white text-slate-700 border-2 border-slate-700 rounded-full hover:bg-slate-50 transition-all hover:shadow-lg hover:scale-105"
+              >
+                Try Arcus
+              </button>
+              <a
+                href="https://calendar.app.google/bL5Cn6kkYy98fpc46"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="px-6 py-2.5 bg-slate-700 text-white rounded-full hover:bg-slate-800 transition-all hover:shadow-lg hover:scale-105 inline-block"
+              >
+                Book a Call
+              </a>
+            </div>
           </div>
         </div>
       </nav>
@@ -182,15 +202,12 @@ export default function About({ onClose }: AboutProps) {
         </div>
       </div>
 
-      <footer className="bg-slate-900 text-white py-12 px-6">
+      <footer className="py-12 px-6 bg-gray-900">
         <div className="max-w-7xl mx-auto">
-          <div className="grid grid-cols-1 md:grid-cols-4 gap-8 mb-8">
+          <div className="grid grid-cols-1 md:grid-cols-[2fr_1fr_1fr] gap-8 mb-8">
             <div>
-              <div className="flex items-center gap-2 mb-4">
-                <div className="w-8 h-8 bg-white rounded-lg flex items-center justify-center">
-                  <Sparkles className="w-4 h-4 text-slate-900" />
-                </div>
-                <span className="text-xl font-bold">Arcus AI</span>
+              <div className="mb-4">
+                <img src="/arcusai.png" alt="Arcus AI" className="h-8 brightness-0 invert" />
               </div>
               <p className="text-gray-400">
                 Your autonomous marketing team, powered by AI
@@ -201,25 +218,17 @@ export default function About({ onClose }: AboutProps) {
               <h4 className="font-semibold text-white mb-4">Product</h4>
               <ul className="space-y-2">
                 <li><button onClick={onClose} className="text-gray-400 hover:text-white transition-colors text-left">Services</button></li>
-                <li><a href="#" className="text-gray-400 hover:text-white transition-colors">Use Cases</a></li>
+                <li><button onClick={onShowComingSoon} className="text-gray-400 hover:text-white transition-colors text-left">Use Cases</button></li>
               </ul>
             </div>
 
             <div>
               <h4 className="font-semibold text-white mb-4">Company</h4>
               <ul className="space-y-2">
-                <li><span className="text-white">About</span></li>
-                <li><a href="#" className="text-gray-400 hover:text-white transition-colors">Blog</a></li>
-                <li><a href="mailto:opportunities@userarcus.ai" className="text-gray-400 hover:text-white transition-colors">Careers</a></li>
-                <li><a href="mailto:hello@userarcus.ai" className="text-gray-400 hover:text-white transition-colors">Contact</a></li>
-              </ul>
-            </div>
-
-            <div>
-              <h4 className="font-semibold text-white mb-4">Connect</h4>
-              <ul className="space-y-2">
-                <li><a href="#" className="text-gray-400 hover:text-white transition-colors">LinkedIn</a></li>
-                <li><a href="#" className="text-gray-400 hover:text-white transition-colors">Twitter</a></li>
+                <li><button onClick={onClose} className="text-gray-400 hover:text-white transition-colors text-left">About</button></li>
+                <li><button onClick={onShowComingSoon} className="text-gray-400 hover:text-white transition-colors text-left">Blog</button></li>
+                <li><button onClick={onShowComingSoon} className="text-gray-400 hover:text-white transition-colors text-left">Careers</button></li>
+                <li><button onClick={onShowComingSoon} className="text-gray-400 hover:text-white transition-colors text-left">Contact</button></li>
               </ul>
             </div>
           </div>

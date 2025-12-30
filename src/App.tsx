@@ -120,7 +120,10 @@ function App() {
   }
 
   if (showAbout) {
-    return <About onClose={() => setShowAbout(false)} />;
+    return <About onClose={() => setShowAbout(false)} onShowComingSoon={() => {
+      setShowAbout(false);
+      setShowComingSoon(true);
+    }} />;
   }
 
   if (currentCampaign) {
