@@ -730,7 +730,7 @@ function App() {
               },
               {
                 step: '02',
-                title: 'AI Builds Your Strategy',
+                title: 'We Build Your Strategy',
                 description: 'Our agents analyze your market and create a comprehensive marketing plan'
               },
               {
