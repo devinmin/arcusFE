@@ -761,7 +761,7 @@ function App() {
             Ready to Transform Your Marketing?
           </h2>
           <p className="text-xl text-slate-100 mb-10">
-            Join hundreds of companies using AI to scale their marketing effortlessly
+            Join the future of effortless marketing with Arcus AI
           </p>
           <div className="flex flex-col sm:flex-row items-center justify-center space-y-4 sm:space-y-0 sm:space-x-4">
             <a
