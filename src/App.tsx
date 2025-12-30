@@ -527,7 +527,7 @@ function App() {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center mb-20">
             <div className="order-2 md:order-1">
               <img
-                src="https://images.pexels.com/photos/3184418/pexels-photo-3184418.jpeg?auto=compress&cs=tinysrgb&w=1200"
+                src="https://images.pexels.com/photos/7598024/pexels-photo-7598024.jpeg?auto=compress&cs=tinysrgb&w=1200"
                 alt="Marketing Strategy"
                 className="rounded-2xl shadow-2xl w-full h-[400px] object-cover"
               />
