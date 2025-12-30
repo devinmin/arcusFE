@@ -1,4 +1,4 @@
-import { ArrowRight, Sparkles, Target, TrendingUp, Users, Zap, CheckCircle2, BarChart3, X, Globe, Briefcase } from 'lucide-react';
+import { ArrowRight, Sparkles, Target, TrendingUp, Users, Zap, CheckCircle2, BarChart3, X, Globe, Briefcase, Bot } from 'lucide-react';
 import { useState, useEffect } from 'react';
 import { supabase, Campaign } from './lib/supabase';
 import { generateCampaign, CampaignResult } from './lib/api';
@@ -722,29 +722,52 @@ function App() {
 
       {/* Founder Authority Section */}
       <section className="py-20 px-6 bg-white">
-        <div className="max-w-4xl mx-auto">
-          <div className="bg-slate-50 rounded-2xl p-8 md:p-12 border border-gray-100">
-            <div className="text-center mb-6">
-              <p className="text-sm font-semibold text-slate-600 uppercase tracking-wider mb-3">Built by operators, not consultants</p>
-              <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-6">
-                Created by someone who lived this problem firsthand
-              </h2>
-            </div>
+        <div className="max-w-5xl mx-auto">
+          <div className="text-center mb-12">
+            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-3">
+              Built by people who've owned the outcome
+            </h2>
+          </div>
 
-            <div className="max-w-2xl mx-auto">
-              <p className="text-lg text-gray-700 leading-relaxed mb-6">
-                Arcus AI was built by a former Head of Product at a Series-A prop-tech company. After years of watching marketing teams struggle with tight budgets, impossible timelines, and the pressure to prove ROI on every dollar spent, the solution became clear.
-              </p>
-              <p className="text-lg text-gray-700 leading-relaxed mb-6">
-                Marketing shouldn't require an army of specialists and agencies. It should be fast, affordable, and measurable. That's why Arcus exists.
-              </p>
-              <div className="flex items-center justify-center pt-4">
-                <div className="text-center">
-                  <p className="font-semibold text-gray-900 text-lg">Real operators. Real results.</p>
-                  <p className="text-slate-600">Not another marketing promise.</p>
+          <div className="mb-12">
+            <p className="text-center text-lg text-gray-700 mb-8">Arcus is created by:</p>
+
+            <div className="grid md:grid-cols-3 gap-8 max-w-4xl mx-auto">
+              {/* Agency Founders */}
+              <div className="bg-slate-50 rounded-xl p-8 border border-gray-100 hover:shadow-lg transition-shadow">
+                <div className="w-16 h-16 bg-slate-700 rounded-xl flex items-center justify-center mb-4 mx-auto">
+                  <Briefcase className="w-8 h-8 text-white" />
                 </div>
+                <p className="text-center text-gray-900 font-medium leading-relaxed">
+                  Former agency founders who ran client P&Ls
+                </p>
+              </div>
+
+              {/* AI Builders */}
+              <div className="bg-slate-50 rounded-xl p-8 border border-gray-100 hover:shadow-lg transition-shadow">
+                <div className="w-16 h-16 bg-slate-700 rounded-xl flex items-center justify-center mb-4 mx-auto">
+                  <Bot className="w-8 h-8 text-white" />
+                </div>
+                <p className="text-center text-gray-900 font-medium leading-relaxed">
+                  AI builders who shipped production agent systems
+                </p>
+              </div>
+
+              {/* Product Operators */}
+              <div className="bg-slate-50 rounded-xl p-8 border border-gray-100 hover:shadow-lg transition-shadow">
+                <div className="w-16 h-16 bg-slate-700 rounded-xl flex items-center justify-center mb-4 mx-auto">
+                  <TrendingUp className="w-8 h-8 text-white" />
+                </div>
+                <p className="text-center text-gray-900 font-medium leading-relaxed">
+                  Product operators across multiple industries
+                </p>
               </div>
             </div>
+          </div>
+
+          <div className="text-center">
+            <p className="text-xl font-semibold text-gray-900 mb-2">Not theory. Not decks.</p>
+            <p className="text-xl font-semibold text-gray-900">Just tools that work.</p>
           </div>
         </div>
       </section>
