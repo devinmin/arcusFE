@@ -767,7 +767,13 @@ function App() {
 
           <div className="text-center">
             <p className="text-xl font-semibold text-gray-900 mb-2">Not theory. Not decks.</p>
-            <p className="text-xl font-semibold text-gray-900">Just tools that work.</p>
+            <p className="text-xl font-semibold text-gray-900 mb-6">Just tools that work.</p>
+            <button
+              onClick={() => setShowComingSoon(true)}
+              className="text-slate-700 hover:text-slate-900 font-medium inline-flex items-center gap-2 transition-colors"
+            >
+              Learn more <ArrowRight className="w-4 h-4" />
+            </button>
           </div>
         </div>
       </section>
