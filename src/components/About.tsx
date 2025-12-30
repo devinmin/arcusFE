@@ -104,8 +104,12 @@ export default function About({ onClose }: AboutProps) {
           <h2 className="text-3xl font-bold text-gray-900 mb-12 text-center">Meet Our Founders</h2>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             <div className="text-center space-y-4">
-              <div className="w-32 h-32 bg-gradient-to-br from-slate-200 to-slate-300 rounded-full mx-auto flex items-center justify-center">
-                <Users className="w-12 h-12 text-slate-600" />
+              <div className="w-32 h-32 rounded-full mx-auto overflow-hidden">
+                <img
+                  src="/1703046610447.jpeg"
+                  alt="Jordan Chen"
+                  className="w-full h-full object-cover"
+                />
               </div>
               <div>
                 <h3 className="text-xl font-semibold text-gray-900">Jordan Chen</h3>
@@ -120,8 +124,12 @@ export default function About({ onClose }: AboutProps) {
             </div>
 
             <div className="text-center space-y-4">
-              <div className="w-32 h-32 bg-gradient-to-br from-slate-200 to-slate-300 rounded-full mx-auto flex items-center justify-center">
-                <Users className="w-12 h-12 text-slate-600" />
+              <div className="w-32 h-32 rounded-full mx-auto overflow-hidden">
+                <img
+                  src="/1751890423851.png"
+                  alt="Alex Rivera"
+                  className="w-full h-full object-cover"
+                />
               </div>
               <div>
                 <h3 className="text-xl font-semibold text-gray-900">Alex Rivera</h3>
@@ -136,8 +144,12 @@ export default function About({ onClose }: AboutProps) {
             </div>
 
             <div className="text-center space-y-4">
-              <div className="w-32 h-32 bg-gradient-to-br from-slate-200 to-slate-300 rounded-full mx-auto flex items-center justify-center">
-                <Users className="w-12 h-12 text-slate-600" />
+              <div className="w-32 h-32 rounded-full mx-auto overflow-hidden">
+                <img
+                  src="/1754614138091.png"
+                  alt="Maya Patel"
+                  className="w-full h-full object-cover"
+                />
               </div>
               <div>
                 <h3 className="text-xl font-semibold text-gray-900">Maya Patel</h3>
