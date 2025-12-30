@@ -5,6 +5,7 @@ import { generateCampaign, CampaignResult } from './lib/api';
 import { AnalyzingScreen } from './components/AnalyzingScreen';
 import { CampaignResults } from './components/CampaignResults';
 import ComingSoon from './components/ComingSoon';
+import About from './components/About';
 
 type CampaignStatus = 'idle' | 'analyzing' | 'complete';
 
@@ -22,6 +23,7 @@ function App() {
   const [campaignStatus, setCampaignStatus] = useState<CampaignStatus>('idle');
   const [campaignData, setCampaignData] = useState<CampaignResult | null>(null);
   const [showComingSoon, setShowComingSoon] = useState(false);
+  const [showAbout, setShowAbout] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -115,6 +117,10 @@ function App() {
 
   if (showComingSoon) {
     return <ComingSoon onBack={() => setShowComingSoon(false)} />;
+  }
+
+  if (showAbout) {
+    return <About onClose={() => setShowAbout(false)} />;
   }
 
   if (currentCampaign) {
@@ -769,7 +775,7 @@ function App() {
             <p className="text-xl font-semibold text-gray-900 mb-2">Not theory. Not decks.</p>
             <p className="text-xl font-semibold text-gray-900 mb-6">Just tools that work.</p>
             <button
-              onClick={() => setShowComingSoon(true)}
+              onClick={() => setShowAbout(true)}
               className="text-slate-700 hover:text-slate-900 font-medium inline-flex items-center gap-2 transition-colors"
             >
               Learn more <ArrowRight className="w-4 h-4" />
@@ -832,7 +838,7 @@ function App() {
             <div>
               <h4 className="font-semibold text-white mb-4">Company</h4>
               <ul className="space-y-2">
-                <li><button onClick={() => setShowComingSoon(true)} className="text-gray-400 hover:text-white transition-colors text-left">About</button></li>
+                <li><button onClick={() => setShowAbout(true)} className="text-gray-400 hover:text-white transition-colors text-left">About</button></li>
                 <li><button onClick={() => setShowComingSoon(true)} className="text-gray-400 hover:text-white transition-colors text-left">Blog</button></li>
                 <li><button onClick={() => setShowComingSoon(true)} className="text-gray-400 hover:text-white transition-colors text-left">Careers</button></li>
                 <li><button onClick={() => setShowComingSoon(true)} className="text-gray-400 hover:text-white transition-colors text-left">Contact</button></li>
