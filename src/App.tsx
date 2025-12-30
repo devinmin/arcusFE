@@ -555,7 +555,7 @@ function App() {
             </div>
             <div>
               <img
-                src="https://images.pexels.com/photos/267389/pexels-photo-267389.jpeg?auto=compress&cs=tinysrgb&w=1200"
+                src="https://images.pexels.com/photos/5868264/pexels-photo-5868264.jpeg?auto=compress&cs=tinysrgb&w=1200"
                 alt="Social Media Marketing"
                 className="rounded-2xl shadow-2xl w-full h-[400px] object-cover"
               />
