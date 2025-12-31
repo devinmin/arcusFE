@@ -6,6 +6,7 @@ import { AnalyzingScreen } from './components/AnalyzingScreen';
 import { CampaignResults } from './components/CampaignResults';
 import ComingSoon from './components/ComingSoon';
 import About from './components/About';
+import ContactUs from './components/ContactUs';
 
 type CampaignStatus = 'idle' | 'analyzing' | 'complete';
 
@@ -24,6 +25,7 @@ function App() {
   const [campaignData, setCampaignData] = useState<CampaignResult | null>(null);
   const [showComingSoon, setShowComingSoon] = useState(false);
   const [showAbout, setShowAbout] = useState(false);
+  const [showContact, setShowContact] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -34,10 +36,10 @@ function App() {
   }, []);
 
   useEffect(() => {
-    if (!showAbout && !showComingSoon) {
+    if (!showAbout && !showComingSoon && !showContact) {
       window.scrollTo(0, 0);
     }
-  }, [showAbout, showComingSoon]);
+  }, [showAbout, showComingSoon, showContact]);
 
   const handleCodeSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -126,8 +128,22 @@ function App() {
   }
 
   if (showAbout) {
-    return <About onClose={() => setShowAbout(false)} onShowComingSoon={() => {
-      setShowAbout(false);
+    return <About
+      onClose={() => setShowAbout(false)}
+      onShowComingSoon={() => {
+        setShowAbout(false);
+        setShowComingSoon(true);
+      }}
+      onShowContact={() => {
+        setShowAbout(false);
+        setShowContact(true);
+      }}
+    />;
+  }
+
+  if (showContact) {
+    return <ContactUs onClose={() => setShowContact(false)} onShowComingSoon={() => {
+      setShowContact(false);
       setShowComingSoon(true);
     }} />;
   }
@@ -849,7 +865,7 @@ function App() {
               <ul className="space-y-2">
                 <li><button onClick={() => setShowAbout(true)} className="text-gray-400 hover:text-white transition-colors text-left">About</button></li>
                 <li><button onClick={() => setShowComingSoon(true)} className="text-gray-400 hover:text-white transition-colors text-left">Blog</button></li>
-                <li><button onClick={() => setShowComingSoon(true)} className="text-gray-400 hover:text-white transition-colors text-left">Contact</button></li>
+                <li><button onClick={() => setShowContact(true)} className="text-gray-400 hover:text-white transition-colors text-left">Contact</button></li>
               </ul>
             </div>
           </div>

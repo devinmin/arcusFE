@@ -4,9 +4,10 @@ import { useState, useEffect } from 'react';
 interface AboutProps {
   onClose: () => void;
   onShowComingSoon: () => void;
+  onShowContact: () => void;
 }
 
-export default function About({ onClose, onShowComingSoon }: AboutProps) {
+export default function About({ onClose, onShowComingSoon, onShowContact }: AboutProps) {
   const [scrolled, setScrolled] = useState(false);
 
   useEffect(() => {
@@ -229,7 +230,7 @@ export default function About({ onClose, onShowComingSoon }: AboutProps) {
               <ul className="space-y-2">
                 <li><button onClick={onClose} className="text-gray-400 hover:text-white transition-colors text-left">About</button></li>
                 <li><button onClick={onShowComingSoon} className="text-gray-400 hover:text-white transition-colors text-left">Blog</button></li>
-                <li><button onClick={onShowComingSoon} className="text-gray-400 hover:text-white transition-colors text-left">Contact</button></li>
+                <li><button onClick={onShowContact} className="text-gray-400 hover:text-white transition-colors text-left">Contact</button></li>
               </ul>
             </div>
           </div>
