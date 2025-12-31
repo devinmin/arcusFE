@@ -142,10 +142,17 @@ function App() {
   }
 
   if (showContact) {
-    return <ContactUs onClose={() => setShowContact(false)} onShowComingSoon={() => {
-      setShowContact(false);
-      setShowComingSoon(true);
-    }} />;
+    return <ContactUs
+      onClose={() => setShowContact(false)}
+      onShowComingSoon={() => {
+        setShowContact(false);
+        setShowComingSoon(true);
+      }}
+      onShowAbout={() => {
+        setShowContact(false);
+        setShowAbout(true);
+      }}
+    />;
   }
 
   if (currentCampaign) {

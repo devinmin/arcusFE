@@ -1,12 +1,13 @@
 import { useState, useEffect } from 'react';
-import { ArrowLeft, Send, Mail, User, MessageSquare, CheckCircle } from 'lucide-react';
+import { Send, CheckCircle } from 'lucide-react';
 
 interface ContactUsProps {
   onClose: () => void;
   onShowComingSoon: () => void;
+  onShowAbout: () => void;
 }
 
-export default function ContactUs({ onClose, onShowComingSoon }: ContactUsProps) {
+export default function ContactUs({ onClose, onShowComingSoon, onShowAbout }: ContactUsProps) {
   const [scrolled, setScrolled] = useState(false);
   const [fullName, setFullName] = useState('');
   const [email, setEmail] = useState('');
@@ -68,35 +69,38 @@ export default function ContactUs({ onClose, onShowComingSoon }: ContactUsProps)
       <nav className={`fixed w-full z-50 transition-all duration-300 ${scrolled ? 'bg-white/95 backdrop-blur-md shadow-sm' : 'bg-transparent'}`}>
         <div className="max-w-7xl mx-auto px-6 py-4">
           <div className="flex items-center justify-between">
-            <button
-              onClick={onClose}
-              className="flex items-center gap-2 text-gray-900 hover:text-gray-600 transition-colors"
-            >
-              <ArrowLeft className="w-5 h-5" />
-              <span className="font-semibold">Back to Home</span>
-            </button>
+            <div className="flex items-center">
+              <button onClick={onClose}>
+                <img src="/arcusai.png" alt="Arcus AI" className="h-8" />
+              </button>
+            </div>
+            <div className="hidden md:flex items-center space-x-4">
+              <button onClick={onClose} className="text-gray-600 hover:text-gray-900 transition-colors">Services</button>
+              <button onClick={onClose} className="text-gray-600 hover:text-gray-900 transition-colors">How it Works</button>
+              <button
+                onClick={onClose}
+                className="px-6 py-2.5 bg-white text-slate-700 border-2 border-slate-700 rounded-full hover:bg-slate-50 transition-all hover:shadow-lg hover:scale-105"
+              >
+                Try Arcus
+              </button>
+              <a
+                href="https://calendar.app.google/bL5Cn6kkYy98fpc46"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="px-6 py-2.5 bg-slate-700 text-white rounded-full hover:bg-slate-800 transition-all hover:shadow-lg hover:scale-105 inline-block"
+              >
+                Book a Call
+              </a>
+            </div>
           </div>
         </div>
       </nav>
 
       <section className="pt-32 pb-20 px-6">
         <div className="max-w-4xl mx-auto">
-          <div className="text-center mb-16">
-            <div className="flex justify-center mb-6">
-              <div className="p-4 bg-blue-100 rounded-full">
-                <Mail className="w-12 h-12 text-blue-600" />
-              </div>
-            </div>
-            <h1 className="text-5xl font-bold text-gray-900 mb-6">
-              Contact Us
-            </h1>
-            <p className="text-xl text-gray-600 max-w-2xl mx-auto">
-              Have a question or want to learn more about Arcus AI? We'd love to hear from you.
-            </p>
-          </div>
 
           {isSubmitted ? (
-            <div className="max-w-2xl mx-auto bg-green-50 border-2 border-green-200 rounded-2xl p-12 text-center">
+            <div className="max-w-2xl mx-auto bg-gradient-to-br from-green-50 to-emerald-50 border border-green-200 rounded-xl p-12 text-center">
               <div className="flex justify-center mb-6">
                 <div className="p-4 bg-green-100 rounded-full">
                   <CheckCircle className="w-16 h-16 text-green-600" />
@@ -106,123 +110,130 @@ export default function ContactUs({ onClose, onShowComingSoon }: ContactUsProps)
                 Thank You!
               </h2>
               <p className="text-lg text-gray-600 mb-8">
-                Your message has been received. We'll get back to you at {email} as soon as possible.
+                Your message has been received. We'll get back to you as soon as possible.
               </p>
               <button
                 onClick={() => setIsSubmitted(false)}
-                className="px-8 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors font-semibold"
+                className="px-8 py-3 bg-slate-700 text-white rounded-full hover:bg-slate-800 transition-all hover:shadow-lg hover:scale-105 font-semibold"
               >
                 Send Another Message
               </button>
             </div>
           ) : (
-            <div className="max-w-2xl mx-auto bg-white rounded-2xl shadow-xl border border-gray-200 overflow-hidden">
-              <div className="p-8 md:p-12">
-                <form onSubmit={handleSubmit} className="space-y-6">
-                  <div>
-                    <label htmlFor="fullName" className="flex items-center gap-2 text-sm font-semibold text-gray-700 mb-2">
-                      <User className="w-4 h-4" />
-                      Full Name
-                    </label>
-                    <input
-                      type="text"
-                      id="fullName"
-                      value={fullName}
-                      onChange={(e) => setFullName(e.target.value)}
-                      required
-                      placeholder="John Doe"
-                      className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
-                    />
-                  </div>
-
-                  <div>
-                    <label htmlFor="email" className="flex items-center gap-2 text-sm font-semibold text-gray-700 mb-2">
-                      <Mail className="w-4 h-4" />
-                      Email Address
-                    </label>
-                    <input
-                      type="email"
-                      id="email"
-                      value={email}
-                      onChange={(e) => setEmail(e.target.value)}
-                      required
-                      placeholder="john@example.com"
-                      className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
-                    />
-                  </div>
-
-                  <div>
-                    <label htmlFor="message" className="flex items-center gap-2 text-sm font-semibold text-gray-700 mb-2">
-                      <MessageSquare className="w-4 h-4" />
-                      Message
-                    </label>
-                    <textarea
-                      id="message"
-                      value={message}
-                      onChange={(e) => setMessage(e.target.value)}
-                      required
-                      rows={6}
-                      placeholder="Tell us what you'd like to discuss..."
-                      className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all resize-none"
-                    />
-                  </div>
-
-                  {error && (
-                    <div className="p-4 bg-red-50 border border-red-200 rounded-lg text-red-700 text-sm">
-                      {error}
-                    </div>
-                  )}
-
-                  <button
-                    type="submit"
-                    disabled={isSubmitting}
-                    className="w-full px-8 py-4 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors font-semibold flex items-center justify-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed"
-                  >
-                    {isSubmitting ? (
-                      <>
-                        <div className="w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin" />
-                        Sending...
-                      </>
-                    ) : (
-                      <>
-                        <Send className="w-5 h-5" />
-                        Send Message
-                      </>
-                    )}
-                  </button>
-                </form>
+            <div className="max-w-2xl mx-auto">
+              <div className="text-center mb-12">
+                <h1 className="text-5xl md:text-6xl font-bold text-gray-900 mb-6">
+                  Get in Touch
+                </h1>
+                <p className="text-xl text-gray-600">
+                  Have a question or want to learn more? We'd love to hear from you.
+                </p>
               </div>
 
-              <div className="bg-gray-50 px-8 md:px-12 py-6 border-t border-gray-200">
-                <p className="text-sm text-gray-600 text-center">
-                  You can also reach us directly at{' '}
-                  <a href="mailto:contact@usearcus.ai" className="text-blue-600 hover:text-blue-700 font-semibold">
-                    contact@usearcus.ai
-                  </a>
-                </p>
+              <div className="bg-white rounded-xl shadow-lg border border-gray-100 overflow-hidden">
+                <div className="p-8 md:p-12">
+                  <form onSubmit={handleSubmit} className="space-y-6">
+                    <div>
+                      <label htmlFor="fullName" className="block text-sm font-semibold text-gray-700 mb-2">
+                        Full Name
+                      </label>
+                      <input
+                        type="text"
+                        id="fullName"
+                        value={fullName}
+                        onChange={(e) => setFullName(e.target.value)}
+                        required
+                        placeholder="John Doe"
+                        className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-slate-500 focus:border-transparent transition-all"
+                      />
+                    </div>
+
+                    <div>
+                      <label htmlFor="email" className="block text-sm font-semibold text-gray-700 mb-2">
+                        Email Address
+                      </label>
+                      <input
+                        type="email"
+                        id="email"
+                        value={email}
+                        onChange={(e) => setEmail(e.target.value)}
+                        required
+                        placeholder="john@example.com"
+                        className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-slate-500 focus:border-transparent transition-all"
+                      />
+                    </div>
+
+                    <div>
+                      <label htmlFor="message" className="block text-sm font-semibold text-gray-700 mb-2">
+                        Message
+                      </label>
+                      <textarea
+                        id="message"
+                        value={message}
+                        onChange={(e) => setMessage(e.target.value)}
+                        required
+                        rows={6}
+                        placeholder="Tell us what you'd like to discuss..."
+                        className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-slate-500 focus:border-transparent transition-all resize-none"
+                      />
+                    </div>
+
+                    {error && (
+                      <div className="p-4 bg-red-50 border border-red-200 rounded-lg text-red-700 text-sm">
+                        {error}
+                      </div>
+                    )}
+
+                    <button
+                      type="submit"
+                      disabled={isSubmitting}
+                      className="w-full px-8 py-4 bg-slate-700 text-white rounded-full hover:bg-slate-800 transition-all hover:shadow-lg hover:scale-105 font-semibold flex items-center justify-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed"
+                    >
+                      {isSubmitting ? (
+                        <>
+                          <div className="w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin" />
+                          Sending...
+                        </>
+                      ) : (
+                        <>
+                          <Send className="w-5 h-5" />
+                          Send Message
+                        </>
+                      )}
+                    </button>
+                  </form>
+                </div>
+
+                <div className="bg-gray-50 px-8 md:px-12 py-6 border-t border-gray-200">
+                  <p className="text-sm text-gray-600 text-center">
+                    You can also reach us directly at{' '}
+                    <a href="mailto:contact@usearcus.ai" className="text-slate-700 hover:text-slate-900 font-semibold">
+                      contact@usearcus.ai
+                    </a>
+                  </p>
+                </div>
               </div>
             </div>
           )}
         </div>
       </section>
 
-      <footer className="bg-gray-900 text-white py-16 px-6">
+      <footer className="py-12 px-6 bg-gray-900">
         <div className="max-w-7xl mx-auto">
-          <div className="grid md:grid-cols-4 gap-8 mb-8">
-            <div className="col-span-2">
-              <div className="flex items-center gap-2 mb-4">
-                <div className="w-8 h-8 bg-gradient-to-br from-blue-600 to-purple-600 rounded-lg" />
-                <span className="text-xl font-bold">Arcus AI</span>
+          <div className="grid grid-cols-1 md:grid-cols-[2fr_1fr_1fr] gap-8 mb-8">
+            <div>
+              <div className="mb-4">
+                <img src="/arcusai.png" alt="Arcus AI" className="h-8 brightness-0 invert" />
               </div>
-              <p className="text-gray-400 mb-4">
-                Transforming marketing with AI-powered agents. Work smarter, create faster, scale bigger.
+              <p className="text-gray-400">
+                Your autonomous marketing team, powered by AI
               </p>
             </div>
 
             <div>
               <h4 className="font-semibold text-white mb-4">Product</h4>
               <ul className="space-y-2">
-                <li><a href="#services" onClick={onClose} className="text-gray-400 hover:text-white transition-colors">Services</a></li>
+                <li><button onClick={onClose} className="text-gray-400 hover:text-white transition-colors text-left">Services</button></li>
                 <li><button onClick={onShowComingSoon} className="text-gray-400 hover:text-white transition-colors text-left">Use Cases</button></li>
               </ul>
             </div>
@@ -230,9 +241,9 @@ export default function ContactUs({ onClose, onShowComingSoon }: ContactUsProps)
             <div>
               <h4 className="font-semibold text-white mb-4">Company</h4>
               <ul className="space-y-2">
-                <li><button onClick={onShowComingSoon} className="text-gray-400 hover:text-white transition-colors text-left">About</button></li>
+                <li><button onClick={onShowAbout} className="text-gray-400 hover:text-white transition-colors text-left">About</button></li>
                 <li><button onClick={onShowComingSoon} className="text-gray-400 hover:text-white transition-colors text-left">Blog</button></li>
-                <li><button onClick={onClose} className="text-gray-400 hover:text-white transition-colors text-left">Contact</button></li>
+                <li><button className="text-gray-400 hover:text-white transition-colors text-left">Contact</button></li>
               </ul>
             </div>
           </div>
@@ -241,9 +252,9 @@ export default function ContactUs({ onClose, onShowComingSoon }: ContactUsProps)
             <p className="text-gray-400 text-sm">
               © 2024 Arcus AI. All rights reserved.
             </p>
-            <div className="flex gap-6 mt-4 md:mt-0">
-              <button onClick={onShowComingSoon} className="text-gray-400 hover:text-white transition-colors text-sm">Privacy Policy</button>
-              <button onClick={onShowComingSoon} className="text-gray-400 hover:text-white transition-colors text-sm">Terms of Service</button>
+            <div className="flex space-x-6 mt-4 md:mt-0">
+              <a href="#" className="text-gray-400 hover:text-white transition-colors text-sm">Privacy Policy</a>
+              <a href="#" className="text-gray-400 hover:text-white transition-colors text-sm">Terms of Service</a>
             </div>
           </div>
         </div>
