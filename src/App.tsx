@@ -530,6 +530,7 @@ function App() {
                 )}
               </div>
               <a href="#how-it-works" className="text-gray-600 hover:text-gray-900 transition-colors">How it Works</a>
+              <button onClick={() => setShowAbout(true)} className="text-gray-600 hover:text-gray-900 transition-colors">About</button>
               <button
                 onClick={() => setShowCodeModal(true)}
                 className="px-6 py-2.5 bg-white text-slate-700 border-2 border-slate-700 rounded-full hover:bg-slate-50 transition-all hover:shadow-lg hover:scale-105"

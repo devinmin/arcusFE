@@ -64,59 +64,85 @@ export default function About({ onClose, onShowComingSoon, onShowContact }: Abou
       </div>
 
       <div className="py-16 px-6 bg-gray-50">
-        <div className="max-w-4xl mx-auto">
-          <div className="grid md:grid-cols-2 gap-12 items-center mb-12">
+        <div className="max-w-6xl mx-auto">
+          <div className="grid md:grid-cols-2 gap-16 items-center mb-20">
             <div>
-              <h2 className="text-3xl font-bold text-gray-900 mb-6">Our Story</h2>
+              <h2 className="text-4xl font-bold text-gray-900 mb-6">Who Are We?</h2>
               <div className="prose prose-lg text-gray-700 space-y-4">
-                <p>
-                  Arcus AI was founded on a simple belief: marketing teams deserve tools that work as hard as they do.
-                  In an era where AI promises transformation but often delivers complexity, we saw an opportunity to
-                  build something different.
-                </p>
-                <p>
-                  Our platform combines autonomous AI agents with human creativity, creating a system where strategic
-                  thinking meets execution at scale. From campaign ideation to content creation, from performance
-                  analysis to optimization, Arcus AI handles the heavy lifting while keeping humans in control.
+                <p className="text-lg leading-relaxed">
+                  Marketers, AI engineers, and product developers with 40+ years combined experience across OMD, Publicis, WPP, and brands like Sofi. We've been CMOs, built products for Fortune 500s and startups, and worked across CPG, fintech, entertainment, and gaming.
                 </p>
               </div>
             </div>
-            <div className="rounded-2xl overflow-hidden shadow-xl">
+            <div className="rounded-2xl overflow-hidden shadow-2xl">
               <img
                 src="https://images.pexels.com/photos/3184418/pexels-photo-3184418.jpeg?auto=compress&cs=tinysrgb&w=1200"
                 alt="Team collaboration"
-                className="w-full h-full object-cover"
+                className="w-full h-96 object-cover"
               />
             </div>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mt-16">
-            <div className="bg-white p-6 rounded-xl shadow-sm border border-gray-100">
-              <div className="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center mb-4">
-                <Target className="w-6 h-6 text-blue-600" />
-              </div>
-              <h3 className="text-lg font-semibold text-gray-900 mb-2">Mission-Driven</h3>
-              <p className="text-gray-600">
-                Empowering marketing teams to achieve more through intelligent automation and strategic AI.
-              </p>
+          <div className="grid md:grid-cols-2 gap-16 items-center mb-20">
+            <div className="rounded-2xl overflow-hidden shadow-2xl order-2 md:order-1">
+              <img
+                src="https://images.pexels.com/photos/3184291/pexels-photo-3184291.jpeg?auto=compress&cs=tinysrgb&w=1200"
+                alt="Frustrated marketer"
+                className="w-full h-96 object-cover"
+              />
             </div>
-            <div className="bg-white p-6 rounded-xl shadow-sm border border-gray-100">
-              <div className="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center mb-4">
-                <Users className="w-6 h-6 text-green-600" />
+            <div className="order-1 md:order-2">
+              <h2 className="text-4xl font-bold text-gray-900 mb-6">Why did we build this?</h2>
+              <div className="prose prose-lg text-gray-700 space-y-4">
+                <p className="text-lg leading-relaxed">
+                  <span className="font-semibold">First, hiring was a nightmare.</span> Finding great marketers takes 3-6 months. Training them takes another 6. And when they leave, you start over.
+                </p>
+                <p className="text-lg leading-relaxed">
+                  <span className="font-semibold">Second, AI worked—but it was scattered.</span> We'd use one tool for copy, another for creative, 8 other tools for research, scheduling, and reporting. Every campaign required duct-taping 10 platforms together.
+                </p>
+                <p className="text-lg leading-relaxed">
+                  So we built one system that does all of it. And we figured out how to download our brains into the AIs so it could think and produce based on knowledge of what actually works and what doesn't.
+                </p>
               </div>
-              <h3 className="text-lg font-semibold text-gray-900 mb-2">Human-Centered</h3>
-              <p className="text-gray-600">
-                AI that augments human creativity, not replaces it. We believe in the power of collaboration.
-              </p>
             </div>
-            <div className="bg-white p-6 rounded-xl shadow-sm border border-gray-100">
-              <div className="w-12 h-12 bg-purple-100 rounded-lg flex items-center justify-center mb-4">
-                <Sparkles className="w-6 h-6 text-purple-600" />
+          </div>
+
+          <div className="grid md:grid-cols-2 gap-16 items-center mb-20">
+            <div>
+              <h2 className="text-4xl font-bold text-gray-900 mb-6">What Problem Do We Want to Solve?</h2>
+              <div className="prose prose-lg text-gray-700 space-y-4">
+                <p className="text-lg leading-relaxed">
+                  Good marketers are expensive and hard to scale. You can't clone your best strategist. You can't afford 5 of them.
+                </p>
+                <p className="text-lg leading-relaxed">
+                  We wanted to create a system where one great marketer—augmented by AI—can output what used to require an entire team.
+                </p>
               </div>
-              <h3 className="text-lg font-semibold text-gray-900 mb-2">Innovation First</h3>
-              <p className="text-gray-600">
-                Pushing the boundaries of what's possible with autonomous agents and multi-modal AI.
-              </p>
+            </div>
+            <div className="rounded-2xl overflow-hidden shadow-2xl">
+              <img
+                src="https://images.pexels.com/photos/3184465/pexels-photo-3184465.jpeg?auto=compress&cs=tinysrgb&w=1200"
+                alt="Strategic planning"
+                className="w-full h-96 object-cover"
+              />
+            </div>
+          </div>
+
+          <div className="bg-white rounded-3xl shadow-xl p-12 border border-gray-100">
+            <h2 className="text-3xl font-bold text-gray-900 mb-8 text-center">Now you have two options:</h2>
+            <div className="grid md:grid-cols-2 gap-8">
+              <div className="bg-gray-50 rounded-2xl p-8 border-2 border-gray-200">
+                <div className="text-6xl mb-4">😓</div>
+                <p className="text-lg text-gray-700 leading-relaxed">
+                  Keep searching for great talent, hoping they stay, and paying $80K-$150K per head
+                </p>
+              </div>
+              <div className="bg-slate-50 rounded-2xl p-8 border-2 border-slate-700">
+                <div className="text-6xl mb-4">🚀</div>
+                <p className="text-lg text-gray-900 leading-relaxed font-medium">
+                  Let AI handle 90% of work while your best people focus on the 10% that actually moves the needle.
+                </p>
+              </div>
             </div>
           </div>
         </div>

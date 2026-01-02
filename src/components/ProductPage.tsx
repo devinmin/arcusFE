@@ -230,6 +230,7 @@ export default function ProductPage({ category, onNavigateHome, onShowComingSoon
                 )}
               </div>
               <button onClick={onNavigateHome} className="text-gray-600 hover:text-gray-900 transition-colors">How it Works</button>
+              <button onClick={onShowAbout} className="text-gray-600 hover:text-gray-900 transition-colors">About</button>
               <button
                 onClick={onShowTryArcus}
                 className="px-6 py-2.5 bg-white text-slate-700 border-2 border-slate-700 rounded-full hover:bg-slate-50 transition-all hover:shadow-lg hover:scale-105"
