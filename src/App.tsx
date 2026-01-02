@@ -494,9 +494,9 @@ function App() {
             </div>
 
             <h1 className="text-6xl md:text-7xl font-bold text-gray-900 mb-6 leading-tight">
-              Get marketing results -
+              Cut Non-Working Marketing Dollars by 85%+
               <span className="block text-slate-700">
-                faster & cheaper.
+                Launch Campaigns in hours, not weeks
               </span>
             </h1>
 
