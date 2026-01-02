@@ -55,9 +55,9 @@ export default function About({ onClose, onShowComingSoon, onShowContact }: Abou
       <div className="pt-32 pb-20 px-6">
         <div className="max-w-4xl mx-auto">
           <h1 className="text-5xl md:text-6xl font-bold text-gray-900 mb-4">
-            Building the future of
+            We built an AI
             <br />
-            autonomous marketing
+            so that you can handle your marketing with just the top 20% of your staff
           </h1>
           <p className="text-xl text-gray-600">DC · Los Angeles · Seattle</p>
         </div>
