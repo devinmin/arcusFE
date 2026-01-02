@@ -646,17 +646,17 @@ function App() {
               {
                 step: '01',
                 title: 'Connect Your Brand',
-                description: 'Tell us about your business, goals, and target audience in a simple conversation'
+                description: 'Tell us about your business, goals, and target audience in a 30 minute conversation'
               },
               {
                 step: '02',
                 title: 'We Build Your Strategy',
-                description: 'Our agents and we analyze your market and create a comprehensive marketing plan'
+                description: 'Arcus conducts market analysis and builds a marketing plan (with your feedback) in less than 48 hours.'
               },
               {
                 step: '03',
                 title: 'Get Results',
-                description: 'Sit back as Arcus executes campaigns, creates content, and drives results'
+                description: 'AI executes on every facet of the campaign from content generation, social media management, CRM, media buying, reporting, and more.'
               }
             ].map((step, index) => (
               <div key={index} className="relative">
