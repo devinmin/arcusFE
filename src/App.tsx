@@ -506,6 +506,10 @@ function App() {
               <p>Augment your team with a senior marketer & AI that provides strategy, brand intuition, and creative direction.</p>
             </p>
 
+              <p className="text-xl text-gray-600 mb-10 leading-relaxed max-w-2xl mx-auto">
+ Augment your team with a senior marketer & AI that provides strategy, brand intuition, and creative direction.
+            </p>
+
             <div className="flex flex-col sm:flex-row items-center justify-center space-y-4 sm:space-y-0 sm:space-x-4">
               <a
                 href="https://calendar.app.google/bL5Cn6kkYy98fpc46"
