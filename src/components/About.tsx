@@ -5,10 +5,12 @@ interface AboutProps {
   onClose: () => void;
   onShowComingSoon: () => void;
   onShowContact: () => void;
+  onShowProduct: (product: string) => void;
 }
 
-export default function About({ onClose, onShowComingSoon, onShowContact }: AboutProps) {
+export default function About({ onClose, onShowComingSoon, onShowContact, onShowProduct }: AboutProps) {
   const [scrolled, setScrolled] = useState(false);
+  const [showProductDropdown, setShowProductDropdown] = useState(false);
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -31,8 +33,41 @@ export default function About({ onClose, onShowComingSoon, onShowContact }: Abou
               </button>
             </div>
             <div className="hidden md:flex items-center space-x-4">
-              <button onClick={onClose} className="text-gray-600 hover:text-gray-900 transition-colors">Services</button>
+              <div
+                className="relative"
+                onMouseEnter={() => setShowProductDropdown(true)}
+                onMouseLeave={() => setShowProductDropdown(false)}
+              >
+                <button className="text-gray-600 hover:text-gray-900 transition-colors py-2">
+                  Product
+                </button>
+                {showProductDropdown && (
+                  <div className="absolute top-full left-0 pt-2 w-56">
+                    <div className="bg-white rounded-xl shadow-xl border border-gray-100 py-2">
+                      <button onClick={() => { onShowProduct('marketing'); setShowProductDropdown(false); }} className="w-full text-left px-4 py-3 hover:bg-gray-50 text-gray-700 hover:text-gray-900 transition-colors">
+                        Marketing
+                      </button>
+                      <button onClick={() => { onShowProduct('creative'); setShowProductDropdown(false); }} className="w-full text-left px-4 py-3 hover:bg-gray-50 text-gray-700 hover:text-gray-900 transition-colors">
+                        Creative
+                      </button>
+                      <button onClick={() => { onShowProduct('media'); setShowProductDropdown(false); }} className="w-full text-left px-4 py-3 hover:bg-gray-50 text-gray-700 hover:text-gray-900 transition-colors">
+                        Media
+                      </button>
+                      <button onClick={() => { onShowProduct('development'); setShowProductDropdown(false); }} className="w-full text-left px-4 py-3 hover:bg-gray-50 text-gray-700 hover:text-gray-900 transition-colors">
+                        Development
+                      </button>
+                      <button onClick={() => { onShowProduct('spatial'); setShowProductDropdown(false); }} className="w-full text-left px-4 py-3 hover:bg-gray-50 text-gray-700 hover:text-gray-900 transition-colors">
+                        Spatial Computing
+                      </button>
+                      <button onClick={() => { onShowProduct('uiux'); setShowProductDropdown(false); }} className="w-full text-left px-4 py-3 hover:bg-gray-50 text-gray-700 hover:text-gray-900 transition-colors">
+                        UI/UX
+                      </button>
+                    </div>
+                  </div>
+                )}
+              </div>
               <button onClick={onClose} className="text-gray-600 hover:text-gray-900 transition-colors">How it Works</button>
+              <button onClick={onClose} className="text-gray-600 hover:text-gray-900 transition-colors">About</button>
               <button
                 onClick={onClose}
                 className="px-6 py-2.5 bg-white text-slate-700 border-2 border-slate-700 rounded-full hover:bg-slate-50 transition-all hover:shadow-lg hover:scale-105"
@@ -236,7 +271,9 @@ export default function About({ onClose, onShowComingSoon, onShowContact }: Abou
           <div className="grid grid-cols-1 md:grid-cols-[2fr_1fr_1fr] gap-8 mb-8">
             <div>
               <div className="mb-4">
-                <img src="/arcusai.png" alt="Arcus AI" className="h-8 brightness-0 invert" />
+                <button onClick={onClose} className="cursor-pointer">
+                  <img src="/arcusai.png" alt="Arcus AI" className="h-8 brightness-0 invert" />
+                </button>
               </div>
               <p className="text-gray-400">
                 Your autonomous marketing team, powered by AI
@@ -246,8 +283,12 @@ export default function About({ onClose, onShowComingSoon, onShowContact }: Abou
             <div>
               <h4 className="font-semibold text-white mb-4">Product</h4>
               <ul className="space-y-2">
-                <li><button onClick={onClose} className="text-gray-400 hover:text-white transition-colors text-left">Services</button></li>
-                <li><button onClick={onShowComingSoon} className="text-gray-400 hover:text-white transition-colors text-left">Use Cases</button></li>
+                <li><button onClick={() => onShowProduct('marketing')} className="text-gray-400 hover:text-white transition-colors text-left">Marketing</button></li>
+                <li><button onClick={() => onShowProduct('creative')} className="text-gray-400 hover:text-white transition-colors text-left">Creative</button></li>
+                <li><button onClick={() => onShowProduct('media')} className="text-gray-400 hover:text-white transition-colors text-left">Media</button></li>
+                <li><button onClick={() => onShowProduct('development')} className="text-gray-400 hover:text-white transition-colors text-left">Development</button></li>
+                <li><button onClick={() => onShowProduct('spatial')} className="text-gray-400 hover:text-white transition-colors text-left">Spatial Computing</button></li>
+                <li><button onClick={() => onShowProduct('uiux')} className="text-gray-400 hover:text-white transition-colors text-left">UI/UX</button></li>
               </ul>
             </div>
 
