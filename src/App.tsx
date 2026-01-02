@@ -540,33 +540,33 @@ function App() {
 
           <div className="grid md:grid-cols-[1fr_auto_1fr] gap-8 items-center max-w-6xl mx-auto">
             {/* Traditional Agency Card */}
-            <div className="bg-gradient-to-br from-red-50 to-pink-50 border-2 border-red-200 rounded-2xl p-8 shadow-lg">
+            <div className="bg-white border-2 border-gray-200 rounded-2xl p-8 shadow-md">
               <div className="text-center mb-6">
-                <p className="text-sm font-semibold text-gray-600 uppercase tracking-wide mb-2">Traditional Agency</p>
-                <p className="text-5xl font-bold text-gray-900 mb-1">$940,000</p>
-                <p className="text-sm text-gray-600 font-medium">in fees</p>
-                <p className="text-xs text-gray-500 mt-2">For $2MM Campaign Budget<br/>6 month campaign</p>
+                <p className="text-sm font-semibold text-gray-500 uppercase tracking-wide mb-2">Traditional Agency</p>
+                <p className="text-5xl font-bold text-gray-700 mb-1">$940,000</p>
+                <p className="text-sm text-gray-500 font-medium">in fees</p>
+                <p className="text-xs text-gray-400 mt-2">For $2MM Campaign Budget<br/>6 month campaign</p>
               </div>
               <div className="space-y-3 text-sm">
-                <div className="flex justify-between items-center pb-2 border-b border-gray-300">
-                  <span className="text-gray-700">Account Management</span>
-                  <span className="font-semibold text-gray-900">$40,000</span>
+                <div className="flex justify-between items-center pb-2 border-b border-gray-200">
+                  <span className="text-gray-600">Account Management</span>
+                  <span className="font-semibold text-gray-700">$40,000</span>
                 </div>
-                <div className="flex justify-between items-center pb-2 border-b border-gray-300">
-                  <span className="text-gray-700">Project Management</span>
-                  <span className="font-semibold text-gray-900">$60,000</span>
+                <div className="flex justify-between items-center pb-2 border-b border-gray-200">
+                  <span className="text-gray-600">Project Management</span>
+                  <span className="font-semibold text-gray-700">$60,000</span>
                 </div>
-                <div className="flex justify-between items-center pb-2 border-b border-gray-300">
-                  <span className="text-gray-700">Media Servicing (12%)</span>
-                  <span className="font-semibold text-gray-900">$240,000</span>
+                <div className="flex justify-between items-center pb-2 border-b border-gray-200">
+                  <span className="text-gray-600">Media Servicing (12%)</span>
+                  <span className="font-semibold text-gray-700">$240,000</span>
                 </div>
-                <div className="flex justify-between items-center pb-2 border-b border-gray-300">
-                  <span className="text-gray-700">Creative (340 assets)</span>
-                  <span className="font-semibold text-gray-900">$480,000</span>
+                <div className="flex justify-between items-center pb-2 border-b border-gray-200">
+                  <span className="text-gray-600">Creative (340 assets)</span>
+                  <span className="font-semibold text-gray-700">$480,000</span>
                 </div>
                 <div className="flex justify-between items-center pt-2">
-                  <span className="text-gray-700">Junior employees learning</span>
-                  <span className="font-semibold text-red-600">Bullsh*t</span>
+                  <span className="text-gray-600">Junior employees learning</span>
+                  <span className="font-semibold text-gray-500">Bullsh*t</span>
                 </div>
               </div>
             </div>
@@ -586,33 +586,33 @@ function App() {
             </div>
 
             {/* Arcus Card */}
-            <div className="bg-gradient-to-br from-blue-50 to-slate-50 border-2 border-blue-200 rounded-2xl p-8 shadow-lg">
+            <div className="bg-gradient-to-br from-slate-700 to-slate-900 border-2 border-slate-600 rounded-2xl p-8 shadow-2xl transform hover:scale-105 transition-transform duration-300">
               <div className="text-center mb-6">
-                <p className="text-sm font-semibold text-gray-600 uppercase tracking-wide mb-2">arcus</p>
-                <p className="text-5xl font-bold text-gray-900 mb-1">$138,000</p>
-                <p className="text-sm text-gray-600 font-medium">in fees</p>
-                <p className="text-xs text-gray-500 mt-2">For $2MM Campaign Budget<br/>6 month campaign</p>
+                <p className="text-sm font-semibold text-slate-300 uppercase tracking-wide mb-2">arcus</p>
+                <p className="text-5xl font-bold text-white mb-1">$138,000</p>
+                <p className="text-sm text-slate-300 font-medium">in fees</p>
+                <p className="text-xs text-slate-400 mt-2">For $2MM Campaign Budget<br/>6 month campaign</p>
               </div>
               <div className="space-y-3 text-sm">
-                <div className="flex justify-between items-center pb-2 border-b border-gray-300">
-                  <span className="text-gray-700">Account Management</span>
-                  <span className="font-semibold text-green-600">$0</span>
+                <div className="flex justify-between items-center pb-2 border-b border-slate-600">
+                  <span className="text-slate-200">Account Management</span>
+                  <span className="font-semibold text-emerald-400">$0</span>
                 </div>
-                <div className="flex justify-between items-center pb-2 border-b border-gray-300">
-                  <span className="text-gray-700">Project Management</span>
-                  <span className="font-semibold text-green-600">$0</span>
+                <div className="flex justify-between items-center pb-2 border-b border-slate-600">
+                  <span className="text-slate-200">Project Management</span>
+                  <span className="font-semibold text-emerald-400">$0</span>
                 </div>
-                <div className="flex justify-between items-center pb-2 border-b border-gray-300">
-                  <span className="text-gray-700">Media Servicing (6%)</span>
-                  <span className="font-semibold text-gray-900">$120,000</span>
+                <div className="flex justify-between items-center pb-2 border-b border-slate-600">
+                  <span className="text-slate-200">Media Servicing (6%)</span>
+                  <span className="font-semibold text-white">$120,000</span>
                 </div>
-                <div className="flex justify-between items-center pb-2 border-b border-gray-300">
-                  <span className="text-gray-700">Creative (340 assets)</span>
-                  <span className="font-semibold text-gray-900">$18,000</span>
+                <div className="flex justify-between items-center pb-2 border-b border-slate-600">
+                  <span className="text-slate-200">Creative (340 assets)</span>
+                  <span className="font-semibold text-white">$18,000</span>
                 </div>
                 <div className="flex justify-between items-center pt-2">
-                  <span className="text-gray-700">Work only with Senior Talent</span>
-                  <span className="font-semibold text-green-600">Priceless ($0)</span>
+                  <span className="text-slate-200">Work only with Senior Talent</span>
+                  <span className="font-semibold text-emerald-400">Priceless ($0)</span>
                 </div>
               </div>
             </div>
