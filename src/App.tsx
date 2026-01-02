@@ -529,6 +529,103 @@ function App() {
         </div>
       </section>
 
+      {/* Cost Comparison Section */}
+      <section className="py-20 px-6 bg-gray-50">
+        <div className="max-w-7xl mx-auto">
+          <div className="text-center mb-12">
+            <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
+              So that money doesn't get burned on overhead
+            </h2>
+          </div>
+
+          <div className="grid md:grid-cols-[1fr_auto_1fr] gap-8 items-center max-w-6xl mx-auto">
+            {/* Traditional Agency Card */}
+            <div className="bg-gradient-to-br from-red-50 to-pink-50 border-2 border-red-200 rounded-2xl p-8 shadow-lg">
+              <div className="text-center mb-6">
+                <p className="text-sm font-semibold text-gray-600 uppercase tracking-wide mb-2">Traditional Agency</p>
+                <p className="text-5xl font-bold text-gray-900 mb-1">$940,000</p>
+                <p className="text-sm text-gray-600 font-medium">in fees</p>
+                <p className="text-xs text-gray-500 mt-2">For $2MM Campaign Budget<br/>6 month campaign</p>
+              </div>
+              <div className="space-y-3 text-sm">
+                <div className="flex justify-between items-center pb-2 border-b border-gray-300">
+                  <span className="text-gray-700">Account Management</span>
+                  <span className="font-semibold text-gray-900">$40,000</span>
+                </div>
+                <div className="flex justify-between items-center pb-2 border-b border-gray-300">
+                  <span className="text-gray-700">Project Management</span>
+                  <span className="font-semibold text-gray-900">$60,000</span>
+                </div>
+                <div className="flex justify-between items-center pb-2 border-b border-gray-300">
+                  <span className="text-gray-700">Media Servicing (12%)</span>
+                  <span className="font-semibold text-gray-900">$240,000</span>
+                </div>
+                <div className="flex justify-between items-center pb-2 border-b border-gray-300">
+                  <span className="text-gray-700">Creative (340 assets)</span>
+                  <span className="font-semibold text-gray-900">$480,000</span>
+                </div>
+                <div className="flex justify-between items-center pt-2">
+                  <span className="text-gray-700">Junior employees learning</span>
+                  <span className="font-semibold text-red-600">Bullsh*t</span>
+                </div>
+              </div>
+            </div>
+
+            {/* VS Badge */}
+            <div className="hidden md:flex items-center justify-center">
+              <div className="bg-slate-700 text-white px-6 py-3 rounded-full font-bold text-lg shadow-lg">
+                VS
+              </div>
+            </div>
+
+            {/* Mobile VS Badge */}
+            <div className="md:hidden flex items-center justify-center -my-4">
+              <div className="bg-slate-700 text-white px-6 py-3 rounded-full font-bold text-lg shadow-lg">
+                VS
+              </div>
+            </div>
+
+            {/* Arcus Card */}
+            <div className="bg-gradient-to-br from-blue-50 to-slate-50 border-2 border-blue-200 rounded-2xl p-8 shadow-lg">
+              <div className="text-center mb-6">
+                <p className="text-sm font-semibold text-gray-600 uppercase tracking-wide mb-2">arcus</p>
+                <p className="text-5xl font-bold text-gray-900 mb-1">$138,000</p>
+                <p className="text-sm text-gray-600 font-medium">in fees</p>
+                <p className="text-xs text-gray-500 mt-2">For $2MM Campaign Budget<br/>6 month campaign</p>
+              </div>
+              <div className="space-y-3 text-sm">
+                <div className="flex justify-between items-center pb-2 border-b border-gray-300">
+                  <span className="text-gray-700">Account Management</span>
+                  <span className="font-semibold text-green-600">$0</span>
+                </div>
+                <div className="flex justify-between items-center pb-2 border-b border-gray-300">
+                  <span className="text-gray-700">Project Management</span>
+                  <span className="font-semibold text-green-600">$0</span>
+                </div>
+                <div className="flex justify-between items-center pb-2 border-b border-gray-300">
+                  <span className="text-gray-700">Media Servicing (6%)</span>
+                  <span className="font-semibold text-gray-900">$120,000</span>
+                </div>
+                <div className="flex justify-between items-center pb-2 border-b border-gray-300">
+                  <span className="text-gray-700">Creative (340 assets)</span>
+                  <span className="font-semibold text-gray-900">$18,000</span>
+                </div>
+                <div className="flex justify-between items-center pt-2">
+                  <span className="text-gray-700">Work only with Senior Talent</span>
+                  <span className="font-semibold text-green-600">Priceless ($0)</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div className="text-center mt-12">
+            <p className="text-lg text-gray-600 max-w-2xl mx-auto">
+              Save over <span className="font-bold text-slate-700">$800,000</span> in overhead costs while getting senior-level expertise and faster execution.
+            </p>
+          </div>
+        </div>
+      </section>
+
       {/* How It Works Section */}
       <section id="how-it-works" className="py-24 px-6 bg-white">
         <div className="max-w-7xl mx-auto">
