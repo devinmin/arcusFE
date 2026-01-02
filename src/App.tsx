@@ -626,6 +626,46 @@ function App() {
         </div>
       </section>
 
+      {/* Detailed Comparison Section */}
+      <section className="py-20 px-6 bg-white">
+        <div className="max-w-7xl mx-auto">
+          <div className="text-center mb-16">
+            <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
+              The Arcus Advantage
+            </h2>
+            <p className="text-xl text-gray-600">
+              See exactly how Arcus outperforms traditional agencies
+            </p>
+          </div>
+
+          <div className="space-y-12">
+            {/* Quality & Process Comparison */}
+            <div className="bg-gray-50 rounded-3xl p-8 md:p-12 shadow-lg">
+              <img
+                src="/screenshot_2026-01-02_at_2.00.30_pm.png"
+                alt="Arcus vs Traditional Agency Comparison"
+                className="w-full rounded-xl shadow-md"
+              />
+            </div>
+
+            {/* Speed Comparison */}
+            <div className="bg-gradient-to-br from-slate-50 to-gray-50 rounded-3xl p-8 md:p-12 shadow-lg">
+              <img
+                src="/screenshot_2026-01-02_at_2.01.03_pm.png"
+                alt="Speed Comparison - Arcus vs Traditional Agency"
+                className="w-full rounded-xl shadow-md"
+              />
+            </div>
+          </div>
+
+          <div className="text-center mt-12">
+            <p className="text-lg text-gray-600 max-w-3xl mx-auto">
+              Work faster, smarter, and with senior-level talent on every project. No more waiting weeks for simple deliverables or dealing with inexperienced teams.
+            </p>
+          </div>
+        </div>
+      </section>
+
       {/* How It Works Section */}
       <section id="how-it-works" className="py-24 px-6 bg-white">
         <div className="max-w-7xl mx-auto">
