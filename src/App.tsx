@@ -7,8 +7,10 @@ import { CampaignResults } from './components/CampaignResults';
 import ComingSoon from './components/ComingSoon';
 import About from './components/About';
 import ContactUs from './components/ContactUs';
+import ProductPage from './components/ProductPage';
 
 type CampaignStatus = 'idle' | 'analyzing' | 'complete';
+type ProductCategory = 'marketing' | 'creative' | 'media' | 'development' | 'spatial' | 'uiux' | null;
 
 function App() {
   const [scrolled, setScrolled] = useState(false);
@@ -26,6 +28,8 @@ function App() {
   const [showComingSoon, setShowComingSoon] = useState(false);
   const [showAbout, setShowAbout] = useState(false);
   const [showContact, setShowContact] = useState(false);
+  const [currentProduct, setCurrentProduct] = useState<ProductCategory>(null);
+  const [showProductDropdown, setShowProductDropdown] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -151,6 +155,32 @@ function App() {
       onShowAbout={() => {
         setShowContact(false);
         setShowAbout(true);
+      }}
+    />;
+  }
+
+  if (currentProduct) {
+    return <ProductPage
+      category={currentProduct}
+      onNavigateHome={() => {
+        setCurrentProduct(null);
+        window.scrollTo(0, 0);
+      }}
+      onShowComingSoon={() => {
+        setCurrentProduct(null);
+        setShowComingSoon(true);
+      }}
+      onShowAbout={() => {
+        setCurrentProduct(null);
+        setShowAbout(true);
+      }}
+      onShowContact={() => {
+        setCurrentProduct(null);
+        setShowContact(true);
+      }}
+      onNavigateToProduct={(category) => {
+        setCurrentProduct(category as ProductCategory);
+        window.scrollTo(0, 0);
       }}
     />;
   }
@@ -458,11 +488,41 @@ function App() {
       }`}>
         <div className="max-w-7xl mx-auto px-6 py-4">
           <div className="flex items-center justify-between">
-            <div className="flex items-center">
+            <button onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })} className="flex items-center cursor-pointer">
               <img src="/arcusai.png" alt="Arcus AI" className="h-8" />
-            </div>
+            </button>
             <div className="hidden md:flex items-center space-x-4">
-              <a href="#services" className="text-gray-600 hover:text-gray-900 transition-colors">Services</a>
+              <div
+                className="relative"
+                onMouseEnter={() => setShowProductDropdown(true)}
+                onMouseLeave={() => setShowProductDropdown(false)}
+              >
+                <button className="text-gray-600 hover:text-gray-900 transition-colors">
+                  Product
+                </button>
+                {showProductDropdown && (
+                  <div className="absolute top-full left-0 mt-2 w-56 bg-white rounded-xl shadow-xl border border-gray-100 py-2">
+                    <button onClick={() => { setCurrentProduct('marketing'); setShowProductDropdown(false); }} className="w-full text-left px-4 py-3 hover:bg-gray-50 text-gray-700 hover:text-gray-900 transition-colors">
+                      Marketing
+                    </button>
+                    <button onClick={() => { setCurrentProduct('creative'); setShowProductDropdown(false); }} className="w-full text-left px-4 py-3 hover:bg-gray-50 text-gray-700 hover:text-gray-900 transition-colors">
+                      Creative
+                    </button>
+                    <button onClick={() => { setCurrentProduct('media'); setShowProductDropdown(false); }} className="w-full text-left px-4 py-3 hover:bg-gray-50 text-gray-700 hover:text-gray-900 transition-colors">
+                      Media
+                    </button>
+                    <button onClick={() => { setCurrentProduct('development'); setShowProductDropdown(false); }} className="w-full text-left px-4 py-3 hover:bg-gray-50 text-gray-700 hover:text-gray-900 transition-colors">
+                      Development
+                    </button>
+                    <button onClick={() => { setCurrentProduct('spatial'); setShowProductDropdown(false); }} className="w-full text-left px-4 py-3 hover:bg-gray-50 text-gray-700 hover:text-gray-900 transition-colors">
+                      Spatial Computing
+                    </button>
+                    <button onClick={() => { setCurrentProduct('uiux'); setShowProductDropdown(false); }} className="w-full text-left px-4 py-3 hover:bg-gray-50 text-gray-700 hover:text-gray-900 transition-colors">
+                      UI/UX
+                    </button>
+                  </div>
+                )}
+              </div>
               <a href="#how-it-works" className="text-gray-600 hover:text-gray-900 transition-colors">How it Works</a>
               <button
                 onClick={() => setShowCodeModal(true)}
@@ -962,8 +1022,10 @@ function App() {
             <div>
               <h4 className="font-semibold text-white mb-4">Product</h4>
               <ul className="space-y-2">
-                <li><a href="#services" className="text-gray-400 hover:text-white transition-colors">Services</a></li>
-                <li><button onClick={() => setShowComingSoon(true)} className="text-gray-400 hover:text-white transition-colors text-left">Use Cases</button></li>
+                <li><button onClick={() => setCurrentProduct('marketing')} className="text-gray-400 hover:text-white transition-colors text-left">Marketing</button></li>
+                <li><button onClick={() => setCurrentProduct('creative')} className="text-gray-400 hover:text-white transition-colors text-left">Creative</button></li>
+                <li><button onClick={() => setCurrentProduct('media')} className="text-gray-400 hover:text-white transition-colors text-left">Media</button></li>
+                <li><button onClick={() => setCurrentProduct('development')} className="text-gray-400 hover:text-white transition-colors text-left">Development</button></li>
               </ul>
             </div>
 
