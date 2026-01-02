@@ -501,9 +501,8 @@ function App() {
             </h1>
 
             <p className="text-xl text-gray-600 mb-10 leading-relaxed max-w-2xl mx-auto">
-              Arcus AI can cut non-working marketing dollars by 85%+. 
-              <br>
-              Augment your team with a senior marketer + AI that provides strategy, brand intuition, and creative direction.
+              <p>Arcus AI can cut non-working marketing dollars by 85%+.</p>
+              <p>Augment your team with a senior marketer + AI that provides strategy, brand intuition, and creative direction.</p>
             </p>
 
             <div className="flex flex-col sm:flex-row items-center justify-center space-y-4 sm:space-y-0 sm:space-x-4">
