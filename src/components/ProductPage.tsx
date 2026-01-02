@@ -8,6 +8,7 @@ interface ProductPageProps {
   onShowAbout: () => void;
   onShowContact: () => void;
   onNavigateToProduct: (category: string) => void;
+  onShowTryArcus: () => void;
 }
 
 const productData = {
@@ -181,7 +182,7 @@ const productData = {
   }
 };
 
-export default function ProductPage({ category, onNavigateHome, onShowComingSoon, onShowAbout, onShowContact, onNavigateToProduct }: ProductPageProps) {
+export default function ProductPage({ category, onNavigateHome, onShowComingSoon, onShowAbout, onShowContact, onNavigateToProduct, onShowTryArcus }: ProductPageProps) {
   const product = productData[category];
   const [showProductDropdown, setShowProductDropdown] = useState(false);
 
@@ -200,32 +201,41 @@ export default function ProductPage({ category, onNavigateHome, onShowComingSoon
                 onMouseEnter={() => setShowProductDropdown(true)}
                 onMouseLeave={() => setShowProductDropdown(false)}
               >
-                <button className="text-gray-600 hover:text-gray-900 transition-colors">
+                <button className="text-gray-600 hover:text-gray-900 transition-colors py-2">
                   Product
                 </button>
                 {showProductDropdown && (
-                  <div className="absolute top-full left-0 mt-2 w-56 bg-white rounded-xl shadow-xl border border-gray-100 py-2">
-                    <button onClick={() => onNavigateToProduct('marketing')} className="w-full text-left px-4 py-3 hover:bg-gray-50 text-gray-700 hover:text-gray-900 transition-colors">
-                      Marketing
-                    </button>
-                    <button onClick={() => onNavigateToProduct('creative')} className="w-full text-left px-4 py-3 hover:bg-gray-50 text-gray-700 hover:text-gray-900 transition-colors">
-                      Creative
-                    </button>
-                    <button onClick={() => onNavigateToProduct('media')} className="w-full text-left px-4 py-3 hover:bg-gray-50 text-gray-700 hover:text-gray-900 transition-colors">
-                      Media
-                    </button>
-                    <button onClick={() => onNavigateToProduct('development')} className="w-full text-left px-4 py-3 hover:bg-gray-50 text-gray-700 hover:text-gray-900 transition-colors">
-                      Development
-                    </button>
-                    <button onClick={() => onNavigateToProduct('spatial')} className="w-full text-left px-4 py-3 hover:bg-gray-50 text-gray-700 hover:text-gray-900 transition-colors">
-                      Spatial Computing
-                    </button>
-                    <button onClick={() => onNavigateToProduct('uiux')} className="w-full text-left px-4 py-3 hover:bg-gray-50 text-gray-700 hover:text-gray-900 transition-colors">
-                      UI/UX
-                    </button>
+                  <div className="absolute top-full left-0 pt-2 w-56">
+                    <div className="bg-white rounded-xl shadow-xl border border-gray-100 py-2">
+                      <button onClick={() => { onNavigateToProduct('marketing'); setShowProductDropdown(false); }} className="w-full text-left px-4 py-3 hover:bg-gray-50 text-gray-700 hover:text-gray-900 transition-colors">
+                        Marketing
+                      </button>
+                      <button onClick={() => { onNavigateToProduct('creative'); setShowProductDropdown(false); }} className="w-full text-left px-4 py-3 hover:bg-gray-50 text-gray-700 hover:text-gray-900 transition-colors">
+                        Creative
+                      </button>
+                      <button onClick={() => { onNavigateToProduct('media'); setShowProductDropdown(false); }} className="w-full text-left px-4 py-3 hover:bg-gray-50 text-gray-700 hover:text-gray-900 transition-colors">
+                        Media
+                      </button>
+                      <button onClick={() => { onNavigateToProduct('development'); setShowProductDropdown(false); }} className="w-full text-left px-4 py-3 hover:bg-gray-50 text-gray-700 hover:text-gray-900 transition-colors">
+                        Development
+                      </button>
+                      <button onClick={() => { onNavigateToProduct('spatial'); setShowProductDropdown(false); }} className="w-full text-left px-4 py-3 hover:bg-gray-50 text-gray-700 hover:text-gray-900 transition-colors">
+                        Spatial Computing
+                      </button>
+                      <button onClick={() => { onNavigateToProduct('uiux'); setShowProductDropdown(false); }} className="w-full text-left px-4 py-3 hover:bg-gray-50 text-gray-700 hover:text-gray-900 transition-colors">
+                        UI/UX
+                      </button>
+                    </div>
                   </div>
                 )}
               </div>
+              <button onClick={onNavigateHome} className="text-gray-600 hover:text-gray-900 transition-colors">How it Works</button>
+              <button
+                onClick={onShowTryArcus}
+                className="px-6 py-2.5 bg-white text-slate-700 border-2 border-slate-700 rounded-full hover:bg-slate-50 transition-all hover:shadow-lg hover:scale-105"
+              >
+                Try Arcus
+              </button>
               <a
                 href="https://calendar.app.google/bL5Cn6kkYy98fpc46"
                 target="_blank"
@@ -394,7 +404,9 @@ export default function ProductPage({ category, onNavigateHome, onShowComingSoon
           <div className="grid grid-cols-1 md:grid-cols-[2fr_1fr_1fr] gap-8 mb-8">
             <div>
               <div className="mb-4">
-                <img src="/arcusai.png" alt="Arcus AI" className="h-8 brightness-0 invert" />
+                <button onClick={onNavigateHome} className="cursor-pointer">
+                  <img src="/arcusai.png" alt="Arcus AI" className="h-8 brightness-0 invert" />
+                </button>
               </div>
               <p className="text-gray-400">
                 Your autonomous marketing team, powered by AI
@@ -408,6 +420,8 @@ export default function ProductPage({ category, onNavigateHome, onShowComingSoon
                 <li><button onClick={() => onNavigateToProduct('creative')} className="text-gray-400 hover:text-white transition-colors text-left">Creative</button></li>
                 <li><button onClick={() => onNavigateToProduct('media')} className="text-gray-400 hover:text-white transition-colors text-left">Media</button></li>
                 <li><button onClick={() => onNavigateToProduct('development')} className="text-gray-400 hover:text-white transition-colors text-left">Development</button></li>
+                <li><button onClick={() => onNavigateToProduct('spatial')} className="text-gray-400 hover:text-white transition-colors text-left">Spatial Computing</button></li>
+                <li><button onClick={() => onNavigateToProduct('uiux')} className="text-gray-400 hover:text-white transition-colors text-left">UI/UX</button></li>
               </ul>
             </div>
 

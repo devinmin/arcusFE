@@ -182,6 +182,10 @@ function App() {
         setCurrentProduct(category as ProductCategory);
         window.scrollTo(0, 0);
       }}
+      onShowTryArcus={() => {
+        setCurrentProduct(null);
+        setShowCodeModal(true);
+      }}
     />;
   }
 
@@ -497,11 +501,12 @@ function App() {
                 onMouseEnter={() => setShowProductDropdown(true)}
                 onMouseLeave={() => setShowProductDropdown(false)}
               >
-                <button className="text-gray-600 hover:text-gray-900 transition-colors">
+                <button className="text-gray-600 hover:text-gray-900 transition-colors py-2">
                   Product
                 </button>
                 {showProductDropdown && (
-                  <div className="absolute top-full left-0 mt-2 w-56 bg-white rounded-xl shadow-xl border border-gray-100 py-2">
+                  <div className="absolute top-full left-0 pt-2 w-56">
+                    <div className="bg-white rounded-xl shadow-xl border border-gray-100 py-2">
                     <button onClick={() => { setCurrentProduct('marketing'); setShowProductDropdown(false); }} className="w-full text-left px-4 py-3 hover:bg-gray-50 text-gray-700 hover:text-gray-900 transition-colors">
                       Marketing
                     </button>
@@ -520,6 +525,7 @@ function App() {
                     <button onClick={() => { setCurrentProduct('uiux'); setShowProductDropdown(false); }} className="w-full text-left px-4 py-3 hover:bg-gray-50 text-gray-700 hover:text-gray-900 transition-colors">
                       UI/UX
                     </button>
+                    </div>
                   </div>
                 )}
               </div>
@@ -1012,7 +1018,9 @@ function App() {
           <div className="grid grid-cols-1 md:grid-cols-[2fr_1fr_1fr] gap-8 mb-8">
             <div>
               <div className="mb-4">
-                <img src="/arcusai.png" alt="Arcus AI" className="h-8 brightness-0 invert" />
+                <button onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })} className="cursor-pointer">
+                  <img src="/arcusai.png" alt="Arcus AI" className="h-8 brightness-0 invert" />
+                </button>
               </div>
               <p className="text-gray-400">
                 Your autonomous marketing team, powered by AI
@@ -1026,6 +1034,8 @@ function App() {
                 <li><button onClick={() => setCurrentProduct('creative')} className="text-gray-400 hover:text-white transition-colors text-left">Creative</button></li>
                 <li><button onClick={() => setCurrentProduct('media')} className="text-gray-400 hover:text-white transition-colors text-left">Media</button></li>
                 <li><button onClick={() => setCurrentProduct('development')} className="text-gray-400 hover:text-white transition-colors text-left">Development</button></li>
+                <li><button onClick={() => setCurrentProduct('spatial')} className="text-gray-400 hover:text-white transition-colors text-left">Spatial Computing</button></li>
+                <li><button onClick={() => setCurrentProduct('uiux')} className="text-gray-400 hover:text-white transition-colors text-left">UI/UX</button></li>
               </ul>
             </div>
 
