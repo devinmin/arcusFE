@@ -501,8 +501,7 @@ function App() {
             </h1>
 
             <p className="text-xl text-gray-600 mb-10 leading-relaxed max-w-2xl mx-auto">
-              Arcus AI is your autonomous marketing platform. From strategy to content creation,
-              let AI agents handle your marketing operations with confidence.
+              Arcus AI can cut non-working marketing dollars by 85%+ as your autonomous marketing platform. Augment your team or replace your agency with a senior marketer + AI that provides strategy, brand intuition, and creative direction.
             </p>
 
             <div className="flex flex-col sm:flex-row items-center justify-center space-y-4 sm:space-y-0 sm:space-x-4">
