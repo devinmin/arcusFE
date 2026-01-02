@@ -493,10 +493,10 @@ function App() {
               <span className="text-sm font-medium">Your AI Marketing Team is Here</span>
             </div>
 
-            <h1 className="text-5xl md:text-6xl font-bold text-gray-900 mb-6 leading-tight">
-              Cut Marketing Dollars by 85% 
+            <h1 className="text-6xl md:text-7xl font-bold text-gray-900 mb-6 leading-tight">
+              Launch Campaigns in
               <span className="block text-slate-700">
-                Launch Campaigns in <s>Weeks</s> Hours
+                <s>Weeks</s> Hours
               </span>
             </h1>
 
