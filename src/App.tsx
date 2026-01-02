@@ -502,6 +502,7 @@ function App() {
 
             <p className="text-xl text-gray-600 mb-10 leading-relaxed max-w-2xl mx-auto">
               <p>Arcus AI can cut non-working marketing dollars by 85%+.</p>
+              
               <p>Augment your team with a senior marketer + AI that provides strategy, brand intuition, and creative direction.</p>
             </p>
 
