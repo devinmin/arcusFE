@@ -534,7 +534,7 @@ function App() {
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-12">
             <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
-              So that money doesn't get burned on overhead
+              Why Arcus? No burn on overhead
             </h2>
           </div>
 
