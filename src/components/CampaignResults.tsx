@@ -1,4 +1,4 @@
-import { FileText, Image, Mail, MessageSquare, Video, Megaphone, Download, RefreshCw, CheckCircle2, Brain, Presentation, TrendingUp, Package, Eye, ArrowRight } from 'lucide-react';
+import { FileText, Image, Mail, MessageSquare, Video, Megaphone, Download, RefreshCw, CheckCircle2, Brain, Presentation, TrendingUp, Package, ArrowRight } from 'lucide-react';
 import { useState } from 'react';
 import { CampaignResult, downloadAllCampaign, downloadDeliverable } from '../lib/api';
 import { VideoPlayer } from './VideoPlayer';
@@ -13,7 +13,7 @@ interface CampaignResultsProps {
 }
 
 export function CampaignResults({ url, industry, data, onRetry }: CampaignResultsProps) {
-  const [selectedDeliverable, setSelectedDeliverable] = useState<number | null>(null);
+  const [selectedTab, setSelectedTab] = useState(0);
   const [showConfirmModal, setShowConfirmModal] = useState(false);
 
   const results = [
@@ -174,6 +174,8 @@ export function CampaignResults({ url, industry, data, onRetry }: CampaignResult
     },
   ];
 
+  const selectedResult = results[selectedTab];
+
   const handleConfirmNewCampaign = () => {
     setShowConfirmModal(false);
     onRetry();
@@ -188,7 +190,7 @@ export function CampaignResults({ url, industry, data, onRetry }: CampaignResult
     }
   };
 
-  const handleDownloadIndividual = async (result: typeof results[0]) => {
+  const handleDownloadIndividual = async () => {
     if (!data?.campaignId) return;
 
     const fileTypeMap: Record<string, { type: string; filename: string }> = {
@@ -202,9 +204,9 @@ export function CampaignResults({ url, industry, data, onRetry }: CampaignResult
       'Campaign Deck': { type: 'campaign-deck', filename: 'campaign_deck.md' },
     };
 
-    const fileInfo = fileTypeMap[result.title];
+    const fileInfo = fileTypeMap[selectedResult.title];
     if (!fileInfo) {
-      console.error('Unknown file type:', result.title);
+      console.error('Unknown file type:', selectedResult.title);
       return;
     }
 
@@ -306,116 +308,95 @@ export function CampaignResults({ url, industry, data, onRetry }: CampaignResult
         </div>
       </div>
 
-      <div className="mb-6">
-        <h2 className="text-2xl font-bold text-gray-900 mb-4">Deliverables</h2>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-          {results.map((result, index) => {
-            const Icon = result.icon;
-            return (
-              <div
-                key={index}
-                onClick={() => setSelectedDeliverable(index)}
-                className="group bg-white rounded-2xl border-2 border-gray-200 hover:border-blue-500 p-6 cursor-pointer transition-all hover:shadow-xl hover:-translate-y-1"
-              >
-                <div className="flex items-start justify-between mb-4">
-                  <div className={`w-14 h-14 bg-gradient-to-br ${result.gradient} rounded-xl flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform`}>
-                    <Icon className="w-7 h-7 text-white" />
-                  </div>
-                  <span className="px-3 py-1 bg-gray-100 text-gray-700 rounded-full text-xs font-semibold">
-                    {result.badge}
-                  </span>
-                </div>
+      <div className="bg-white rounded-2xl border-2 border-gray-200 overflow-hidden shadow-xl">
+        <div className="flex">
+          <div className="w-80 flex-shrink-0 border-r-2 border-gray-200 bg-gray-50">
+            <div className="p-6 border-b-2 border-gray-200">
+              <h3 className="font-bold text-gray-900 text-lg">Deliverables</h3>
+              <p className="text-sm text-gray-600 mt-1">{results.length} items ready</p>
+            </div>
+            <div className="py-3 px-3 space-y-2 max-h-[600px] overflow-y-auto">
+              {results.map((result, index) => {
+                const TabIcon = result.icon;
+                const isActive = selectedTab === index;
 
-                <h3 className="text-lg font-bold text-gray-900 mb-2 group-hover:text-blue-600 transition-colors">
-                  {result.title}
-                </h3>
-                <p className="text-sm text-gray-600 mb-4 line-clamp-2">
-                  {result.description}
-                </p>
-
-                <div className="flex items-center justify-between">
+                return (
                   <button
-                    onClick={(e) => {
-                      e.stopPropagation();
-                      handleDownloadIndividual(result);
-                    }}
-                    className="flex items-center gap-2 text-sm font-medium text-gray-600 hover:text-blue-600 transition-colors"
+                    key={index}
+                    onClick={() => setSelectedTab(index)}
+                    className={`w-full flex items-center gap-3 px-4 py-4 text-left transition-all rounded-xl ${
+                      isActive
+                        ? 'bg-gradient-to-r from-blue-500 to-blue-600 shadow-lg scale-[1.02]'
+                        : 'hover:bg-white hover:shadow-md border-2 border-transparent hover:border-gray-200'
+                    }`}
                   >
-                    <Download className="w-4 h-4" />
-                    Download
+                    <div className={`flex-shrink-0 w-12 h-12 ${isActive ? 'bg-white/20' : `bg-gradient-to-br ${result.gradient}`} rounded-xl flex items-center justify-center transition-all ${isActive ? '' : 'group-hover:scale-110'}`}>
+                      <TabIcon className={`w-6 h-6 ${isActive ? 'text-white' : 'text-white'}`} />
+                    </div>
+                    <div className="flex-1 min-w-0">
+                      <p className={`font-semibold text-sm ${isActive ? 'text-white' : 'text-gray-900'}`}>
+                        {result.title}
+                      </p>
+                      <p className={`text-xs ${isActive ? 'text-blue-100' : 'text-gray-500'} mt-0.5`}>{result.badge}</p>
+                    </div>
+                    {isActive && <ArrowRight className="w-5 h-5 text-white flex-shrink-0" />}
                   </button>
-                  <button className="flex items-center gap-1 text-sm font-medium text-blue-600 opacity-0 group-hover:opacity-100 transition-opacity">
-                    View
-                    <ArrowRight className="w-4 h-4" />
-                  </button>
-                </div>
-              </div>
-            );
-          })}
-        </div>
-      </div>
+                );
+              })}
+            </div>
+          </div>
 
-      {selectedDeliverable !== null && (
-        <div className="fixed inset-0 bg-black/50 backdrop-blur-sm flex items-center justify-center z-50 p-4">
-          <div className="bg-white rounded-3xl shadow-2xl max-w-6xl w-full max-h-[90vh] overflow-hidden flex flex-col">
-            <div className="bg-gradient-to-r from-gray-900 to-gray-800 p-6">
-              <div className="flex items-center justify-between mb-4">
-                <div className="flex items-center gap-4">
-                  <div className={`w-12 h-12 bg-gradient-to-br ${results[selectedDeliverable].gradient} rounded-xl flex items-center justify-center shadow-lg`}>
-                    {(() => {
-                      const Icon = results[selectedDeliverable].icon;
-                      return <Icon className="w-6 h-6 text-white" />;
-                    })()}
-                  </div>
-                  <div>
-                    <h3 className="text-2xl font-bold text-white">{results[selectedDeliverable].title}</h3>
-                    <p className="text-gray-300 text-sm">{results[selectedDeliverable].description}</p>
-                  </div>
+          <div className="flex-1 flex flex-col">
+            <div className="p-6 border-b-2 border-gray-200 bg-gradient-to-r from-gray-50 to-white">
+              <div className="flex items-center gap-4 mb-4">
+                <div className={`w-14 h-14 bg-gradient-to-br ${selectedResult.gradient} rounded-xl flex items-center justify-center shadow-lg`}>
+                  {(() => {
+                    const Icon = selectedResult.icon;
+                    return <Icon className="w-7 h-7 text-white" />;
+                  })()}
                 </div>
-                <button
-                  onClick={() => setSelectedDeliverable(null)}
-                  className="w-10 h-10 bg-white/10 hover:bg-white/20 rounded-xl flex items-center justify-center text-white transition-all"
-                >
-                  ×
-                </button>
+                <div className="flex-1">
+                  <h3 className="text-2xl font-bold text-gray-900">{selectedResult.title}</h3>
+                  <p className="text-sm text-gray-600 mt-1">{selectedResult.description}</p>
+                </div>
+                <span className="px-4 py-2 bg-gray-100 text-gray-700 rounded-xl text-sm font-bold border-2 border-gray-200">
+                  {selectedResult.badge}
+                </span>
               </div>
-              <div className="flex gap-3">
+              <div className="flex justify-end">
                 <button
-                  onClick={() => handleDownloadIndividual(results[selectedDeliverable])}
-                  className="flex items-center gap-2 px-6 py-2.5 bg-white text-gray-900 rounded-xl text-sm font-semibold hover:bg-gray-100 transition-all"
+                  onClick={handleDownloadIndividual}
+                  className="flex items-center gap-2 px-5 py-2.5 bg-gradient-to-r from-blue-600 to-blue-700 text-white rounded-xl text-sm font-semibold hover:from-blue-700 hover:to-blue-800 transition-all hover:shadow-lg hover:scale-105"
                 >
                   <Download className="w-4 h-4" />
-                  Download
+                  Download {selectedResult.title}
                 </button>
-                <span className="px-4 py-2.5 bg-white/10 text-white rounded-xl text-sm font-medium">
-                  {results[selectedDeliverable].badge}
-                </span>
               </div>
             </div>
 
-            <div className="p-8 overflow-y-auto flex-1 bg-gray-50">
-              {results[selectedDeliverable].isBrandIntelligence && results[selectedDeliverable].brandData?.json ? (
+            <div className="p-8 max-h-[600px] overflow-y-auto flex-1 bg-gray-50">
+              {selectedResult.isBrandIntelligence && selectedResult.brandData?.json ? (
                 <BrandIntelligence
-                  jsonData={results[selectedDeliverable].brandData!.json}
-                  extractedImages={results[selectedDeliverable].brandData!.extractedImages}
-                  guidelines={results[selectedDeliverable].brandData!.guidelines}
+                  jsonData={selectedResult.brandData.json}
+                  extractedImages={selectedResult.brandData.extractedImages}
+                  guidelines={selectedResult.brandData.guidelines}
                 />
-              ) : results[selectedDeliverable].isVideo && results[selectedDeliverable].videoUrl ? (
+              ) : selectedResult.isVideo && selectedResult.videoUrl ? (
                 <VideoPlayer
-                  videoUrl={results[selectedDeliverable].videoUrl!}
-                  thumbnail={results[selectedDeliverable].thumbnail}
-                  title={results[selectedDeliverable].title}
+                  videoUrl={selectedResult.videoUrl}
+                  thumbnail={selectedResult.thumbnail}
+                  title={selectedResult.title}
                 />
-              ) : results[selectedDeliverable].isPowerPoint && results[selectedDeliverable].downloadUrl ? (
+              ) : selectedResult.isPowerPoint && selectedResult.downloadUrl ? (
                 <PowerPointDownload
-                  downloadUrl={results[selectedDeliverable].downloadUrl!}
-                  slideCount={results[selectedDeliverable].slideCount!}
-                  title={results[selectedDeliverable].title}
+                  downloadUrl={selectedResult.downloadUrl}
+                  slideCount={selectedResult.slideCount}
+                  title={selectedResult.title}
                 />
-              ) : results[selectedDeliverable].isImageGallery ? (
+              ) : selectedResult.isImageGallery ? (
                 <div className="grid grid-cols-1 gap-6">
-                  {results[selectedDeliverable].images?.map((image, idx) => (
-                    <div key={idx} className="bg-white rounded-2xl overflow-hidden border-2 border-gray-200 shadow-lg">
+                  {selectedResult.images?.map((image, idx) => (
+                    <div key={idx} className="bg-white rounded-2xl overflow-hidden border-2 border-gray-200 shadow-lg hover:shadow-xl transition-all">
                       <div className="aspect-video bg-gradient-to-br from-gray-900 to-gray-800 flex items-center justify-center overflow-hidden">
                         <img
                           src={image.url}
@@ -426,16 +407,16 @@ export function CampaignResults({ url, industry, data, onRetry }: CampaignResult
                       <div className="p-6">
                         <div className="flex items-start justify-between mb-4">
                           <h4 className="text-xl font-bold text-gray-900">{image.title}</h4>
-                          <span className="px-3 py-1 text-xs font-bold bg-gray-200 text-gray-700 rounded-lg">
+                          <span className="px-3 py-1.5 text-xs font-bold bg-gray-200 text-gray-700 rounded-lg">
                             {image.format}
                           </span>
                         </div>
                         <div className="grid grid-cols-2 gap-4 text-sm mb-4">
-                          <div className="bg-gray-50 rounded-xl p-4">
+                          <div className="bg-gray-50 rounded-xl p-4 border border-gray-200">
                             <p className="text-gray-500 text-xs font-semibold mb-1">Dimensions</p>
                             <p className="font-bold text-gray-900">{image.dimensions}</p>
                           </div>
-                          <div className="bg-gray-50 rounded-xl p-4">
+                          <div className="bg-gray-50 rounded-xl p-4 border border-gray-200">
                             <p className="text-gray-500 text-xs font-semibold mb-1">Use Case</p>
                             <p className="font-bold text-gray-900">{image.useCase}</p>
                           </div>
@@ -449,30 +430,30 @@ export function CampaignResults({ url, industry, data, onRetry }: CampaignResult
                   ))}
                 </div>
               ) : (
-                <div className="bg-white rounded-2xl p-8 border-2 border-gray-200">
+                <div className="bg-white rounded-2xl p-8 border-2 border-gray-200 shadow-sm">
                   <pre className="whitespace-pre-wrap text-gray-700 font-sans leading-relaxed text-sm">
-                    {results[selectedDeliverable].content}
+                    {selectedResult.content}
                   </pre>
                 </div>
               )}
             </div>
 
-            <div className="p-4 border-t border-gray-200 bg-white flex justify-between items-center">
+            <div className="p-4 border-t-2 border-gray-200 bg-white flex justify-between items-center">
               <div className="text-sm text-gray-600 font-medium">
-                {selectedDeliverable + 1} of {results.length}
+                {selectedTab + 1} of {results.length}
               </div>
               <div className="flex gap-2">
                 <button
-                  onClick={() => setSelectedDeliverable(Math.max(0, selectedDeliverable - 1))}
-                  disabled={selectedDeliverable === 0}
-                  className="px-6 py-2 text-sm font-semibold text-gray-700 bg-gray-100 rounded-xl hover:bg-gray-200 disabled:opacity-50 disabled:cursor-not-allowed transition-all"
+                  onClick={() => setSelectedTab(Math.max(0, selectedTab - 1))}
+                  disabled={selectedTab === 0}
+                  className="px-6 py-2 text-sm font-semibold text-gray-700 bg-gray-100 rounded-xl hover:bg-gray-200 disabled:opacity-50 disabled:cursor-not-allowed transition-all border-2 border-gray-200"
                 >
                   Previous
                 </button>
                 <button
-                  onClick={() => setSelectedDeliverable(Math.min(results.length - 1, selectedDeliverable + 1))}
-                  disabled={selectedDeliverable === results.length - 1}
-                  className="px-6 py-2 text-sm font-semibold text-white bg-gradient-to-r from-blue-600 to-blue-700 rounded-xl hover:from-blue-700 hover:to-blue-800 disabled:opacity-50 disabled:cursor-not-allowed transition-all"
+                  onClick={() => setSelectedTab(Math.min(results.length - 1, selectedTab + 1))}
+                  disabled={selectedTab === results.length - 1}
+                  className="px-6 py-2 text-sm font-semibold text-white bg-gradient-to-r from-blue-600 to-blue-700 rounded-xl hover:from-blue-700 hover:to-blue-800 disabled:opacity-50 disabled:cursor-not-allowed transition-all shadow-md"
                 >
                   Next
                 </button>
@@ -480,7 +461,7 @@ export function CampaignResults({ url, industry, data, onRetry }: CampaignResult
             </div>
           </div>
         </div>
-      )}
+      </div>
 
       {showConfirmModal && (
         <div className="fixed inset-0 bg-black/50 backdrop-blur-sm flex items-center justify-center z-50 p-4">
