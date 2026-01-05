@@ -284,7 +284,7 @@ export function CampaignResults({ url, industry, data, onRetry }: CampaignResult
         </div>
 
         <div className="flex-1 overflow-y-auto bg-white">
-          <div className="max-w-6xl mx-auto p-8">
+          <div className="p-8">
             <div className="mb-6 flex items-start justify-between">
               <div>
                 <h2 className="text-2xl font-bold text-gray-900 mb-2">{selectedResult.title}</h2>
