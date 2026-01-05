@@ -1,4 +1,4 @@
-import { FileText, Image, Mail, MessageSquare, Video, Megaphone, Download, RefreshCw, CheckCircle2, Brain, Presentation, TrendingUp, Package, ArrowRight } from 'lucide-react';
+import { FileText, Image, Mail, MessageSquare, Video, Megaphone, Download, RefreshCw, CheckCircle2, Brain, Presentation, TrendingUp, Package } from 'lucide-react';
 import { useState } from 'react';
 import { CampaignResult, downloadAllCampaign, downloadDeliverable } from '../lib/api';
 import { VideoPlayer } from './VideoPlayer';
@@ -221,160 +221,140 @@ export function CampaignResults({ url, industry, data, onRetry }: CampaignResult
   const imageCount = Object.values(data?.deliverables.images || {}).filter(Boolean).length;
 
   return (
-    <div className="max-w-[1600px] mx-auto">
-      <div className="mb-8">
-        <div className="flex items-center justify-between mb-6">
-          <div>
-            <div className="flex items-center gap-3 mb-2">
-              <div className="w-12 h-12 bg-gradient-to-br from-green-400 to-emerald-500 rounded-2xl flex items-center justify-center shadow-lg">
-                <CheckCircle2 className="w-7 h-7 text-white" />
-              </div>
-              <h1 className="text-4xl font-bold bg-gradient-to-r from-gray-900 to-gray-600 bg-clip-text text-transparent">
-                Campaign Dashboard
-              </h1>
-            </div>
-            <div className="flex items-center gap-3 text-sm text-gray-600 ml-[60px]">
-              <span className="px-3 py-1.5 bg-gray-100 rounded-full font-medium">{url}</span>
-              <span>•</span>
-              <span className="capitalize font-medium">{industry}</span>
-            </div>
-          </div>
-          <div className="flex items-center gap-3">
-            <button
-              onClick={handleDownloadAll}
-              className="flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-blue-600 to-blue-700 text-white rounded-xl font-semibold hover:from-blue-700 hover:to-blue-800 transition-all hover:shadow-xl hover:scale-105"
-            >
-              <Download className="w-5 h-5" />
-              Download All
-            </button>
-            <button
-              onClick={() => setShowConfirmModal(true)}
-              className="flex items-center gap-2 px-6 py-3 bg-white text-gray-700 border-2 border-gray-200 rounded-xl font-medium hover:border-gray-300 hover:bg-gray-50 transition-all hover:shadow-lg"
-            >
-              <RefreshCw className="w-5 h-5" />
-              New Campaign
-            </button>
-          </div>
+    <div className="flex h-screen bg-gray-50">
+      <div className="w-64 bg-white border-r border-gray-200 flex flex-col">
+        <div className="p-6 border-b border-gray-200">
+          <h3 className="font-semibold text-gray-900 text-sm">Deliverables</h3>
+          <p className="text-xs text-gray-500 mt-1">{results.length} items</p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-8">
-          <div className="bg-gradient-to-br from-blue-500 to-blue-600 rounded-2xl p-6 text-white shadow-lg hover:shadow-xl transition-all">
-            <div className="flex items-center justify-between mb-4">
-              <div className="w-12 h-12 bg-white/20 rounded-xl flex items-center justify-center backdrop-blur-sm">
-                <Package className="w-6 h-6" />
-              </div>
-              <div className="text-right">
-                <p className="text-3xl font-bold">{totalDeliverables}</p>
-              </div>
-            </div>
-            <p className="text-blue-100 text-sm font-medium">Total Deliverables</p>
-          </div>
+        <div className="flex-1 overflow-y-auto p-3 space-y-1">
+          {results.map((result, index) => {
+            const TabIcon = result.icon;
+            const isActive = selectedTab === index;
 
-          <div className="bg-gradient-to-br from-purple-500 to-purple-600 rounded-2xl p-6 text-white shadow-lg hover:shadow-xl transition-all">
-            <div className="flex items-center justify-between mb-4">
-              <div className="w-12 h-12 bg-white/20 rounded-xl flex items-center justify-center backdrop-blur-sm">
-                <Image className="w-6 h-6" />
-              </div>
-              <div className="text-right">
-                <p className="text-3xl font-bold">{imageCount}</p>
-              </div>
-            </div>
-            <p className="text-purple-100 text-sm font-medium">Generated Images</p>
-          </div>
+            return (
+              <button
+                key={index}
+                onClick={() => setSelectedTab(index)}
+                className={`w-full flex items-center gap-3 px-3 py-2.5 text-left transition-all rounded-lg ${
+                  isActive
+                    ? 'bg-blue-50 text-blue-700'
+                    : 'hover:bg-gray-50 text-gray-700'
+                }`}
+              >
+                <div className={`flex-shrink-0 w-8 h-8 ${isActive ? 'bg-blue-100' : 'bg-gray-100'} rounded-lg flex items-center justify-center`}>
+                  <TabIcon className={`w-4 h-4 ${isActive ? 'text-blue-600' : 'text-gray-600'}`} />
+                </div>
+                <div className="flex-1 min-w-0">
+                  <p className={`text-sm font-medium truncate ${isActive ? 'text-blue-700' : 'text-gray-900'}`}>
+                    {result.title}
+                  </p>
+                </div>
+              </button>
+            );
+          })}
+        </div>
 
-          <div className="bg-gradient-to-br from-green-500 to-green-600 rounded-2xl p-6 text-white shadow-lg hover:shadow-xl transition-all">
-            <div className="flex items-center justify-between mb-4">
-              <div className="w-12 h-12 bg-white/20 rounded-xl flex items-center justify-center backdrop-blur-sm">
-                <CheckCircle2 className="w-6 h-6" />
-              </div>
-              <div className="text-right">
-                <p className="text-3xl font-bold">100%</p>
-              </div>
-            </div>
-            <p className="text-green-100 text-sm font-medium">Campaign Ready</p>
-          </div>
-
-          <div className="bg-gradient-to-br from-orange-500 to-orange-600 rounded-2xl p-6 text-white shadow-lg hover:shadow-xl transition-all">
-            <div className="flex items-center justify-between mb-4">
-              <div className="w-12 h-12 bg-white/20 rounded-xl flex items-center justify-center backdrop-blur-sm">
-                <TrendingUp className="w-6 h-6" />
-              </div>
-              <div className="text-right">
-                <p className="text-3xl font-bold">Ready</p>
-              </div>
-            </div>
-            <p className="text-orange-100 text-sm font-medium">Status</p>
-          </div>
+        <div className="p-4 border-t border-gray-200 space-y-2">
+          <button
+            onClick={handleDownloadAll}
+            className="w-full flex items-center justify-center gap-2 px-4 py-2.5 bg-blue-600 text-white rounded-lg text-sm font-medium hover:bg-blue-700 transition-colors"
+          >
+            <Download className="w-4 h-4" />
+            Download All
+          </button>
+          <button
+            onClick={() => setShowConfirmModal(true)}
+            className="w-full flex items-center justify-center gap-2 px-4 py-2.5 bg-white text-gray-700 border border-gray-300 rounded-lg text-sm font-medium hover:bg-gray-50 transition-colors"
+          >
+            <RefreshCw className="w-4 h-4" />
+            New Campaign
+          </button>
         </div>
       </div>
 
-      <div className="bg-white rounded-2xl border-2 border-gray-200 overflow-hidden shadow-xl">
-        <div className="flex">
-          <div className="w-80 flex-shrink-0 border-r-2 border-gray-200 bg-gray-50">
-            <div className="p-6 border-b-2 border-gray-200">
-              <h3 className="font-bold text-gray-900 text-lg">Deliverables</h3>
-              <p className="text-sm text-gray-600 mt-1">{results.length} items ready</p>
-            </div>
-            <div className="py-3 px-3 space-y-2 max-h-[600px] overflow-y-auto">
-              {results.map((result, index) => {
-                const TabIcon = result.icon;
-                const isActive = selectedTab === index;
-
-                return (
-                  <button
-                    key={index}
-                    onClick={() => setSelectedTab(index)}
-                    className={`w-full flex items-center gap-3 px-4 py-4 text-left transition-all rounded-xl ${
-                      isActive
-                        ? 'bg-gradient-to-r from-blue-500 to-blue-600 shadow-lg scale-[1.02]'
-                        : 'hover:bg-white hover:shadow-md border-2 border-transparent hover:border-gray-200'
-                    }`}
-                  >
-                    <div className={`flex-shrink-0 w-12 h-12 ${isActive ? 'bg-white/20' : `bg-gradient-to-br ${result.gradient}`} rounded-xl flex items-center justify-center transition-all ${isActive ? '' : 'group-hover:scale-110'}`}>
-                      <TabIcon className={`w-6 h-6 ${isActive ? 'text-white' : 'text-white'}`} />
-                    </div>
-                    <div className="flex-1 min-w-0">
-                      <p className={`font-semibold text-sm ${isActive ? 'text-white' : 'text-gray-900'}`}>
-                        {result.title}
-                      </p>
-                      <p className={`text-xs ${isActive ? 'text-blue-100' : 'text-gray-500'} mt-0.5`}>{result.badge}</p>
-                    </div>
-                    {isActive && <ArrowRight className="w-5 h-5 text-white flex-shrink-0" />}
-                  </button>
-                );
-              })}
+      <div className="flex-1 flex flex-col overflow-hidden">
+        <div className="bg-white border-b border-gray-200 p-8">
+          <div className="flex items-center justify-between mb-6">
+            <div>
+              <h1 className="text-3xl font-bold text-gray-900">Campaign Dashboard</h1>
+              <div className="flex items-center gap-3 text-sm text-gray-600 mt-2">
+                <span className="font-medium">{url}</span>
+                <span>•</span>
+                <span className="capitalize">{industry}</span>
+              </div>
             </div>
           </div>
 
-          <div className="flex-1 flex flex-col">
-            <div className="p-6 border-b-2 border-gray-200 bg-gradient-to-r from-gray-50 to-white">
-              <div className="flex items-center gap-4 mb-4">
-                <div className={`w-14 h-14 bg-gradient-to-br ${selectedResult.gradient} rounded-xl flex items-center justify-center shadow-lg`}>
-                  {(() => {
-                    const Icon = selectedResult.icon;
-                    return <Icon className="w-7 h-7 text-white" />;
-                  })()}
+          <div className="grid grid-cols-4 gap-4">
+            <div className="bg-white border border-gray-200 rounded-lg p-4">
+              <div className="flex items-center gap-3">
+                <div className="w-10 h-10 bg-blue-50 rounded-lg flex items-center justify-center">
+                  <Package className="w-5 h-5 text-blue-600" />
                 </div>
-                <div className="flex-1">
-                  <h3 className="text-2xl font-bold text-gray-900">{selectedResult.title}</h3>
-                  <p className="text-sm text-gray-600 mt-1">{selectedResult.description}</p>
+                <div>
+                  <p className="text-2xl font-bold text-gray-900">{totalDeliverables}</p>
+                  <p className="text-xs text-gray-600">Total Deliverables</p>
                 </div>
-                <span className="px-4 py-2 bg-gray-100 text-gray-700 rounded-xl text-sm font-bold border-2 border-gray-200">
-                  {selectedResult.badge}
-                </span>
-              </div>
-              <div className="flex justify-end">
-                <button
-                  onClick={handleDownloadIndividual}
-                  className="flex items-center gap-2 px-5 py-2.5 bg-gradient-to-r from-blue-600 to-blue-700 text-white rounded-xl text-sm font-semibold hover:from-blue-700 hover:to-blue-800 transition-all hover:shadow-lg hover:scale-105"
-                >
-                  <Download className="w-4 h-4" />
-                  Download {selectedResult.title}
-                </button>
               </div>
             </div>
 
-            <div className="p-8 max-h-[600px] overflow-y-auto flex-1 bg-gray-50">
+            <div className="bg-white border border-gray-200 rounded-lg p-4">
+              <div className="flex items-center gap-3">
+                <div className="w-10 h-10 bg-purple-50 rounded-lg flex items-center justify-center">
+                  <Image className="w-5 h-5 text-purple-600" />
+                </div>
+                <div>
+                  <p className="text-2xl font-bold text-gray-900">{imageCount}</p>
+                  <p className="text-xs text-gray-600">Generated Images</p>
+                </div>
+              </div>
+            </div>
+
+            <div className="bg-white border border-gray-200 rounded-lg p-4">
+              <div className="flex items-center gap-3">
+                <div className="w-10 h-10 bg-green-50 rounded-lg flex items-center justify-center">
+                  <CheckCircle2 className="w-5 h-5 text-green-600" />
+                </div>
+                <div>
+                  <p className="text-2xl font-bold text-gray-900">100%</p>
+                  <p className="text-xs text-gray-600">Campaign Ready</p>
+                </div>
+              </div>
+            </div>
+
+            <div className="bg-white border border-gray-200 rounded-lg p-4">
+              <div className="flex items-center gap-3">
+                <div className="w-10 h-10 bg-orange-50 rounded-lg flex items-center justify-center">
+                  <TrendingUp className="w-5 h-5 text-orange-600" />
+                </div>
+                <div>
+                  <p className="text-2xl font-bold text-gray-900">Ready</p>
+                  <p className="text-xs text-gray-600">Status</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div className="flex-1 overflow-y-auto bg-white">
+          <div className="max-w-6xl mx-auto p-8">
+            <div className="mb-6 flex items-start justify-between">
+              <div>
+                <h2 className="text-2xl font-bold text-gray-900 mb-2">{selectedResult.title}</h2>
+                <p className="text-sm text-gray-600">{selectedResult.description}</p>
+              </div>
+              <button
+                onClick={handleDownloadIndividual}
+                className="flex items-center gap-2 px-4 py-2 bg-blue-600 text-white rounded-lg text-sm font-medium hover:bg-blue-700 transition-colors"
+              >
+                <Download className="w-4 h-4" />
+                Download
+              </button>
+            </div>
+
+            <div>
               {selectedResult.isBrandIntelligence && selectedResult.brandData?.json ? (
                 <BrandIntelligence
                   jsonData={selectedResult.brandData.json}
@@ -396,8 +376,8 @@ export function CampaignResults({ url, industry, data, onRetry }: CampaignResult
               ) : selectedResult.isImageGallery ? (
                 <div className="grid grid-cols-1 gap-6">
                   {selectedResult.images?.map((image, idx) => (
-                    <div key={idx} className="bg-white rounded-2xl overflow-hidden border-2 border-gray-200 shadow-lg hover:shadow-xl transition-all">
-                      <div className="aspect-video bg-gradient-to-br from-gray-900 to-gray-800 flex items-center justify-center overflow-hidden">
+                    <div key={idx} className="bg-white border border-gray-200 rounded-lg overflow-hidden">
+                      <div className="aspect-video bg-gray-100 flex items-center justify-center overflow-hidden">
                         <img
                           src={image.url}
                           alt={image.title}
@@ -406,99 +386,66 @@ export function CampaignResults({ url, industry, data, onRetry }: CampaignResult
                       </div>
                       <div className="p-6">
                         <div className="flex items-start justify-between mb-4">
-                          <h4 className="text-xl font-bold text-gray-900">{image.title}</h4>
-                          <span className="px-3 py-1.5 text-xs font-bold bg-gray-200 text-gray-700 rounded-lg">
+                          <h4 className="text-lg font-semibold text-gray-900">{image.title}</h4>
+                          <span className="px-2 py-1 text-xs font-medium bg-gray-100 text-gray-700 rounded">
                             {image.format}
                           </span>
                         </div>
-                        <div className="grid grid-cols-2 gap-4 text-sm mb-4">
-                          <div className="bg-gray-50 rounded-xl p-4 border border-gray-200">
-                            <p className="text-gray-500 text-xs font-semibold mb-1">Dimensions</p>
-                            <p className="font-bold text-gray-900">{image.dimensions}</p>
+                        <div className="grid grid-cols-2 gap-4 text-sm">
+                          <div>
+                            <p className="text-gray-500 text-xs mb-1">Dimensions</p>
+                            <p className="font-medium text-gray-900">{image.dimensions}</p>
                           </div>
-                          <div className="bg-gray-50 rounded-xl p-4 border border-gray-200">
-                            <p className="text-gray-500 text-xs font-semibold mb-1">Use Case</p>
-                            <p className="font-bold text-gray-900">{image.useCase}</p>
+                          <div>
+                            <p className="text-gray-500 text-xs mb-1">Use Case</p>
+                            <p className="font-medium text-gray-900">{image.useCase}</p>
                           </div>
-                        </div>
-                        <div className="bg-blue-50 rounded-xl p-4 border border-blue-200">
-                          <p className="text-blue-600 text-xs font-semibold mb-1">Style</p>
-                          <p className="text-sm text-blue-900 font-medium">{image.style}</p>
                         </div>
                       </div>
                     </div>
                   ))}
                 </div>
               ) : (
-                <div className="bg-white rounded-2xl p-8 border-2 border-gray-200 shadow-sm">
-                  <pre className="whitespace-pre-wrap text-gray-700 font-sans leading-relaxed text-sm">
+                <div className="bg-white border border-gray-200 rounded-lg p-6">
+                  <pre className="whitespace-pre-wrap text-gray-700 text-sm font-mono">
                     {selectedResult.content}
                   </pre>
                 </div>
               )}
-            </div>
-
-            <div className="p-4 border-t-2 border-gray-200 bg-white flex justify-between items-center">
-              <div className="text-sm text-gray-600 font-medium">
-                {selectedTab + 1} of {results.length}
-              </div>
-              <div className="flex gap-2">
-                <button
-                  onClick={() => setSelectedTab(Math.max(0, selectedTab - 1))}
-                  disabled={selectedTab === 0}
-                  className="px-6 py-2 text-sm font-semibold text-gray-700 bg-gray-100 rounded-xl hover:bg-gray-200 disabled:opacity-50 disabled:cursor-not-allowed transition-all border-2 border-gray-200"
-                >
-                  Previous
-                </button>
-                <button
-                  onClick={() => setSelectedTab(Math.min(results.length - 1, selectedTab + 1))}
-                  disabled={selectedTab === results.length - 1}
-                  className="px-6 py-2 text-sm font-semibold text-white bg-gradient-to-r from-blue-600 to-blue-700 rounded-xl hover:from-blue-700 hover:to-blue-800 disabled:opacity-50 disabled:cursor-not-allowed transition-all shadow-md"
-                >
-                  Next
-                </button>
-              </div>
             </div>
           </div>
         </div>
       </div>
 
       {showConfirmModal && (
-        <div className="fixed inset-0 bg-black/50 backdrop-blur-sm flex items-center justify-center z-50 p-4">
-          <div className="bg-white rounded-3xl shadow-2xl max-w-md w-full overflow-hidden">
-            <div className="p-8">
-              <div className="flex items-start gap-4 mb-6">
-                <div className="flex-shrink-0 w-14 h-14 bg-gradient-to-br from-orange-400 to-red-500 rounded-2xl flex items-center justify-center shadow-lg">
-                  <RefreshCw className="w-7 h-7 text-white" />
-                </div>
-                <div className="flex-1">
-                  <h3 className="text-2xl font-bold text-gray-900 mb-2">Start New Campaign?</h3>
-                  <p className="text-gray-600 text-sm leading-relaxed">
-                    Creating a new campaign will clear your current results. Make sure you've downloaded any content you want to keep.
-                  </p>
-                </div>
-              </div>
+        <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4">
+          <div className="bg-white rounded-lg shadow-xl max-w-md w-full p-6">
+            <div className="mb-4">
+              <h3 className="text-lg font-semibold text-gray-900 mb-2">Start New Campaign?</h3>
+              <p className="text-sm text-gray-600">
+                Creating a new campaign will clear your current results. Make sure you've downloaded any content you want to keep.
+              </p>
+            </div>
 
-              <div className="bg-orange-50 border-2 border-orange-200 rounded-2xl p-4 mb-6">
-                <p className="text-sm text-orange-900 font-semibold">
-                  This action cannot be undone. All current deliverables will be lost.
-                </p>
-              </div>
+            <div className="bg-orange-50 border border-orange-200 rounded-lg p-3 mb-4">
+              <p className="text-sm text-orange-900">
+                This action cannot be undone. All current deliverables will be lost.
+              </p>
+            </div>
 
-              <div className="flex gap-3">
-                <button
-                  onClick={() => setShowConfirmModal(false)}
-                  className="flex-1 px-4 py-3 bg-gray-100 text-gray-700 rounded-xl font-semibold hover:bg-gray-200 transition-all"
-                >
-                  Cancel
-                </button>
-                <button
-                  onClick={handleConfirmNewCampaign}
-                  className="flex-1 px-4 py-3 bg-gradient-to-r from-orange-600 to-red-600 text-white rounded-xl font-semibold hover:from-orange-700 hover:to-red-700 transition-all hover:shadow-lg"
-                >
-                  Start New
-                </button>
-              </div>
+            <div className="flex gap-3">
+              <button
+                onClick={() => setShowConfirmModal(false)}
+                className="flex-1 px-4 py-2 bg-white border border-gray-300 text-gray-700 rounded-lg text-sm font-medium hover:bg-gray-50 transition-colors"
+              >
+                Cancel
+              </button>
+              <button
+                onClick={handleConfirmNewCampaign}
+                className="flex-1 px-4 py-2 bg-red-600 text-white rounded-lg text-sm font-medium hover:bg-red-700 transition-colors"
+              >
+                Start New
+              </button>
             </div>
           </div>
         </div>
