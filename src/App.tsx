@@ -146,6 +146,10 @@ function App() {
         setShowAbout(false);
         setCurrentProduct(product);
       }}
+      onShowCodeModal={() => {
+        setShowAbout(false);
+        setShowCodeModal(true);
+      }}
     />;
   }
 
@@ -163,6 +167,10 @@ function App() {
       onShowProduct={(product) => {
         setShowContact(false);
         setCurrentProduct(product);
+      }}
+      onShowCodeModal={() => {
+        setShowContact(false);
+        setShowCodeModal(true);
       }}
     />;
   }

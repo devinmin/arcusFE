@@ -6,9 +6,10 @@ interface AboutProps {
   onShowComingSoon: () => void;
   onShowContact: () => void;
   onShowProduct: (product: string) => void;
+  onShowCodeModal: () => void;
 }
 
-export default function About({ onClose, onShowComingSoon, onShowContact, onShowProduct }: AboutProps) {
+export default function About({ onClose, onShowComingSoon, onShowContact, onShowProduct, onShowCodeModal }: AboutProps) {
   const [scrolled, setScrolled] = useState(false);
   const [showProductDropdown, setShowProductDropdown] = useState(false);
 
@@ -69,7 +70,7 @@ export default function About({ onClose, onShowComingSoon, onShowContact, onShow
               <button onClick={onClose} className="text-gray-600 hover:text-gray-900 transition-colors">How it Works</button>
               <button onClick={onClose} className="text-gray-600 hover:text-gray-900 transition-colors">About</button>
               <button
-                onClick={onClose}
+                onClick={onShowCodeModal}
                 className="px-6 py-2.5 bg-white text-slate-700 border-2 border-slate-700 rounded-full hover:bg-slate-50 transition-all hover:shadow-lg hover:scale-105"
               >
                 Try Arcus
