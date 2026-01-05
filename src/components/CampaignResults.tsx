@@ -1,4 +1,4 @@
-import { FileText, Image, Mail, MessageSquare, Video, Megaphone, Download, RefreshCw, Brain, Presentation } from 'lucide-react';
+import { FileText, Image, Mail, MessageSquare, Video, Megaphone, Download, RefreshCw, Home, Presentation } from 'lucide-react';
 import { useState } from 'react';
 import { CampaignResult, downloadAllCampaign, downloadDeliverable } from '../lib/api';
 import { VideoPlayer } from './VideoPlayer';
@@ -19,8 +19,8 @@ export function CampaignResults({ url, industry, data, onRetry, onSignOut }: Cam
 
   const results = [
     {
-      icon: Brain,
-      title: 'Brand Intelligence',
+      icon: Home,
+      title: 'Brand Overview',
       description: 'Extracted brand data, colors, fonts, and visual assets',
       preview: 'Complete brand analysis with color palette, typography, voice analysis...',
       color: 'slate',
@@ -195,7 +195,7 @@ export function CampaignResults({ url, industry, data, onRetry, onSignOut }: Cam
     if (!data?.campaignId) return;
 
     const fileTypeMap: Record<string, { type: string; filename: string }> = {
-      'Brand Intelligence': { type: 'brand-intelligence', filename: 'brand_intelligence.md' },
+      'Brand Overview': { type: 'brand-intelligence', filename: 'brand_intelligence.md' },
       'Strategic Brief': { type: 'strategic-brief', filename: 'strategic_brief.md' },
       'Social Media Posts': { type: 'social-media', filename: 'social_media.md' },
       'Email Sequence': { type: 'email-sequence', filename: 'email_sequence.md' },
