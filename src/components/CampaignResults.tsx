@@ -10,9 +10,10 @@ interface CampaignResultsProps {
   industry: string;
   data: CampaignResult | null;
   onRetry: () => void;
+  onSignOut?: () => void;
 }
 
-export function CampaignResults({ url, industry, data, onRetry }: CampaignResultsProps) {
+export function CampaignResults({ url, industry, data, onRetry, onSignOut }: CampaignResultsProps) {
   const [selectedTab, setSelectedTab] = useState(0);
   const [showConfirmModal, setShowConfirmModal] = useState(false);
 
@@ -218,8 +219,29 @@ export function CampaignResults({ url, industry, data, onRetry }: CampaignResult
   };
 
   return (
-    <div className="flex h-screen bg-gray-50">
-      <div className="w-64 bg-white border-r border-gray-200 flex flex-col">
+    <div className="flex flex-col h-screen bg-gray-50">
+      <nav className="bg-white shadow-sm border-b border-gray-200 flex-shrink-0">
+        <div className="px-6 py-4">
+          <div className="flex items-center justify-between">
+            <div className="flex items-center space-x-3">
+              <img src="/arcusai.png" alt="Arcus AI" className="h-8" />
+              <div className="h-6 w-px bg-gray-300"></div>
+              <span className="text-sm font-medium text-gray-600">Arcus Campaign Generator</span>
+            </div>
+            {onSignOut && (
+              <button
+                onClick={onSignOut}
+                className="px-4 py-2 text-sm text-gray-600 hover:text-gray-900 transition-colors"
+              >
+                Sign Out
+              </button>
+            )}
+          </div>
+        </div>
+      </nav>
+
+      <div className="flex flex-1 overflow-hidden">
+        <div className="w-64 bg-white border-r border-gray-200 flex flex-col flex-shrink-0">
         <div className="p-6 border-b border-gray-200">
           <h3 className="font-semibold text-gray-900 text-sm">Deliverables</h3>
           <p className="text-xs text-gray-500 mt-1">{results.length} items</p>
@@ -395,6 +417,7 @@ export function CampaignResults({ url, industry, data, onRetry }: CampaignResult
           </div>
         </div>
       )}
+      </div>
     </div>
   );
 }

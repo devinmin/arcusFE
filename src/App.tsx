@@ -212,35 +212,41 @@ function App() {
 
     return (
       <div className="min-h-screen bg-slate-50">
-        <nav className="bg-white shadow-sm border-b border-gray-200">
-          <div className="max-w-7xl mx-auto px-6 py-4">
-            <div className="flex items-center justify-between">
-              <div className="flex items-center space-x-3">
-                <img src="/arcusai.png" alt="Arcus AI" className="h-8" />
-                <div className="h-6 w-px bg-gray-300"></div>
-                <span className="text-sm font-medium text-gray-600">{currentCampaign.name}</span>
+        {campaignStatus !== 'complete' && (
+          <nav className="bg-white shadow-sm border-b border-gray-200">
+            <div className="max-w-7xl mx-auto px-6 py-4">
+              <div className="flex items-center justify-between">
+                <div className="flex items-center space-x-3">
+                  <img src="/arcusai.png" alt="Arcus AI" className="h-8" />
+                  <div className="h-6 w-px bg-gray-300"></div>
+                  <span className="text-sm font-medium text-gray-600">{currentCampaign.name}</span>
+                </div>
+                <button
+                  onClick={() => setCurrentCampaign(null)}
+                  className="px-4 py-2 text-sm text-gray-600 hover:text-gray-900 transition-colors"
+                >
+                  Sign Out
+                </button>
               </div>
-              <button
-                onClick={() => setCurrentCampaign(null)}
-                className="px-4 py-2 text-sm text-gray-600 hover:text-gray-900 transition-colors"
-              >
-                Sign Out
-              </button>
             </div>
-          </div>
-        </nav>
+          </nav>
+        )}
 
-        <div className="max-w-7xl mx-auto px-6 py-12">
-          {campaignStatus === 'analyzing' ? (
+        {campaignStatus === 'analyzing' ? (
+          <div className="max-w-7xl mx-auto px-6 py-12">
             <AnalyzingScreen url={campaignUrl} industry={campaignIndustry} />
-          ) : campaignStatus === 'complete' ? (
-            <CampaignResults
-              url={campaignUrl}
-              industry={campaignIndustry}
-              data={campaignData}
-              onRetry={handleRetryCampaign}
-            />
-          ) : isEmpty ? (
+          </div>
+        ) : campaignStatus === 'complete' ? (
+          <CampaignResults
+            url={campaignUrl}
+            industry={campaignIndustry}
+            data={campaignData}
+            onRetry={handleRetryCampaign}
+            onSignOut={() => setCurrentCampaign(null)}
+          />
+        ) : (
+          <div className="max-w-7xl mx-auto px-6 py-12">
+            {isEmpty ? (
             <div className="flex flex-col items-center justify-center min-h-[70vh]">
               <div className="w-full max-w-2xl">
                 <div className="text-center mb-8">
@@ -447,8 +453,9 @@ function App() {
                 </div>
               </div>
             </>
-          )}
-        </div>
+            )}
+          </div>
+        )}
       </div>
     );
   }
