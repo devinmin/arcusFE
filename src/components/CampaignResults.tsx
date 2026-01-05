@@ -1,4 +1,4 @@
-import { FileText, Image, Mail, MessageSquare, Video, Megaphone, Download, RefreshCw, CheckCircle2, Brain, Presentation, TrendingUp, Package } from 'lucide-react';
+import { FileText, Image, Mail, MessageSquare, Video, Megaphone, Download, RefreshCw, Brain, Presentation } from 'lucide-react';
 import { useState } from 'react';
 import { CampaignResult, downloadAllCampaign, downloadDeliverable } from '../lib/api';
 import { VideoPlayer } from './VideoPlayer';
@@ -217,9 +217,6 @@ export function CampaignResults({ url, industry, data, onRetry }: CampaignResult
     }
   };
 
-  const totalDeliverables = results.length;
-  const imageCount = Object.values(data?.deliverables.images || {}).filter(Boolean).length;
-
   return (
     <div className="flex h-screen bg-gray-50">
       <div className="w-64 bg-white border-r border-gray-200 flex flex-col">
@@ -276,64 +273,12 @@ export function CampaignResults({ url, industry, data, onRetry }: CampaignResult
 
       <div className="flex-1 flex flex-col overflow-hidden">
         <div className="bg-white border-b border-gray-200 p-8">
-          <div className="flex items-center justify-between mb-6">
-            <div>
-              <h1 className="text-3xl font-bold text-gray-900">Campaign Dashboard</h1>
-              <div className="flex items-center gap-3 text-sm text-gray-600 mt-2">
-                <span className="font-medium">{url}</span>
-                <span>•</span>
-                <span className="capitalize">{industry}</span>
-              </div>
-            </div>
-          </div>
-
-          <div className="grid grid-cols-4 gap-4">
-            <div className="bg-white border border-gray-200 rounded-lg p-4">
-              <div className="flex items-center gap-3">
-                <div className="w-10 h-10 bg-blue-50 rounded-lg flex items-center justify-center">
-                  <Package className="w-5 h-5 text-blue-600" />
-                </div>
-                <div>
-                  <p className="text-2xl font-bold text-gray-900">{totalDeliverables}</p>
-                  <p className="text-xs text-gray-600">Total Deliverables</p>
-                </div>
-              </div>
-            </div>
-
-            <div className="bg-white border border-gray-200 rounded-lg p-4">
-              <div className="flex items-center gap-3">
-                <div className="w-10 h-10 bg-purple-50 rounded-lg flex items-center justify-center">
-                  <Image className="w-5 h-5 text-purple-600" />
-                </div>
-                <div>
-                  <p className="text-2xl font-bold text-gray-900">{imageCount}</p>
-                  <p className="text-xs text-gray-600">Generated Images</p>
-                </div>
-              </div>
-            </div>
-
-            <div className="bg-white border border-gray-200 rounded-lg p-4">
-              <div className="flex items-center gap-3">
-                <div className="w-10 h-10 bg-green-50 rounded-lg flex items-center justify-center">
-                  <CheckCircle2 className="w-5 h-5 text-green-600" />
-                </div>
-                <div>
-                  <p className="text-2xl font-bold text-gray-900">100%</p>
-                  <p className="text-xs text-gray-600">Campaign Ready</p>
-                </div>
-              </div>
-            </div>
-
-            <div className="bg-white border border-gray-200 rounded-lg p-4">
-              <div className="flex items-center gap-3">
-                <div className="w-10 h-10 bg-orange-50 rounded-lg flex items-center justify-center">
-                  <TrendingUp className="w-5 h-5 text-orange-600" />
-                </div>
-                <div>
-                  <p className="text-2xl font-bold text-gray-900">Ready</p>
-                  <p className="text-xs text-gray-600">Status</p>
-                </div>
-              </div>
+          <div>
+            <h1 className="text-3xl font-bold text-gray-900">Campaign Dashboard</h1>
+            <div className="flex items-center gap-3 text-sm text-gray-600 mt-2">
+              <span className="font-medium">{url}</span>
+              <span>•</span>
+              <span className="capitalize">{industry}</span>
             </div>
           </div>
         </div>
