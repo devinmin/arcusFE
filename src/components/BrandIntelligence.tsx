@@ -98,9 +98,29 @@ export function BrandIntelligence({ jsonData, extractedImages, guidelines }: Bra
     return typography;
   };
 
+  const extractVisualPatterns = (md: string | null): string[] => {
+    if (!md) return [];
+    const patterns: string[] = [];
+    const lines = md.split('\n');
+    let inVisualPatternsSection = false;
+
+    lines.forEach(line => {
+      if (line.includes('### Visual Patterns & Design Elements')) {
+        inVisualPatternsSection = true;
+      } else if (line.startsWith('###') && inVisualPatternsSection) {
+        inVisualPatternsSection = false;
+      } else if (inVisualPatternsSection && line.startsWith('- ')) {
+        patterns.push(line.replace('- ', '').trim());
+      }
+    });
+
+    return patterns;
+  };
+
   const sections = parseMarkdownGuidelines(guidelines);
   const extractedColors = extractColors(guidelines);
   const typography = extractTypography(guidelines);
+  const visualPatterns = extractVisualPatterns(guidelines);
 
   const SectionCard = ({ icon: Icon, title, children, bgColor = "bg-white" }: {
     icon: any;
@@ -121,7 +141,7 @@ export function BrandIntelligence({ jsonData, extractedImages, guidelines }: Bra
 
   return (
     <div className="space-y-8">
-      {(extractedColors.length > 0 || Object.keys(typography).length > 0) && (
+      {(extractedColors.length > 0 || Object.keys(typography).length > 0 || visualPatterns.length > 0) && (
         <SectionCard icon={Palette} title="Brand Identity Extraction">
           <div className="space-y-8">
             {extractedColors.length > 0 && (
@@ -179,6 +199,20 @@ export function BrandIntelligence({ jsonData, extractedImages, guidelines }: Bra
                         <div className="text-sm font-semibold text-gray-700">{key}</div>
                         <div className="text-base text-gray-900 mt-1">{value}</div>
                       </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            )}
+
+            {visualPatterns.length > 0 && (
+              <div>
+                <h4 className="text-lg font-semibold text-gray-900 mb-4">Visual Patterns & Design Elements</h4>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+                  {visualPatterns.map((pattern, idx) => (
+                    <div key={idx} className="flex items-start gap-3 text-base text-gray-700 p-3 rounded-lg bg-gray-50">
+                      <CheckCircle className="w-5 h-5 text-blue-600 mt-0.5 flex-shrink-0" />
+                      <span>{pattern}</span>
                     </div>
                   ))}
                 </div>
