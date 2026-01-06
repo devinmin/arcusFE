@@ -248,7 +248,6 @@ export default function WhyArcus({ onClose, onShowComingSoon, onShowContact, onS
               Save over <span className="font-bold text-slate-700">$800,000</span> in overhead costs while getting senior-level expertise and faster execution.
             </p>
           </div>
-        </div>
       </section>
 
       <div className="py-20 px-6 bg-gradient-to-br from-slate-700 to-gray-900">
