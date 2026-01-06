@@ -804,9 +804,7 @@ function App() {
 
             {/* Plus Sign */}
             <div className="flex items-center justify-center">
-              <div className="w-16 h-16 md:w-20 md:h-20 bg-slate-700 rounded-2xl flex items-center justify-center transform hover:scale-110 transition-transform shadow-lg">
-                <span className="text-white text-4xl md:text-5xl font-bold">+</span>
-              </div>
+              <span className="text-slate-700 text-4xl md:text-5xl font-bold">+</span>
             </div>
 
             {/* AI Technology Side */}
