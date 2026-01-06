@@ -162,7 +162,7 @@ export default function WhyArcus({ onClose, onShowComingSoon, onShowContact, onS
             {/* Left side - Title */}
             <div className="lg:sticky lg:top-32">
               <h2 className="text-5xl md:text-6xl font-bold text-gray-900 leading-tight">
-                Quick comparison guide
+                Speed comparison
               </h2>
             </div>
 
