@@ -108,7 +108,7 @@ export default function AgentsPage({
         <div className="max-w-7xl mx-auto text-center">
           <div className="inline-flex items-center space-x-2 px-4 py-2 bg-slate-100 text-slate-700 rounded-full mb-6">
             <Bot className="w-4 h-4" />
-            <span className="text-sm font-medium">60+ Specialized AI Agents</span>
+            <span className="text-sm font-medium">25+ Specialized AI Agents</span>
           </div>
           <h1 className="text-5xl md:text-6xl font-bold text-gray-900 mb-6 leading-tight">
             Meet Your AI Marketing Team
