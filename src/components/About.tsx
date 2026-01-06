@@ -29,9 +29,9 @@ export default function About({ onClose, onShowComingSoon, onShowContact, onShow
         onShowCodeModal={onShowCodeModal}
       />
 
-      <div className="pt-32 pb-20 px-6">
-        <div className="max-w-4xl mx-auto">
-          <h1 className="text-5xl md:text-6xl font-bold text-gray-900 mb-4">
+            <div className="pt-32 pb-20 px-6">
+        <div className="max-w-5xl mx-auto text-center">
+         <h1 className="text-5xl md:text-6xl font-bold text-gray-900 mb-4">
             Full Marketing.
             <br />
             20% of the Staff.
