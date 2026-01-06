@@ -44,7 +44,7 @@ export default function Navigation({
               onMouseLeave={() => setShowProductDropdown(false)}
             >
               <button className="text-gray-600 hover:text-gray-900 transition-colors py-2">
-                Product
+                Agents
               </button>
               {showProductDropdown && (
                 <div className="absolute top-full left-0 pt-2 w-64">
