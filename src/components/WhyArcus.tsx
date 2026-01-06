@@ -155,8 +155,155 @@ export default function WhyArcus({ onClose, onShowComingSoon, onShowContact, onS
         </div>
       </section>
 
-       {/* Cost Comparison Section */}
+      {/* Quick Comparison Table */}
       <section className="py-20 px-6 bg-gray-50">
+        <div className="max-w-7xl mx-auto">
+          <div className="grid lg:grid-cols-[1fr_2fr] gap-12 items-start">
+            {/* Left side - Title */}
+            <div className="lg:sticky lg:top-32">
+              <h2 className="text-5xl md:text-6xl font-bold text-gray-900 leading-tight">
+                Quick comparison guide
+              </h2>
+            </div>
+
+            {/* Right side - Comparison Table */}
+            <div className="bg-white rounded-2xl shadow-lg overflow-hidden border border-gray-200">
+              <div className="overflow-x-auto">
+                <table className="w-full">
+                  <thead>
+                    <tr className="bg-gray-50 border-b border-gray-200">
+                      <th className="text-left py-4 px-6 text-sm font-semibold text-gray-500 uppercase tracking-wide">
+                        Feature
+                      </th>
+                      <th className="text-center py-4 px-6 text-sm font-semibold text-gray-900 uppercase tracking-wide">
+                        Traditional Agency
+                      </th>
+                      <th className="text-center py-4 px-6 text-sm font-semibold text-slate-700 uppercase tracking-wide">
+                        Arcus AI
+                      </th>
+                    </tr>
+                  </thead>
+                  <tbody className="divide-y divide-gray-200">
+                    <tr className="hover:bg-gray-50 transition-colors">
+                      <td className="py-4 px-6 text-gray-900 font-medium">
+                        Campaign Strategy Development
+                      </td>
+                      <td className="py-4 px-6 text-center text-gray-700">
+                        2-3 weeks
+                      </td>
+                      <td className="py-4 px-6 text-center text-slate-900 font-semibold">
+                        2-4 hours
+                      </td>
+                    </tr>
+                    <tr className="hover:bg-gray-50 transition-colors">
+                      <td className="py-4 px-6 text-gray-900 font-medium">
+                        Creative Asset Production
+                      </td>
+                      <td className="py-4 px-6 text-center text-gray-700">
+                        3-4 weeks
+                      </td>
+                      <td className="py-4 px-6 text-center text-slate-900 font-semibold">
+                        1-2 days
+                      </td>
+                    </tr>
+                    <tr className="hover:bg-gray-50 transition-colors">
+                      <td className="py-4 px-6 text-gray-900 font-medium">
+                        Campaign Launch
+                      </td>
+                      <td className="py-4 px-6 text-center text-gray-700">
+                        1-2 weeks
+                      </td>
+                      <td className="py-4 px-6 text-center text-slate-900 font-semibold">
+                        Same day
+                      </td>
+                    </tr>
+                    <tr className="hover:bg-gray-50 transition-colors">
+                      <td className="py-4 px-6 text-gray-900 font-medium">
+                        Performance Reporting
+                      </td>
+                      <td className="py-4 px-6 text-center text-gray-700">
+                        Weekly/Monthly
+                      </td>
+                      <td className="py-4 px-6 text-center text-slate-900 font-semibold">
+                        Real-time
+                      </td>
+                    </tr>
+                    <tr className="hover:bg-gray-50 transition-colors">
+                      <td className="py-4 px-6 text-gray-900 font-medium">
+                        Campaign Optimization
+                      </td>
+                      <td className="py-4 px-6 text-center text-gray-700">
+                        1-2 weeks
+                      </td>
+                      <td className="py-4 px-6 text-center text-slate-900 font-semibold">
+                        Continuous
+                      </td>
+                    </tr>
+                    <tr className="hover:bg-gray-50 transition-colors">
+                      <td className="py-4 px-6 text-gray-900 font-medium">
+                        A/B Testing Setup
+                      </td>
+                      <td className="py-4 px-6 text-center text-gray-700">
+                        2-3 weeks
+                      </td>
+                      <td className="py-4 px-6 text-center text-slate-900 font-semibold">
+                        Hours
+                      </td>
+                    </tr>
+                    <tr className="hover:bg-gray-50 transition-colors">
+                      <td className="py-4 px-6 text-gray-900 font-medium">
+                        Content Revisions
+                      </td>
+                      <td className="py-4 px-6 text-center text-gray-700">
+                        3-5 days
+                      </td>
+                      <td className="py-4 px-6 text-center text-slate-900 font-semibold">
+                        Minutes
+                      </td>
+                    </tr>
+                    <tr className="hover:bg-gray-50 transition-colors">
+                      <td className="py-4 px-6 text-gray-900 font-medium">
+                        Audience Research
+                      </td>
+                      <td className="py-4 px-6 text-center text-gray-700">
+                        1-2 weeks
+                      </td>
+                      <td className="py-4 px-6 text-center text-slate-900 font-semibold">
+                        1-2 hours
+                      </td>
+                    </tr>
+                    <tr className="hover:bg-gray-50 transition-colors">
+                      <td className="py-4 px-6 text-gray-900 font-medium">
+                        Multi-Channel Coordination
+                      </td>
+                      <td className="py-4 px-6 text-center text-gray-700">
+                        Ongoing/Complex
+                      </td>
+                      <td className="py-4 px-6 text-center text-slate-900 font-semibold">
+                        Automated
+                      </td>
+                    </tr>
+                    <tr className="hover:bg-gray-50 transition-colors">
+                      <td className="py-4 px-6 text-gray-900 font-medium">
+                        Response to Market Changes
+                      </td>
+                      <td className="py-4 px-6 text-center text-gray-700">
+                        Days to weeks
+                      </td>
+                      <td className="py-4 px-6 text-center text-slate-900 font-semibold">
+                        Hours
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+       {/* Cost Comparison Section */}
+      <section className="py-20 px-6 bg-white">
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-12">
             <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
