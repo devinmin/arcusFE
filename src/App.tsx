@@ -780,6 +780,25 @@ function App() {
             </div>
           </div>
 
+          
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+            <div className="order-2 md:order-1">
+              <img
+                src="https://images.pexels.com/photos/5081917/pexels-photo-5081917.jpeg?auto=compress&cs=tinysrgb&w=1200"
+                alt="Content Creation"
+                className="rounded-2xl shadow-2xl w-full h-[400px] object-cover"
+              />
+            </div>
+            <div className="order-1 md:order-2">
+              <h3 className="text-4xl font-bold text-gray-900 mb-6">Content That Converts</h3>
+              <p className="text-lg text-gray-600 mb-4">
+                Blog posts, email campaigns, ad copy, and more. Your AI team creates compelling content that drives engagement and conversions.
+              </p>
+              <p className="text-lg text-gray-600">
+                Professional quality. Lightning speed.
+              </p>
+            </div>
           </div>
         </div>
       </section>
