@@ -7,7 +7,7 @@ import { CampaignResults } from './components/CampaignResults';
 import ComingSoon from './components/ComingSoon';
 import About from './components/About';
 import ContactUs from './components/ContactUs';
-import ProductPage from './components/ProductPage';
+import AgentsPage from './components/AgentsPage';
 import WhyArcus from './components/WhyArcus';
 import FAQ from './components/FAQ';
 import Navigation from './components/Navigation';
@@ -240,8 +240,8 @@ function App() {
   }
 
   if (currentProduct) {
-    return <ProductPage
-      category={currentProduct}
+    return <AgentsPage
+      section={currentProduct}
       onNavigateHome={() => {
         setCurrentProduct(null);
         window.scrollTo(0, 0);
@@ -260,7 +260,6 @@ function App() {
       }}
       onNavigateToProduct={(category) => {
         setCurrentProduct(category as ProductCategory);
-        window.scrollTo(0, 0);
       }}
       onShowTryArcus={() => {
         setCurrentProduct(null);
