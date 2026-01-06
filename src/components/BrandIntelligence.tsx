@@ -23,7 +23,7 @@ export function BrandIntelligence({ jsonData, extractedImages, guidelines }: Bra
   try {
     brandData = JSON.parse(jsonData);
   } catch (e) {
-    return <div className="text-white">Invalid brand data</div>;
+    return <div className="text-gray-900">Invalid brand data</div>;
   }
 
   const parseMarkdownGuidelines = (md: string | null): { [key: string]: Section } => {
@@ -102,59 +102,82 @@ export function BrandIntelligence({ jsonData, extractedImages, guidelines }: Bra
   const extractedColors = extractColors(guidelines);
   const typography = extractTypography(guidelines);
 
-  const SectionCard = ({ icon: Icon, title, children, gradient = "from-cyan-500/10 to-blue-500/10" }: {
+  const SectionCard = ({ icon: Icon, title, children, bgColor = "bg-white" }: {
     icon: any;
     title: string;
     children: React.ReactNode;
-    gradient?: string;
+    bgColor?: string;
   }) => (
-    <div className={`bg-gradient-to-br ${gradient} backdrop-blur-sm border border-white/10 rounded-2xl p-6 shadow-xl`}>
+    <div className={`${bgColor} border border-gray-200 rounded-xl p-8 shadow-sm`}>
       <div className="flex items-center gap-3 mb-6">
-        <div className="p-2 bg-white/10 rounded-lg">
-          <Icon className="w-6 h-6 text-cyan-300" />
+        <div className="p-3 bg-blue-50 rounded-lg">
+          <Icon className="w-6 h-6 text-blue-600" />
         </div>
-        <h3 className="text-xl font-bold text-white">{title}</h3>
+        <h3 className="text-2xl font-bold text-gray-900">{title}</h3>
       </div>
       {children}
     </div>
   );
 
   return (
-    <div className="space-y-6">
-      {extractedColors.length > 0 && (
-        <SectionCard icon={Palette} title="Brand Color Palette" gradient="from-purple-500/10 to-pink-500/10">
-          <div className="space-y-4">
-            <div>
-              <h4 className="text-sm font-semibold text-cyan-300 mb-3">Primary Colors</h4>
-              <div className="grid grid-cols-2 md:grid-cols-3 gap-3">
-                {extractedColors.filter(c => c.type === 'primary').map((color, idx) => (
-                  <div key={idx} className="group">
-                    <div
-                      className="w-full h-24 rounded-xl shadow-lg transition-transform group-hover:scale-105 border-2 border-white/20"
-                      style={{ backgroundColor: color.hex }}
-                    />
-                    <div className="mt-2 text-center">
-                      <div className="text-sm font-medium text-white">{color.name}</div>
-                      <div className="text-xs font-mono text-cyan-200">{color.hex}</div>
+    <div className="space-y-8">
+      {(extractedColors.length > 0 || Object.keys(typography).length > 0) && (
+        <SectionCard icon={Palette} title="Brand Identity Extraction">
+          <div className="space-y-8">
+            {extractedColors.length > 0 && (
+              <div>
+                <h4 className="text-lg font-semibold text-gray-900 mb-4">Color Palette</h4>
+                <div className="space-y-6">
+                  <div>
+                    <p className="text-sm font-medium text-gray-600 mb-3">Primary Colors</p>
+                    <div className="grid grid-cols-3 gap-4">
+                      {extractedColors.filter(c => c.type === 'primary').map((color, idx) => (
+                        <div key={idx} className="group">
+                          <div
+                            className="w-full h-32 rounded-lg shadow-md transition-all group-hover:shadow-lg border border-gray-200"
+                            style={{ backgroundColor: color.hex }}
+                          />
+                          <div className="mt-3 text-center">
+                            <div className="text-sm font-semibold text-gray-900">{color.name}</div>
+                            <div className="text-sm font-mono text-gray-600 mt-1">{color.hex}</div>
+                          </div>
+                        </div>
+                      ))}
                     </div>
                   </div>
-                ))}
-              </div>
-            </div>
 
-            {extractedColors.filter(c => c.type === 'secondary').length > 0 && (
+                  {extractedColors.filter(c => c.type === 'secondary').length > 0 && (
+                    <div>
+                      <p className="text-sm font-medium text-gray-600 mb-3">Secondary Colors</p>
+                      <div className="grid grid-cols-4 gap-4">
+                        {extractedColors.filter(c => c.type === 'secondary').map((color, idx) => (
+                          <div key={idx} className="group">
+                            <div
+                              className="w-full h-24 rounded-lg shadow-md transition-all group-hover:shadow-lg border border-gray-200"
+                              style={{ backgroundColor: color.hex }}
+                            />
+                            <div className="mt-2 text-center">
+                              <div className="text-xs font-semibold text-gray-900">{color.name}</div>
+                              <div className="text-xs font-mono text-gray-600 mt-1">{color.hex}</div>
+                            </div>
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+                  )}
+                </div>
+              </div>
+            )}
+
+            {Object.keys(typography).length > 0 && (
               <div>
-                <h4 className="text-sm font-semibold text-cyan-300 mb-3">Secondary Colors</h4>
-                <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
-                  {extractedColors.filter(c => c.type === 'secondary').map((color, idx) => (
-                    <div key={idx} className="group">
-                      <div
-                        className="w-full h-20 rounded-xl shadow-lg transition-transform group-hover:scale-105 border-2 border-white/20"
-                        style={{ backgroundColor: color.hex }}
-                      />
-                      <div className="mt-2 text-center">
-                        <div className="text-xs font-medium text-white">{color.name}</div>
-                        <div className="text-xs font-mono text-cyan-200">{color.hex}</div>
+                <h4 className="text-lg font-semibold text-gray-900 mb-4">Typography</h4>
+                <div className="space-y-3">
+                  {Object.entries(typography).map(([key, value], idx) => (
+                    <div key={idx} className="flex items-start gap-4 p-4 bg-gray-50 rounded-lg border border-gray-200">
+                      <div className="flex-1">
+                        <div className="text-sm font-semibold text-gray-700">{key}</div>
+                        <div className="text-base text-gray-900 mt-1">{value}</div>
                       </div>
                     </div>
                   ))}
@@ -165,30 +188,65 @@ export function BrandIntelligence({ jsonData, extractedImages, guidelines }: Bra
         </SectionCard>
       )}
 
-      {Object.keys(typography).length > 0 && (
-        <SectionCard icon={Type} title="Typography System" gradient="from-blue-500/10 to-cyan-500/10">
-          <div className="space-y-3">
-            {Object.entries(typography).map(([key, value], idx) => (
-              <div key={idx} className="flex items-start gap-4 p-4 bg-white/5 rounded-xl border border-white/10">
-                <div className="flex-1">
-                  <div className="text-sm font-semibold text-cyan-300">{key}</div>
-                  <div className="text-white mt-1">{value}</div>
+      {sections['VISUAL ASSET ANALYSIS'] && (
+        <SectionCard icon={Eye} title="Visual Asset Analysis">
+          <div className="space-y-6">
+            {sections['VISUAL ASSET ANALYSIS'].subsections?.['Image Style Guidelines'] && (
+              <div>
+                <h4 className="text-lg font-semibold text-gray-900 mb-4">Image Style Guidelines</h4>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+                  {sections['VISUAL ASSET ANALYSIS'].subsections['Image Style Guidelines'].map((guideline, idx) => (
+                    <div key={idx} className="flex items-start gap-3 text-base text-gray-700 p-3 rounded-lg bg-gray-50">
+                      <CheckCircle className="w-5 h-5 text-green-600 mt-0.5 flex-shrink-0" />
+                      <span>{guideline}</span>
+                    </div>
+                  ))}
                 </div>
               </div>
-            ))}
+            )}
+
+            {sections['VISUAL ASSET ANALYSIS'].subsections?.['Visual Patterns'] && (
+              <div>
+                <h4 className="text-lg font-semibold text-gray-900 mb-4">Visual Patterns</h4>
+                <div className="flex flex-wrap gap-2">
+                  {sections['VISUAL ASSET ANALYSIS'].subsections['Visual Patterns'].map((pattern, idx) => (
+                    <span key={idx} className="px-4 py-2 bg-blue-50 text-blue-700 rounded-lg text-sm font-medium border border-blue-200">
+                      {pattern}
+                    </span>
+                  ))}
+                </div>
+              </div>
+            )}
+
+            {extractedImages.length > 0 && (
+              <div>
+                <h4 className="text-lg font-semibold text-gray-900 mb-4">Extracted Visual Assets</h4>
+                <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+                  {extractedImages.map((url, idx) => (
+                    <div key={idx} className="group relative">
+                      <img
+                        src={url}
+                        alt={`Brand asset ${idx + 1}`}
+                        className="w-full h-32 object-cover rounded-lg border border-gray-200 transition-transform group-hover:scale-105 shadow-sm"
+                      />
+                    </div>
+                  ))}
+                </div>
+              </div>
+            )}
           </div>
         </SectionCard>
       )}
 
       {sections['VOICE & MESSAGING ANALYSIS'] && (
-        <SectionCard icon={MessageCircle} title="Voice & Messaging" gradient="from-green-500/10 to-emerald-500/10">
-          <div className="space-y-4">
+        <SectionCard icon={MessageCircle} title="Voice & Messaging Analysis">
+          <div className="space-y-6">
             {sections['VOICE & MESSAGING ANALYSIS'].subsections?.['Tone of Voice'] && (
               <div>
-                <h4 className="text-sm font-semibold text-cyan-300 mb-3">Tone of Voice</h4>
+                <h4 className="text-lg font-semibold text-gray-900 mb-4">Tone of Voice</h4>
                 <div className="flex flex-wrap gap-2">
                   {sections['VOICE & MESSAGING ANALYSIS'].subsections['Tone of Voice'].map((tone, idx) => (
-                    <span key={idx} className="px-4 py-2 bg-emerald-500/20 text-emerald-200 rounded-full text-sm font-medium border border-emerald-400/30">
+                    <span key={idx} className="px-4 py-2 bg-green-50 text-green-700 rounded-lg text-base font-medium border border-green-200">
                       {tone}
                     </span>
                   ))}
@@ -198,13 +256,13 @@ export function BrandIntelligence({ jsonData, extractedImages, guidelines }: Bra
 
             {sections['VOICE & MESSAGING ANALYSIS'].subsections?.['Key Phrases & Language Patterns'] && (
               <div>
-                <h4 className="text-sm font-semibold text-cyan-300 mb-3">Key Phrases</h4>
+                <h4 className="text-lg font-semibold text-gray-900 mb-4">Key Phrases & Language Patterns</h4>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
                   {sections['VOICE & MESSAGING ANALYSIS'].subsections['Key Phrases & Language Patterns']
                     .filter(phrase => phrase.startsWith('"'))
                     .map((phrase, idx) => (
-                      <div key={idx} className="p-3 bg-white/5 rounded-lg border border-white/10">
-                        <div className="text-white text-sm">{phrase}</div>
+                      <div key={idx} className="p-4 bg-gray-50 rounded-lg border border-gray-200">
+                        <div className="text-gray-900 text-base">{phrase}</div>
                       </div>
                     ))}
                 </div>
@@ -213,10 +271,10 @@ export function BrandIntelligence({ jsonData, extractedImages, guidelines }: Bra
 
             {sections['VOICE & MESSAGING ANALYSIS'].subsections?.['Emotional Triggers'] && (
               <div>
-                <h4 className="text-sm font-semibold text-cyan-300 mb-3">Emotional Triggers</h4>
+                <h4 className="text-lg font-semibold text-gray-900 mb-4">Emotional Triggers</h4>
                 <div className="flex flex-wrap gap-2">
                   {sections['VOICE & MESSAGING ANALYSIS'].subsections['Emotional Triggers'].map((trigger, idx) => (
-                    <span key={idx} className="px-3 py-1.5 bg-green-500/20 text-green-200 rounded-lg text-sm border border-green-400/20">
+                    <span key={idx} className="px-4 py-2 bg-amber-50 text-amber-700 rounded-lg text-sm font-medium border border-amber-200">
                       {trigger}
                     </span>
                   ))}
@@ -228,18 +286,18 @@ export function BrandIntelligence({ jsonData, extractedImages, guidelines }: Bra
       )}
 
       {sections['TARGET AUDIENCE ANALYSIS'] && (
-        <SectionCard icon={Users} title="Target Audience" gradient="from-orange-500/10 to-red-500/10">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <SectionCard icon={Users} title="Target Audience Analysis">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             {sections['TARGET AUDIENCE ANALYSIS'].subsections?.['Primary Persona Demographics'] && (
-              <div className="p-4 bg-white/5 rounded-xl border border-white/10">
-                <h4 className="text-sm font-semibold text-orange-300 mb-3 flex items-center gap-2">
-                  <Target className="w-4 h-4" />
+              <div className="p-6 bg-gray-50 rounded-lg border border-gray-200">
+                <h4 className="text-lg font-semibold text-gray-900 mb-4 flex items-center gap-2">
+                  <Target className="w-5 h-5 text-blue-600" />
                   Demographics
                 </h4>
                 <ul className="space-y-2">
                   {sections['TARGET AUDIENCE ANALYSIS'].subsections['Primary Persona Demographics'].map((item, idx) => (
-                    <li key={idx} className="text-sm text-cyan-200 flex items-start gap-2">
-                      <span className="text-orange-400 mt-1">•</span>
+                    <li key={idx} className="text-base text-gray-700 flex items-start gap-2">
+                      <span className="text-blue-600 mt-1">•</span>
                       <span>{item}</span>
                     </li>
                   ))}
@@ -248,15 +306,15 @@ export function BrandIntelligence({ jsonData, extractedImages, guidelines }: Bra
             )}
 
             {sections['TARGET AUDIENCE ANALYSIS'].subsections?.['Psychographics'] && (
-              <div className="p-4 bg-white/5 rounded-xl border border-white/10">
-                <h4 className="text-sm font-semibold text-orange-300 mb-3 flex items-center gap-2">
-                  <Sparkles className="w-4 h-4" />
+              <div className="p-6 bg-gray-50 rounded-lg border border-gray-200">
+                <h4 className="text-lg font-semibold text-gray-900 mb-4 flex items-center gap-2">
+                  <Sparkles className="w-5 h-5 text-blue-600" />
                   Psychographics
                 </h4>
                 <ul className="space-y-2">
                   {sections['TARGET AUDIENCE ANALYSIS'].subsections['Psychographics'].map((item, idx) => (
-                    <li key={idx} className="text-sm text-cyan-200 flex items-start gap-2">
-                      <span className="text-orange-400 mt-1">•</span>
+                    <li key={idx} className="text-base text-gray-700 flex items-start gap-2">
+                      <span className="text-blue-600 mt-1">•</span>
                       <span>{item}</span>
                     </li>
                   ))}
@@ -265,14 +323,14 @@ export function BrandIntelligence({ jsonData, extractedImages, guidelines }: Bra
             )}
 
             {sections['TARGET AUDIENCE ANALYSIS'].subsections?.['Motivations'] && (
-              <div className="p-4 bg-white/5 rounded-xl border border-white/10 md:col-span-2">
-                <h4 className="text-sm font-semibold text-orange-300 mb-3 flex items-center gap-2">
-                  <TrendingUp className="w-4 h-4" />
+              <div className="p-6 bg-gray-50 rounded-lg border border-gray-200 md:col-span-2">
+                <h4 className="text-lg font-semibold text-gray-900 mb-4 flex items-center gap-2">
+                  <TrendingUp className="w-5 h-5 text-blue-600" />
                   Motivations
                 </h4>
                 <div className="flex flex-wrap gap-2">
                   {sections['TARGET AUDIENCE ANALYSIS'].subsections['Motivations'].map((motivation, idx) => (
-                    <span key={idx} className="px-3 py-1.5 bg-orange-500/20 text-orange-200 rounded-full text-sm border border-orange-400/30">
+                    <span key={idx} className="px-4 py-2 bg-blue-50 text-blue-700 rounded-lg text-sm font-medium border border-blue-200">
                       {motivation}
                     </span>
                   ))}
@@ -283,33 +341,34 @@ export function BrandIntelligence({ jsonData, extractedImages, guidelines }: Bra
         </SectionCard>
       )}
 
-      {sections['VISUAL ASSET ANALYSIS'] && (
-        <SectionCard icon={Eye} title="Visual Identity" gradient="from-indigo-500/10 to-purple-500/10">
-          <div className="space-y-4">
-            {sections['VISUAL ASSET ANALYSIS'].subsections?.['Image Style Guidelines'] && (
-              <div>
-                <h4 className="text-sm font-semibold text-purple-300 mb-3">Image Style Guidelines</h4>
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
-                  {sections['VISUAL ASSET ANALYSIS'].subsections['Image Style Guidelines'].map((guideline, idx) => (
-                    <div key={idx} className="flex items-start gap-2 text-sm text-cyan-200 p-2 rounded-lg hover:bg-white/5">
-                      <CheckCircle className="w-4 h-4 text-purple-400 mt-0.5 flex-shrink-0" />
-                      <span>{guideline}</span>
-                    </div>
+      {sections['COMPETITIVE & MARKET CONTEXT'] && (
+        <SectionCard icon={TrendingUp} title="Competitive & Market Context">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            {sections['COMPETITIVE & MARKET CONTEXT'].subsections?.['Industry Positioning'] && (
+              <div className="p-6 bg-gray-50 rounded-lg border border-gray-200">
+                <h4 className="text-lg font-semibold text-gray-900 mb-4">Industry Positioning</h4>
+                <ul className="space-y-2">
+                  {sections['COMPETITIVE & MARKET CONTEXT'].subsections['Industry Positioning'].map((item, idx) => (
+                    <li key={idx} className="text-base text-gray-700 flex items-start gap-2">
+                      <span className="text-blue-600 mt-1">•</span>
+                      <span>{item}</span>
+                    </li>
                   ))}
-                </div>
+                </ul>
               </div>
             )}
 
-            {sections['VISUAL ASSET ANALYSIS'].subsections?.['Visual Patterns'] && (
-              <div>
-                <h4 className="text-sm font-semibold text-purple-300 mb-3">Visual Patterns</h4>
-                <div className="flex flex-wrap gap-2">
-                  {sections['VISUAL ASSET ANALYSIS'].subsections['Visual Patterns'].map((pattern, idx) => (
-                    <span key={idx} className="px-3 py-1.5 bg-purple-500/20 text-purple-200 rounded-lg text-sm border border-purple-400/30">
-                      {pattern}
-                    </span>
+            {sections['COMPETITIVE & MARKET CONTEXT'].subsections?.['Competitive Advantages'] && (
+              <div className="p-6 bg-gray-50 rounded-lg border border-gray-200">
+                <h4 className="text-lg font-semibold text-gray-900 mb-4">Competitive Advantages</h4>
+                <ul className="space-y-2">
+                  {sections['COMPETITIVE & MARKET CONTEXT'].subsections['Competitive Advantages'].map((item, idx) => (
+                    <li key={idx} className="text-base text-gray-700 flex items-start gap-2">
+                      <CheckCircle className="w-5 h-5 text-green-600 mt-0.5 flex-shrink-0" />
+                      <span>{item}</span>
+                    </li>
                   ))}
-                </div>
+                </ul>
               </div>
             )}
           </div>
@@ -317,34 +376,34 @@ export function BrandIntelligence({ jsonData, extractedImages, guidelines }: Bra
       )}
 
       {sections['BRAND ESSENCE SUMMARY'] && (
-        <SectionCard icon={Award} title="Brand Essence" gradient="from-yellow-500/10 to-orange-500/10">
-          <div className="space-y-4">
+        <SectionCard icon={Award} title="Brand Essence Summary">
+          <div className="space-y-6">
             {sections['BRAND ESSENCE SUMMARY'].subsections?.['Brand Archetype'] && (
-              <div className="p-4 bg-white/5 rounded-xl border border-white/10">
-                <h4 className="text-sm font-semibold text-yellow-300 mb-2">Brand Archetype</h4>
-                <div className="space-y-1">
+              <div className="p-6 bg-gray-50 rounded-lg border border-gray-200">
+                <h4 className="text-lg font-semibold text-gray-900 mb-3">Brand Archetype</h4>
+                <div className="space-y-2">
                   {sections['BRAND ESSENCE SUMMARY'].subsections['Brand Archetype'].map((item, idx) => (
-                    <div key={idx} className="text-sm text-cyan-200">{item}</div>
+                    <div key={idx} className="text-base text-gray-700">{item}</div>
                   ))}
                 </div>
               </div>
             )}
 
             {sections['BRAND ESSENCE SUMMARY'].subsections?.['Brand Promise'] && (
-              <div className="p-4 bg-gradient-to-r from-yellow-500/10 to-orange-500/10 rounded-xl border border-yellow-400/30">
-                <h4 className="text-sm font-semibold text-yellow-300 mb-2">Brand Promise</h4>
-                <div className="text-base text-white font-medium italic">
-                  {sections['BRAND ESSENCE SUMMARY'].subsections['Brand Promise'][0]}
+              <div className="p-6 bg-gradient-to-r from-blue-50 to-cyan-50 rounded-lg border border-blue-200">
+                <h4 className="text-lg font-semibold text-gray-900 mb-3">Brand Promise</h4>
+                <div className="text-lg text-gray-900 font-medium italic leading-relaxed">
+                  "{sections['BRAND ESSENCE SUMMARY'].subsections['Brand Promise'][0]}"
                 </div>
               </div>
             )}
 
             {sections['BRAND ESSENCE SUMMARY'].subsections?.['Brand Personality'] && (
               <div>
-                <h4 className="text-sm font-semibold text-yellow-300 mb-3">Brand Personality</h4>
+                <h4 className="text-lg font-semibold text-gray-900 mb-4">Brand Personality</h4>
                 <div className="flex flex-wrap gap-2">
                   {sections['BRAND ESSENCE SUMMARY'].subsections['Brand Personality'].map((trait, idx) => (
-                    <span key={idx} className="px-4 py-2 bg-yellow-500/20 text-yellow-200 rounded-full text-sm font-medium border border-yellow-400/30">
+                    <span key={idx} className="px-4 py-2 bg-blue-50 text-blue-700 rounded-full text-base font-medium border border-blue-200">
                       {trait}
                     </span>
                   ))}
@@ -355,50 +414,16 @@ export function BrandIntelligence({ jsonData, extractedImages, guidelines }: Bra
         </SectionCard>
       )}
 
-      {sections['COMPETITIVE & MARKET CONTEXT'] && (
-        <SectionCard icon={TrendingUp} title="Market Positioning" gradient="from-teal-500/10 to-cyan-500/10">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-            {sections['COMPETITIVE & MARKET CONTEXT'].subsections?.['Industry Positioning'] && (
-              <div className="p-4 bg-white/5 rounded-xl border border-white/10">
-                <h4 className="text-sm font-semibold text-teal-300 mb-3">Industry Positioning</h4>
-                <ul className="space-y-2">
-                  {sections['COMPETITIVE & MARKET CONTEXT'].subsections['Industry Positioning'].map((item, idx) => (
-                    <li key={idx} className="text-sm text-cyan-200 flex items-start gap-2">
-                      <span className="text-teal-400 mt-1">•</span>
-                      <span>{item}</span>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            )}
-
-            {sections['COMPETITIVE & MARKET CONTEXT'].subsections?.['Competitive Advantages'] && (
-              <div className="p-4 bg-white/5 rounded-xl border border-white/10">
-                <h4 className="text-sm font-semibold text-teal-300 mb-3">Competitive Advantages</h4>
-                <ul className="space-y-2">
-                  {sections['COMPETITIVE & MARKET CONTEXT'].subsections['Competitive Advantages'].map((item, idx) => (
-                    <li key={idx} className="text-sm text-cyan-200 flex items-start gap-2">
-                      <CheckCircle className="w-4 h-4 text-teal-400 mt-0.5 flex-shrink-0" />
-                      <span>{item}</span>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            )}
-          </div>
-        </SectionCard>
-      )}
-
       {sections['STRATEGIC RECOMMENDATIONS'] && (
-        <SectionCard icon={Lightbulb} title="Strategic Recommendations" gradient="from-pink-500/10 to-rose-500/10">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+        <SectionCard icon={Lightbulb} title="Strategic Recommendations">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             {sections['STRATEGIC RECOMMENDATIONS'].subsections?.['Content Strategy'] && (
-              <div className="p-4 bg-white/5 rounded-xl border border-white/10">
-                <h4 className="text-sm font-semibold text-pink-300 mb-3">Content Strategy</h4>
+              <div className="p-6 bg-gray-50 rounded-lg border border-gray-200">
+                <h4 className="text-lg font-semibold text-gray-900 mb-4">Content Strategy</h4>
                 <ul className="space-y-2">
                   {sections['STRATEGIC RECOMMENDATIONS'].subsections['Content Strategy'].map((item, idx) => (
-                    <li key={idx} className="text-sm text-cyan-200 flex items-start gap-2">
-                      <span className="text-pink-400 mt-1">→</span>
+                    <li key={idx} className="text-base text-gray-700 flex items-start gap-2">
+                      <span className="text-blue-600 mt-1">→</span>
                       <span>{item}</span>
                     </li>
                   ))}
@@ -407,12 +432,12 @@ export function BrandIntelligence({ jsonData, extractedImages, guidelines }: Bra
             )}
 
             {sections['STRATEGIC RECOMMENDATIONS'].subsections?.['Visual Strategy'] && (
-              <div className="p-4 bg-white/5 rounded-xl border border-white/10">
-                <h4 className="text-sm font-semibold text-pink-300 mb-3">Visual Strategy</h4>
+              <div className="p-6 bg-gray-50 rounded-lg border border-gray-200">
+                <h4 className="text-lg font-semibold text-gray-900 mb-4">Visual Strategy</h4>
                 <ul className="space-y-2">
                   {sections['STRATEGIC RECOMMENDATIONS'].subsections['Visual Strategy'].map((item, idx) => (
-                    <li key={idx} className="text-sm text-cyan-200 flex items-start gap-2">
-                      <span className="text-pink-400 mt-1">→</span>
+                    <li key={idx} className="text-base text-gray-700 flex items-start gap-2">
+                      <span className="text-blue-600 mt-1">→</span>
                       <span>{item}</span>
                     </li>
                   ))}
@@ -421,12 +446,12 @@ export function BrandIntelligence({ jsonData, extractedImages, guidelines }: Bra
             )}
 
             {sections['STRATEGIC RECOMMENDATIONS'].subsections?.['Messaging Strategy'] && (
-              <div className="p-4 bg-white/5 rounded-xl border border-white/10">
-                <h4 className="text-sm font-semibold text-pink-300 mb-3">Messaging Strategy</h4>
+              <div className="p-6 bg-gray-50 rounded-lg border border-gray-200">
+                <h4 className="text-lg font-semibold text-gray-900 mb-4">Messaging Strategy</h4>
                 <ul className="space-y-2">
                   {sections['STRATEGIC RECOMMENDATIONS'].subsections['Messaging Strategy'].map((item, idx) => (
-                    <li key={idx} className="text-sm text-cyan-200 flex items-start gap-2">
-                      <span className="text-pink-400 mt-1">→</span>
+                    <li key={idx} className="text-base text-gray-700 flex items-start gap-2">
+                      <span className="text-blue-600 mt-1">→</span>
                       <span>{item}</span>
                     </li>
                   ))}
@@ -438,18 +463,18 @@ export function BrandIntelligence({ jsonData, extractedImages, guidelines }: Bra
       )}
 
       {sections['BRAND GUIDELINES FOR CAMPAIGN'] && (
-        <SectionCard icon={BookOpen} title="Campaign Guidelines" gradient="from-violet-500/10 to-purple-500/10">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <SectionCard icon={BookOpen} title="Brand Guidelines for Campaign">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             {sections['BRAND GUIDELINES FOR CAMPAIGN'].subsections?.["DO's"] && (
-              <div className="p-4 bg-emerald-500/5 rounded-xl border border-emerald-400/30">
-                <h4 className="text-sm font-semibold text-emerald-300 mb-4 flex items-center gap-2">
-                  <CheckCircle className="w-5 h-5" />
+              <div className="p-6 bg-green-50 rounded-lg border border-green-200">
+                <h4 className="text-lg font-semibold text-gray-900 mb-4 flex items-center gap-2">
+                  <CheckCircle className="w-6 h-6 text-green-600" />
                   DO&apos;s
                 </h4>
                 <ul className="space-y-2">
                   {sections['BRAND GUIDELINES FOR CAMPAIGN'].subsections["DO's"].map((item, idx) => (
-                    <li key={idx} className="text-sm text-cyan-200 flex items-start gap-2">
-                      <CheckCircle className="w-4 h-4 text-emerald-400 mt-0.5 flex-shrink-0" />
+                    <li key={idx} className="text-base text-gray-700 flex items-start gap-2">
+                      <CheckCircle className="w-5 h-5 text-green-600 mt-0.5 flex-shrink-0" />
                       <span>{item}</span>
                     </li>
                   ))}
@@ -458,37 +483,21 @@ export function BrandIntelligence({ jsonData, extractedImages, guidelines }: Bra
             )}
 
             {sections['BRAND GUIDELINES FOR CAMPAIGN'].subsections?.["DON'Ts"] && (
-              <div className="p-4 bg-red-500/5 rounded-xl border border-red-400/30">
-                <h4 className="text-sm font-semibold text-red-300 mb-4 flex items-center gap-2">
-                  <XCircle className="w-5 h-5" />
+              <div className="p-6 bg-red-50 rounded-lg border border-red-200">
+                <h4 className="text-lg font-semibold text-gray-900 mb-4 flex items-center gap-2">
+                  <XCircle className="w-6 h-6 text-red-600" />
                   DON&apos;Ts
                 </h4>
                 <ul className="space-y-2">
                   {sections['BRAND GUIDELINES FOR CAMPAIGN'].subsections["DON'Ts"].map((item, idx) => (
-                    <li key={idx} className="text-sm text-cyan-200 flex items-start gap-2">
-                      <XCircle className="w-4 h-4 text-red-400 mt-0.5 flex-shrink-0" />
+                    <li key={idx} className="text-base text-gray-700 flex items-start gap-2">
+                      <XCircle className="w-5 h-5 text-red-600 mt-0.5 flex-shrink-0" />
                       <span>{item}</span>
                     </li>
                   ))}
                 </ul>
               </div>
             )}
-          </div>
-        </SectionCard>
-      )}
-
-      {extractedImages.length > 0 && (
-        <SectionCard icon={Eye} title="Brand Visual Assets" gradient="from-slate-500/10 to-gray-500/10">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-            {extractedImages.map((url, idx) => (
-              <div key={idx} className="group relative">
-                <img
-                  src={url}
-                  alt={`Brand asset ${idx + 1}`}
-                  className="w-full h-32 object-cover rounded-xl border border-white/20 transition-transform group-hover:scale-105 shadow-lg"
-                />
-              </div>
-            ))}
           </div>
         </SectionCard>
       )}
