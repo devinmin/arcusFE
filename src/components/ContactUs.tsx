@@ -104,7 +104,7 @@ export default function ContactUs({ onClose, onShowComingSoon, onShowAbout, onSh
                   Get in Touch
                 </h1>
                 <p className="text-xl text-gray-600">
-                  Have a question or want to learn more? We'd love to hear from you.
+                  Have a question or need a quote? Reach out.
                 </p>
               </div>
 
