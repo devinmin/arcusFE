@@ -62,18 +62,22 @@ export const generateCampaign = async (
   "websiteUrl": "${website}",
   "industry": "${industry}",
   "colors": {
-    "primary": "#2563eb",
-    "secondary": "#7c3aed",
-    "accent": "#06b6d4"
+    "primary": "#1B365D",
+    "secondary": "#FF6B00",
+    "white": "#FFFFFF",
+    "lightGray": "#F5F5F5",
+    "darkGray": "#333333",
+    "mediumGray": "#666666"
   },
   "typography": {
-    "primaryFont": "Inter, sans-serif",
-    "headingFont": "Poppins, sans-serif"
+    "primaryFont": "Helvetica Neue, Arial, sans-serif",
+    "headers": "Bold weight, clean lines",
+    "bodyText": "Regular weight, high readability"
   },
-  "voiceTone": ["Professional", "Trustworthy", "Innovative", "Customer-Focused"],
-  "targetAudience": "Business professionals aged 25-45 in ${industry} sector",
-  "brandArchetype": "The Expert / The Innovator",
-  "emotionalTriggers": ["Confidence", "Aspiration", "Security"]
+  "voiceTone": ["Professional", "Authoritative", "Approachable", "Informative", "Aspirational", "Trust-building"],
+  "targetAudience": "Business professionals aged 25-55 in ${industry} sector",
+  "brandArchetype": "The Sage: Knowledge, wisdom, and professional expertise",
+  "emotionalTriggers": ["Career advancement", "Professional growth", "Network building"]
 }`,
         extractedImages: [
           'https://images.pexels.com/photos/3184291/pexels-photo-3184291.jpeg',
@@ -88,248 +92,195 @@ export const generateCampaign = async (
 
 ---
 
-## 1. VISUAL ASSET ANALYSIS
-
-### 1.1 Homepage & Key Pages Analysis
-
-**Homepage Structure:**
-- Hero Section: Full-width imagery with compelling value proposition
-- Clean, modern layout with strategic white space
-- Clear navigation and user journey
-- Modern responsive design
-
-**Image Style Guidelines:**
-- **Photography Style:** Professional, high-quality imagery
-- **Lighting:** Natural, bright, and inviting
-- **Composition:** Balanced with strong focal points
-- **Color Grading:** Consistent with brand palette
-
-**Visual Patterns Observed:**
-- Emphasis on user experience and clarity
-- Modern, clean aesthetic
-- Strategic use of imagery to support messaging
-- Mobile-first responsive design
-
----
-
 ## 2. BRAND IDENTITY EXTRACTION
 
-### 2.1 Color Palette
+### Color Palette
+Primary Colors:
+- Navy Blue: #1B365D
+- White: #FFFFFF
+- Light Gray: #F5F5F5
 
-**Primary Colors:**
-- Primary Brand Color
-- Secondary Supporting Colors
-- Neutral Base Colors
+Secondary Colors:
+- Orange Accent: #FF6B00
+- Dark Gray: #333333
+- Medium Gray: #666666
 
-**Accent Colors:**
-- Call-to-action highlights
-- Interactive element colors
-- Success/error state colors
+### Typography
+- Primary Font: Helvetica Neue or Arial (Sans-serif)
+- Headers: Bold weight, clean lines
+- Body Text: Regular weight, high readability
+- Font Sizes:
+  - Headers: 24-32px
+  - Subheaders: 18-22px
+  - Body: 14-16px
 
-### 2.2 Typography
-
-**Primary Font Family:**
-- Clean, modern typeface
-- High readability across devices
-- Professional appearance
-
-**Typography Hierarchy:**
-- **Headlines:** Bold, impactful sizing
-- **Body Text:** Readable, appropriate line height
-- **CTAs:** Clear, action-oriented
-
-### 2.3 Design Patterns
-
-**Visual Style Elements:**
-- **Corners:** Modern border radius
-- **Shadows:** Subtle depth
-- **Spacing:** Consistent padding and margins
-- **Grid:** Structured, responsive layout
+### Visual Patterns & Design Elements
+- Minimal use of shadows
+- Sharp corners on containers
+- Clear hierarchy in typography
+- Consistent padding and margins
+- Clean dividing lines between sections
+- Simple, effective navigation structure
 
 ---
 
-## 3. VOICE & MESSAGING ANALYSIS
+## 3. VISUAL ASSET ANALYSIS
 
-### 3.1 Tone of Voice Breakdown
+### Image Style Guidelines
+- Professional photography style
+- Business casual to formal attire in images
+- Diverse representation of professionals
+- Clean, uncluttered backgrounds
+- Natural lighting with slight warmth
+- Focus on people and collaboration
 
-**Primary Tone Characteristics:**
-
-**1. Professional & Trustworthy:**
-- Uses confident, clear language
-- Builds credibility through expertise
-- Maintains professional standards
-
-**2. Customer-Focused:**
-- Addresses pain points directly
-- Emphasizes benefits over features
-- Speaks to customer needs
-
-**3. Modern & Innovative:**
-- Forward-thinking messaging
-- Technology-aware
-- Industry-leading positioning
-
-**Tone Scale:**
-- Formal ←--------●--------→ Casual (Balanced)
-- Technical ←------●--------→ Simple (Accessible)
-- Urgent ←-----------------●→ Relaxed (Confident)
-- Playful ←-----●----------→ Serious (Professional)
-
-### 3.2 Key Phrases & Language Patterns
-
-**Recurring Themes:**
-- Innovation and advancement
-- Customer success and results
-- Quality and reliability
-- Expertise and leadership
-
-**Linguistic Patterns:**
-- Action-oriented language
-- Benefit-focused messaging
-- Clear value propositions
-- Inclusive "we" and "you" language
-
-### 3.3 Emotional Triggers
-
-**Primary Emotions Evoked:**
-
-1. **Confidence:**
-   - Trust in proven solutions
-   - Assurance of quality
-   - Professional credibility
-
-2. **Aspiration:**
-   - Desire for better outcomes
-   - Growth and improvement
-   - Success and achievement
-
-3. **Security:**
-   - Reliable solutions
-   - Proven track record
-   - Support and guidance
+### Visual Patterns
+- Professional headshots
+- Team collaboration scenes
+- Office environments
+- Technology and devices in use
+- Graphs and data visualizations
+- Networking and handshake imagery
 
 ---
 
-## 4. TARGET AUDIENCE ANALYSIS
+## 4. VOICE & MESSAGING ANALYSIS
 
-### 4.1 Primary Persona
+### Tone of Voice
+- Professional
+- Authoritative
+- Approachable
+- Informative
+- Aspirational
+- Trust-building
 
-**Demographics:**
-- Age: 25-45 years old
-- Location: Urban and suburban areas
+### Key Phrases & Language Patterns
+- "Connect with professionals"
+- "Build your network"
+- "Career opportunities"
+- "Professional development"
+- "Industry insights"
+- "Join the conversation"
+- "Share your expertise"
+
+### Emotional Triggers
+- Career advancement
+- Professional growth
+- Network building
+- Knowledge sharing
+- Industry recognition
+- Business success
+
+---
+
+## 5. TARGET AUDIENCE ANALYSIS
+
+### Primary Persona Demographics
+- Age: 25-55 years old
+- Education: College graduates and above
+- Occupation: Professionals, managers, executives
 - Income: Middle to upper-middle class
-- Education: College-educated professionals
+- Location: Urban and suburban areas globally
 
-**Psychographics:**
-- Values quality and reliability
-- Seeks efficient solutions
-- Technology-comfortable
-- Research-oriented decision maker
+### Psychographics
+- Career-focused individuals
+- Network-conscious professionals
+- Continuous learners
+- Industry thought leaders
+- Business decision-makers
+- Job seekers and recruiters
 
-**Behaviors:**
-- Researches before purchasing
-- Values customer reviews
-- Active online presence
-- Seeks professional solutions
-
-**Pain Points:**
-- Time constraints
-- Need for reliable solutions
-- Desire for quality service
-- Budget consciousness
-
-**Motivations:**
-- Achieving better outcomes
-- Saving time and resources
-- Professional advancement
-- Quality of life improvements
+### Motivations
+- Career advancement
+- Professional networking
+- Knowledge acquisition
+- Personal branding
+- Business development
+- Recruitment and hiring
 
 ---
 
-## 5. COMPETITIVE & MARKET CONTEXT
+## 6. COMPETITIVE & MARKET CONTEXT
 
-### 5.1 Industry Positioning
+### Industry Positioning
+- Leading professional networking platform
+- Business-focused social media
+- Career development hub
+- B2B marketing channel
+- Recruitment and talent acquisition platform
 
-**Industry:** ${industry}
-
-**Market Segment:**
-- Professional services
-- Quality-focused
-- Customer-centric approach
-
-**Positioning Statement:**
-*Delivering innovative solutions that combine expertise, technology, and customer focus to drive measurable results.*
-
-### 5.2 Competitive Advantages
-
-**Key Differentiators:**
-1. **Expertise:** Deep industry knowledge
-2. **Innovation:** Modern, cutting-edge solutions
-3. **Quality:** Commitment to excellence
-4. **Service:** Customer-first approach
-5. **Results:** Proven track record
+### Competitive Advantages
+- Largest professional network globally
+- Credibility and trust in business community
+- Rich professional data and insights
+- Premium subscription model
+- Integration with business workflows
 
 ---
 
-## 6. BRAND ESSENCE SUMMARY
+## 7. BRAND ESSENCE SUMMARY
 
-**Brand Archetype:** The Expert / The Innovator
+### Brand Archetype
+- The Sage: Knowledge, wisdom, and professional expertise
+- The Ruler: Authority, leadership, and success
 
-**Brand Promise:**
-*Delivering excellence through innovation and expertise*
+### Brand Promise
+"Connecting the world's professionals to make them more productive and successful"
 
-**Brand Personality:**
-- Professional yet approachable
-- Innovative and forward-thinking
-- Reliable and trustworthy
-- Customer-focused
+### Brand Personality
+- Professional
+- Trustworthy
+- Empowering
+- Intelligent
+- Inclusive
 - Results-oriented
 
 ---
 
-## 7. STRATEGIC RECOMMENDATIONS
+## 8. STRATEGIC RECOMMENDATIONS
 
-### Content Strategy:
-- Focus on educational content that demonstrates expertise
-- Share customer success stories and case studies
-- Highlight innovation and unique approaches
-- Build trust through transparency
+### Content Strategy
+- Share industry insights and thought leadership
+- Highlight success stories and case studies
+- Provide actionable career advice
+- Showcase professional development resources
+- Feature diverse professional perspectives
 
-### Visual Strategy:
+### Visual Strategy
 - Maintain clean, professional aesthetic
-- Use high-quality imagery
-- Ensure consistent brand application
-- Optimize for mobile experience
+- Use authentic professional imagery
+- Incorporate data visualizations
+- Ensure diverse representation
+- Keep design minimal and purposeful
 
-### Messaging Strategy:
-- Lead with customer benefits
-- Support claims with evidence
-- Use clear, jargon-free language
-- Include strong calls-to-action
+### Messaging Strategy
+- Emphasize career growth and opportunity
+- Build trust through authenticity
+- Encourage professional engagement
+- Highlight platform value propositions
+- Use aspirational yet attainable language
 
 ---
 
-## 8. BRAND GUIDELINES FOR CAMPAIGN
+## 9. BRAND GUIDELINES FOR CAMPAIGN
 
-### DO's:
-✅ Maintain professional tone
-✅ Focus on customer benefits
-✅ Use clean, modern design
-✅ Highlight expertise and results
-✅ Build trust through transparency
-✅ Create compelling calls-to-action
-✅ Ensure mobile optimization
-✅ Use high-quality visuals
+### DO's
+- Use professional, business-appropriate language
+- Feature diverse professionals and industries
+- Maintain clean, uncluttered designs
+- Include clear calls-to-action
+- Align with career advancement themes
+- Use data and insights to support claims
+- Show real-world business applications
 
-### DON'Ts:
-❌ Don't use overly technical jargon
-❌ Avoid aggressive sales tactics
-❌ Don't make unsupported claims
-❌ Avoid cluttered designs
-❌ Don't ignore mobile users
-❌ Avoid generic stock imagery
-❌ Don't be inconsistent with brand
-❌ Avoid confusing navigation
+### DON'Ts
+- Avoid casual or overly playful tone
+- Don't use low-quality or stock imagery that feels staged
+- Avoid cluttered layouts or busy designs
+- Don't make unrealistic promises
+- Avoid excluding any professional demographic
+- Don't stray from the core brand colors
+- Avoid content that doesn't serve professional development
 
 ---
 
