@@ -884,7 +884,7 @@ function App() {
 
             <div className="relative group overflow-hidden rounded-2xl aspect-square">
               <img
-                src="https://images.pexels.com/photos/4065876/pexels-photo-4065876.jpeg?auto=compress&cs=tinysrgb&w=600"
+                src="https://images.pexels.com/photos/193003/pexels-photo-193003.jpeg?auto=compress&cs=tinysrgb&w=600"
                 alt="Email Marketing"
                 className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
               />
