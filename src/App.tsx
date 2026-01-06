@@ -591,7 +591,7 @@ function App() {
             </h1>
 
             <p className="text-xl text-gray-600 mb-10 leading-relaxed max-w-2xl mx-auto">
-              Launch campaigns in <s>Weeks</s> Hours
+              Launch campaigns in <s>weeks</s> hours
             </p>
               <p className="text-xl text-gray-600 mb-10 leading-relaxed max-w-2xl mx-auto">
  Augment your team with a senior marketer & AI that provides strategy, brand intuition, and creative direction.
