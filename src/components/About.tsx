@@ -36,7 +36,7 @@ export default function About({ onClose, onShowComingSoon, onShowContact, onShow
             <br />
             20% of the Staff.
           </h1>
-          <p className="text-xl text-gray-600">DC · Los Angeles · Seattle</p>
+          <p className="text-xl text-gray-600">We strive to build a better world for marketing</p>
         </div>
       </div>
 
