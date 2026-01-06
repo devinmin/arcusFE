@@ -136,7 +136,132 @@ export default function WhyArcus({ onClose, onShowComingSoon, onShowContact, onS
         </div>
       </section>
 
-      
+      {/* Comparison Section */}
+      <section className="py-20 px-6 bg-white">
+        <div className="max-w-5xl mx-auto">
+          <div className="text-center mb-16">
+            <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
+              Arcus AI vs Your Current Marketing Agency
+            </h2>
+            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+              See how Arcus compares to traditional marketing agencies across the metrics that matter most.
+            </p>
+          </div>
+
+          <div className="space-y-12">
+            {/* Turnaround Speed */}
+            <div className="border-b border-gray-200 pb-12">
+              <h3 className="text-2xl font-bold text-gray-900 mb-6">Turnaround Speed</h3>
+              <div className="grid md:grid-cols-2 gap-8">
+                <div>
+                  <p className="text-sm font-semibold text-gray-500 uppercase tracking-wide mb-3">Your Current Marketing Agency</p>
+                  <p className="text-gray-700 leading-relaxed">
+                    Slow turnarounds due to multiple approval layers, timezone delays, and resource constraints. Projects that should take days often take weeks.
+                  </p>
+                </div>
+                <div>
+                  <p className="text-sm font-semibold text-slate-700 uppercase tracking-wide mb-3">Arcus AI</p>
+                  <p className="text-gray-900 leading-relaxed font-medium">
+                    Operates 24/7 with no timezone delays. AI agents work continuously, delivering results in hours, not weeks. Your marketing never sleeps.
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            {/* Work Quality */}
+            <div className="border-b border-gray-200 pb-12">
+              <h3 className="text-2xl font-bold text-gray-900 mb-6">Work Quality & Customization</h3>
+              <div className="grid md:grid-cols-2 gap-8">
+                <div>
+                  <p className="text-sm font-semibold text-gray-500 uppercase tracking-wide mb-3">Your Current Marketing Agency</p>
+                  <p className="text-gray-700 leading-relaxed">
+                    Templatized, generic work that looks like everyone else's. Agencies often reuse the same strategies and creative approaches across multiple clients.
+                  </p>
+                </div>
+                <div>
+                  <p className="text-sm font-semibold text-slate-700 uppercase tracking-wide mb-3">Arcus AI</p>
+                  <p className="text-gray-900 leading-relaxed font-medium">
+                    Tailored strategy & execution built specifically for your brand. Our AI learns your unique voice, audience, and goals to create truly custom campaigns.
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            {/* Revisions */}
+            <div className="border-b border-gray-200 pb-12">
+              <h3 className="text-2xl font-bold text-gray-900 mb-6">Revisions & Iterations</h3>
+              <div className="grid md:grid-cols-2 gap-8">
+                <div>
+                  <p className="text-sm font-semibold text-gray-500 uppercase tracking-wide mb-3">Your Current Marketing Agency</p>
+                  <p className="text-gray-700 leading-relaxed">
+                    Charges for revisions after the initial round, creating friction and budget concerns. This often results in settling for "good enough" instead of great.
+                  </p>
+                </div>
+                <div>
+                  <p className="text-sm font-semibold text-slate-700 uppercase tracking-wide mb-3">Arcus AI</p>
+                  <p className="text-gray-900 leading-relaxed font-medium">
+                    Unlimited revisions included. Iterate as much as you need without worrying about extra costs. Perfect your campaigns without budget constraints.
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            {/* Team Quality */}
+            <div className="border-b border-gray-200 pb-12">
+              <h3 className="text-2xl font-bold text-gray-900 mb-6">Team Expertise</h3>
+              <div className="grid md:grid-cols-2 gap-8">
+                <div>
+                  <p className="text-sm font-semibold text-gray-500 uppercase tracking-wide mb-3">Your Current Marketing Agency</p>
+                  <p className="text-gray-700 leading-relaxed">
+                    Junior personnel doing the majority of work while you pay senior rates. Your campaigns are often handled by those still learning on the job.
+                  </p>
+                </div>
+                <div>
+                  <p className="text-sm font-semibold text-slate-700 uppercase tracking-wide mb-3">Arcus AI</p>
+                  <p className="text-gray-900 leading-relaxed font-medium">
+                    AI trained on decades of marketing expertise + only work with senior human talent. Every decision is informed by best practices and expert oversight.
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            {/* Accountability */}
+            <div className="pb-4">
+              <h3 className="text-2xl font-bold text-gray-900 mb-6">Accountability & Transparency</h3>
+              <div className="grid md:grid-cols-2 gap-8">
+                <div>
+                  <p className="text-sm font-semibold text-gray-500 uppercase tracking-wide mb-3">Your Current Marketing Agency</p>
+                  <p className="text-gray-700 leading-relaxed">
+                    Blames you for not spending enough when a campaign fails. Lack of transparency makes it hard to understand what's actually working and why.
+                  </p>
+                </div>
+                <div>
+                  <p className="text-sm font-semibold text-slate-700 uppercase tracking-wide mb-3">Arcus AI</p>
+                  <p className="text-gray-900 leading-relaxed font-medium">
+                    Shows you exactly what failed and tests new angles—free. Complete transparency with real-time analytics and automatic optimization based on performance.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div className="mt-16 text-center">
+            <div className="inline-flex items-center justify-center gap-4 px-8 py-4 bg-slate-50 rounded-2xl border border-slate-200">
+              <p className="text-lg text-gray-900 font-semibold">
+                Ready to make the switch?
+              </p>
+              <button
+                onClick={onShowCodeModal}
+                className="px-6 py-2.5 bg-slate-700 text-white rounded-full hover:bg-slate-800 transition-all hover:shadow-lg hover:scale-105 font-medium"
+              >
+                Try Arcus
+              </button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+
       <div className="py-16 px-6 bg-gray-50">
         <div className="max-w-6xl mx-auto">
           <div className="grid md:grid-cols-2 gap-16 items-center mb-20">
