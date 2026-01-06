@@ -42,7 +42,6 @@ export default function WhyArcus({ onClose, onShowComingSoon, onShowContact, onS
       {/* Comparison Section */}
       <section className="py-20 px-6 bg-white">
         <div className="max-w-5xl mx-auto">
-          
           <div className="space-y-12">
             {/* Turnaround Speed */}
             <div className="border-b border-gray-200 pb-12">
