@@ -63,15 +63,32 @@ export function BrandIntelligence({ jsonData, extractedImages, guidelines }: Bra
   const extractColors = (md: string | null): ColorInfo[] => {
     if (!md) return [];
     const colors: ColorInfo[] = [];
-    const colorRegex = /(Primary|Secondary|Navy Blue|White|Light Gray|Orange Accent|Dark Gray|Medium Gray):\s*(#[A-Fa-f0-9]{6}|#[A-Fa-f0-9]{3})/g;
-    let match;
+    const lines = md.split('\n');
+    let currentType: 'primary' | 'secondary' = 'primary';
+    let inColorSection = false;
 
-    while ((match = colorRegex.exec(md)) !== null) {
-      const name = match[1];
-      const hex = match[2];
-      const type = name.toLowerCase().includes('primary') || name.toLowerCase().includes('navy') ? 'primary' : 'secondary';
-      colors.push({ name, hex, type });
-    }
+    lines.forEach(line => {
+      if (line.includes('### Color Palette')) {
+        inColorSection = true;
+      } else if (line.startsWith('###') && inColorSection) {
+        inColorSection = false;
+      } else if (inColorSection) {
+        if (line.includes('Primary Colors:')) {
+          currentType = 'primary';
+        } else if (line.includes('Secondary Colors:')) {
+          currentType = 'secondary';
+        } else if (line.startsWith('- ') && line.includes('#')) {
+          const match = line.match(/- ([^:]+):\s*(#[A-Fa-f0-9]{6}|#[A-Fa-f0-9]{3})/);
+          if (match) {
+            colors.push({
+              name: match[1].trim(),
+              hex: match[2].toUpperCase(),
+              type: currentType
+            });
+          }
+        }
+      }
+    });
 
     return colors;
   };
@@ -87,10 +104,11 @@ export function BrandIntelligence({ jsonData, extractedImages, guidelines }: Bra
         inTypographySection = true;
       } else if (line.startsWith('###') && inTypographySection) {
         inTypographySection = false;
-      } else if (inTypographySection && line.startsWith('- ')) {
-        const parts = line.replace('- ', '').split(':');
+      } else if (inTypographySection && (line.startsWith('- ') || line.startsWith('  - '))) {
+        const cleanLine = line.replace(/^[\s-]+/, '');
+        const parts = cleanLine.split(':');
         if (parts.length >= 2) {
-          typography[parts[0].trim()] = parts[1].trim();
+          typography[parts[0].trim()] = parts.slice(1).join(':').trim();
         }
       }
     });
