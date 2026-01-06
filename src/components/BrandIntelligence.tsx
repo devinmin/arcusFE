@@ -168,11 +168,11 @@ export function BrandIntelligence({ jsonData, extractedImages, guidelines }: Bra
                 <div className="space-y-6">
                   <div>
                     <p className="text-sm font-medium text-gray-600 mb-3">Primary Colors</p>
-                    <div className="grid grid-cols-3 gap-4">
+                    <div className="grid grid-cols-3 gap-6">
                       {extractedColors.filter(c => c.type === 'primary').map((color, idx) => (
-                        <div key={idx} className="group">
+                        <div key={idx} className="group flex flex-col items-center">
                           <div
-                            className="w-full h-32 rounded-lg shadow-md transition-all group-hover:shadow-lg border border-gray-200"
+                            className="w-32 h-32 rounded-full shadow-md transition-all group-hover:shadow-lg border-4 border-white ring-2 ring-gray-200"
                             style={{ backgroundColor: color.hex }}
                           />
                           <div className="mt-3 text-center">
@@ -187,11 +187,11 @@ export function BrandIntelligence({ jsonData, extractedImages, guidelines }: Bra
                   {extractedColors.filter(c => c.type === 'secondary').length > 0 && (
                     <div>
                       <p className="text-sm font-medium text-gray-600 mb-3">Secondary Colors</p>
-                      <div className="grid grid-cols-4 gap-4">
+                      <div className="grid grid-cols-6 gap-4">
                         {extractedColors.filter(c => c.type === 'secondary').map((color, idx) => (
-                          <div key={idx} className="group">
+                          <div key={idx} className="group flex flex-col items-center">
                             <div
-                              className="w-full h-24 rounded-lg shadow-md transition-all group-hover:shadow-lg border border-gray-200"
+                              className="w-20 h-20 rounded-full shadow-md transition-all group-hover:shadow-lg border-4 border-white ring-2 ring-gray-200"
                               style={{ backgroundColor: color.hex }}
                             />
                             <div className="mt-2 text-center">
