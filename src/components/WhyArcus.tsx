@@ -44,7 +44,7 @@ export default function WhyArcus({ onClose, onShowComingSoon, onShowContact, onS
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-12">
             <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
-              Why Arcus? No burn on overhead
+              No burn on overhead
             </h2>
           </div>
 
