@@ -884,17 +884,6 @@ function App() {
 
             <div className="relative group overflow-hidden rounded-2xl aspect-square">
               <img
-                src="https://images.pexels.com/photos/193003/pexels-photo-193003.jpeg?auto=compress&cs=tinysrgb&w=600"
-                alt="Email Marketing"
-                className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
-              />
-              <div className="absolute inset-0 bg-slate-900/60 flex items-end p-6">
-                <h4 className="text-white font-bold text-xl">Email Campaigns</h4>
-              </div>
-            </div>
-
-            <div className="relative group overflow-hidden rounded-2xl aspect-square">
-              <img
                 src="https://images.pexels.com/photos/265087/pexels-photo-265087.jpeg?auto=compress&cs=tinysrgb&w=600"
                 alt="Content Marketing"
                 className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
@@ -915,6 +904,17 @@ function App() {
               </div>
             </div>
 
+<div className="relative group overflow-hidden rounded-2xl aspect-square">
+              <img
+                src="https://images.pexels.com/photos/193003/pexels-photo-193003.jpeg?auto=compress&cs=tinysrgb&w=600"
+                alt="Email Marketing"
+                className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+              />
+              <div className="absolute inset-0 bg-slate-900/60 flex items-end p-6">
+                <h4 className="text-white font-bold text-xl">Email Campaigns</h4>
+              </div>
+            </div>
+            
             <div className="relative group overflow-hidden rounded-2xl aspect-square">
               <img
                 src="https://images.pexels.com/photos/326503/pexels-photo-326503.jpeg?auto=compress&cs=tinysrgb&w=600"
