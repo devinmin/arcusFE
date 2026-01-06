@@ -80,7 +80,6 @@ export default function Navigation({
                 </div>
               )}
             </div>
-            <button onClick={onHowItWorksClick} className="text-gray-600 hover:text-gray-900 transition-colors">How it Works</button>
             <button onClick={onShowWhyArcus} className="text-gray-600 hover:text-gray-900 transition-colors">Why Arcus</button>
             <button onClick={onShowAbout} className="text-gray-600 hover:text-gray-900 transition-colors">About</button>
             <a
