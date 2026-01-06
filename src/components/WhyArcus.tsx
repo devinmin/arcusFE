@@ -31,7 +31,7 @@ export default function WhyArcus({ onClose, onShowComingSoon, onShowContact, onS
       <div className="pt-32 pb-20 px-6">
         <div className="max-w-5xl mx-auto text-center">
           <h1 className="text-5xl md:text-6xl font-bold text-gray-900 mb-6">
-           Arcus AI vs Your Current Marketing Agency
+           Arcus AI vs Current Agency
           </h1>
           <p className="text-xl text-gray-600 max-w-3xl mx-auto">
             See how Arcus compares to traditional marketing agencies across the metrics that matter most.
