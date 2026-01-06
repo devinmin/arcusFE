@@ -333,7 +333,7 @@ export function CampaignResults({ url, industry, data, onRetry, onSignOut }: Cam
                   title={selectedResult.title}
                 />
               ) : selectedResult.isImageGallery ? (
-                <div className="grid grid-cols-1 gap-6">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                   {selectedResult.images?.map((image, idx) => (
                     <div key={idx} className="bg-white border border-gray-200 rounded-lg overflow-hidden">
                       <div className="aspect-video bg-gray-100 flex items-center justify-center overflow-hidden">
