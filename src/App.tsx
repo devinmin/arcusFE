@@ -589,7 +589,6 @@ function App() {
                 85%
               </span>
             </h1>
-
             <p className="text-xl text-gray-600 mb-10 leading-relaxed max-w-2xl mx-auto">
               Launch campaigns in <s>weeks</s> hours
             </p>
