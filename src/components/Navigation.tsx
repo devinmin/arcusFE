@@ -32,12 +32,12 @@ export default function Navigation({
     <nav className={`fixed w-full z-50 transition-all duration-300 ${scrolled ? 'bg-white/95 backdrop-blur-md shadow-sm' : 'bg-transparent'}`}>
       <div className="max-w-7xl mx-auto px-6 py-4">
         <div className="flex items-center justify-between">
-          <div className="flex items-center">
+          <div className="flex items-center flex-1">
             <button onClick={onLogoClick}>
               <img src="/arcusai.png" alt="Arcus AI" className="h-8" />
             </button>
           </div>
-          <div className="hidden md:flex items-center space-x-4">
+          <div className="hidden md:flex items-center space-x-8 flex-1 justify-center">
             <div
               className="relative"
               onMouseEnter={() => setShowProductDropdown(true)}
@@ -82,6 +82,8 @@ export default function Navigation({
             </div>
             <button onClick={onShowWhyArcus} className="text-gray-600 hover:text-gray-900 transition-colors">Why Arcus</button>
             <button onClick={onShowAbout} className="text-gray-600 hover:text-gray-900 transition-colors">About</button>
+          </div>
+          <div className="hidden md:flex items-center space-x-4 flex-1 justify-end">
             <a
               href="https://calendar.app.google/bL5Cn6kkYy98fpc46"
               target="_blank"
