@@ -584,7 +584,7 @@ function App() {
             </div>
 
             <h1 className="text-6xl md:text-7xl font-bold text-gray-900 mb-6 leading-tight">
-              Cut non-working marketing dollars by
+              Cut non-working marketing cost by
               <span className="block text-slate-700">
                 85%.
               </span>
