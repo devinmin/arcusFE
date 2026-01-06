@@ -52,8 +52,8 @@ export default function Footer({
               <li><button onClick={onShowWhyArcus} className="text-gray-400 hover:text-white transition-colors text-left">Why Arcus</button></li>
               <li><button onClick={onShowAbout} className="text-gray-400 hover:text-white transition-colors text-left">About</button></li>
               <li><button onClick={onShowComingSoon} className="text-gray-400 hover:text-white transition-colors text-left">Blog</button></li>
+               <li><button onClick={onShowFAQ} className="text-gray-400 hover:text-white transition-colors text-left">FAQ</button></li>
               <li><button onClick={onShowContact} className="text-gray-400 hover:text-white transition-colors text-left">Contact</button></li>
-              <li><button onClick={onShowFAQ} className="text-gray-400 hover:text-white transition-colors text-left">FAQ</button></li>
             </ul>
           </div>
         </div>
