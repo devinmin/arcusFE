@@ -878,7 +878,7 @@ function App() {
                 className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
               />
               <div className="absolute inset-0 bg-slate-900/60 flex items-end p-6">
-                <h4 className="text-white font-bold text-xl">Blog Content</h4>
+                <h4 className="text-white font-bold text-xl">SEO/GEO</h4>
               </div>
             </div>
 
