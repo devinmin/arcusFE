@@ -34,15 +34,15 @@ export default function Footer({
 
           <div>
             <h4 className="font-semibold text-white mb-4">Agents</h4>
-            <ul className="space-y-2">
+            <ul className="grid grid-cols-2 gap-x-8 gap-y-2">
               <li><button onClick={() => onShowProduct('marketing')} className="text-gray-400 hover:text-white transition-colors text-left">Marketing</button></li>
               <li><button onClick={() => onShowProduct('creative')} className="text-gray-400 hover:text-white transition-colors text-left">Creative</button></li>
               <li><button onClick={() => onShowProduct('media')} className="text-gray-400 hover:text-white transition-colors text-left">Media</button></li>
               <li><button onClick={() => onShowProduct('development')} className="text-gray-400 hover:text-white transition-colors text-left">Development</button></li>
               <li><button onClick={() => onShowProduct('spatial')} className="text-gray-400 hover:text-white transition-colors text-left">Spatial Computing</button></li>
               <li><button onClick={() => onShowProduct('uiux')} className="text-gray-400 hover:text-white transition-colors text-left">UI/UX</button></li>
-              <li><button onClick={() => onShowProduct('analytics')} className="text-gray-400 hover:text-white transition-colors text-left flex items-center gap-2">Analytics <span className="text-xs bg-blue-600 text-white px-2 py-0.5 rounded-full">Coming Soon</span></button></li>
-              <li><button onClick={() => onShowProduct('projectadmin')} className="text-gray-400 hover:text-white transition-colors text-left flex items-center gap-2">Project/Admin <span className="text-xs bg-blue-600 text-white px-2 py-0.5 rounded-full">Coming Soon</span></button></li>
+              <li><button onClick={() => onShowProduct('analytics')} className="text-gray-400 hover:text-white transition-colors text-left flex items-center gap-2">Analytics <span className="text-xs bg-blue-600 text-white px-2 py-0.5 rounded-full whitespace-nowrap">Coming Soon</span></button></li>
+              <li><button onClick={() => onShowProduct('projectadmin')} className="text-gray-400 hover:text-white transition-colors text-left flex items-center gap-2">Project/Admin <span className="text-xs bg-blue-600 text-white px-2 py-0.5 rounded-full whitespace-nowrap">Coming Soon</span></button></li>
             </ul>
           </div>
 
