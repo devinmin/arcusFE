@@ -1,5 +1,6 @@
-import { useState } from 'react';
 import { ArrowRight, Bot, Sparkles, Target, TrendingUp, Zap, CheckCircle2 } from 'lucide-react';
+import Navigation from './Navigation';
+import Footer from './Footer';
 
 interface ProductPageProps {
   category: 'marketing' | 'creative' | 'media' | 'development' | 'spatial' | 'uiux';
@@ -186,72 +187,17 @@ const productData = {
 
 export default function ProductPage({ category, onNavigateHome, onShowComingSoon, onShowAbout, onShowContact, onNavigateToProduct, onShowTryArcus, onShowWhyArcus, onShowFAQ }: ProductPageProps) {
   const product = productData[category];
-  const [showProductDropdown, setShowProductDropdown] = useState(false);
 
   return (
     <div className="min-h-screen bg-white">
-      {/* Navigation */}
-      <nav className="fixed top-0 w-full z-50 bg-white/95 backdrop-blur-md shadow-sm">
-        <div className="max-w-7xl mx-auto px-6 py-4">
-          <div className="flex items-center justify-between">
-            <button onClick={onNavigateHome} className="flex items-center cursor-pointer">
-              <img src="/arcusai.png" alt="Arcus AI" className="h-8" />
-            </button>
-            <div className="hidden md:flex items-center space-x-4">
-              <div
-                className="relative"
-                onMouseEnter={() => setShowProductDropdown(true)}
-                onMouseLeave={() => setShowProductDropdown(false)}
-              >
-                <button className="text-gray-600 hover:text-gray-900 transition-colors py-2">
-                  Product
-                </button>
-                {showProductDropdown && (
-                  <div className="absolute top-full left-0 pt-2 w-56">
-                    <div className="bg-white rounded-xl shadow-xl border border-gray-100 py-2">
-                      <button onClick={() => { onNavigateToProduct('marketing'); setShowProductDropdown(false); }} className="w-full text-left px-4 py-3 hover:bg-gray-50 text-gray-700 hover:text-gray-900 transition-colors">
-                        Marketing
-                      </button>
-                      <button onClick={() => { onNavigateToProduct('creative'); setShowProductDropdown(false); }} className="w-full text-left px-4 py-3 hover:bg-gray-50 text-gray-700 hover:text-gray-900 transition-colors">
-                        Creative
-                      </button>
-                      <button onClick={() => { onNavigateToProduct('media'); setShowProductDropdown(false); }} className="w-full text-left px-4 py-3 hover:bg-gray-50 text-gray-700 hover:text-gray-900 transition-colors">
-                        Media
-                      </button>
-                      <button onClick={() => { onNavigateToProduct('development'); setShowProductDropdown(false); }} className="w-full text-left px-4 py-3 hover:bg-gray-50 text-gray-700 hover:text-gray-900 transition-colors">
-                        Development
-                      </button>
-                      <button onClick={() => { onNavigateToProduct('spatial'); setShowProductDropdown(false); }} className="w-full text-left px-4 py-3 hover:bg-gray-50 text-gray-700 hover:text-gray-900 transition-colors">
-                        Spatial Computing
-                      </button>
-                      <button onClick={() => { onNavigateToProduct('uiux'); setShowProductDropdown(false); }} className="w-full text-left px-4 py-3 hover:bg-gray-50 text-gray-700 hover:text-gray-900 transition-colors">
-                        UI/UX
-                      </button>
-                    </div>
-                  </div>
-                )}
-              </div>
-              <button onClick={onNavigateHome} className="text-gray-600 hover:text-gray-900 transition-colors">How it Works</button>
-              <button onClick={onShowWhyArcus} className="text-gray-600 hover:text-gray-900 transition-colors">Why Arcus</button>
-              <button onClick={onShowAbout} className="text-gray-600 hover:text-gray-900 transition-colors">About</button>
-              <a
-                href="https://calendar.app.google/bL5Cn6kkYy98fpc46"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="px-6 py-2.5 bg-slate-700 text-white rounded-full hover:bg-slate-800 transition-all hover:shadow-lg hover:scale-105 inline-block"
-              >
-                Book a Call
-              </a>
-              <button
-                onClick={onShowTryArcus}
-                className="px-6 py-2.5 bg-white text-slate-700 border-2 border-slate-700 rounded-full hover:bg-slate-50 transition-all hover:shadow-lg hover:scale-105"
-              >
-                Try Arcus
-              </button>
-            </div>
-          </div>
-        </div>
-      </nav>
+      <Navigation
+        onLogoClick={onNavigateHome}
+        onShowProduct={onNavigateToProduct}
+        onHowItWorksClick={onNavigateHome}
+        onShowWhyArcus={onShowWhyArcus}
+        onShowAbout={onShowAbout}
+        onShowCodeModal={onShowTryArcus}
+      />
 
       {/* Hero Section */}
       <section className="pt-32 pb-20 px-6 relative overflow-hidden bg-slate-50">
@@ -403,55 +349,15 @@ export default function ProductPage({ category, onNavigateHome, onShowComingSoon
       </section>
 
       {/* Footer */}
-      <footer className="py-12 px-6 bg-gray-900">
-        <div className="max-w-7xl mx-auto">
-          <div className="grid grid-cols-1 md:grid-cols-[2fr_1fr_1fr] gap-8 mb-8">
-            <div>
-              <div className="mb-4">
-                <button onClick={onNavigateHome} className="cursor-pointer">
-                  <img src="/arcusai.png" alt="Arcus AI" className="h-8 brightness-0 invert" />
-                </button>
-              </div>
-              <p className="text-gray-400">
-                Your autonomous marketing team, powered by AI
-              </p>
-            </div>
-
-            <div>
-              <h4 className="font-semibold text-white mb-4">Product</h4>
-              <ul className="space-y-2">
-                <li><button onClick={() => onNavigateToProduct('marketing')} className="text-gray-400 hover:text-white transition-colors text-left">Marketing</button></li>
-                <li><button onClick={() => onNavigateToProduct('creative')} className="text-gray-400 hover:text-white transition-colors text-left">Creative</button></li>
-                <li><button onClick={() => onNavigateToProduct('media')} className="text-gray-400 hover:text-white transition-colors text-left">Media</button></li>
-                <li><button onClick={() => onNavigateToProduct('development')} className="text-gray-400 hover:text-white transition-colors text-left">Development</button></li>
-                <li><button onClick={() => onNavigateToProduct('spatial')} className="text-gray-400 hover:text-white transition-colors text-left">Spatial Computing</button></li>
-                <li><button onClick={() => onNavigateToProduct('uiux')} className="text-gray-400 hover:text-white transition-colors text-left">UI/UX</button></li>
-              </ul>
-            </div>
-
-            <div>
-              <h4 className="font-semibold text-white mb-4">Company</h4>
-              <ul className="space-y-2">
-                <li><button onClick={onShowWhyArcus} className="text-gray-400 hover:text-white transition-colors text-left">Why Arcus</button></li>
-                <li><button onClick={onShowAbout} className="text-gray-400 hover:text-white transition-colors text-left">About</button></li>
-                <li><button onClick={onShowComingSoon} className="text-gray-400 hover:text-white transition-colors text-left">Blog</button></li>
-                <li><button onClick={onShowContact} className="text-gray-400 hover:text-white transition-colors text-left">Contact</button></li>
-                <li><button onClick={onShowFAQ} className="text-gray-400 hover:text-white transition-colors text-left">FAQ</button></li>
-              </ul>
-            </div>
-          </div>
-
-          <div className="border-t border-gray-800 pt-8 flex flex-col md:flex-row justify-between items-center">
-            <p className="text-gray-400 text-sm">
-              © 2024 Arcus AI. All rights reserved.
-            </p>
-            <div className="flex space-x-6 mt-4 md:mt-0">
-              <a href="#" className="text-gray-400 hover:text-white transition-colors text-sm">Privacy Policy</a>
-              <a href="#" className="text-gray-400 hover:text-white transition-colors text-sm">Terms of Service</a>
-            </div>
-          </div>
-        </div>
-      </footer>
+      <Footer
+        onLogoClick={onNavigateHome}
+        onShowProduct={onNavigateToProduct}
+        onShowWhyArcus={onShowWhyArcus}
+        onShowAbout={onShowAbout}
+        onShowComingSoon={onShowComingSoon}
+        onShowContact={onShowContact}
+        onShowFAQ={onShowFAQ}
+      />
     </div>
   );
 }
