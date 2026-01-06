@@ -779,8 +779,6 @@ function App() {
               </p>
             </div>
           </div>
-
-      
         </div>
       </section>
 
