@@ -758,24 +758,118 @@ function App() {
         </div>
       </section>
 
-      {/* Visual Showcase Section */}
-      <section className="py-20 px-6 bg-white">
+      {/* Visual Showcase Section - Brains Download */}
+      <section className="py-20 px-6 bg-gray-50">
         <div className="max-w-7xl mx-auto">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center mb-20">
-            <div className="order-2 md:order-1">
+          <div className="text-center mb-12">
+            <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
+              We downloaded Top Marketers' Brains into the AI
+            </h2>
+            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+              Our AI agents are trained by marketers who have delivered campaigns that doubled and tripled revenues for brands across multiple industries.
+            </p>
+          </div>
+
+          {/* Comparison Graphic */}
+          <div className="mb-16">
+            <div className="bg-gradient-to-br from-slate-50 to-blue-50 rounded-3xl p-8 md:p-12 border border-slate-200 shadow-lg">
+              <div className="grid grid-cols-1 md:grid-cols-[1fr_auto_1fr] gap-8 items-center">
+                {/* Human Expert Side */}
+                <div className="bg-white rounded-2xl p-8 shadow-sm">
+                  <h3 className="text-2xl md:text-3xl font-bold text-slate-700 mb-6">
+                    HUMAN SENIOR MARKETER
+                  </h3>
+                  <div className="space-y-4">
+                    <div className="flex items-start space-x-3">
+                      <div className="w-2 h-2 bg-slate-700 rounded-full mt-2 flex-shrink-0"></div>
+                      <p className="text-gray-700 text-lg">Decades of experience</p>
+                    </div>
+                    <div className="flex items-start space-x-3">
+                      <div className="w-2 h-2 bg-slate-700 rounded-full mt-2 flex-shrink-0"></div>
+                      <p className="text-gray-700 text-lg">Proven track record</p>
+                    </div>
+                    <div className="flex items-start space-x-3">
+                      <div className="w-2 h-2 bg-slate-700 rounded-full mt-2 flex-shrink-0"></div>
+                      <p className="text-gray-700 text-lg">Strategic thinking</p>
+                    </div>
+                    <div className="flex items-start space-x-3">
+                      <div className="w-2 h-2 bg-slate-700 rounded-full mt-2 flex-shrink-0"></div>
+                      <p className="text-gray-700 text-lg">Results-driven approach</p>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Plus Sign */}
+                <div className="flex justify-center">
+                  <div className="w-16 h-16 md:w-20 md:h-20 bg-slate-700 rounded-2xl flex items-center justify-center transform hover:scale-110 transition-transform">
+                    <span className="text-white text-4xl md:text-5xl font-bold">+</span>
+                  </div>
+                </div>
+
+                {/* AI Technology Side */}
+                <div className="bg-white rounded-2xl p-8 shadow-sm">
+                  <h3 className="text-2xl md:text-3xl font-bold text-slate-700 mb-6">
+                    AI TECHNOLOGY
+                  </h3>
+                  <div className="space-y-4">
+                    <div className="flex items-start space-x-3">
+                      <div className="w-2 h-2 bg-slate-700 rounded-full mt-2 flex-shrink-0"></div>
+                      <p className="text-gray-700 text-lg">Works 24/7 without breaks</p>
+                    </div>
+                    <div className="flex items-start space-x-3">
+                      <div className="w-2 h-2 bg-slate-700 rounded-full mt-2 flex-shrink-0"></div>
+                      <p className="text-gray-700 text-lg">Scales instantly</p>
+                    </div>
+                    <div className="flex items-start space-x-3">
+                      <div className="w-2 h-2 bg-slate-700 rounded-full mt-2 flex-shrink-0"></div>
+                      <p className="text-gray-700 text-lg">Data-driven optimization</p>
+                    </div>
+                    <div className="flex items-start space-x-3">
+                      <div className="w-2 h-2 bg-slate-700 rounded-full mt-2 flex-shrink-0"></div>
+                      <p className="text-gray-700 text-lg">Continuous learning</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              {/* Equals Result */}
+              <div className="mt-8 text-center">
+                <div className="inline-flex items-center justify-center space-x-3 mb-4">
+                  <div className="w-12 h-1 bg-slate-700"></div>
+                  <span className="text-3xl font-bold text-slate-700">=</span>
+                  <div className="w-12 h-1 bg-slate-700"></div>
+                </div>
+                <div className="bg-slate-700 rounded-2xl p-8 max-w-2xl mx-auto">
+                  <h3 className="text-3xl md:text-4xl font-bold text-white mb-4">
+                    ARCUS AI AGENTS
+                  </h3>
+                  <p className="text-slate-100 text-lg">
+                    Senior-level marketing expertise combined with AI efficiency, delivering exceptional results at unprecedented speed and scale
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* Supporting Image and Text */}
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+            <div>
               <img
                 src="https://images.pexels.com/photos/7598024/pexels-photo-7598024.jpeg?auto=compress&cs=tinysrgb&w=1200"
                 alt="Marketing Strategy"
-                className="rounded-2xl shadow-2xl w-full h-[400px] object-cover"
+                className="rounded-2xl shadow-xl w-full h-[400px] object-cover"
               />
             </div>
-            <div className="order-1 md:order-2">
-              <h3 className="text-4xl font-bold text-gray-900 mb-6">We downloaded Top Marketers’ Brains into the AI</h3>
+            <div>
+              <h3 className="text-3xl font-bold text-gray-900 mb-4">The Best of Both Worlds</h3>
               <p className="text-lg text-gray-600 mb-4">
-                Our AI agents are trained by marketers who have delivered campaigns that doubled and tripled revenues for brands across multiple industries.
+                We've captured the knowledge, strategies, and decision-making patterns of top marketers who have generated millions in revenue.
+              </p>
+              <p className="text-lg text-gray-600 mb-4">
+                Then we combined it with AI's ability to work around the clock, analyze data in real-time, and execute at scale.
               </p>
               <p className="text-lg text-gray-600">
-                We value experiments that proves results.
+                We value experiments that prove results. Every strategy is tested, measured, and optimized.
               </p>
             </div>
           </div>
