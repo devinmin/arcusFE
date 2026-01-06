@@ -37,24 +37,12 @@ export default function FAQ({ onClose, onShowComingSoon, onShowContact, onShowPr
       answer: "Most teams are up and running within 24-48 hours. We help you onboard, train the AI on your brand, and launch your first campaigns quickly."
     },
     {
-      question: "What channels does Arcus support?",
-      answer: "Arcus works across all major marketing channels including social media, email campaigns, SEO/GEO, paid advertising, content marketing, and even development. It's a truly omnichannel solution."
-    },
-    {
       question: "How does pricing work?",
       answer: "We offer flexible pricing based on your needs and scale. Book a call with our team to discuss your specific requirements and get a custom quote. We'll make sure you get the best value for your investment."
     },
     {
-      question: "Can Arcus integrate with my existing tools?",
-      answer: "Yes. Arcus integrates with popular platforms like Google Analytics, CRM systems, social media platforms, and more. We'll work with you to ensure smooth integration with your current tech stack."
-    },
-    {
       question: "How much control do I have over what Arcus creates?",
       answer: "You have complete control. You can review and approve content before it goes live, provide feedback for the AI to learn from, and adjust strategies at any time. Arcus amplifies your team—it doesn't replace your judgment."
-    },
-    {
-      question: "Is my data secure?",
-      answer: "Absolutely. We use enterprise-grade security, encryption, and comply with all major data protection regulations including GDPR and CCPA. Your data is yours and we never share it with third parties."
     },
     {
       question: "What kind of results can I expect?",
@@ -66,7 +54,7 @@ export default function FAQ({ onClose, onShowComingSoon, onShowContact, onShowPr
     },
     {
       question: "Can I try Arcus before committing?",
-      answer: "Yes! Click 'Try Arcus' to get started with a demo campaign, or book a call to discuss a pilot program tailored to your needs."
+      answer: "Yes! Book a call to discuss a pilot program tailored to your needs."
     }
   ];
 
