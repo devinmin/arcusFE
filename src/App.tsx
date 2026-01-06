@@ -848,7 +848,7 @@ function App() {
             <p className="text-xl text-gray-600">Dominate across all marketing channels with AI that never sleeps</p>
           </div>
 
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
+          <div className="grid grid-cols-2 md:grid-cols-5 gap-6">
             <div className="relative group overflow-hidden rounded-2xl aspect-square">
               <img
                 src="https://images.pexels.com/photos/147413/twitter-facebook-together-exchange-of-information-147413.jpeg?auto=compress&cs=tinysrgb&w=600"
@@ -890,6 +890,17 @@ function App() {
               />
               <div className="absolute inset-0 bg-slate-900/60 flex items-end p-6">
                 <h4 className="text-white font-bold text-xl">Paid Ads</h4>
+              </div>
+            </div>
+
+            <div className="relative group overflow-hidden rounded-2xl aspect-square">
+              <img
+                src="https://images.pexels.com/photos/326503/pexels-photo-326503.jpeg?auto=compress&cs=tinysrgb&w=600"
+                alt="Development"
+                className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+              />
+              <div className="absolute inset-0 bg-slate-900/60 flex items-end p-6">
+                <h4 className="text-white font-bold text-xl">Development</h4>
               </div>
             </div>
           </div>
