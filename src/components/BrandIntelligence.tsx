@@ -210,7 +210,7 @@ export function BrandIntelligence({ jsonData, extractedImages, guidelines }: Bra
             {Object.keys(typography).length > 0 && (
               <div>
                 <h4 className="text-lg font-semibold text-gray-900 mb-4">Typography</h4>
-                <div className="space-y-3">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
                   {Object.entries(typography).map(([key, value], idx) => (
                     <div key={idx} className="flex items-start gap-4 p-4 bg-gray-50 rounded-lg border border-gray-200">
                       <div className="flex-1">
