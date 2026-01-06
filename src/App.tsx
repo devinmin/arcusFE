@@ -590,10 +590,7 @@ function App() {
               </span>
             </h1>
             <p className="text-xl text-gray-600 mb-10 leading-relaxed max-w-2xl mx-auto">
-              Launch campaigns in <s>weeks</s> hours
-            </p>
-              <p className="text-xl text-gray-600 mb-10 leading-relaxed max-w-2xl mx-auto">
- Augment your team with a senior marketer & AI that provides strategy, brand intuition, and creative direction.
+              Launch campaigns in <s>weeks</s> hours. Augment your team with a senior marketer & AI that provides strategy, brand intuition, and creative                 direction.
             </p>
 
             <div className="flex flex-col sm:flex-row items-center justify-center space-y-4 sm:space-y-0 sm:space-x-4">
