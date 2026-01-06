@@ -175,10 +175,10 @@ export default function WhyArcus({ onClose, onShowComingSoon, onShowContact, onS
                       <th className="text-left py-4 px-6 text-sm font-semibold text-gray-500 uppercase tracking-wide">
                         Feature
                       </th>
-                      <th className="text-center py-4 px-6 text-sm font-semibold text-gray-900 uppercase tracking-wide">
+                      <th className="text-center py-4 px-6 text-sm font-semibold text-gray-700 uppercase tracking-wide">
                         Traditional Agency
                       </th>
-                      <th className="text-center py-4 px-6 text-sm font-semibold text-slate-700 uppercase tracking-wide">
+                      <th className="text-center py-4 px-6 text-sm font-semibold text-slate-900 uppercase tracking-wide">
                         Arcus AI
                       </th>
                     </tr>
