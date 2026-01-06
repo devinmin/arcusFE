@@ -774,9 +774,9 @@ function App() {
               />
             </div>
             <div className="order-1 md:order-2">
-              <h3 className="text-4xl font-bold text-gray-900 mb-6">AI-Powered Strategy</h3>
+              <h3 className="text-4xl font-bold text-gray-900 mb-6">We downloaded Top Marketers’ Brains into the AI</h3>
               <p className="text-lg text-gray-600 mb-4">
-                Our AI agents are trained and vetted by industry leaders. Arcus AI believes in data-driven marketing strategies.
+                Our AI agents are trained by marketers who have delivered campaigns that doubled and tripled revenues for brands across multiple industries.
               </p>
               <p className="text-lg text-gray-600">
                 We value experiments that proves results.
