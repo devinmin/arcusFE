@@ -51,6 +51,20 @@ const agentsData = [
     title: 'UI/UX Agents',
     description: 'Design that delights and converts. Create beautiful, intuitive interfaces backed by research and testing.',
     agents: ['UX Research Agent', 'UI Design Agent', 'Interaction Design Agent', 'CRO Agent']
+  },
+  {
+    id: 'analytics',
+    title: 'Analytics Agents',
+    description: 'Data-driven insights and intelligence. Track, measure, and optimize every aspect of your marketing performance with AI-powered analytics.',
+    agents: ['Performance Analytics Agent', 'Attribution Agent', 'Predictive Analytics Agent', 'Reporting Agent'],
+    comingSoon: true
+  },
+  {
+    id: 'projectadmin',
+    title: 'Project/Admin Agents',
+    description: 'Streamline operations and project management. Handle administrative tasks, project coordination, and workflow automation seamlessly.',
+    agents: ['Project Management Agent', 'Resource Allocation Agent', 'Workflow Automation Agent', 'Team Coordination Agent'],
+    comingSoon: true
   }
 ];
 
@@ -109,23 +123,30 @@ export default function AgentsPage({
         <section
           key={category.id}
           id={category.id}
-          className={`py-20 px-6 ${index % 2 === 0 ? 'bg-white' : 'bg-gray-50'}`}
+          className={`py-20 px-6 ${index % 2 === 0 ? 'bg-white' : 'bg-gray-50'} ${category.comingSoon ? 'relative' : ''}`}
         >
           <div className="max-w-7xl mx-auto">
             <div className="mb-12">
-              <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
-                {category.title}
-              </h2>
+              <div className="flex items-center gap-4 mb-4">
+                <h2 className="text-4xl md:text-5xl font-bold text-gray-900">
+                  {category.title}
+                </h2>
+                {category.comingSoon && (
+                  <span className="px-4 py-2 bg-blue-100 text-blue-700 text-sm font-semibold rounded-full">
+                    Coming Soon
+                  </span>
+                )}
+              </div>
               <p className="text-xl text-gray-600 leading-relaxed max-w-3xl">
                 {category.description}
               </p>
             </div>
 
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
+            <div className={`grid grid-cols-2 md:grid-cols-4 gap-6 ${category.comingSoon ? 'opacity-60' : ''}`}>
               {category.agents.map((agent, idx) => (
                 <div
                   key={idx}
-                  className="bg-white border border-gray-200 rounded-xl p-6 hover:shadow-lg transition-all duration-300 hover:-translate-y-1"
+                  className={`bg-white border border-gray-200 rounded-xl p-6 transition-all duration-300 ${!category.comingSoon ? 'hover:shadow-lg hover:-translate-y-1' : ''}`}
                 >
                   <div className="w-10 h-10 bg-slate-700 rounded-lg flex items-center justify-center mb-4">
                     <Bot className="w-5 h-5 text-white" />

@@ -67,6 +67,15 @@ export default function Navigation({
                     <button onClick={() => { onShowProduct('uiux'); setShowProductDropdown(false); }} className="w-full text-left px-4 py-3 hover:bg-gray-50 text-gray-700 hover:text-gray-900 transition-colors">
                       UI/UX
                     </button>
+                    <div className="border-t border-gray-100 my-2"></div>
+                    <button onClick={() => { onShowProduct('analytics'); setShowProductDropdown(false); }} className="w-full text-left px-4 py-3 hover:bg-gray-50 text-gray-700 hover:text-gray-900 transition-colors flex items-center justify-between">
+                      <span>Analytics</span>
+                      <span className="text-xs bg-blue-100 text-blue-700 px-2 py-0.5 rounded-full">Coming Soon</span>
+                    </button>
+                    <button onClick={() => { onShowProduct('projectadmin'); setShowProductDropdown(false); }} className="w-full text-left px-4 py-3 hover:bg-gray-50 text-gray-700 hover:text-gray-900 transition-colors flex items-center justify-between">
+                      <span>Project/Admin</span>
+                      <span className="text-xs bg-blue-100 text-blue-700 px-2 py-0.5 rounded-full">Coming Soon</span>
+                    </button>
                   </div>
                 </div>
               )}

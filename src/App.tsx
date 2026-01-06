@@ -14,7 +14,7 @@ import Navigation from './components/Navigation';
 import Footer from './components/Footer';
 
 type CampaignStatus = 'idle' | 'analyzing' | 'complete';
-type ProductCategory = 'marketing' | 'creative' | 'media' | 'development' | 'spatial' | 'uiux' | null;
+type ProductCategory = 'marketing' | 'creative' | 'media' | 'development' | 'spatial' | 'uiux' | 'analytics' | 'projectadmin' | null;
 
 function App() {
   const [showCodeModal, setShowCodeModal] = useState(false);
