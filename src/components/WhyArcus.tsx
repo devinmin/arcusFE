@@ -31,7 +31,7 @@ export default function WhyArcus({ onClose, onShowComingSoon, onShowContact, onS
       <div className="pt-32 pb-20 px-6">
         <div className="max-w-5xl mx-auto text-center">
           <h1 className="text-5xl md:text-6xl font-bold text-gray-900 mb-6">
-            Why Choose Arcus?
+            Arcus AI vs Your Current Marketing Agency
           </h1>
           <p className="text-xl text-gray-600 max-w-3xl mx-auto">
             The marketing world is changing. AI is not the future—it's now. And the question isn't whether to use AI, but how to use it right.
@@ -41,15 +41,6 @@ export default function WhyArcus({ onClose, onShowComingSoon, onShowContact, onS
 
       {/* Comparison Section */}
       <section className="py-20 px-6 bg-white">
-        <div className="max-w-5xl mx-auto">
-          <div className="text-center mb-16">
-            <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
-              Arcus AI vs Your Current Marketing Agency
-            </h2>
-            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              See how Arcus compares to traditional marketing agencies across the metrics that matter most.
-            </p>
-          </div>
 
           <div className="space-y-12">
             {/* Turnaround Speed */}
