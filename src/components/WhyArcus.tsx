@@ -192,26 +192,15 @@ export default function WhyArcus({ onClose, onShowComingSoon, onShowContact, onS
                         2-3 weeks
                       </td>
                       <td className="py-4 px-6 text-center text-slate-900 font-semibold">
-                        2-4 hours
+                        48 hours
                       </td>
                     </tr>
                     <tr className="hover:bg-gray-50 transition-colors">
                       <td className="py-4 px-6 text-gray-900 font-medium">
-                        Creative Asset Production
+                        Landing Page
                       </td>
                       <td className="py-4 px-6 text-center text-gray-700">
-                        3-4 weeks
-                      </td>
-                      <td className="py-4 px-6 text-center text-slate-900 font-semibold">
-                        1-2 days
-                      </td>
-                    </tr>
-                    <tr className="hover:bg-gray-50 transition-colors">
-                      <td className="py-4 px-6 text-gray-900 font-medium">
-                        Campaign Launch
-                      </td>
-                      <td className="py-4 px-6 text-center text-gray-700">
-                        1-2 weeks
+                        2 weeks
                       </td>
                       <td className="py-4 px-6 text-center text-slate-900 font-semibold">
                         Same day
@@ -219,79 +208,35 @@ export default function WhyArcus({ onClose, onShowComingSoon, onShowContact, onS
                     </tr>
                     <tr className="hover:bg-gray-50 transition-colors">
                       <td className="py-4 px-6 text-gray-900 font-medium">
-                        Performance Reporting
+                        5-Page Website
                       </td>
                       <td className="py-4 px-6 text-center text-gray-700">
-                        Weekly/Monthly
+                        6-12 weeks
                       </td>
                       <td className="py-4 px-6 text-center text-slate-900 font-semibold">
-                        Real-time
+                        1 week
                       </td>
                     </tr>
                     <tr className="hover:bg-gray-50 transition-colors">
                       <td className="py-4 px-6 text-gray-900 font-medium">
-                        Campaign Optimization
+                        Video Ad (3x variation)
                       </td>
                       <td className="py-4 px-6 text-center text-gray-700">
-                        1-2 weeks
+                        4 weeks
                       </td>
                       <td className="py-4 px-6 text-center text-slate-900 font-semibold">
-                        Continuous
+                        Same day
                       </td>
                     </tr>
                     <tr className="hover:bg-gray-50 transition-colors">
                       <td className="py-4 px-6 text-gray-900 font-medium">
-                        A/B Testing Setup
+                        Social content
                       </td>
                       <td className="py-4 px-6 text-center text-gray-700">
-                        2-3 weeks
+                        3 weeks
                       </td>
                       <td className="py-4 px-6 text-center text-slate-900 font-semibold">
-                        Hours
-                      </td>
-                    </tr>
-                    <tr className="hover:bg-gray-50 transition-colors">
-                      <td className="py-4 px-6 text-gray-900 font-medium">
-                        Content Revisions
-                      </td>
-                      <td className="py-4 px-6 text-center text-gray-700">
-                        3-5 days
-                      </td>
-                      <td className="py-4 px-6 text-center text-slate-900 font-semibold">
-                        Minutes
-                      </td>
-                    </tr>
-                    <tr className="hover:bg-gray-50 transition-colors">
-                      <td className="py-4 px-6 text-gray-900 font-medium">
-                        Audience Research
-                      </td>
-                      <td className="py-4 px-6 text-center text-gray-700">
-                        1-2 weeks
-                      </td>
-                      <td className="py-4 px-6 text-center text-slate-900 font-semibold">
-                        1-2 hours
-                      </td>
-                    </tr>
-                    <tr className="hover:bg-gray-50 transition-colors">
-                      <td className="py-4 px-6 text-gray-900 font-medium">
-                        Multi-Channel Coordination
-                      </td>
-                      <td className="py-4 px-6 text-center text-gray-700">
-                        Ongoing/Complex
-                      </td>
-                      <td className="py-4 px-6 text-center text-slate-900 font-semibold">
-                        Automated
-                      </td>
-                    </tr>
-                    <tr className="hover:bg-gray-50 transition-colors">
-                      <td className="py-4 px-6 text-gray-900 font-medium">
-                        Response to Market Changes
-                      </td>
-                      <td className="py-4 px-6 text-center text-gray-700">
-                        Days to weeks
-                      </td>
-                      <td className="py-4 px-6 text-center text-slate-900 font-semibold">
-                        Hours
+                        Same day
                       </td>
                     </tr>
                   </tbody>
