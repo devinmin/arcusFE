@@ -47,7 +47,7 @@ export default function Navigation({
                 Product
               </button>
               {showProductDropdown && (
-                <div className="absolute top-full left-0 pt-2 w-56">
+                <div className="absolute top-full left-0 pt-2 w-64">
                   <div className="bg-white rounded-xl shadow-xl border border-gray-100 py-2">
                     <button onClick={() => { onShowProduct('marketing'); setShowProductDropdown(false); }} className="w-full text-left px-4 py-3 hover:bg-gray-50 text-gray-700 hover:text-gray-900 transition-colors">
                       Marketing
@@ -68,13 +68,13 @@ export default function Navigation({
                       UI/UX
                     </button>
                     <div className="border-t border-gray-100 my-2"></div>
-                    <button onClick={() => { onShowProduct('analytics'); setShowProductDropdown(false); }} className="w-full text-left px-4 py-3 hover:bg-gray-50 text-gray-700 hover:text-gray-900 transition-colors flex items-center justify-between">
+                    <button onClick={() => { onShowProduct('analytics'); setShowProductDropdown(false); }} className="w-full text-left px-4 py-3 hover:bg-gray-50 text-gray-700 hover:text-gray-900 transition-colors flex items-center justify-between gap-2">
                       <span>Analytics</span>
-                      <span className="text-xs bg-blue-100 text-blue-700 px-2 py-0.5 rounded-full">Coming Soon</span>
+                      <span className="text-xs bg-blue-100 text-blue-700 px-2 py-0.5 rounded-full whitespace-nowrap flex-shrink-0">Coming Soon</span>
                     </button>
-                    <button onClick={() => { onShowProduct('projectadmin'); setShowProductDropdown(false); }} className="w-full text-left px-4 py-3 hover:bg-gray-50 text-gray-700 hover:text-gray-900 transition-colors flex items-center justify-between">
+                    <button onClick={() => { onShowProduct('projectadmin'); setShowProductDropdown(false); }} className="w-full text-left px-4 py-3 hover:bg-gray-50 text-gray-700 hover:text-gray-900 transition-colors flex items-center justify-between gap-2">
                       <span>Project/Admin</span>
-                      <span className="text-xs bg-blue-100 text-blue-700 px-2 py-0.5 rounded-full">Coming Soon</span>
+                      <span className="text-xs bg-blue-100 text-blue-700 px-2 py-0.5 rounded-full whitespace-nowrap flex-shrink-0">Coming Soon</span>
                     </button>
                   </div>
                 </div>
