@@ -1,17 +1,16 @@
-import { Linkedin, Sparkles, Target, Users, Mail } from 'lucide-react';
+import { Sparkles, Target, Users, TrendingUp, Zap, CheckCircle2 } from 'lucide-react';
 import { useState, useEffect } from 'react';
 
-interface AboutProps {
+interface WhyArcusProps {
   onClose: () => void;
   onShowComingSoon: () => void;
   onShowContact: () => void;
   onShowProduct: (product: string) => void;
   onShowCodeModal: () => void;
-  onShowWhyArcus?: () => void;
-  onShowFAQ?: () => void;
+  onShowFAQ: () => void;
 }
 
-export default function About({ onClose, onShowComingSoon, onShowContact, onShowProduct, onShowCodeModal, onShowWhyArcus, onShowFAQ }: AboutProps) {
+export default function WhyArcus({ onClose, onShowComingSoon, onShowContact, onShowProduct, onShowCodeModal, onShowFAQ }: WhyArcusProps) {
   const [scrolled, setScrolled] = useState(false);
   const [showProductDropdown, setShowProductDropdown] = useState(false);
 
@@ -70,7 +69,7 @@ export default function About({ onClose, onShowComingSoon, onShowContact, onShow
                 )}
               </div>
               <button onClick={onClose} className="text-gray-600 hover:text-gray-900 transition-colors">How it Works</button>
-              <button onClick={onShowWhyArcus} className="text-gray-600 hover:text-gray-900 transition-colors">Why Arcus</button>
+              <button className="text-gray-600 hover:text-gray-900 transition-colors">Why Arcus</button>
               <button onClick={onClose} className="text-gray-600 hover:text-gray-900 transition-colors">About</button>
               <a
                 href="https://calendar.app.google/bL5Cn6kkYy98fpc46"
@@ -92,13 +91,13 @@ export default function About({ onClose, onShowComingSoon, onShowContact, onShow
       </nav>
 
       <div className="pt-32 pb-20 px-6">
-        <div className="max-w-4xl mx-auto">
-          <h1 className="text-5xl md:text-6xl font-bold text-gray-900 mb-4">
-            We built an AI so that you can handle your marketing
-            <br />
-            with just the top 20% of your staff
+        <div className="max-w-5xl mx-auto text-center">
+          <h1 className="text-5xl md:text-6xl font-bold text-gray-900 mb-6">
+            Why Choose Arcus?
           </h1>
-          <p className="text-xl text-gray-600">DC · Los Angeles · Seattle</p>
+          <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+            The marketing world is changing. AI is not the future—it's now. And the question isn't whether to use AI, but how to use it right.
+          </p>
         </div>
       </div>
 
@@ -106,17 +105,20 @@ export default function About({ onClose, onShowComingSoon, onShowContact, onShow
         <div className="max-w-6xl mx-auto">
           <div className="grid md:grid-cols-2 gap-16 items-center mb-20">
             <div>
-              <h2 className="text-4xl font-bold text-gray-900 mb-6">Who Are We?</h2>
-              <div className="prose prose-lg text-gray-700 space-y-4">
-                <p className="text-lg leading-relaxed">
-                  Marketers, AI engineers, and product developers with 40+ years combined experience across OMD, Publicis, WPP, and brands like Sofi. We've been CMOs, built products for Fortune 500s and startups, and worked across CPG, fintech, entertainment, and gaming.
+              <h2 className="text-4xl font-bold text-gray-900 mb-6">The Problem with Current AI Tools</h2>
+              <div className="space-y-4">
+                <p className="text-lg text-gray-700 leading-relaxed">
+                  Most companies are using AI wrong. They're treating it like a bunch of separate tools—one for writing, one for images, another for analytics, etc.
+                </p>
+                <p className="text-lg text-gray-700 leading-relaxed">
+                  The result? Fragmented workflows. Inconsistent quality. Hours spent stitching everything together. And the AI still doesn't understand your brand.
                 </p>
               </div>
             </div>
             <div className="rounded-2xl overflow-hidden shadow-2xl">
               <img
-                src="https://images.pexels.com/photos/3184418/pexels-photo-3184418.jpeg?auto=compress&cs=tinysrgb&w=1200"
-                alt="Team collaboration"
+                src="https://images.pexels.com/photos/5483077/pexels-photo-5483077.jpeg?auto=compress&cs=tinysrgb&w=1200"
+                alt="Fragmented tools"
                 className="w-full h-96 object-cover"
               />
             </div>
@@ -125,148 +127,126 @@ export default function About({ onClose, onShowComingSoon, onShowContact, onShow
           <div className="grid md:grid-cols-2 gap-16 items-center mb-20">
             <div className="rounded-2xl overflow-hidden shadow-2xl order-2 md:order-1">
               <img
-                src="https://images.pexels.com/photos/3184291/pexels-photo-3184291.jpeg?auto=compress&cs=tinysrgb&w=1200"
-                alt="Frustrated marketer"
+                src="https://images.pexels.com/photos/3184339/pexels-photo-3184339.jpeg?auto=compress&cs=tinysrgb&w=1200"
+                alt="Unified platform"
                 className="w-full h-96 object-cover"
               />
             </div>
             <div className="order-1 md:order-2">
-              <h2 className="text-4xl font-bold text-gray-900 mb-6">Why did we build this?</h2>
-              <div className="prose prose-lg text-gray-700 space-y-4">
-                <p className="text-lg leading-relaxed">
-                  <span className="font-semibold">First, hiring was a nightmare.</span> Finding great marketers takes 3-6 months. Training them takes another 6. And when they leave, you start over.
-                </p>
-                <p className="text-lg leading-relaxed">
-                  <span className="font-semibold">Second, AI worked—but it was scattered.</span> We'd use one tool for copy, another for creative, 8 other tools for research, scheduling, and reporting. Every campaign required duct-taping 10 platforms together.
-                </p>
-                <p className="text-lg leading-relaxed">
-                  So we built one system that does all of it. And we figured out how to download our brains into the AIs so it could think and produce based on knowledge of what actually works and what doesn't.
-                </p>
-              </div>
-            </div>
-          </div>
-
-          <div className="grid md:grid-cols-2 gap-16 items-center mb-20">
-            <div>
-              <h2 className="text-4xl font-bold text-gray-900 mb-6">What Problem Do We Want to Solve?</h2>
-              <div className="prose prose-lg text-gray-700 space-y-4">
-                <p className="text-lg leading-relaxed">
-                  Good marketers are expensive and hard to scale. You can't clone your best strategist. You can't afford 5 of them.
-                </p>
-                <p className="text-lg leading-relaxed">
-                  We wanted to create a system where one great marketer—augmented by AI—can output what used to require an entire team.
-                </p>
-              </div>
-            </div>
-            <div className="rounded-2xl overflow-hidden shadow-2xl">
-              <img
-                src="https://images.pexels.com/photos/3184465/pexels-photo-3184465.jpeg?auto=compress&cs=tinysrgb&w=1200"
-                alt="Strategic planning"
-                className="w-full h-96 object-cover"
-              />
-            </div>
-          </div>
-
-          <div className="bg-white rounded-3xl shadow-xl p-12 border border-gray-100">
-            <h2 className="text-3xl font-bold text-gray-900 mb-8 text-center">Now you have two options:</h2>
-            <div className="grid md:grid-cols-2 gap-8">
-              <div className="bg-gray-50 rounded-2xl p-8 border-2 border-gray-200">
-                <div className="text-6xl mb-4">😓</div>
+              <h2 className="text-4xl font-bold text-gray-900 mb-6">The Arcus Difference</h2>
+              <div className="space-y-4">
                 <p className="text-lg text-gray-700 leading-relaxed">
-                  Keep searching for great talent, hoping they stay, and paying $80K-$150K per head
+                  Arcus isn't just another AI tool. It's an autonomous marketing team that works together like real people.
                 </p>
-              </div>
-              <div className="bg-slate-50 rounded-2xl p-8 border-2 border-slate-700">
-                <div className="text-6xl mb-4">🚀</div>
-                <p className="text-lg text-gray-900 leading-relaxed font-medium">
-                  Let AI handle 90% of work while your best people focus on the 10% that actually moves the needle.
-                </p>
+                <div className="space-y-3">
+                  <div className="flex items-start">
+                    <CheckCircle2 className="w-6 h-6 text-green-600 mr-3 mt-1 flex-shrink-0" />
+                    <p className="text-lg text-gray-700">One platform. Everything connected.</p>
+                  </div>
+                  <div className="flex items-start">
+                    <CheckCircle2 className="w-6 h-6 text-green-600 mr-3 mt-1 flex-shrink-0" />
+                    <p className="text-lg text-gray-700">AI agents that understand your brand deeply.</p>
+                  </div>
+                  <div className="flex items-start">
+                    <CheckCircle2 className="w-6 h-6 text-green-600 mr-3 mt-1 flex-shrink-0" />
+                    <p className="text-lg text-gray-700">Real collaboration between specialized AI experts.</p>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
         </div>
       </div>
 
-      <div className="py-16 px-6">
-        <div className="max-w-4xl mx-auto">
-          <h2 className="text-3xl font-bold text-gray-900 mb-12 text-center">Meet Our Founders</h2>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            <div className="text-center space-y-4">
-              <div className="w-32 h-32 rounded-full mx-auto overflow-hidden">
-                <img
-                  src="/1754614138091.png"
-                  alt="Jordan Chen"
-                  className="w-full h-full object-cover"
-                />
+      <div className="py-20 px-6 bg-white">
+        <div className="max-w-6xl mx-auto">
+          <h2 className="text-4xl font-bold text-gray-900 mb-12 text-center">What Makes Arcus Special</h2>
+          <div className="grid md:grid-cols-3 gap-8">
+            <div className="bg-gray-50 rounded-2xl p-8 border border-gray-200">
+              <div className="w-12 h-12 bg-slate-700 rounded-xl flex items-center justify-center mb-4">
+                <Sparkles className="w-6 h-6 text-white" />
               </div>
-              <div>
-                <h3 className="text-xl font-semibold text-gray-900">Jordan Chen</h3>
-                <p className="text-gray-600">Co-Founder / CEO</p>
-              </div>
-              <p className="text-gray-700 text-sm">
-                Former Head of AI at a Fortune 500 marketing agency. PhD in Machine Learning from Stanford.
+              <h3 className="text-xl font-bold text-gray-900 mb-3">Truly Autonomous</h3>
+              <p className="text-gray-700 leading-relaxed">
+                Not just automation. Our AI agents make decisions, collaborate, and adapt—just like a real team would.
               </p>
-              <button className="text-gray-400 hover:text-gray-600 transition-colors">
-                <Linkedin className="w-5 h-5 mx-auto" />
-              </button>
             </div>
 
-            <div className="text-center space-y-4">
-              <div className="w-32 h-32 rounded-full mx-auto overflow-hidden">
-                <img
-                  src="/1751890423851.png"
-                  alt="Alex Rivera"
-                  className="w-full h-full object-cover"
-                />
+            <div className="bg-gray-50 rounded-2xl p-8 border border-gray-200">
+              <div className="w-12 h-12 bg-slate-700 rounded-xl flex items-center justify-center mb-4">
+                <Target className="w-6 h-6 text-white" />
               </div>
-              <div>
-                <h3 className="text-xl font-semibold text-gray-900">Alex Rivera</h3>
-                <p className="text-gray-600">Co-Founder / CTO</p>
-              </div>
-              <p className="text-gray-700 text-sm">
-                Led engineering at two successful AI startups. Expert in multi-agent systems and NLP.
+              <h3 className="text-xl font-bold text-gray-900 mb-3">Brand Intelligence</h3>
+              <p className="text-gray-700 leading-relaxed">
+                We've built a system that learns your brand voice, values, and strategy—then applies it consistently everywhere.
               </p>
-              <button className="text-gray-400 hover:text-gray-600 transition-colors">
-                <Linkedin className="w-5 h-5 mx-auto" />
-              </button>
             </div>
 
-            <div className="text-center space-y-4">
-              <div className="w-32 h-32 rounded-full mx-auto overflow-hidden">
-                <img
-                  src="/1703046610447.jpeg"
-                  alt="Maya Patel"
-                  className="w-full h-full object-cover"
-                />
+            <div className="bg-gray-50 rounded-2xl p-8 border border-gray-200">
+              <div className="w-12 h-12 bg-slate-700 rounded-xl flex items-center justify-center mb-4">
+                <Users className="w-6 h-6 text-white" />
               </div>
-              <div>
-                <h3 className="text-xl font-semibold text-gray-900">Maya Patel</h3>
-                <p className="text-gray-600">Co-Founder / CPO</p>
-              </div>
-              <p className="text-gray-700 text-sm">
-                8 years building marketing automation platforms at scale. Product visionary.
+              <h3 className="text-xl font-bold text-gray-900 mb-3">Multi-Agent System</h3>
+              <p className="text-gray-700 leading-relaxed">
+                Specialized AI agents work together—strategists, copywriters, designers—each an expert in their field.
               </p>
-              <button className="text-gray-400 hover:text-gray-600 transition-colors">
-                <Linkedin className="w-5 h-5 mx-auto" />
-              </button>
+            </div>
+
+            <div className="bg-gray-50 rounded-2xl p-8 border border-gray-200">
+              <div className="w-12 h-12 bg-slate-700 rounded-xl flex items-center justify-center mb-4">
+                <Zap className="w-6 h-6 text-white" />
+              </div>
+              <h3 className="text-xl font-bold text-gray-900 mb-3">Real-Time Adaptation</h3>
+              <p className="text-gray-700 leading-relaxed">
+                Continuously monitors performance and adjusts strategies based on what's working—24/7.
+              </p>
+            </div>
+
+            <div className="bg-gray-50 rounded-2xl p-8 border border-gray-200">
+              <div className="w-12 h-12 bg-slate-700 rounded-xl flex items-center justify-center mb-4">
+                <TrendingUp className="w-6 h-6 text-white" />
+              </div>
+              <h3 className="text-xl font-bold text-gray-900 mb-3">Enterprise Scale</h3>
+              <p className="text-gray-700 leading-relaxed">
+                Built to handle everything from startup growth to Fortune 500 campaigns across all channels.
+              </p>
+            </div>
+
+            <div className="bg-gray-50 rounded-2xl p-8 border border-gray-200">
+              <div className="w-12 h-12 bg-slate-700 rounded-xl flex items-center justify-center mb-4">
+                <CheckCircle2 className="w-6 h-6 text-white" />
+              </div>
+              <h3 className="text-xl font-bold text-gray-900 mb-3">Human in the Loop</h3>
+              <p className="text-gray-700 leading-relaxed">
+                You stay in control. Review, approve, or provide feedback. The AI learns from every interaction.
+              </p>
             </div>
           </div>
         </div>
       </div>
 
-      <div className="py-20 px-6 bg-gradient-to-br from-slate-50 to-gray-100">
-        <div className="max-w-4xl mx-auto text-center">
-          <Mail className="w-12 h-12 text-slate-700 mx-auto mb-4" />
-          <h2 className="text-3xl font-bold text-gray-900 mb-4">Join us in building the future</h2>
-          <p className="text-xl text-gray-600 mb-8">
-            We're always looking for talented people who want to make an impact.
+      <div className="py-20 px-6 bg-gradient-to-br from-slate-700 to-gray-900">
+        <div className="max-w-4xl mx-auto text-center text-white">
+          <h2 className="text-4xl font-bold mb-6">The Bottom Line</h2>
+          <p className="text-xl mb-8 leading-relaxed">
+            You can keep juggling 10 different AI tools and hoping your team can make them work together. Or you can get a complete autonomous marketing team that actually understands your business and executes like experts.
           </p>
-          <a
-            href="mailto:opportunities@userarcus.ai"
-            className="inline-block px-8 py-3 bg-slate-700 hover:bg-slate-800 text-white rounded-lg font-medium transition-colors"
-          >
-            Reach Out
-          </a>
+          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <a
+              href="https://calendar.app.google/bL5Cn6kkYy98fpc46"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="px-8 py-3 bg-white text-slate-700 rounded-full hover:bg-gray-100 transition-all hover:shadow-lg hover:scale-105 inline-block font-semibold"
+            >
+              Book a Call
+            </a>
+            <button
+              onClick={onShowCodeModal}
+              className="px-8 py-3 bg-transparent text-white border-2 border-white rounded-full hover:bg-white/10 transition-all hover:shadow-lg hover:scale-105 font-semibold"
+            >
+              Try Arcus
+            </button>
+          </div>
         </div>
       </div>
 
@@ -299,7 +279,7 @@ export default function About({ onClose, onShowComingSoon, onShowContact, onShow
             <div>
               <h4 className="font-semibold text-white mb-4">Company</h4>
               <ul className="space-y-2">
-                <li><button onClick={onShowWhyArcus} className="text-gray-400 hover:text-white transition-colors text-left">Why Arcus</button></li>
+                <li><button className="text-gray-400 hover:text-white transition-colors text-left">Why Arcus</button></li>
                 <li><button onClick={onClose} className="text-gray-400 hover:text-white transition-colors text-left">About</button></li>
                 <li><button onClick={onShowComingSoon} className="text-gray-400 hover:text-white transition-colors text-left">Blog</button></li>
                 <li><button onClick={onShowContact} className="text-gray-400 hover:text-white transition-colors text-left">Contact</button></li>

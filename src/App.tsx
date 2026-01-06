@@ -8,6 +8,8 @@ import ComingSoon from './components/ComingSoon';
 import About from './components/About';
 import ContactUs from './components/ContactUs';
 import ProductPage from './components/ProductPage';
+import WhyArcus from './components/WhyArcus';
+import FAQ from './components/FAQ';
 
 type CampaignStatus = 'idle' | 'analyzing' | 'complete';
 type ProductCategory = 'marketing' | 'creative' | 'media' | 'development' | 'spatial' | 'uiux' | null;
@@ -28,6 +30,8 @@ function App() {
   const [showComingSoon, setShowComingSoon] = useState(false);
   const [showAbout, setShowAbout] = useState(false);
   const [showContact, setShowContact] = useState(false);
+  const [showWhyArcus, setShowWhyArcus] = useState(false);
+  const [showFAQ, setShowFAQ] = useState(false);
   const [currentProduct, setCurrentProduct] = useState<ProductCategory>(null);
   const [showProductDropdown, setShowProductDropdown] = useState(false);
 
@@ -40,10 +44,10 @@ function App() {
   }, []);
 
   useEffect(() => {
-    if (!showAbout && !showComingSoon && !showContact) {
+    if (!showAbout && !showComingSoon && !showContact && !showWhyArcus && !showFAQ) {
       window.scrollTo(0, 0);
     }
-  }, [showAbout, showComingSoon, showContact]);
+  }, [showAbout, showComingSoon, showContact, showWhyArcus, showFAQ]);
 
   const handleCodeSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -131,6 +135,58 @@ function App() {
     return <ComingSoon onBack={() => setShowComingSoon(false)} />;
   }
 
+  if (showWhyArcus) {
+    return <WhyArcus
+      onClose={() => setShowWhyArcus(false)}
+      onShowComingSoon={() => {
+        setShowWhyArcus(false);
+        setShowComingSoon(true);
+      }}
+      onShowContact={() => {
+        setShowWhyArcus(false);
+        setShowContact(true);
+      }}
+      onShowProduct={(product) => {
+        setShowWhyArcus(false);
+        setCurrentProduct(product);
+      }}
+      onShowCodeModal={() => {
+        setShowWhyArcus(false);
+        setShowCodeModal(true);
+      }}
+      onShowFAQ={() => {
+        setShowWhyArcus(false);
+        setShowFAQ(true);
+      }}
+    />;
+  }
+
+  if (showFAQ) {
+    return <FAQ
+      onClose={() => setShowFAQ(false)}
+      onShowComingSoon={() => {
+        setShowFAQ(false);
+        setShowComingSoon(true);
+      }}
+      onShowContact={() => {
+        setShowFAQ(false);
+        setShowContact(true);
+      }}
+      onShowProduct={(product) => {
+        setShowFAQ(false);
+        setCurrentProduct(product);
+      }}
+      onShowCodeModal={() => {
+        setShowFAQ(false);
+        setShowCodeModal(true);
+      }}
+      onShowWhyArcus={() => {
+        setShowFAQ(false);
+        setShowWhyArcus(true);
+      }}
+    />;
+  }
+
   if (showAbout) {
     return <About
       onClose={() => setShowAbout(false)}
@@ -149,6 +205,14 @@ function App() {
       onShowCodeModal={() => {
         setShowAbout(false);
         setShowCodeModal(true);
+      }}
+      onShowWhyArcus={() => {
+        setShowAbout(false);
+        setShowWhyArcus(true);
+      }}
+      onShowFAQ={() => {
+        setShowAbout(false);
+        setShowFAQ(true);
       }}
     />;
   }
@@ -171,6 +235,14 @@ function App() {
       onShowCodeModal={() => {
         setShowContact(false);
         setShowCodeModal(true);
+      }}
+      onShowWhyArcus={() => {
+        setShowContact(false);
+        setShowWhyArcus(true);
+      }}
+      onShowFAQ={() => {
+        setShowContact(false);
+        setShowFAQ(true);
       }}
     />;
   }
@@ -201,6 +273,14 @@ function App() {
       onShowTryArcus={() => {
         setCurrentProduct(null);
         setShowCodeModal(true);
+      }}
+      onShowWhyArcus={() => {
+        setCurrentProduct(null);
+        setShowWhyArcus(true);
+      }}
+      onShowFAQ={() => {
+        setCurrentProduct(null);
+        setShowFAQ(true);
       }}
     />;
   }
@@ -553,13 +633,8 @@ function App() {
                 )}
               </div>
               <a href="#how-it-works" className="text-gray-600 hover:text-gray-900 transition-colors">How it Works</a>
+              <button onClick={() => setShowWhyArcus(true)} className="text-gray-600 hover:text-gray-900 transition-colors">Why Arcus</button>
               <button onClick={() => setShowAbout(true)} className="text-gray-600 hover:text-gray-900 transition-colors">About</button>
-              <button
-                onClick={() => setShowCodeModal(true)}
-                className="px-6 py-2.5 bg-white text-slate-700 border-2 border-slate-700 rounded-full hover:bg-slate-50 transition-all hover:shadow-lg hover:scale-105"
-              >
-                Try Arcus
-              </button>
               <a
                 href="https://calendar.app.google/bL5Cn6kkYy98fpc46"
                 target="_blank"
@@ -568,6 +643,12 @@ function App() {
               >
                 Book a Call
               </a>
+              <button
+                onClick={() => setShowCodeModal(true)}
+                className="px-6 py-2.5 bg-white text-slate-700 border-2 border-slate-700 rounded-full hover:bg-slate-50 transition-all hover:shadow-lg hover:scale-105"
+              >
+                Try Arcus
+              </button>
             </div>
           </div>
         </div>
@@ -1092,9 +1173,11 @@ function App() {
             <div>
               <h4 className="font-semibold text-white mb-4">Company</h4>
               <ul className="space-y-2">
+                <li><button onClick={() => setShowWhyArcus(true)} className="text-gray-400 hover:text-white transition-colors text-left">Why Arcus</button></li>
                 <li><button onClick={() => setShowAbout(true)} className="text-gray-400 hover:text-white transition-colors text-left">About</button></li>
                 <li><button onClick={() => setShowComingSoon(true)} className="text-gray-400 hover:text-white transition-colors text-left">Blog</button></li>
                 <li><button onClick={() => setShowContact(true)} className="text-gray-400 hover:text-white transition-colors text-left">Contact</button></li>
+                <li><button onClick={() => setShowFAQ(true)} className="text-gray-400 hover:text-white transition-colors text-left">FAQ</button></li>
               </ul>
             </div>
           </div>

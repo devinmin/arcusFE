@@ -7,9 +7,11 @@ interface ContactUsProps {
   onShowAbout: () => void;
   onShowProduct: (product: string) => void;
   onShowCodeModal: () => void;
+  onShowWhyArcus?: () => void;
+  onShowFAQ?: () => void;
 }
 
-export default function ContactUs({ onClose, onShowComingSoon, onShowAbout, onShowProduct, onShowCodeModal }: ContactUsProps) {
+export default function ContactUs({ onClose, onShowComingSoon, onShowAbout, onShowProduct, onShowCodeModal, onShowWhyArcus, onShowFAQ }: ContactUsProps) {
   const [scrolled, setScrolled] = useState(false);
   const [showProductDropdown, setShowProductDropdown] = useState(false);
   const [fullName, setFullName] = useState('');
@@ -112,13 +114,8 @@ export default function ContactUs({ onClose, onShowComingSoon, onShowAbout, onSh
                 )}
               </div>
               <button onClick={onClose} className="text-gray-600 hover:text-gray-900 transition-colors">How it Works</button>
+              <button onClick={onShowWhyArcus} className="text-gray-600 hover:text-gray-900 transition-colors">Why Arcus</button>
               <button onClick={onShowAbout} className="text-gray-600 hover:text-gray-900 transition-colors">About</button>
-              <button
-                onClick={onShowCodeModal}
-                className="px-6 py-2.5 bg-white text-slate-700 border-2 border-slate-700 rounded-full hover:bg-slate-50 transition-all hover:shadow-lg hover:scale-105"
-              >
-                Try Arcus
-              </button>
               <a
                 href="https://calendar.app.google/bL5Cn6kkYy98fpc46"
                 target="_blank"
@@ -127,6 +124,12 @@ export default function ContactUs({ onClose, onShowComingSoon, onShowAbout, onSh
               >
                 Book a Call
               </a>
+              <button
+                onClick={onShowCodeModal}
+                className="px-6 py-2.5 bg-white text-slate-700 border-2 border-slate-700 rounded-full hover:bg-slate-50 transition-all hover:shadow-lg hover:scale-105"
+              >
+                Try Arcus
+              </button>
             </div>
           </div>
         </div>
@@ -283,9 +286,11 @@ export default function ContactUs({ onClose, onShowComingSoon, onShowAbout, onSh
             <div>
               <h4 className="font-semibold text-white mb-4">Company</h4>
               <ul className="space-y-2">
+                <li><button onClick={onShowWhyArcus} className="text-gray-400 hover:text-white transition-colors text-left">Why Arcus</button></li>
                 <li><button onClick={onShowAbout} className="text-gray-400 hover:text-white transition-colors text-left">About</button></li>
                 <li><button onClick={onShowComingSoon} className="text-gray-400 hover:text-white transition-colors text-left">Blog</button></li>
                 <li><button className="text-gray-400 hover:text-white transition-colors text-left">Contact</button></li>
+                <li><button onClick={onShowFAQ} className="text-gray-400 hover:text-white transition-colors text-left">FAQ</button></li>
               </ul>
             </div>
           </div>
