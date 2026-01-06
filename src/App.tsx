@@ -1,4 +1,4 @@
-import { ArrowRight, Sparkles, Target, TrendingUp, Users, Zap, CheckCircle2, BarChart3, X, Globe, Briefcase, Bot } from 'lucide-react';
+import { ArrowRight, Sparkles, Target, TrendingUp, Users, Zap, CheckCircle2, BarChart3, X, Globe, Briefcase, Bot, User } from 'lucide-react';
 import { useState, useEffect } from 'react';
 import { supabase, Campaign } from './lib/supabase';
 import { generateCampaign, CampaignResult } from './lib/api';
@@ -771,106 +771,72 @@ function App() {
           </div>
 
           {/* Comparison Graphic */}
-          <div className="mb-16">
-            <div className="bg-gradient-to-br from-slate-50 to-blue-50 rounded-3xl p-8 md:p-12 border border-slate-200 shadow-lg">
-              <div className="grid grid-cols-1 md:grid-cols-[1fr_auto_1fr] gap-8 items-center">
-                {/* Human Expert Side */}
-                <div className="bg-white rounded-2xl p-8 shadow-sm">
-                  <h3 className="text-2xl md:text-3xl font-bold text-slate-700 mb-6">
-                    HUMAN SENIOR MARKETER
-                  </h3>
-                  <div className="space-y-4">
-                    <div className="flex items-start space-x-3">
-                      <div className="w-2 h-2 bg-slate-700 rounded-full mt-2 flex-shrink-0"></div>
-                      <p className="text-gray-700 text-lg">Decades of experience</p>
-                    </div>
-                    <div className="flex items-start space-x-3">
-                      <div className="w-2 h-2 bg-slate-700 rounded-full mt-2 flex-shrink-0"></div>
-                      <p className="text-gray-700 text-lg">Proven track record</p>
-                    </div>
-                    <div className="flex items-start space-x-3">
-                      <div className="w-2 h-2 bg-slate-700 rounded-full mt-2 flex-shrink-0"></div>
-                      <p className="text-gray-700 text-lg">Strategic thinking</p>
-                    </div>
-                    <div className="flex items-start space-x-3">
-                      <div className="w-2 h-2 bg-slate-700 rounded-full mt-2 flex-shrink-0"></div>
-                      <p className="text-gray-700 text-lg">Results-driven approach</p>
-                    </div>
-                  </div>
+          <div className="grid grid-cols-1 md:grid-cols-[1fr_auto_1fr] gap-8 items-stretch max-w-6xl mx-auto">
+            {/* Human Expert Side */}
+            <div className="bg-white rounded-2xl p-10 shadow-lg border border-gray-200">
+              <div className="flex items-center space-x-4 mb-8">
+                <div className="w-20 h-20 bg-gradient-to-br from-slate-600 to-slate-800 rounded-2xl flex items-center justify-center flex-shrink-0">
+                  <User className="w-10 h-10 text-white" />
                 </div>
-
-                {/* Plus Sign */}
-                <div className="flex justify-center">
-                  <div className="w-16 h-16 md:w-20 md:h-20 bg-slate-700 rounded-2xl flex items-center justify-center transform hover:scale-110 transition-transform">
-                    <span className="text-white text-4xl md:text-5xl font-bold">+</span>
-                  </div>
-                </div>
-
-                {/* AI Technology Side */}
-                <div className="bg-white rounded-2xl p-8 shadow-sm">
-                  <h3 className="text-2xl md:text-3xl font-bold text-slate-700 mb-6">
-                    AI TECHNOLOGY
-                  </h3>
-                  <div className="space-y-4">
-                    <div className="flex items-start space-x-3">
-                      <div className="w-2 h-2 bg-slate-700 rounded-full mt-2 flex-shrink-0"></div>
-                      <p className="text-gray-700 text-lg">Works 24/7 without breaks</p>
-                    </div>
-                    <div className="flex items-start space-x-3">
-                      <div className="w-2 h-2 bg-slate-700 rounded-full mt-2 flex-shrink-0"></div>
-                      <p className="text-gray-700 text-lg">Scales instantly</p>
-                    </div>
-                    <div className="flex items-start space-x-3">
-                      <div className="w-2 h-2 bg-slate-700 rounded-full mt-2 flex-shrink-0"></div>
-                      <p className="text-gray-700 text-lg">Data-driven optimization</p>
-                    </div>
-                    <div className="flex items-start space-x-3">
-                      <div className="w-2 h-2 bg-slate-700 rounded-full mt-2 flex-shrink-0"></div>
-                      <p className="text-gray-700 text-lg">Continuous learning</p>
-                    </div>
-                  </div>
-                </div>
+                <h3 className="text-2xl md:text-3xl font-bold text-slate-700">
+                  HUMAN SENIOR MARKETER
+                </h3>
               </div>
-
-              {/* Equals Result */}
-              <div className="mt-8 text-center">
-                <div className="inline-flex items-center justify-center space-x-3 mb-4">
-                  <div className="w-12 h-1 bg-slate-700"></div>
-                  <span className="text-3xl font-bold text-slate-700">=</span>
-                  <div className="w-12 h-1 bg-slate-700"></div>
+              <div className="space-y-4">
+                <div className="flex items-start space-x-3">
+                  <CheckCircle2 className="w-6 h-6 text-slate-700 flex-shrink-0 mt-0.5" />
+                  <p className="text-gray-700 text-lg">Only work with senior talent</p>
                 </div>
-                <div className="bg-slate-700 rounded-2xl p-8 max-w-2xl mx-auto">
-                  <h3 className="text-3xl md:text-4xl font-bold text-white mb-4">
-                    ARCUS AI AGENTS
-                  </h3>
-                  <p className="text-slate-100 text-lg">
-                    Senior-level marketing expertise combined with AI efficiency, delivering exceptional results at unprecedented speed and scale
-                  </p>
+                <div className="flex items-start space-x-3">
+                  <CheckCircle2 className="w-6 h-6 text-slate-700 flex-shrink-0 mt-0.5" />
+                  <p className="text-gray-700 text-lg">Owns your marketing</p>
+                </div>
+                <div className="flex items-start space-x-3">
+                  <CheckCircle2 className="w-6 h-6 text-slate-700 flex-shrink-0 mt-0.5" />
+                  <p className="text-gray-700 text-lg">Weekly strategy sessions</p>
+                </div>
+                <div className="flex items-start space-x-3">
+                  <CheckCircle2 className="w-6 h-6 text-slate-700 flex-shrink-0 mt-0.5" />
+                  <p className="text-gray-700 text-lg">Accountable for results</p>
                 </div>
               </div>
             </div>
-          </div>
 
-          {/* Supporting Image and Text */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
-            <div>
-              <img
-                src="https://images.pexels.com/photos/7598024/pexels-photo-7598024.jpeg?auto=compress&cs=tinysrgb&w=1200"
-                alt="Marketing Strategy"
-                className="rounded-2xl shadow-xl w-full h-[400px] object-cover"
-              />
+            {/* Plus Sign */}
+            <div className="flex items-center justify-center">
+              <div className="w-16 h-16 md:w-20 md:h-20 bg-slate-700 rounded-2xl flex items-center justify-center transform hover:scale-110 transition-transform shadow-lg">
+                <span className="text-white text-4xl md:text-5xl font-bold">+</span>
+              </div>
             </div>
-            <div>
-              <h3 className="text-3xl font-bold text-gray-900 mb-4">The Best of Both Worlds</h3>
-              <p className="text-lg text-gray-600 mb-4">
-                We've captured the knowledge, strategies, and decision-making patterns of top marketers who have generated millions in revenue.
-              </p>
-              <p className="text-lg text-gray-600 mb-4">
-                Then we combined it with AI's ability to work around the clock, analyze data in real-time, and execute at scale.
-              </p>
-              <p className="text-lg text-gray-600">
-                We value experiments that prove results. Every strategy is tested, measured, and optimized.
-              </p>
+
+            {/* AI Technology Side */}
+            <div className="bg-white rounded-2xl p-10 shadow-lg border border-gray-200">
+              <div className="flex items-center space-x-4 mb-8">
+                <div className="w-20 h-20 bg-gradient-to-br from-blue-500 to-blue-700 rounded-2xl flex items-center justify-center flex-shrink-0">
+                  <Bot className="w-10 h-10 text-white" />
+                </div>
+                <h3 className="text-2xl md:text-3xl font-bold text-slate-700">
+                  AI EMPLOYEE TEAM
+                </h3>
+              </div>
+              <div className="space-y-4">
+                <div className="flex items-start space-x-3">
+                  <CheckCircle2 className="w-6 h-6 text-blue-600 flex-shrink-0 mt-0.5" />
+                  <p className="text-gray-700 text-lg">60+ specialists</p>
+                </div>
+                <div className="flex items-start space-x-3">
+                  <CheckCircle2 className="w-6 h-6 text-blue-600 flex-shrink-0 mt-0.5" />
+                  <p className="text-gray-700 text-lg">Scale instantly and efficiently</p>
+                </div>
+                <div className="flex items-start space-x-3">
+                  <CheckCircle2 className="w-6 h-6 text-blue-600 flex-shrink-0 mt-0.5" />
+                  <p className="text-gray-700 text-lg">Operates 24/7 and no turnover</p>
+                </div>
+                <div className="flex items-start space-x-3">
+                  <CheckCircle2 className="w-6 h-6 text-blue-600 flex-shrink-0 mt-0.5" />
+                  <p className="text-gray-700 text-lg">Evolves with your brand</p>
+                </div>
+              </div>
             </div>
           </div>
         </div>
