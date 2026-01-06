@@ -584,14 +584,14 @@ function App() {
             </div>
 
             <h1 className="text-6xl md:text-7xl font-bold text-gray-900 mb-6 leading-tight">
-              Launch Campaigns in
+              Cut non-working marketing dollars
               <span className="block text-slate-700">
-                <s>Weeks</s> Hours
+                by ~85%.
               </span>
             </h1>
 
             <p className="text-xl text-gray-600 mb-10 leading-relaxed max-w-2xl mx-auto">
-              Arcus AI can cut non-working marketing dollars by ~85%.
+              Launch Campaigns in <s>Weeks</s> Hours
             </p>
 
               <p className="text-xl text-gray-600 mb-10 leading-relaxed max-w-2xl mx-auto">
