@@ -20,7 +20,7 @@ export default function Footer({
   return (
     <footer className="py-12 px-6 bg-gray-900">
       <div className="max-w-7xl mx-auto">
-        <div className="grid grid-cols-1 md:grid-cols-[3fr_2fr_1fr] gap-8 mb-8">
+        <div className="grid grid-cols-1 md:grid-cols-[3fr_1fr_1fr] gap-8 mb-8">
           <div>
             <div className="mb-4">
               <button onClick={onLogoClick} className="cursor-pointer">
