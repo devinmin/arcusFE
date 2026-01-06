@@ -165,7 +165,7 @@ export function BrandIntelligence({ jsonData, extractedImages, guidelines }: Bra
             {extractedColors.length > 0 && (
               <div>
                 <h4 className="text-lg font-semibold text-gray-900 mb-4">Color Palette</h4>
-                <div className="space-y-6">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                   <div>
                     <p className="text-sm font-medium text-gray-600 mb-3">Primary Colors</p>
                     <div className="grid grid-cols-3 gap-6">
@@ -187,16 +187,16 @@ export function BrandIntelligence({ jsonData, extractedImages, guidelines }: Bra
                   {extractedColors.filter(c => c.type === 'secondary').length > 0 && (
                     <div>
                       <p className="text-sm font-medium text-gray-600 mb-3">Secondary Colors</p>
-                      <div className="grid grid-cols-6 gap-4">
+                      <div className="grid grid-cols-3 gap-6">
                         {extractedColors.filter(c => c.type === 'secondary').map((color, idx) => (
                           <div key={idx} className="group flex flex-col items-center">
                             <div
-                              className="w-20 h-20 rounded-full shadow-md transition-all group-hover:shadow-lg border-4 border-white ring-2 ring-gray-200"
+                              className="w-32 h-32 rounded-full shadow-md transition-all group-hover:shadow-lg border-4 border-white ring-2 ring-gray-200"
                               style={{ backgroundColor: color.hex }}
                             />
-                            <div className="mt-2 text-center">
-                              <div className="text-xs font-semibold text-gray-900">{color.name}</div>
-                              <div className="text-xs font-mono text-gray-600 mt-1">{color.hex}</div>
+                            <div className="mt-3 text-center">
+                              <div className="text-sm font-semibold text-gray-900">{color.name}</div>
+                              <div className="text-sm font-mono text-gray-600 mt-1">{color.hex}</div>
                             </div>
                           </div>
                         ))}
