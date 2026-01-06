@@ -50,13 +50,13 @@ export default function WhyArcus({ onClose, onShowComingSoon, onShowContact, onS
                 <div>
                   <p className="text-sm font-semibold text-gray-500 uppercase tracking-wide mb-3">Your Current Marketing Agency</p>
                   <p className="text-gray-700 leading-relaxed">
-                    Slow turnarounds due to multiple approval layers, timezone delays, and resource constraints. Projects that should take days often take weeks.
+                    Slow turnarounds due to multiple approval layers, timezone delays, and resource constraints.
                   </p>
                 </div>
                 <div>
                   <p className="text-sm font-semibold text-slate-700 uppercase tracking-wide mb-3">Arcus AI</p>
                   <p className="text-gray-900 leading-relaxed font-medium">
-                    Operates 24/7 with no timezone delays. AI agents work continuously, delivering results in hours, not weeks. Your marketing never sleeps.
+                    Operates 24/7 with no delays - delivering results in hours, not weeks.
                   </p>
                 </div>
               </div>
@@ -69,13 +69,13 @@ export default function WhyArcus({ onClose, onShowComingSoon, onShowContact, onS
                 <div>
                   <p className="text-sm font-semibold text-gray-500 uppercase tracking-wide mb-3">Your Current Marketing Agency</p>
                   <p className="text-gray-700 leading-relaxed">
-                    Templatized, generic work that looks like everyone else's. Agencies often reuse the same strategies and creative approaches across multiple clients.
+                    Templatized, generic work that looks like everyone else's. Agencies often reuse the same strategies.
                   </p>
                 </div>
                 <div>
                   <p className="text-sm font-semibold text-slate-700 uppercase tracking-wide mb-3">Arcus AI</p>
                   <p className="text-gray-900 leading-relaxed font-medium">
-                    Tailored strategy & execution built specifically for your brand. Our AI learns your unique voice, audience, and goals to create truly custom campaigns.
+                    Tailored strategy & execution built specifically for your brand. Our AI learns to create truly custom campaigns.
                   </p>
                 </div>
               </div>
@@ -88,13 +88,13 @@ export default function WhyArcus({ onClose, onShowComingSoon, onShowContact, onS
                 <div>
                   <p className="text-sm font-semibold text-gray-500 uppercase tracking-wide mb-3">Your Current Marketing Agency</p>
                   <p className="text-gray-700 leading-relaxed">
-                    Charges for revisions after the initial round, creating friction and budget concerns. This often results in settling for "good enough" instead of great.
+                    Charges for revisions after the initial round, creating friction and budget concerns often resulting "good enough".
                   </p>
                 </div>
                 <div>
                   <p className="text-sm font-semibold text-slate-700 uppercase tracking-wide mb-3">Arcus AI</p>
                   <p className="text-gray-900 leading-relaxed font-medium">
-                    Unlimited revisions included. Iterate as much as you need without worrying about extra costs. Perfect your campaigns without budget constraints.
+                    Unlimited revisions included. Iterate as much as you need without worrying about extra costs.
                   </p>
                 </div>
               </div>
@@ -107,13 +107,13 @@ export default function WhyArcus({ onClose, onShowComingSoon, onShowContact, onS
                 <div>
                   <p className="text-sm font-semibold text-gray-500 uppercase tracking-wide mb-3">Your Current Marketing Agency</p>
                   <p className="text-gray-700 leading-relaxed">
-                    Junior personnel doing the majority of work while you pay senior rates. Your campaigns are often handled by those still learning on the job.
+                    Junior personnel doing the majority of work while you pay senior rates.
                   </p>
                 </div>
                 <div>
                   <p className="text-sm font-semibold text-slate-700 uppercase tracking-wide mb-3">Arcus AI</p>
                   <p className="text-gray-900 leading-relaxed font-medium">
-                    AI trained on decades of marketing expertise + only work with senior human talent. Every decision is informed by best practices and expert oversight.
+                    AI trained on decades of marketing expertise + only work with senior human talent.
                   </p>
                 </div>
               </div>
@@ -126,13 +126,13 @@ export default function WhyArcus({ onClose, onShowComingSoon, onShowContact, onS
                 <div>
                   <p className="text-sm font-semibold text-gray-500 uppercase tracking-wide mb-3">Your Current Marketing Agency</p>
                   <p className="text-gray-700 leading-relaxed">
-                    Blames you for not spending enough when a campaign fails. Lack of transparency makes it hard to understand what's actually working and why.
+                    Blames you for not spending enough when a campaign fails without understanding what's actually working and why.
                   </p>
                 </div>
                 <div>
                   <p className="text-sm font-semibold text-slate-700 uppercase tracking-wide mb-3">Arcus AI</p>
                   <p className="text-gray-900 leading-relaxed font-medium">
-                    Shows you exactly what failed and tests new angles—free. Complete transparency with real-time analytics and automatic optimization based on performance.
+                    Shows you exactly what failed and tests new angles—free with complete transparency.
                   </p>
                 </div>
               </div>
