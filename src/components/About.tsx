@@ -164,7 +164,7 @@ export default function About({ onClose, onShowComingSoon, onShowContact, onShow
               <p className="text-gray-700 text-sm">
                 Led marketing in media & analytics. Worked with different brands and media in different brand lifecycles.
               </p>
-              <button className="text-gray-400 hover:text-gray-600 transition-colors" onclick="window.open('http://google.com','_blank')">
+              <button onclick="window.open('http://google.com','_blank')">
                 <Linkedin className="w-5 h-5 mx-auto"/>
               </button>
             </div>
