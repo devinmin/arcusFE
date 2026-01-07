@@ -166,7 +166,7 @@ export default function About({ onClose, onShowComingSoon, onShowContact, onShow
               </p>
               <button   onClick={() =>
     window.open(
-      "https://www.linkedin.com/in/USERNAME",
+      "linkedin.com/in/min-je-kwak-a8731117",
       "_blank",
       "noopener,noreferrer"
     )
