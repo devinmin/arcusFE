@@ -144,7 +144,13 @@ export default function About({ onClose, onShowComingSoon, onShowContact, onShow
               <p className="text-gray-700 text-sm">
                 Former Marketing exec in banking, big tech, and AI. Expert in multi-agent systems and NLP.
               </p>
-              <button className="text-gray-400 hover:text-gray-600 transition-colors">
+              <button onClick={() =>
+    window.open(
+      "https://www.linkedin.com/in/nazeemahmed/",
+      "_blank",
+      "noopener,noreferrer"
+    )
+  } className="text-gray-400 hover:text-gray-600 transition-colors">
                 <Linkedin className="w-5 h-5 mx-auto" />
               </button>
             </div>
