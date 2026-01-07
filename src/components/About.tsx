@@ -138,11 +138,11 @@ export default function About({ onClose, onShowComingSoon, onShowContact, onShow
                 />
               </div>
               <div>
-                <h3 className="text-xl font-semibold text-gray-900">Jordan Chen</h3>
-                <p className="text-gray-600">Co-Founder / CEO</p>
+                <h3 className="text-xl font-semibold text-gray-900">Nazeem Ahmed</h3>
+                <p className="text-gray-600">Co-Founder</p>
               </div>
               <p className="text-gray-700 text-sm">
-                Former Head of AI at a Fortune 500 marketing agency. PhD in Machine Learning from Stanford.
+                Former Marketing exec in banking, big tech, and AI. Expert in multi-agent systems and NLP.
               </p>
               <button className="text-gray-400 hover:text-gray-600 transition-colors">
                 <Linkedin className="w-5 h-5 mx-auto" />
@@ -158,11 +158,11 @@ export default function About({ onClose, onShowComingSoon, onShowContact, onShow
                 />
               </div>
               <div>
-                <h3 className="text-xl font-semibold text-gray-900">Alex Rivera</h3>
-                <p className="text-gray-600">Co-Founder / CTO</p>
+                <h3 className="text-xl font-semibold text-gray-900">Min Je Kwak</h3>
+                <p className="text-gray-600">Co-Founder</p>
               </div>
               <p className="text-gray-700 text-sm">
-                Led engineering at two successful AI startups. Expert in multi-agent systems and NLP.
+                Led marketing in media & analytics. Worked with different brands and media in different brand lifecycles.
               </p>
               <button className="text-gray-400 hover:text-gray-600 transition-colors">
                 <Linkedin className="w-5 h-5 mx-auto" />
@@ -178,11 +178,11 @@ export default function About({ onClose, onShowComingSoon, onShowContact, onShow
                 />
               </div>
               <div>
-                <h3 className="text-xl font-semibold text-gray-900">Maya Patel</h3>
-                <p className="text-gray-600">Co-Founder / CPO</p>
+                <h3 className="text-xl font-semibold text-gray-900">Devin Min</h3>
+                <p className="text-gray-600">Co-Founder</p>
               </div>
               <p className="text-gray-700 text-sm">
-                8 years building marketing automation platforms at scale. Product visionary.
+                12+ years building products in different verticals - recently, automation platforms at scale.
               </p>
               <button className="text-gray-400 hover:text-gray-600 transition-colors">
                 <Linkedin className="w-5 h-5 mx-auto" />
