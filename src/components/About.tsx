@@ -44,17 +44,23 @@ export default function About({ onClose, onShowComingSoon, onShowContact, onShow
         <div className="max-w-6xl mx-auto">
           <div className="grid md:grid-cols-2 gap-16 items-center mb-20">
             <div>
-              <h2 className="text-4xl font-bold text-gray-900 mb-6">Who Are We?</h2>
+              <h2 className="text-4xl font-bold text-gray-900 mb-6">Why did we build this?</h2>
               <div className="prose prose-lg text-gray-700 space-y-4">
+                               <p className="text-lg leading-relaxed">
+                  <span className="font-semibold">First, hiring was a nightmare.</span> Finding great marketers takes 3-6 months. Training them takes another 6. And when they leave, you start over.
+                </p>
                 <p className="text-lg leading-relaxed">
-                  Marketers, AI engineers, and product developers with 40+ years combined experience across OMD, Publicis, WPP, and brands like SoFi. We've been CMOs, built products for Fortune 500s and startups, and worked across CPG, fintech, entertainment, and gaming.
+                  <span className="font-semibold">Second, AI worked - but it was scattered.</span> We'd use one tool for copy, another for creative, 8 other tools for research, scheduling, and reporting. Every campaign required duct-taping 10 platforms together.
+                </p>
+                <p className="text-lg leading-relaxed">
+                  So we building one system that does all of it. And we figured out how to download our brains into the AIs so it could think and produce based on knowledge of what actually works and what doesn't.
                 </p>
               </div>
             </div>
             <div className="rounded-2xl overflow-hidden shadow-2xl">
               <img
-                src="https://images.pexels.com/photos/3184418/pexels-photo-3184418.jpeg?auto=compress&cs=tinysrgb&w=1200"
-                alt="Team collaboration"
+                src="https://images.pexels.com/photos/3184325/pexels-photo-3184325.jpeg?auto=compress&cs=tinysrgb&w=1200"
+                alt="Frustrated marketer"
                 className="w-full h-96 object-cover"
               />
             </div>
