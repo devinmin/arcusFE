@@ -107,12 +107,14 @@ export default function Navigation({
             </div>
 
             {/* Mobile Menu Button */}
+            <div className="md:hidden justify-self-end col-start-3">
             <button
               onClick={() => setShowMobileMenu(!showMobileMenu)}
               className="md:hidden p-2 text-gray-600 hover:text-gray-900 transition-colors"
             >
               {showMobileMenu ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
             </button>
+              </div>
           </div>
         </div>
       </nav>
