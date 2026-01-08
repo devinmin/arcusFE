@@ -98,7 +98,7 @@ export default function About({ onClose, onShowComingSoon, onShowContact, onShow
             </div>
             <div className="rounded-2xl overflow-hidden shadow-2xl">
               <img
-                src="https://images.pexels.com/photos/3184465/pexels-photo-3184465.jpeg?auto=compress&cs=tinysrgb&w=1200"
+                src="https://images.pexels.com/photos/7598012/pexels-photo-7598012.jpeg?auto=compress&cs=tinysrgb&w=1200"
                 alt="Strategic planning"
                 className="w-full h-96 object-cover"
               />
