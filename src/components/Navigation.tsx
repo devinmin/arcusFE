@@ -34,7 +34,7 @@ export default function Navigation({
     <>
       <nav className={`fixed w-full z-50 transition-all duration-300 ${scrolled ? 'bg-white/95 backdrop-blur-md shadow-sm' : 'bg-transparent'}`}>
         <div className="max-w-7xl mx-auto px-6 py-4">
-          <div className="grid grid-cols-[auto,1fr,auto] items-center">
+          <div className="grid grid-cols-[1fr,auto,1fr] items-center">
             <div className="justify-self-start">
   <button onClick={onLogoClick}>
     <img src="/arcusai.png" alt="Arcus AI" className="h-8" />
