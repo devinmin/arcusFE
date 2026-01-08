@@ -85,11 +85,11 @@ export default function Navigation({
                   </div>
                 )}
               </div>
-  <button onClick={onShowWhyArcus}>Why Arcus</button>
-  <button onClick={onShowAbout}>About</button>
-</div>
+              <button onClick={onShowWhyArcus} className="text-gray-600 hover:text-gray-900 transition-colors">Why Arcus</button>
+              <button onClick={onShowAbout} className="text-gray-600 hover:text-gray-900 transition-colors">About</button>
+            </div>
 
-            <div className="hidden md:flex items-center space-x-4">
+            <div className="hidden md:flex justify-self-end items-center space-x-4">
               <a
                 href="https://calendar.app.google/bL5Cn6kkYy98fpc46"
                 target="_blank"
