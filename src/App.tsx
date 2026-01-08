@@ -41,6 +41,30 @@ function App() {
     }
   }, [showAbout, showComingSoon, showContact, showWhyArcus, showFAQ]);
 
+  useEffect(() => {
+    const handlePopState = (event: PopStateEvent) => {
+      const state = event.state;
+      if (state) {
+        setShowAbout(state.page === 'about');
+        setShowContact(state.page === 'contact');
+        setShowWhyArcus(state.page === 'why-arcus');
+        setShowFAQ(state.page === 'faq');
+        setShowComingSoon(state.page === 'coming-soon');
+        setCurrentProduct(state.product || null);
+      } else {
+        setShowAbout(false);
+        setShowContact(false);
+        setShowWhyArcus(false);
+        setShowFAQ(false);
+        setShowComingSoon(false);
+        setCurrentProduct(null);
+      }
+    };
+
+    window.addEventListener('popstate', handlePopState);
+    return () => window.removeEventListener('popstate', handlePopState);
+  }, []);
+
   const handleCodeSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsLoading(true);
@@ -123,156 +147,104 @@ function App() {
     setCampaignData(null);
   };
 
+  const navigateTo = (page: string, product?: ProductCategory) => {
+    const state = { page, product };
+    window.history.pushState(state, '', `/${page}`);
+
+    setShowAbout(page === 'about');
+    setShowContact(page === 'contact');
+    setShowWhyArcus(page === 'why-arcus');
+    setShowFAQ(page === 'faq');
+    setShowComingSoon(page === 'coming-soon');
+    setCurrentProduct(product || null);
+  };
+
+  const navigateHome = () => {
+    window.history.pushState({}, '', '/');
+    setShowAbout(false);
+    setShowContact(false);
+    setShowWhyArcus(false);
+    setShowFAQ(false);
+    setShowComingSoon(false);
+    setCurrentProduct(null);
+  };
+
   if (showComingSoon) {
-    return <ComingSoon onBack={() => setShowComingSoon(false)} />;
+    return <ComingSoon onBack={navigateHome} />;
   }
 
   if (showWhyArcus) {
     return <WhyArcus
-      onClose={() => setShowWhyArcus(false)}
-      onShowComingSoon={() => {
-        setShowWhyArcus(false);
-        setShowComingSoon(true);
-      }}
-      onShowContact={() => {
-        setShowWhyArcus(false);
-        setShowContact(true);
-      }}
-      onShowProduct={(product) => {
-        setShowWhyArcus(false);
-        setCurrentProduct(product);
-      }}
+      onClose={navigateHome}
+      onShowComingSoon={() => navigateTo('coming-soon')}
+      onShowContact={() => navigateTo('contact')}
+      onShowProduct={(product) => navigateTo('agents', product as ProductCategory)}
       onShowCodeModal={() => {
-        setShowWhyArcus(false);
+        navigateHome();
         setShowCodeModal(true);
       }}
-      onShowFAQ={() => {
-        setShowWhyArcus(false);
-        setShowFAQ(true);
-      }}
+      onShowFAQ={() => navigateTo('faq')}
     />;
   }
 
   if (showFAQ) {
     return <FAQ
-      onClose={() => setShowFAQ(false)}
-      onShowComingSoon={() => {
-        setShowFAQ(false);
-        setShowComingSoon(true);
-      }}
-      onShowContact={() => {
-        setShowFAQ(false);
-        setShowContact(true);
-      }}
-      onShowProduct={(product) => {
-        setShowFAQ(false);
-        setCurrentProduct(product);
-      }}
+      onClose={navigateHome}
+      onShowComingSoon={() => navigateTo('coming-soon')}
+      onShowContact={() => navigateTo('contact')}
+      onShowProduct={(product) => navigateTo('agents', product as ProductCategory)}
       onShowCodeModal={() => {
-        setShowFAQ(false);
+        navigateHome();
         setShowCodeModal(true);
       }}
-      onShowWhyArcus={() => {
-        setShowFAQ(false);
-        setShowWhyArcus(true);
-      }}
+      onShowWhyArcus={() => navigateTo('why-arcus')}
     />;
   }
 
   if (showAbout) {
     return <About
-      onClose={() => setShowAbout(false)}
-      onShowComingSoon={() => {
-        setShowAbout(false);
-        setShowComingSoon(true);
-      }}
-      onShowContact={() => {
-        setShowAbout(false);
-        setShowContact(true);
-      }}
-      onShowProduct={(product) => {
-        setShowAbout(false);
-        setCurrentProduct(product);
-      }}
+      onClose={navigateHome}
+      onShowComingSoon={() => navigateTo('coming-soon')}
+      onShowContact={() => navigateTo('contact')}
+      onShowProduct={(product) => navigateTo('agents', product as ProductCategory)}
       onShowCodeModal={() => {
-        setShowAbout(false);
+        navigateHome();
         setShowCodeModal(true);
       }}
-      onShowWhyArcus={() => {
-        setShowAbout(false);
-        setShowWhyArcus(true);
-      }}
-      onShowFAQ={() => {
-        setShowAbout(false);
-        setShowFAQ(true);
-      }}
+      onShowWhyArcus={() => navigateTo('why-arcus')}
+      onShowFAQ={() => navigateTo('faq')}
     />;
   }
 
   if (showContact) {
     return <ContactUs
-      onClose={() => setShowContact(false)}
-      onShowComingSoon={() => {
-        setShowContact(false);
-        setShowComingSoon(true);
-      }}
-      onShowAbout={() => {
-        setShowContact(false);
-        setShowAbout(true);
-      }}
-      onShowProduct={(product) => {
-        setShowContact(false);
-        setCurrentProduct(product);
-      }}
+      onClose={navigateHome}
+      onShowComingSoon={() => navigateTo('coming-soon')}
+      onShowAbout={() => navigateTo('about')}
+      onShowProduct={(product) => navigateTo('agents', product as ProductCategory)}
       onShowCodeModal={() => {
-        setShowContact(false);
+        navigateHome();
         setShowCodeModal(true);
       }}
-      onShowWhyArcus={() => {
-        setShowContact(false);
-        setShowWhyArcus(true);
-      }}
-      onShowFAQ={() => {
-        setShowContact(false);
-        setShowFAQ(true);
-      }}
+      onShowWhyArcus={() => navigateTo('why-arcus')}
+      onShowFAQ={() => navigateTo('faq')}
     />;
   }
 
   if (currentProduct) {
     return <AgentsPage
       section={currentProduct}
-      onNavigateHome={() => {
-        setCurrentProduct(null);
-        window.scrollTo(0, 0);
-      }}
-      onShowComingSoon={() => {
-        setCurrentProduct(null);
-        setShowComingSoon(true);
-      }}
-      onShowAbout={() => {
-        setCurrentProduct(null);
-        setShowAbout(true);
-      }}
-      onShowContact={() => {
-        setCurrentProduct(null);
-        setShowContact(true);
-      }}
-      onNavigateToProduct={(category) => {
-        setCurrentProduct(category as ProductCategory);
-      }}
+      onNavigateHome={navigateHome}
+      onShowComingSoon={() => navigateTo('coming-soon')}
+      onShowAbout={() => navigateTo('about')}
+      onShowContact={() => navigateTo('contact')}
+      onNavigateToProduct={(category) => navigateTo('agents', category as ProductCategory)}
       onShowTryArcus={() => {
-        setCurrentProduct(null);
+        navigateHome();
         setShowCodeModal(true);
       }}
-      onShowWhyArcus={() => {
-        setCurrentProduct(null);
-        setShowWhyArcus(true);
-      }}
-      onShowFAQ={() => {
-        setCurrentProduct(null);
-        setShowFAQ(true);
-      }}
+      onShowWhyArcus={() => navigateTo('why-arcus')}
+      onShowFAQ={() => navigateTo('faq')}
     />;
   }
 
@@ -582,15 +554,15 @@ function App() {
 
       <Navigation
         onLogoClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
-        onShowProduct={(product) => setCurrentProduct(product as ProductCategory)}
+        onShowProduct={(product) => navigateTo('agents', product as ProductCategory)}
         onHowItWorksClick={() => {
           const element = document.getElementById('how-it-works');
           if (element) {
             element.scrollIntoView({ behavior: 'smooth' });
           }
         }}
-        onShowWhyArcus={() => setShowWhyArcus(true)}
-        onShowAbout={() => setShowAbout(true)}
+        onShowWhyArcus={() => navigateTo('why-arcus')}
+        onShowAbout={() => navigateTo('about')}
         onShowCodeModal={() => setShowCodeModal(true)}
       />
 
@@ -1085,12 +1057,12 @@ function App() {
 
       <Footer
         onLogoClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
-        onShowProduct={(product) => setCurrentProduct(product as ProductCategory)}
-        onShowWhyArcus={() => setShowWhyArcus(true)}
-        onShowAbout={() => setShowAbout(true)}
-        onShowComingSoon={() => setShowComingSoon(true)}
-        onShowContact={() => setShowContact(true)}
-        onShowFAQ={() => setShowFAQ(true)}
+        onShowProduct={(product) => navigateTo('agents', product as ProductCategory)}
+        onShowWhyArcus={() => navigateTo('why-arcus')}
+        onShowAbout={() => navigateTo('about')}
+        onShowComingSoon={() => navigateTo('coming-soon')}
+        onShowContact={() => navigateTo('contact')}
+        onShowFAQ={() => navigateTo('faq')}
       />
     </div>
   );

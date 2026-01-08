@@ -24,8 +24,8 @@ export default function About({ onClose, onShowComingSoon, onShowContact, onShow
         onLogoClick={onClose}
         onShowProduct={onShowProduct}
         onHowItWorksClick={onClose}
-        onShowWhyArcus={onShowWhyArcus}
-        onShowAbout={onClose}
+        onShowWhyArcus={onShowWhyArcus || (() => {})}
+        onShowAbout={() => {}}
         onShowCodeModal={onShowCodeModal}
       />
 
@@ -229,11 +229,11 @@ export default function About({ onClose, onShowComingSoon, onShowContact, onShow
       <Footer
         onLogoClick={onClose}
         onShowProduct={onShowProduct}
-        onShowWhyArcus={onShowWhyArcus}
-        onShowAbout={onClose}
+        onShowWhyArcus={onShowWhyArcus || (() => {})}
+        onShowAbout={() => {}}
         onShowComingSoon={onShowComingSoon}
         onShowContact={onShowContact}
-        onShowFAQ={onShowFAQ}
+        onShowFAQ={onShowFAQ || (() => {})}
       />
     </div>
   );

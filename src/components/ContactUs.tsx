@@ -69,7 +69,7 @@ export default function ContactUs({ onClose, onShowComingSoon, onShowAbout, onSh
         onLogoClick={onClose}
         onShowProduct={onShowProduct}
         onHowItWorksClick={onClose}
-        onShowWhyArcus={onShowWhyArcus}
+        onShowWhyArcus={onShowWhyArcus || (() => {})}
         onShowAbout={onShowAbout}
         onShowCodeModal={onShowCodeModal}
       />
@@ -199,11 +199,11 @@ export default function ContactUs({ onClose, onShowComingSoon, onShowAbout, onSh
       <Footer
         onLogoClick={onClose}
         onShowProduct={onShowProduct}
-        onShowWhyArcus={onShowWhyArcus}
+        onShowWhyArcus={onShowWhyArcus || (() => {})}
         onShowAbout={onShowAbout}
         onShowComingSoon={onShowComingSoon}
-        onShowContact={onClose}
-        onShowFAQ={onShowFAQ}
+        onShowContact={() => {}}
+        onShowFAQ={onShowFAQ || (() => {})}
       />
     </div>
   );
