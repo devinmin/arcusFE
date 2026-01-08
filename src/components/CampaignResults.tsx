@@ -47,7 +47,7 @@ export function CampaignResults({ url, industry, data, onRetry, onSignOut }: Cam
     },
     {
       icon: MessageSquare,
-      title: 'Social Media Posts',
+      title: 'Social Media',
       description: '15 ready-to-publish posts across platforms',
       preview: 'Instagram, Facebook, Twitter, LinkedIn content with hashtags...',
       color: 'teal',
@@ -198,7 +198,7 @@ export function CampaignResults({ url, industry, data, onRetry, onSignOut }: Cam
     const fileTypeMap: Record<string, { type: string; filename: string }> = {
       'Brand Overview': { type: 'brand-intelligence', filename: 'brand_intelligence.md' },
       'Strategic Brief': { type: 'strategic-brief', filename: 'strategic_brief.md' },
-      'Social Media Posts': { type: 'social-media', filename: 'social_media.md' },
+      'Social Media': { type: 'social-media', filename: 'social_media.md' },
       'Email Sequence': { type: 'email-sequence', filename: 'email_sequence.md' },
       'Blog Article': { type: 'blog-article', filename: 'blog_article.md' },
       'Ad Copy': { type: 'ad-copy', filename: 'ad_copy.md' },
