@@ -4,6 +4,7 @@ import { CampaignResult, downloadAllCampaign, downloadDeliverable } from '../lib
 import { VideoPlayer } from './VideoPlayer';
 import { PowerPointDownload } from './PowerPointDownload';
 import { BrandIntelligence } from './BrandIntelligence';
+import { MarkdownRenderer } from './MarkdownRenderer';
 
 interface CampaignResultsProps {
   url: string;
@@ -49,8 +50,8 @@ export function CampaignResults({ url, industry, data, onRetry, onSignOut }: Cam
       title: 'Social Media Posts',
       description: '15 ready-to-publish posts across platforms',
       preview: 'Instagram, Facebook, Twitter, LinkedIn content with hashtags...',
-      color: 'purple',
-      gradient: 'from-purple-500 to-purple-600',
+      color: 'teal',
+      gradient: 'from-teal-500 to-teal-600',
       badge: '15 Posts',
       content: data?.deliverables.socialMedia || 'Content not available',
     },
@@ -89,8 +90,8 @@ export function CampaignResults({ url, industry, data, onRetry, onSignOut }: Cam
       title: 'Hero Video',
       description: '30-second promotional video',
       preview: 'Complete video with scenes, voiceover, and music...',
-      color: 'indigo',
-      gradient: 'from-indigo-500 to-indigo-600',
+      color: 'sky',
+      gradient: 'from-sky-500 to-sky-600',
       badge: data?.deliverables.video.duration ? `${data.deliverables.video.duration}s` : 'Script',
       isVideo: data?.deliverables.video.url ? true : false,
       videoUrl: data?.deliverables.video.url || null,
@@ -365,11 +366,7 @@ export function CampaignResults({ url, industry, data, onRetry, onSignOut }: Cam
                   ))}
                 </div>
               ) : (
-                <div className="bg-white border border-gray-200 rounded-lg p-6">
-                  <pre className="whitespace-pre-wrap text-gray-700 text-sm font-mono">
-                    {selectedResult.content}
-                  </pre>
-                </div>
+                <MarkdownRenderer content={selectedResult.content} />
               )}
             </div>
           </div>
