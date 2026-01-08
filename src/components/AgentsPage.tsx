@@ -155,7 +155,7 @@ export default function AgentsPage({
             <section
               key={category.id}
               id={category.id}
-              className={`scroll-mt-20 ${category.comingSoon ? 'opacity-50' : ''}`}
+              className={`scroll-mt-24 ${category.comingSoon ? 'opacity-50' : ''}`}
             >
               <div className="mb-8">
                 <div className="flex items-center gap-4 mb-3">
