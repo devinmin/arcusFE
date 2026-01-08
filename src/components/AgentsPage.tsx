@@ -1,4 +1,4 @@
-import { Bot, ArrowRight, Target, Palette, Radio, Code, Box, Layout, BarChart3, FolderKanban } from 'lucide-react';
+import { Bot, ArrowRight, Target, Palette, Radio, Code, Box, LayoutGrid as Layout, BarChart3, FolderKanban } from 'lucide-react';
 import { useEffect } from 'react';
 import Navigation from './Navigation';
 import Footer from './Footer';
