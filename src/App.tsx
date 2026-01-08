@@ -179,11 +179,16 @@ function App() {
       onShowComingSoon={() => navigateTo('coming-soon')}
       onShowContact={() => navigateTo('contact')}
       onShowProduct={(product) => navigateTo('agents', product as ProductCategory)}
-      onShowCodeModal={() => {
-        navigateHome();
-        setShowCodeModal(true);
-      }}
+      onShowCodeModal={() => setShowCodeModal(true)}
       onShowFAQ={() => navigateTo('faq')}
+      showCodeModal={showCodeModal}
+      onCloseCodeModal={() => setShowCodeModal(false)}
+      codeInput={codeInput}
+      setCodeInput={setCodeInput}
+      codeError={codeError}
+      setCodeError={setCodeError}
+      isLoading={isLoading}
+      onCodeSubmit={handleCodeSubmit}
     />;
   }
 
@@ -193,11 +198,16 @@ function App() {
       onShowComingSoon={() => navigateTo('coming-soon')}
       onShowContact={() => navigateTo('contact')}
       onShowProduct={(product) => navigateTo('agents', product as ProductCategory)}
-      onShowCodeModal={() => {
-        navigateHome();
-        setShowCodeModal(true);
-      }}
+      onShowCodeModal={() => setShowCodeModal(true)}
       onShowWhyArcus={() => navigateTo('why-arcus')}
+      showCodeModal={showCodeModal}
+      onCloseCodeModal={() => setShowCodeModal(false)}
+      codeInput={codeInput}
+      setCodeInput={setCodeInput}
+      codeError={codeError}
+      setCodeError={setCodeError}
+      isLoading={isLoading}
+      onCodeSubmit={handleCodeSubmit}
     />;
   }
 
@@ -207,12 +217,17 @@ function App() {
       onShowComingSoon={() => navigateTo('coming-soon')}
       onShowContact={() => navigateTo('contact')}
       onShowProduct={(product) => navigateTo('agents', product as ProductCategory)}
-      onShowCodeModal={() => {
-        navigateHome();
-        setShowCodeModal(true);
-      }}
+      onShowCodeModal={() => setShowCodeModal(true)}
       onShowWhyArcus={() => navigateTo('why-arcus')}
       onShowFAQ={() => navigateTo('faq')}
+      showCodeModal={showCodeModal}
+      onCloseCodeModal={() => setShowCodeModal(false)}
+      codeInput={codeInput}
+      setCodeInput={setCodeInput}
+      codeError={codeError}
+      setCodeError={setCodeError}
+      isLoading={isLoading}
+      onCodeSubmit={handleCodeSubmit}
     />;
   }
 
@@ -222,12 +237,17 @@ function App() {
       onShowComingSoon={() => navigateTo('coming-soon')}
       onShowAbout={() => navigateTo('about')}
       onShowProduct={(product) => navigateTo('agents', product as ProductCategory)}
-      onShowCodeModal={() => {
-        navigateHome();
-        setShowCodeModal(true);
-      }}
+      onShowCodeModal={() => setShowCodeModal(true)}
       onShowWhyArcus={() => navigateTo('why-arcus')}
       onShowFAQ={() => navigateTo('faq')}
+      showCodeModal={showCodeModal}
+      onCloseCodeModal={() => setShowCodeModal(false)}
+      codeInput={codeInput}
+      setCodeInput={setCodeInput}
+      codeError={codeError}
+      setCodeError={setCodeError}
+      isLoading={isLoading}
+      onCodeSubmit={handleCodeSubmit}
     />;
   }
 
@@ -239,12 +259,17 @@ function App() {
       onShowAbout={() => navigateTo('about')}
       onShowContact={() => navigateTo('contact')}
       onNavigateToProduct={(category) => navigateTo('agents', category as ProductCategory)}
-      onShowTryArcus={() => {
-        navigateHome();
-        setShowCodeModal(true);
-      }}
+      onShowTryArcus={() => setShowCodeModal(true)}
       onShowWhyArcus={() => navigateTo('why-arcus')}
       onShowFAQ={() => navigateTo('faq')}
+      showCodeModal={showCodeModal}
+      onCloseCodeModal={() => setShowCodeModal(false)}
+      codeInput={codeInput}
+      setCodeInput={setCodeInput}
+      codeError={codeError}
+      setCodeError={setCodeError}
+      isLoading={isLoading}
+      onCodeSubmit={handleCodeSubmit}
     />;
   }
 
