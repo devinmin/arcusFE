@@ -80,7 +80,6 @@ const agentsData = [
     agents: ['3D Environment Agent', 'AR Experience Agent', 'VR Agent', 'Spatial UX Agent'],
     icon: Box,
     color: 'cyan'
-    comingSoon: true
   }
 ];
 
