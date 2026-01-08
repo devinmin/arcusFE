@@ -42,7 +42,7 @@ export default function Navigation({
 </div>
 
             {/* Desktop Navigation */}
-            <div className="hidden md:flex items-center space-x-8">
+            <div className="hidden md:flex justify-self-center items-center space-x-8">
               <div
                 className="relative"
                 onMouseEnter={() => setShowProductDropdown(true)}
@@ -85,9 +85,9 @@ export default function Navigation({
                   </div>
                 )}
               </div>
-              <button onClick={onShowWhyArcus} className="text-gray-600 hover:text-gray-900 transition-colors">Why Arcus</button>
-              <button onClick={onShowAbout} className="text-gray-600 hover:text-gray-900 transition-colors">About</button>
-            </div>
+  <button onClick={onShowWhyArcus}>Why Arcus</button>
+  <button onClick={onShowAbout}>About</button>
+</div>
 
             <div className="hidden md:flex items-center space-x-4">
               <a
