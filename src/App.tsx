@@ -174,103 +174,288 @@ function App() {
   }
 
   if (showWhyArcus) {
-    return <WhyArcus
-      onClose={navigateHome}
-      onShowComingSoon={() => navigateTo('coming-soon')}
-      onShowContact={() => navigateTo('contact')}
-      onShowProduct={(product) => navigateTo('agents', product as ProductCategory)}
-      onShowCodeModal={() => setShowCodeModal(true)}
-      onShowFAQ={() => navigateTo('faq')}
-      showCodeModal={showCodeModal}
-      onCloseCodeModal={() => setShowCodeModal(false)}
-      codeInput={codeInput}
-      setCodeInput={setCodeInput}
-      codeError={codeError}
-      setCodeError={setCodeError}
-      isLoading={isLoading}
-      onCodeSubmit={handleCodeSubmit}
-    />;
+    return (
+      <>
+        <WhyArcus
+          onClose={navigateHome}
+          onShowComingSoon={() => navigateTo('coming-soon')}
+          onShowContact={() => navigateTo('contact')}
+          onShowProduct={(product) => navigateTo('agents', product as ProductCategory)}
+          onShowCodeModal={() => setShowCodeModal(true)}
+          onShowFAQ={() => navigateTo('faq')}
+        />
+        {showCodeModal && (
+          <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-6">
+            <div className="bg-white rounded-2xl p-8 max-w-md w-full relative">
+              <button
+                onClick={() => {
+                  setShowCodeModal(false);
+                  setCodeError('');
+                  setCodeInput('');
+                }}
+                className="absolute top-4 right-4 text-gray-400 hover:text-gray-600 transition-colors"
+              >
+                <X className="w-6 h-6" />
+              </button>
+              <h2 className="text-2xl font-bold text-gray-900 mb-2">Enter Access Code</h2>
+              <p className="text-gray-600 mb-6">Internal users only</p>
+              <form onSubmit={handleCodeSubmit}>
+                <input
+                  type="text"
+                  value={codeInput}
+                  onChange={(e) => {
+                    setCodeInput(e.target.value);
+                    setCodeError('');
+                  }}
+                  placeholder="Enter code"
+                  className="w-full px-4 py-3 border-2 border-gray-200 rounded-lg focus:border-slate-700 focus:outline-none transition-colors mb-4"
+                  autoFocus
+                />
+                {codeError && (
+                  <p className="text-red-600 text-sm mb-4">{codeError}</p>
+                )}
+                <button
+                  type="submit"
+                  disabled={isLoading}
+                  className="w-full px-6 py-3 bg-slate-700 text-white rounded-lg font-medium hover:bg-slate-800 transition-all hover:shadow-lg disabled:opacity-50 disabled:cursor-not-allowed"
+                >
+                  {isLoading ? 'Verifying...' : 'Submit'}
+                </button>
+              </form>
+            </div>
+          </div>
+        )}
+      </>
+    );
   }
 
   if (showFAQ) {
-    return <FAQ
-      onClose={navigateHome}
-      onShowComingSoon={() => navigateTo('coming-soon')}
-      onShowContact={() => navigateTo('contact')}
-      onShowProduct={(product) => navigateTo('agents', product as ProductCategory)}
-      onShowCodeModal={() => setShowCodeModal(true)}
-      onShowWhyArcus={() => navigateTo('why-arcus')}
-      showCodeModal={showCodeModal}
-      onCloseCodeModal={() => setShowCodeModal(false)}
-      codeInput={codeInput}
-      setCodeInput={setCodeInput}
-      codeError={codeError}
-      setCodeError={setCodeError}
-      isLoading={isLoading}
-      onCodeSubmit={handleCodeSubmit}
-    />;
+    return (
+      <>
+        <FAQ
+          onClose={navigateHome}
+          onShowComingSoon={() => navigateTo('coming-soon')}
+          onShowContact={() => navigateTo('contact')}
+          onShowProduct={(product) => navigateTo('agents', product as ProductCategory)}
+          onShowCodeModal={() => setShowCodeModal(true)}
+          onShowWhyArcus={() => navigateTo('why-arcus')}
+        />
+        {showCodeModal && (
+          <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-6">
+            <div className="bg-white rounded-2xl p-8 max-w-md w-full relative">
+              <button
+                onClick={() => {
+                  setShowCodeModal(false);
+                  setCodeError('');
+                  setCodeInput('');
+                }}
+                className="absolute top-4 right-4 text-gray-400 hover:text-gray-600 transition-colors"
+              >
+                <X className="w-6 h-6" />
+              </button>
+              <h2 className="text-2xl font-bold text-gray-900 mb-2">Enter Access Code</h2>
+              <p className="text-gray-600 mb-6">Internal users only</p>
+              <form onSubmit={handleCodeSubmit}>
+                <input
+                  type="text"
+                  value={codeInput}
+                  onChange={(e) => {
+                    setCodeInput(e.target.value);
+                    setCodeError('');
+                  }}
+                  placeholder="Enter code"
+                  className="w-full px-4 py-3 border-2 border-gray-200 rounded-lg focus:border-slate-700 focus:outline-none transition-colors mb-4"
+                  autoFocus
+                />
+                {codeError && (
+                  <p className="text-red-600 text-sm mb-4">{codeError}</p>
+                )}
+                <button
+                  type="submit"
+                  disabled={isLoading}
+                  className="w-full px-6 py-3 bg-slate-700 text-white rounded-lg font-medium hover:bg-slate-800 transition-all hover:shadow-lg disabled:opacity-50 disabled:cursor-not-allowed"
+                >
+                  {isLoading ? 'Verifying...' : 'Submit'}
+                </button>
+              </form>
+            </div>
+          </div>
+        )}
+      </>
+    );
   }
 
   if (showAbout) {
-    return <About
-      onClose={navigateHome}
-      onShowComingSoon={() => navigateTo('coming-soon')}
-      onShowContact={() => navigateTo('contact')}
-      onShowProduct={(product) => navigateTo('agents', product as ProductCategory)}
-      onShowCodeModal={() => setShowCodeModal(true)}
-      onShowWhyArcus={() => navigateTo('why-arcus')}
-      onShowFAQ={() => navigateTo('faq')}
-      showCodeModal={showCodeModal}
-      onCloseCodeModal={() => setShowCodeModal(false)}
-      codeInput={codeInput}
-      setCodeInput={setCodeInput}
-      codeError={codeError}
-      setCodeError={setCodeError}
-      isLoading={isLoading}
-      onCodeSubmit={handleCodeSubmit}
-    />;
+    return (
+      <>
+        <About
+          onClose={navigateHome}
+          onShowComingSoon={() => navigateTo('coming-soon')}
+          onShowContact={() => navigateTo('contact')}
+          onShowProduct={(product) => navigateTo('agents', product as ProductCategory)}
+          onShowCodeModal={() => setShowCodeModal(true)}
+          onShowWhyArcus={() => navigateTo('why-arcus')}
+          onShowFAQ={() => navigateTo('faq')}
+        />
+        {showCodeModal && (
+          <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-6">
+            <div className="bg-white rounded-2xl p-8 max-w-md w-full relative">
+              <button
+                onClick={() => {
+                  setShowCodeModal(false);
+                  setCodeError('');
+                  setCodeInput('');
+                }}
+                className="absolute top-4 right-4 text-gray-400 hover:text-gray-600 transition-colors"
+              >
+                <X className="w-6 h-6" />
+              </button>
+              <h2 className="text-2xl font-bold text-gray-900 mb-2">Enter Access Code</h2>
+              <p className="text-gray-600 mb-6">Internal users only</p>
+              <form onSubmit={handleCodeSubmit}>
+                <input
+                  type="text"
+                  value={codeInput}
+                  onChange={(e) => {
+                    setCodeInput(e.target.value);
+                    setCodeError('');
+                  }}
+                  placeholder="Enter code"
+                  className="w-full px-4 py-3 border-2 border-gray-200 rounded-lg focus:border-slate-700 focus:outline-none transition-colors mb-4"
+                  autoFocus
+                />
+                {codeError && (
+                  <p className="text-red-600 text-sm mb-4">{codeError}</p>
+                )}
+                <button
+                  type="submit"
+                  disabled={isLoading}
+                  className="w-full px-6 py-3 bg-slate-700 text-white rounded-lg font-medium hover:bg-slate-800 transition-all hover:shadow-lg disabled:opacity-50 disabled:cursor-not-allowed"
+                >
+                  {isLoading ? 'Verifying...' : 'Submit'}
+                </button>
+              </form>
+            </div>
+          </div>
+        )}
+      </>
+    );
   }
 
   if (showContact) {
-    return <ContactUs
-      onClose={navigateHome}
-      onShowComingSoon={() => navigateTo('coming-soon')}
-      onShowAbout={() => navigateTo('about')}
-      onShowProduct={(product) => navigateTo('agents', product as ProductCategory)}
-      onShowCodeModal={() => setShowCodeModal(true)}
-      onShowWhyArcus={() => navigateTo('why-arcus')}
-      onShowFAQ={() => navigateTo('faq')}
-      showCodeModal={showCodeModal}
-      onCloseCodeModal={() => setShowCodeModal(false)}
-      codeInput={codeInput}
-      setCodeInput={setCodeInput}
-      codeError={codeError}
-      setCodeError={setCodeError}
-      isLoading={isLoading}
-      onCodeSubmit={handleCodeSubmit}
-    />;
+    return (
+      <>
+        <ContactUs
+          onClose={navigateHome}
+          onShowComingSoon={() => navigateTo('coming-soon')}
+          onShowAbout={() => navigateTo('about')}
+          onShowProduct={(product) => navigateTo('agents', product as ProductCategory)}
+          onShowCodeModal={() => setShowCodeModal(true)}
+          onShowWhyArcus={() => navigateTo('why-arcus')}
+          onShowFAQ={() => navigateTo('faq')}
+        />
+        {showCodeModal && (
+          <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-6">
+            <div className="bg-white rounded-2xl p-8 max-w-md w-full relative">
+              <button
+                onClick={() => {
+                  setShowCodeModal(false);
+                  setCodeError('');
+                  setCodeInput('');
+                }}
+                className="absolute top-4 right-4 text-gray-400 hover:text-gray-600 transition-colors"
+              >
+                <X className="w-6 h-6" />
+              </button>
+              <h2 className="text-2xl font-bold text-gray-900 mb-2">Enter Access Code</h2>
+              <p className="text-gray-600 mb-6">Internal users only</p>
+              <form onSubmit={handleCodeSubmit}>
+                <input
+                  type="text"
+                  value={codeInput}
+                  onChange={(e) => {
+                    setCodeInput(e.target.value);
+                    setCodeError('');
+                  }}
+                  placeholder="Enter code"
+                  className="w-full px-4 py-3 border-2 border-gray-200 rounded-lg focus:border-slate-700 focus:outline-none transition-colors mb-4"
+                  autoFocus
+                />
+                {codeError && (
+                  <p className="text-red-600 text-sm mb-4">{codeError}</p>
+                )}
+                <button
+                  type="submit"
+                  disabled={isLoading}
+                  className="w-full px-6 py-3 bg-slate-700 text-white rounded-lg font-medium hover:bg-slate-800 transition-all hover:shadow-lg disabled:opacity-50 disabled:cursor-not-allowed"
+                >
+                  {isLoading ? 'Verifying...' : 'Submit'}
+                </button>
+              </form>
+            </div>
+          </div>
+        )}
+      </>
+    );
   }
 
   if (currentProduct) {
-    return <AgentsPage
-      section={currentProduct}
-      onNavigateHome={navigateHome}
-      onShowComingSoon={() => navigateTo('coming-soon')}
-      onShowAbout={() => navigateTo('about')}
-      onShowContact={() => navigateTo('contact')}
-      onNavigateToProduct={(category) => navigateTo('agents', category as ProductCategory)}
-      onShowTryArcus={() => setShowCodeModal(true)}
-      onShowWhyArcus={() => navigateTo('why-arcus')}
-      onShowFAQ={() => navigateTo('faq')}
-      showCodeModal={showCodeModal}
-      onCloseCodeModal={() => setShowCodeModal(false)}
-      codeInput={codeInput}
-      setCodeInput={setCodeInput}
-      codeError={codeError}
-      setCodeError={setCodeError}
-      isLoading={isLoading}
-      onCodeSubmit={handleCodeSubmit}
-    />;
+    return (
+      <>
+        <AgentsPage
+          section={currentProduct}
+          onNavigateHome={navigateHome}
+          onShowComingSoon={() => navigateTo('coming-soon')}
+          onShowAbout={() => navigateTo('about')}
+          onShowContact={() => navigateTo('contact')}
+          onNavigateToProduct={(category) => navigateTo('agents', category as ProductCategory)}
+          onShowTryArcus={() => setShowCodeModal(true)}
+          onShowWhyArcus={() => navigateTo('why-arcus')}
+          onShowFAQ={() => navigateTo('faq')}
+        />
+        {showCodeModal && (
+          <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-6">
+            <div className="bg-white rounded-2xl p-8 max-w-md w-full relative">
+              <button
+                onClick={() => {
+                  setShowCodeModal(false);
+                  setCodeError('');
+                  setCodeInput('');
+                }}
+                className="absolute top-4 right-4 text-gray-400 hover:text-gray-600 transition-colors"
+              >
+                <X className="w-6 h-6" />
+              </button>
+              <h2 className="text-2xl font-bold text-gray-900 mb-2">Enter Access Code</h2>
+              <p className="text-gray-600 mb-6">Internal users only</p>
+              <form onSubmit={handleCodeSubmit}>
+                <input
+                  type="text"
+                  value={codeInput}
+                  onChange={(e) => {
+                    setCodeInput(e.target.value);
+                    setCodeError('');
+                  }}
+                  placeholder="Enter code"
+                  className="w-full px-4 py-3 border-2 border-gray-200 rounded-lg focus:border-slate-700 focus:outline-none transition-colors mb-4"
+                  autoFocus
+                />
+                {codeError && (
+                  <p className="text-red-600 text-sm mb-4">{codeError}</p>
+                )}
+                <button
+                  type="submit"
+                  disabled={isLoading}
+                  className="w-full px-6 py-3 bg-slate-700 text-white rounded-lg font-medium hover:bg-slate-800 transition-all hover:shadow-lg disabled:opacity-50 disabled:cursor-not-allowed"
+                >
+                  {isLoading ? 'Verifying...' : 'Submit'}
+                </button>
+              </form>
+            </div>
+          </div>
+        )}
+      </>
+    );
   }
 
   if (currentCampaign) {
