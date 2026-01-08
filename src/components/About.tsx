@@ -92,7 +92,7 @@ export default function About({ onClose, onShowComingSoon, onShowContact, onShow
                   Good marketers are expensive and hard to scale. You can't clone your best strategist. You can't afford 5 of them.
                 </p>
                 <p className="text-lg leading-relaxed">
-                  We wanted to create a system where one great marketer—augmented by AI—can output what used to require an entire team.
+                  We wanted to create a system where one great marketer, augmented by AI, can output what used to require an entire team.
                 </p>
               </div>
             </div>
