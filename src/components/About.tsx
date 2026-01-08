@@ -63,7 +63,7 @@ export default function About({ onClose, onShowComingSoon, onShowContact, onShow
           <div className="grid md:grid-cols-2 gap-16 items-center mb-20">
             <div className="rounded-2xl overflow-hidden shadow-2xl order-2 md:order-1">
               <img
-                src="https://images.pexels.com/photos/3184291/pexels-photo-3184291.jpeg?auto=compress&cs=tinysrgb&w=1200"
+                src="https://images.pexels.com/photos/3184325/pexels-photo-3184325.jpeg?auto=compress&cs=tinysrgb&w=1200"
                 alt="Frustrated marketer"
                 className="w-full h-96 object-cover"
               />
