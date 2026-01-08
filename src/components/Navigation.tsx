@@ -61,8 +61,8 @@ export default function Navigation({
                     <button onClick={() => { onShowProduct('development'); setShowProductDropdown(false); }} className="w-full text-left px-4 py-3 hover:bg-gray-50 text-gray-700 hover:text-gray-900 transition-colors">
                       Development
                     </button>
-                    <button onClick={() => { onShowProduct('spatial'); setShowProductDropdown(false); }} className="w-full text-left px-4 py-3 hover:bg-gray-50 text-gray-700 hover:text-gray-900 transition-colors">
-                      Spatial Computing
+                    <button onClick={() => { onShowProduct('projectadmin'); setShowProductDropdown(false); }} className="w-full text-left px-4 py-3 hover:bg-gray-50 text-gray-700 hover:text-gray-900 transition-colors">
+                      Project/Admin
                     </button>
                     <button onClick={() => { onShowProduct('uiux'); setShowProductDropdown(false); }} className="w-full text-left px-4 py-3 hover:bg-gray-50 text-gray-700 hover:text-gray-900 transition-colors">
                       UI/UX
@@ -72,8 +72,8 @@ export default function Navigation({
                       <span>Analytics</span>
                       <span className="text-xs bg-blue-100 text-blue-700 px-2 py-0.5 rounded-full whitespace-nowrap flex-shrink-0">Coming Soon</span>
                     </button>
-                    <button onClick={() => { onShowProduct('projectadmin'); setShowProductDropdown(false); }} className="w-full text-left px-4 py-3 hover:bg-gray-50 text-gray-700 hover:text-gray-900 transition-colors flex items-center justify-between gap-2">
-                      <span>Project/Admin</span>
+                    <button onClick={() => { onShowProduct('spatial'); setShowProductDropdown(false); }} className="w-full text-left px-4 py-3 hover:bg-gray-50 text-gray-700 hover:text-gray-900 transition-colors flex items-center justify-between gap-2">
+                      <span>Spatial</span>
                       <span className="text-xs bg-blue-100 text-blue-700 px-2 py-0.5 rounded-full whitespace-nowrap flex-shrink-0">Coming Soon</span>
                     </button>
                   </div>
