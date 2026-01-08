@@ -86,6 +86,12 @@ function App() {
           updated_at: new Date().toISOString(),
         };
 
+        setShowWhyArcus(false);
+        setShowFAQ(false);
+        setShowAbout(false);
+        setShowContact(false);
+        setShowComingSoon(false);
+        setCurrentProduct(null);
         setCurrentCampaign(mockCampaign);
         setShowCodeModal(false);
         setCodeInput('');
