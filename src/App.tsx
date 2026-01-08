@@ -733,7 +733,7 @@ function App() {
       </section>
 
       {/* How It Works Section */}
-      <section id="how-it-works" className="scroll-mt-nav" className="py-24 px-6 bg-white">
+      <section id="how-it-works" className="scroll-mt-20" className="py-24 px-6 bg-white">
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-16">
             <h2 className="text-5xl font-bold text-gray-900 mb-4">
@@ -929,7 +929,7 @@ function App() {
       </section>
 
       {/* Services Section */}
-      <section id="services" className="scroll-mt-nav" className="py-24 px-6 bg-gray-50">
+      <section id="services" className="scroll-mt-20" className="py-24 px-6 bg-gray-50">
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-16">
             <h2 className="text-5xl font-bold text-gray-900 mb-4">
