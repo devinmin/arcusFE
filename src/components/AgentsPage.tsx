@@ -79,7 +79,7 @@ const agentsData = [
     description: 'The future of immersive experiences. Create AR/VR experiences and spatial computing applications for next-generation platforms.',
     agents: ['3D Environment Agent', 'AR Experience Agent', 'VR Agent', 'Spatial UX Agent'],
     icon: Box,
-    color: 'cyan'
+    color: 'cyan',
     comingSoon: true
   }
 ];
