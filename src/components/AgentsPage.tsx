@@ -49,12 +49,12 @@ const agentsData = [
     color: 'orange'
   },
   {
-    id: 'projectadmin',
-    title: 'Project/Admin Agents',
-    description: 'Streamline operations and project management. Handle administrative tasks, project coordination, and workflow automation seamlessly.',
-    agents: ['Project Management Agent', 'Resource Allocation Agent', 'Workflow Automation Agent', 'Team Coordination Agent'],
-    icon: FolderKanban,
-    color: 'slate',
+    id: 'spatial',
+    title: 'Spatial Computing Agents',
+    description: 'The future of immersive experiences. Create AR/VR experiences and spatial computing applications for next-generation platforms.',
+    agents: ['3D Environment Agent', 'AR Experience Agent', 'VR Agent', 'Spatial UX Agent'],
+    icon: Box,
+    color: 'cyan'
   },
   {
     id: 'uiux',
@@ -74,12 +74,12 @@ const agentsData = [
     comingSoon: true
   },
   {
-    id: 'spatial',
-    title: 'Spatial Computing Agents',
-    description: 'The future of immersive experiences. Create AR/VR experiences and spatial computing applications for next-generation platforms.',
-    agents: ['3D Environment Agent', 'AR Experience Agent', 'VR Agent', 'Spatial UX Agent'],
-    icon: Box,
-    color: 'cyan',
+    id: 'projectadmin',
+    title: 'Project/Admin Agents',
+    description: 'Streamline operations and project management. Handle administrative tasks, project coordination, and workflow automation seamlessly.',
+    agents: ['Project Management Agent', 'Resource Allocation Agent', 'Workflow Automation Agent', 'Team Coordination Agent'],
+    icon: FolderKanban,
+    color: 'slate',
     comingSoon: true
   }
 ];
@@ -155,7 +155,7 @@ export default function AgentsPage({
             <section
               key={category.id}
               id={category.id}
-              className={`${category.comingSoon ? 'opacity-50' : ''}`}
+              className={`scroll-mt-20 ${category.comingSoon ? 'opacity-50' : ''}`}
             >
               <div className="mb-8">
                 <div className="flex items-center gap-4 mb-3">
