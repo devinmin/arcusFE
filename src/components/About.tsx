@@ -86,13 +86,10 @@ export default function About({ onClose, onShowComingSoon, onShowContact, onShow
 
           <div className="grid md:grid-cols-2 gap-16 items-center mb-20">
             <div>
-              <h2 className="text-4xl font-bold text-gray-900 mb-6">What Problem Do We Want to Solve?</h2>
+              <h2 className="text-4xl font-bold text-gray-900 mb-6">Who Are We?</h2>
               <div className="prose prose-lg text-gray-700 space-y-4">
-                <p className="text-lg leading-relaxed">
-                  Good marketers are expensive and hard to scale. You can't clone your best strategist. You can't afford 5 of them.
-                </p>
-                <p className="text-lg leading-relaxed">
-                  We wanted to create a system where one great marketer, augmented by AI, can output what used to require an entire team.
+  <p className="text-lg leading-relaxed">
+                  Marketers, AI engineers, and product developers with 40+ years combined experience across OMD, Publicis, WPP, and brands like SoFi. We've been CMOs, built products for Fortune 500s and startups, and worked across CPG, fintech, entertainment, and gaming.
                 </p>
               </div>
             </div>
