@@ -42,7 +42,7 @@ export default function Footer({
               <li><button onClick={() => onShowProduct('uiux')} className="text-gray-400 hover:text-white transition-colors text-left">UI/UX</button></li>
               <li><button onClick={() => onShowProduct('development')} className="text-gray-400 hover:text-white transition-colors text-left">Development</button></li>
               <li><button onClick={() => onShowProduct('analytics')} className="text-gray-400 hover:text-white transition-colors text-left flex items-center gap-2">Analytics <span className="text-xs bg-blue-600 text-white px-2 py-0.5 rounded-full whitespace-nowrap">Coming Soon</span></button></li>
-               <li><button onClick={() => onShowProduct('spatial')} className="text-gray-400 hover:text-white transition-colors text-left">Spatial<span className="text-xs bg-blue-600 text-white px-2 py-0.5 rounded-full whitespace-nowrap">Coming Soon</span></button></li>
+               <li><button onClick={() => onShowProduct('spatial')} className="text-gray-400 hover:text-white transition-colors text-left">Spatial <span className="text-xs bg-blue-600 text-white px-2 py-0.5 rounded-full whitespace-nowrap">Coming Soon</span></button></li>
             </ul>
           </div>
 
