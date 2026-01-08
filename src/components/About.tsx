@@ -47,7 +47,7 @@ export default function About({ onClose, onShowComingSoon, onShowContact, onShow
               <h2 className="text-4xl font-bold text-gray-900 mb-6">Who Are We?</h2>
               <div className="prose prose-lg text-gray-700 space-y-4">
                 <p className="text-lg leading-relaxed">
-                  Marketers, AI engineers, and product developers with 40+ years combined experience across OMD, Publicis, WPP, and brands like Sofi. We've been CMOs, built products for Fortune 500s and startups, and worked across CPG, fintech, entertainment, and gaming.
+                  Marketers, AI engineers, and product developers with 40+ years combined experience across OMD, Publicis, WPP, and brands like SoFi. We've been CMOs, built products for Fortune 500s and startups, and worked across CPG, fintech, entertainment, and gaming.
                 </p>
               </div>
             </div>
@@ -75,10 +75,10 @@ export default function About({ onClose, onShowComingSoon, onShowContact, onShow
                   <span className="font-semibold">First, hiring was a nightmare.</span> Finding great marketers takes 3-6 months. Training them takes another 6. And when they leave, you start over.
                 </p>
                 <p className="text-lg leading-relaxed">
-                  <span className="font-semibold">Second, AI worked—but it was scattered.</span> We'd use one tool for copy, another for creative, 8 other tools for research, scheduling, and reporting. Every campaign required duct-taping 10 platforms together.
+                  <span className="font-semibold">Second, AI worked - but it was scattered.</span> We'd use one tool for copy, another for creative, 8 other tools for research, scheduling, and reporting. Every campaign required duct-taping 10 platforms together.
                 </p>
                 <p className="text-lg leading-relaxed">
-                  So we built one system that does all of it. And we figured out how to download our brains into the AIs so it could think and produce based on knowledge of what actually works and what doesn't.
+                  So we building one system that does all of it. And we figured out how to download our brains into the AIs so it could think and produce based on knowledge of what actually works and what doesn't.
                 </p>
               </div>
             </div>
@@ -111,13 +111,13 @@ export default function About({ onClose, onShowComingSoon, onShowContact, onShow
               <div className="bg-gray-50 rounded-2xl p-8 border-2 border-gray-200">
                 <div className="text-6xl mb-4">😓</div>
                 <p className="text-lg text-gray-700 leading-relaxed">
-                  Keep searching for great talent, hoping they stay, and paying $80K-$150K per head
+                  Keep searching for a unicorn, hoping they stay, and paying $80K-$150K per head
                 </p>
               </div>
               <div className="bg-slate-50 rounded-2xl p-8 border-2 border-slate-700">
                 <div className="text-6xl mb-4">🚀</div>
                 <p className="text-lg text-gray-900 leading-relaxed font-medium">
-                  Let AI handle 90% of work while your best people focus on the 10% that actually moves the needle.
+                  Let AI be your unicorn by handling 90% of work while your best people focus on the 10% that actually moves the needle.
                 </p>
               </div>
             </div>
