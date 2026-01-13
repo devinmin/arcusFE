@@ -4,7 +4,12 @@ import { CampaignResult, downloadAllCampaign, downloadDeliverable } from '../lib
 import { VideoPlayer } from './VideoPlayer';
 import { PowerPointDownload } from './PowerPointDownload';
 import { BrandIntelligence } from './BrandIntelligence';
-import { MarkdownRenderer } from './MarkdownRenderer';
+import { StrategicBriefView } from './StrategicBriefView';
+import { SocialMediaView } from './SocialMediaView';
+import { EmailSequenceView } from './EmailSequenceView';
+import { BlogArticleView } from './BlogArticleView';
+import { AdCopyView } from './AdCopyView';
+import { VideoScriptView } from './VideoScriptView';
 
 interface CampaignResultsProps {
   url: string;
@@ -43,6 +48,7 @@ export function CampaignResults({ url, industry, data, onRetry, onSignOut }: Cam
       color: 'blue',
       gradient: 'from-blue-500 to-blue-600',
       badge: 'PDF',
+      isStrategicBrief: true,
       content: data?.deliverables.strategicBrief || 'Content not available',
     },
     {
@@ -53,6 +59,7 @@ export function CampaignResults({ url, industry, data, onRetry, onSignOut }: Cam
       color: 'teal',
       gradient: 'from-teal-500 to-teal-600',
       badge: '15 Posts',
+      isSocialMedia: true,
       content: data?.deliverables.socialMedia || 'Content not available',
     },
     {
@@ -63,6 +70,7 @@ export function CampaignResults({ url, industry, data, onRetry, onSignOut }: Cam
       color: 'green',
       gradient: 'from-green-500 to-green-600',
       badge: '5 Emails',
+      isEmailSequence: true,
       content: data?.deliverables.emailSequence || 'Content not available',
     },
     {
@@ -73,6 +81,7 @@ export function CampaignResults({ url, industry, data, onRetry, onSignOut }: Cam
       color: 'orange',
       gradient: 'from-orange-500 to-orange-600',
       badge: '2,000 words',
+      isBlogArticle: true,
       content: data?.deliverables.blogArticle || 'Content not available',
     },
     {
@@ -83,6 +92,7 @@ export function CampaignResults({ url, industry, data, onRetry, onSignOut }: Cam
       color: 'red',
       gradient: 'from-red-500 to-red-600',
       badge: '12 Variations',
+      isAdCopy: true,
       content: data?.deliverables.adCopy || 'Content not available',
     },
     {
@@ -94,6 +104,7 @@ export function CampaignResults({ url, industry, data, onRetry, onSignOut }: Cam
       gradient: 'from-sky-500 to-sky-600',
       badge: data?.deliverables.video.duration ? `${data.deliverables.video.duration}s` : 'Script',
       isVideo: data?.deliverables.video.url ? true : false,
+      isVideoScript: !data?.deliverables.video.url && data?.deliverables.videoScript ? true : false,
       videoUrl: data?.deliverables.video.url || null,
       thumbnail: data?.deliverables.video.thumbnail || null,
       content: data?.deliverables.videoScript || 'Content not available',
@@ -321,6 +332,18 @@ export function CampaignResults({ url, industry, data, onRetry, onSignOut }: Cam
                   extractedImages={selectedResult.brandData.extractedImages}
                   guidelines={selectedResult.brandData.guidelines}
                 />
+              ) : selectedResult.isStrategicBrief ? (
+                <StrategicBriefView content={selectedResult.content} />
+              ) : selectedResult.isSocialMedia ? (
+                <SocialMediaView content={selectedResult.content} />
+              ) : selectedResult.isEmailSequence ? (
+                <EmailSequenceView content={selectedResult.content} />
+              ) : selectedResult.isBlogArticle ? (
+                <BlogArticleView content={selectedResult.content} />
+              ) : selectedResult.isAdCopy ? (
+                <AdCopyView content={selectedResult.content} />
+              ) : selectedResult.isVideoScript ? (
+                <VideoScriptView content={selectedResult.content} />
               ) : selectedResult.isVideo && selectedResult.videoUrl ? (
                 <VideoPlayer
                   videoUrl={selectedResult.videoUrl}
@@ -366,7 +389,9 @@ export function CampaignResults({ url, industry, data, onRetry, onSignOut }: Cam
                   ))}
                 </div>
               ) : (
-                <MarkdownRenderer content={selectedResult.content} />
+                <div className="bg-white border border-gray-200 rounded-xl p-8">
+                  <p className="text-base text-gray-700">{selectedResult.content}</p>
+                </div>
               )}
             </div>
           </div>
