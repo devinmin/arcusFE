@@ -13,42 +13,71 @@ interface Ad {
   targeting?: string;
 }
 
+interface AdCategory {
+  name: string;
+  ads: Ad[];
+  icon: string;
+}
+
 export function AdCopyView({ content }: AdCopyViewProps) {
   const parseAds = (md: string): Ad[] => {
     const ads: Ad[] = [];
-    const sections = md.split(/(?=##\s+\d+\.|##\s+Ad\s+\d+|##\s+[A-Za-z]+\s+Ad)/);
+    const sections = md.split(/(?=##\s+\d+\.|##\s+Ad\s+\d+|##\s+[A-Za-z]+\s+Ad|\*Variant)/i);
+
+    let currentPlatform = '';
 
     sections.forEach(section => {
       const lines = section.split('\n').filter(line => line.trim());
       if (lines.length === 0) return;
 
-      let platform = '';
+      let platform = currentPlatform;
       let headline = '';
       let body = '';
       let cta = '';
       let format = '';
       let targeting = '';
 
-      lines.forEach(line => {
-        if (line.startsWith('## ') && !headline) {
+      lines.forEach((line, idx) => {
+        // Check for platform headers
+        if (line.match(/\*\*(.+?)\s+(Ads?|Search)\*\*/i)) {
+          const match = line.match(/\*\*(.+?)\s+(Ads?|Search)\*\*/i);
+          if (match) {
+            platform = match[1].trim() + ' ' + match[2].trim();
+            currentPlatform = platform;
+          }
+        } else if (line.startsWith('## ') && !headline) {
           const match = line.match(/##\s+(.+?)(?:\s+Ad)?(?:\s+\d+)?$/i);
-          if (match) platform = match[1].trim();
+          if (match) {
+            platform = match[1].trim();
+            currentPlatform = platform;
+          }
         } else if (line.includes('Platform:')) {
           platform = line.split('Platform:')[1].trim().replace(/[*_]/g, '');
+          currentPlatform = platform;
+        } else if (line.includes('Headline 1:')) {
+          headline = line.split('Headline 1:')[1].trim().replace(/[*_]/g, '');
         } else if (line.includes('Headline:')) {
           headline = line.split('Headline:')[1].trim().replace(/[*_]/g, '');
+        } else if (line.includes('Primary Text:')) {
+          body = line.split('Primary Text:')[1].trim().replace(/[*_]/g, '');
+        } else if (line.includes('Intro Text:')) {
+          body = line.split('Intro Text:')[1].trim().replace(/[*_]/g, '');
+        } else if (line.includes('Description 1:')) {
+          if (!body) body = line.split('Description 1:')[1].trim().replace(/[*_]/g, '');
+        } else if (line.includes('Description:')) {
+          if (!body) body = line.split('Description:')[1].trim().replace(/[*_]/g, '');
         } else if (line.includes('Body:')) {
           body = line.split('Body:')[1].trim().replace(/[*_]/g, '');
+        } else if (line.includes('CTA Button:')) {
+          cta = line.split('CTA Button:')[1].trim().replace(/[*_]/g, '');
         } else if (line.includes('CTA:')) {
           cta = line.split('CTA:')[1].trim().replace(/[*_]/g, '');
         } else if (line.includes('Format:')) {
           format = line.split('Format:')[1].trim().replace(/[*_]/g, '');
+        } else if (line.includes('Target Audience Note:')) {
+          targeting = line.split('Target Audience Note:')[1].trim().replace(/[*_]/g, '');
         } else if (line.includes('Targeting:')) {
           targeting = line.split('Targeting:')[1].trim().replace(/[*_]/g, '');
-        } else if (!line.startsWith('#') && !line.includes(':') && line.trim() && !headline) {
-          headline = line.trim().replace(/[*_]/g, '');
-        } else if (!line.startsWith('#') && !line.includes(':') && line.trim() && headline && !body) {
-          body += line.trim() + ' ';
         }
       });
 
@@ -68,6 +97,41 @@ export function AdCopyView({ content }: AdCopyViewProps) {
   };
 
   const ads = parseAds(content);
+
+  // Group ads by platform category
+  const categorizeAds = (ads: Ad[]): AdCategory[] => {
+    const categories: { [key: string]: Ad[] } = {};
+
+    ads.forEach(ad => {
+      const platform = ad.platform.toLowerCase();
+      let categoryName = '';
+
+      if (platform.includes('facebook') || platform.includes('instagram') || platform.includes('meta')) {
+        categoryName = 'Facebook/Instagram Ads';
+      } else if (platform.includes('google') || platform.includes('search')) {
+        categoryName = 'Google Search Ads';
+      } else if (platform.includes('linkedin')) {
+        categoryName = 'LinkedIn Ads';
+      } else if (platform.includes('twitter') || platform.includes('x')) {
+        categoryName = 'Twitter/X Ads';
+      } else {
+        categoryName = ad.platform;
+      }
+
+      if (!categories[categoryName]) {
+        categories[categoryName] = [];
+      }
+      categories[categoryName].push(ad);
+    });
+
+    return Object.entries(categories).map(([name, ads]) => ({
+      name,
+      ads,
+      icon: name
+    }));
+  };
+
+  const categories = categorizeAds(ads);
 
   const getPlatformColor = (platform: string) => {
     const lower = platform.toLowerCase();
@@ -115,6 +179,20 @@ export function AdCopyView({ content }: AdCopyViewProps) {
     };
   };
 
+  const getCategoryColor = (categoryName: string) => {
+    const lower = categoryName.toLowerCase();
+    if (lower.includes('facebook') || lower.includes('instagram')) {
+      return 'from-blue-500 to-blue-700';
+    } else if (lower.includes('google')) {
+      return 'from-red-500 to-yellow-500';
+    } else if (lower.includes('linkedin')) {
+      return 'from-blue-600 to-blue-800';
+    } else if (lower.includes('twitter') || lower.includes('x')) {
+      return 'from-sky-400 to-sky-600';
+    }
+    return 'from-gray-500 to-gray-700';
+  };
+
   return (
     <div className="space-y-6">
       <div className="bg-gradient-to-r from-red-50 via-orange-50 to-yellow-50 border border-red-200 rounded-xl p-6">
@@ -123,88 +201,90 @@ export function AdCopyView({ content }: AdCopyViewProps) {
           <h3 className="text-xl font-bold text-gray-900">Ad Campaign Creative</h3>
         </div>
         <p className="text-base text-gray-700">
-          {ads.length} ad variations optimized for different platforms and audiences
+          {ads.length} ad variations across {categories.length} platforms
         </p>
       </div>
 
-      <div className="space-y-4">
-        {ads.map((ad, idx) => {
-          const colors = getPlatformColor(ad.platform);
+      <div className="space-y-8">
+        {categories.map((category, catIdx) => {
+          const colors = getPlatformColor(category.name);
+          const gradientColor = getCategoryColor(category.name);
 
           return (
-            <div key={idx} className="bg-white border border-gray-200 rounded-xl shadow-sm overflow-hidden hover:shadow-md transition-shadow">
-              <div className="flex flex-col lg:flex-row">
-                <div className={`bg-gradient-to-br ${colors.bg} px-6 py-6 lg:w-72 flex-shrink-0 flex flex-col justify-between`}>
-                  <div>
-                    <div className="flex items-center gap-3 mb-4">
-                      <div className="p-2 bg-white rounded-lg">
-                        <Megaphone className={`w-5 h-5 ${colors.text}`} />
-                      </div>
-                      <div>
-                        <h4 className="text-lg font-bold text-white">{ad.platform}</h4>
-                        {ad.format && (
-                          <p className="text-sm text-white/90">{ad.format}</p>
-                        )}
-                      </div>
+            <div key={catIdx} className="bg-white border border-gray-200 rounded-xl shadow-sm overflow-hidden">
+              <div className={`bg-gradient-to-r ${gradientColor} px-6 py-4`}>
+                <div className="flex items-center justify-between">
+                  <div className="flex items-center gap-3">
+                    <div className="p-2 bg-white rounded-lg">
+                      <Megaphone className="w-5 h-5 text-gray-700" />
                     </div>
-                    <span className={`${colors.badge} px-3 py-1 rounded-full text-xs font-semibold inline-block`}>
-                      Ad #{idx + 1}
-                    </span>
+                    <div>
+                      <h4 className="text-lg font-bold text-white">{category.name}</h4>
+                      <p className="text-sm text-white/90">{category.ads.length} variant{category.ads.length > 1 ? 's' : ''}</p>
+                    </div>
                   </div>
-                  <div className="mt-4 pt-4 border-t border-white/20">
-                    <div className="flex items-center gap-2">
-                      <TrendingUp className="w-4 h-4 text-white" />
-                      <span className="text-sm font-medium text-white">Optimized</span>
-                    </div>
+                  <div className="flex items-center gap-2 bg-white/20 px-3 py-1.5 rounded-full">
+                    <TrendingUp className="w-4 h-4 text-white" />
+                    <span className="text-sm font-medium text-white">Optimized</span>
                   </div>
                 </div>
+              </div>
 
-                <div className="flex-1 p-6">
-                  <div className="flex flex-col lg:flex-row gap-6 h-full">
-                    <div className="flex-1 space-y-4">
-                      <div>
-                        <div className="flex items-center gap-2 mb-2">
-                          <div className="w-2 h-2 bg-green-500 rounded-full"></div>
-                          <span className="text-xs font-semibold text-gray-500 uppercase tracking-wide">Headline</span>
+              <div className="divide-y divide-gray-200">
+                {category.ads.map((ad, adIdx) => (
+                  <div key={adIdx} className="p-6 hover:bg-gray-50 transition-colors">
+                    <div className="flex items-start gap-6">
+                      <div className="flex-shrink-0">
+                        <div className={`${colors.badge} px-3 py-1.5 rounded-lg text-sm font-semibold`}>
+                          Variant {adIdx + 1}
                         </div>
-                        <h5 className="text-xl font-bold text-gray-900 leading-tight">
-                          {ad.headline}
-                        </h5>
                       </div>
 
-                      {ad.body && (
-                        <div className={`${colors.light} ${colors.border} border rounded-lg p-4`}>
-                          <p className="text-base text-gray-900 leading-relaxed">
-                            {ad.body}
-                          </p>
-                        </div>
-                      )}
-
-                      {ad.targeting && (
-                        <div className="flex items-start gap-2 p-3 bg-gray-50 rounded-lg border border-gray-200">
-                          <Target className="w-5 h-5 text-gray-600 flex-shrink-0 mt-0.5" />
+                      <div className="flex-1 grid grid-cols-1 lg:grid-cols-3 gap-6">
+                        <div className="lg:col-span-2 space-y-3">
                           <div>
-                            <p className="text-xs font-semibold text-gray-500 uppercase tracking-wide mb-1">Target Audience</p>
-                            <p className="text-sm text-gray-700">{ad.targeting}</p>
+                            <div className="flex items-center gap-2 mb-1">
+                              <div className="w-2 h-2 bg-green-500 rounded-full"></div>
+                              <span className="text-xs font-semibold text-gray-500 uppercase tracking-wide">Headline</span>
+                            </div>
+                            <h5 className="text-lg font-bold text-gray-900 leading-tight">
+                              {ad.headline}
+                            </h5>
+                          </div>
+
+                          {ad.body && (
+                            <div>
+                              <span className="text-xs font-semibold text-gray-500 uppercase tracking-wide">Body</span>
+                              <p className="text-sm text-gray-700 mt-1 leading-relaxed">
+                                {ad.body}
+                              </p>
+                            </div>
+                          )}
+
+                          {ad.targeting && (
+                            <div className="flex items-start gap-2 pt-2">
+                              <Target className="w-4 h-4 text-gray-500 flex-shrink-0 mt-0.5" />
+                              <div>
+                                <p className="text-xs font-semibold text-gray-500 uppercase tracking-wide">Target</p>
+                                <p className="text-sm text-gray-600 mt-0.5">{ad.targeting}</p>
+                              </div>
+                            </div>
+                          )}
+                        </div>
+
+                        <div className="flex flex-col justify-between">
+                          <div className={`${colors.light} ${colors.border} border rounded-lg p-4`}>
+                            <p className="text-xs font-semibold text-gray-500 uppercase tracking-wide mb-3">Call to Action</p>
+                            <button className={`w-full bg-gradient-to-r ${gradientColor} text-white px-4 py-2.5 rounded-lg font-semibold flex items-center justify-center gap-2 shadow-sm hover:shadow-md transition-shadow text-sm`}>
+                              <MousePointer className="w-4 h-4" />
+                              <span>{ad.cta}</span>
+                            </button>
                           </div>
                         </div>
-                      )}
-                    </div>
-
-                    <div className="lg:w-56 flex-shrink-0 flex flex-col justify-between">
-                      <div className={`${colors.light} ${colors.border} border rounded-lg p-4 mb-4`}>
-                        <p className="text-xs font-semibold text-gray-500 uppercase tracking-wide mb-2">Call to Action</p>
-                        <button className={`w-full bg-gradient-to-r ${colors.bg} text-white px-4 py-3 rounded-lg font-semibold flex items-center justify-center gap-2 shadow-md hover:shadow-lg transition-shadow`}>
-                          <MousePointer className="w-5 h-5" />
-                          <span>{ad.cta}</span>
-                        </button>
-                      </div>
-                      <div className="text-center">
-                        <span className="text-sm text-gray-600">Ready to launch</span>
                       </div>
                     </div>
                   </div>
-                </div>
+                ))}
               </div>
             </div>
           );
