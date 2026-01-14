@@ -53,9 +53,18 @@ export function SocialMediaView({ content }: SocialMediaViewProps) {
 
   const parseSocialMedia = (md: string): SocialPost[] => {
     const posts: SocialPost[] = [];
-    const sections = md.split(/(?=###\s+\d+\.)/);
 
-    sections.forEach(section => {
+    // Debug logging
+    console.log('=== Social Media Parser Debug ===');
+    console.log('Raw content length:', md.length);
+    console.log('First 500 chars:', md.substring(0, 500));
+
+    const sections = md.split(/(?=###\s+\d+\.)/);
+    console.log('Number of sections found:', sections.length);
+
+    sections.forEach((section, sectionIdx) => {
+      console.log(`\n--- Section ${sectionIdx} ---`);
+      console.log('Section preview:', section.substring(0, 200));
       const lines = section.split('\n');
       if (lines.length === 0) return;
 
@@ -109,6 +118,8 @@ export function SocialMediaView({ content }: SocialMediaViewProps) {
         }
       });
 
+      console.log('Extracted - Platform:', platform, 'Content length:', content.length, 'Hashtags:', hashtags.length);
+
       if (platform && content) {
         const postData: SocialPost = {
           platform: platform.replace(/[:\-*]/g, '').trim(),
@@ -118,8 +129,15 @@ export function SocialMediaView({ content }: SocialMediaViewProps) {
           engagement: generateDummyEngagement(platform)
         };
         posts.push(postData);
+        console.log('✓ Added post for:', platform);
+      } else {
+        console.log('✗ Skipped - missing platform or content');
       }
     });
+
+    console.log('\n=== Final Result ===');
+    console.log('Total posts extracted:', posts.length);
+    console.log('Posts:', posts.map(p => ({ platform: p.platform, contentLength: p.content.length })));
 
     return posts;
   };
