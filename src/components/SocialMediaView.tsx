@@ -54,90 +54,71 @@ export function SocialMediaView({ content }: SocialMediaViewProps) {
   const parseSocialMedia = (md: string): SocialPost[] => {
     const posts: SocialPost[] = [];
 
-    // Debug logging
-    console.log('=== Social Media Parser Debug ===');
-    console.log('Raw content length:', md.length);
-    console.log('First 500 chars:', md.substring(0, 500));
+    // Split by ### headers (looking for triple hash at line start)
+    const sections = md.split(/(?=^### )/m);
 
-    const sections = md.split(/(?=###\s+\d+\.)/);
-    console.log('Number of sections found:', sections.length);
+    sections.forEach((section) => {
+      const trimmedSection = section.trim();
 
-    sections.forEach((section, sectionIdx) => {
-      console.log(`\n--- Section ${sectionIdx} ---`);
-      console.log('Section preview:', section.substring(0, 200));
-      const lines = section.split('\n');
+      // Skip sections that don't start with ### or are empty
+      if (!trimmedSection.startsWith('###')) return;
+
+      const lines = trimmedSection.split('\n');
       if (lines.length === 0) return;
 
+      // Extract platform from header (e.g., "### LinkedIn Post 1" or "### Twitter Thread")
+      const headerLine = lines[0].trim();
+      const headerText = headerLine.replace(/^###\s+/, '').trim();
+
       let platform = '';
+      // Match common platform names
+      if (headerText.toLowerCase().includes('linkedin')) platform = 'LinkedIn';
+      else if (headerText.toLowerCase().includes('twitter') || headerText.toLowerCase().includes('tweet')) platform = 'Twitter';
+      else if (headerText.toLowerCase().includes('facebook')) platform = 'Facebook';
+      else if (headerText.toLowerCase().includes('instagram')) platform = 'Instagram';
+      else if (headerText.toLowerCase().includes('tiktok')) platform = 'TikTok';
+      else {
+        // Use first word as platform name
+        platform = headerText.split(/\s+/)[0];
+      }
+
+      // Extract content and hashtags from remaining lines
       let content = '';
       let hashtags: string[] = [];
       let timing = '';
-      let captureContent = false;
 
-      lines.forEach((line, idx) => {
-        const trimmed = line.trim();
+      for (let i = 1; i < lines.length; i++) {
+        const line = lines[i].trim();
 
-        // Extract platform from header (e.g., "### 1. Instagram Post")
-        if (trimmed.match(/###\s+\d+\.\s+(.+)/)) {
-          const match = trimmed.match(/###\s+\d+\.\s+(.+)/);
-          if (match) {
-            platform = match[1].trim();
-          }
-        }
-        // Look for Caption or Copy content
-        else if (trimmed.startsWith('**Caption:**') || trimmed.startsWith('**Copy:**')) {
-          captureContent = true;
-          const afterLabel = trimmed.split('**Caption:**')[1] || trimmed.split('**Copy:**')[1];
-          if (afterLabel && afterLabel.trim()) {
-            content += afterLabel.trim() + ' ';
-          }
-        }
-        // Look for Tweet content (for Twitter threads)
-        else if (trimmed.match(/\*\*Tweet\s+\d+:\*\*/)) {
-          const afterLabel = trimmed.split(/\*\*Tweet\s+\d+:\*\*/)[1];
-          if (afterLabel && afterLabel.trim()) {
-            content += afterLabel.trim() + ' ';
-          }
-          captureContent = true;
-        }
-        // Capture content lines
-        else if (captureContent && trimmed && !trimmed.startsWith('**')) {
-          content += trimmed + ' ';
-        }
-        // Stop capturing when hitting next section
-        else if (trimmed.startsWith('**') && !trimmed.startsWith('**Caption:**') && !trimmed.startsWith('**Copy:**') && !trimmed.match(/\*\*Tweet\s+\d+:\*\*/)) {
-          if (trimmed.startsWith('**Hashtags:**')) {
-            const hashtagText = trimmed.split('**Hashtags:**')[1];
-            if (hashtagText) {
-              hashtags = hashtagText.match(/#\w+/g) || [];
-            }
-          } else if (trimmed.startsWith('**Suggested Posting Time:**')) {
-            timing = trimmed.split('**Suggested Posting Time:**')[1]?.trim() || '';
-          }
-          captureContent = false;
-        }
-      });
+        // Skip empty lines at the start
+        if (!line && !content) continue;
 
-      console.log('Extracted - Platform:', platform, 'Content length:', content.length, 'Hashtags:', hashtags.length);
+        // Stop at next section marker (## or ###)
+        if (line.startsWith('##')) break;
+
+        // Extract hashtags - they usually appear as standalone lines starting with #
+        if (line.startsWith('#') && line.includes('#')) {
+          const tags = line.split(/\s+/).filter(tag => tag.startsWith('#'));
+          hashtags.push(...tags);
+        } else if (line) {
+          // Add to content (but skip any lines that look like markdown headers)
+          if (!line.startsWith('#')) {
+            content += (content ? '\n' : '') + line;
+          }
+        }
+      }
 
       if (platform && content) {
         const postData: SocialPost = {
           platform: platform.replace(/[:\-*]/g, '').trim(),
           content: content.trim(),
           hashtags,
-          timing,
+          timing: timing || 'Optimal posting time',
           engagement: generateDummyEngagement(platform)
         };
         posts.push(postData);
-        console.log('✓ Added post for:', platform);
-      } else {
-        console.log('✗ Skipped - missing platform or content');
       }
     });
-
-    console.log('\n=== Final Result ===');
-    console.log('Total posts extracted:', posts.length);
-    console.log('Posts:', posts.map(p => ({ platform: p.platform, contentLength: p.content.length })));
 
     return posts;
   };
