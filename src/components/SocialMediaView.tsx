@@ -53,29 +53,59 @@ export function SocialMediaView({ content }: SocialMediaViewProps) {
 
   const parseSocialMedia = (md: string): SocialPost[] => {
     const posts: SocialPost[] = [];
-    const sections = md.split(/(?=##\s+Post\s+\d+|##\s+\d+\.)/);
+    const sections = md.split(/(?=###\s+\d+\.)/);
 
     sections.forEach(section => {
-      const lines = section.split('\n').filter(line => line.trim());
+      const lines = section.split('\n');
       if (lines.length === 0) return;
 
       let platform = '';
       let content = '';
       let hashtags: string[] = [];
       let timing = '';
+      let captureContent = false;
 
-      lines.forEach(line => {
-        if (line.includes('Platform:')) {
-          platform = line.split('Platform:')[1].trim().replace(/[*_]/g, '');
-        } else if (line.includes('Timing:')) {
-          timing = line.split('Timing:')[1].trim().replace(/[*_]/g, '');
-        } else if (line.includes('Hashtags:')) {
-          const hashtagText = line.split('Hashtags:')[1].trim();
-          hashtags = hashtagText.match(/#\w+/g) || [];
-        } else if (!line.startsWith('#') && !line.includes('Platform:') && !line.includes('Timing:') && !line.includes('Hashtags:') && line.trim()) {
-          if (!line.startsWith('**')) {
-            content += line.trim() + ' ';
+      lines.forEach((line, idx) => {
+        const trimmed = line.trim();
+
+        // Extract platform from header (e.g., "### 1. Instagram Post")
+        if (trimmed.match(/###\s+\d+\.\s+(.+)/)) {
+          const match = trimmed.match(/###\s+\d+\.\s+(.+)/);
+          if (match) {
+            platform = match[1].trim();
           }
+        }
+        // Look for Caption or Copy content
+        else if (trimmed.startsWith('**Caption:**') || trimmed.startsWith('**Copy:**')) {
+          captureContent = true;
+          const afterLabel = trimmed.split('**Caption:**')[1] || trimmed.split('**Copy:**')[1];
+          if (afterLabel && afterLabel.trim()) {
+            content += afterLabel.trim() + ' ';
+          }
+        }
+        // Look for Tweet content (for Twitter threads)
+        else if (trimmed.match(/\*\*Tweet\s+\d+:\*\*/)) {
+          const afterLabel = trimmed.split(/\*\*Tweet\s+\d+:\*\*/)[1];
+          if (afterLabel && afterLabel.trim()) {
+            content += afterLabel.trim() + ' ';
+          }
+          captureContent = true;
+        }
+        // Capture content lines
+        else if (captureContent && trimmed && !trimmed.startsWith('**')) {
+          content += trimmed + ' ';
+        }
+        // Stop capturing when hitting next section
+        else if (trimmed.startsWith('**') && !trimmed.startsWith('**Caption:**') && !trimmed.startsWith('**Copy:**') && !trimmed.match(/\*\*Tweet\s+\d+:\*\*/)) {
+          if (trimmed.startsWith('**Hashtags:**')) {
+            const hashtagText = trimmed.split('**Hashtags:**')[1];
+            if (hashtagText) {
+              hashtags = hashtagText.match(/#\w+/g) || [];
+            }
+          } else if (trimmed.startsWith('**Suggested Posting Time:**')) {
+            timing = trimmed.split('**Suggested Posting Time:**')[1]?.trim() || '';
+          }
+          captureContent = false;
         }
       });
 

@@ -1,4 +1,4 @@
-import { Megaphone, Target, MousePointer, TrendingUp } from 'lucide-react';
+import { Megaphone, Target, TrendingUp } from 'lucide-react';
 
 interface AdCopyViewProps {
   content: string;
@@ -240,8 +240,8 @@ export function AdCopyView({ content }: AdCopyViewProps) {
                         </div>
                       </div>
 
-                      <div className="flex-1 grid grid-cols-1 lg:grid-cols-3 gap-6">
-                        <div className="lg:col-span-2 space-y-3">
+                      <div className="flex-1">
+                        <div className="space-y-3">
                           <div>
                             <div className="flex items-center gap-2 mb-1">
                               <div className="w-2 h-2 bg-green-500 rounded-full"></div>
@@ -261,6 +261,15 @@ export function AdCopyView({ content }: AdCopyViewProps) {
                             </div>
                           )}
 
+                          {ad.cta && (
+                            <div>
+                              <span className="text-xs font-semibold text-gray-500 uppercase tracking-wide">Call to Action</span>
+                              <p className="text-sm text-gray-700 mt-1">
+                                {ad.cta}
+                              </p>
+                            </div>
+                          )}
+
                           {ad.targeting && (
                             <div className="flex items-start gap-2 pt-2">
                               <Target className="w-4 h-4 text-gray-500 flex-shrink-0 mt-0.5" />
@@ -270,16 +279,6 @@ export function AdCopyView({ content }: AdCopyViewProps) {
                               </div>
                             </div>
                           )}
-                        </div>
-
-                        <div className="flex flex-col justify-between">
-                          <div className={`${colors.light} ${colors.border} border rounded-lg p-4`}>
-                            <p className="text-xs font-semibold text-gray-500 uppercase tracking-wide mb-3">Call to Action</p>
-                            <button className={`w-full bg-gradient-to-r ${gradientColor} text-white px-4 py-2.5 rounded-lg font-semibold flex items-center justify-center gap-2 shadow-sm hover:shadow-md transition-shadow text-sm`}>
-                              <MousePointer className="w-4 h-4" />
-                              <span>{ad.cta}</span>
-                            </button>
-                          </div>
                         </div>
                       </div>
                     </div>
