@@ -31,7 +31,7 @@ export function SocialMediaView({ content }: SocialMediaViewProps) {
         comments: Math.floor(Math.random() * (100 - 40) + 40),
         shares: Math.floor(Math.random() * (200 - 80) + 80)
       };
-    } else if (lower.includes('twitter') || lower.includes('x.com')) {
+    } else if (lower.includes('x.com') || lower.includes('twitter')) {
       return {
         likes: Math.floor(Math.random() * (3000 - 1200) + 1200),
         comments: Math.floor(Math.random() * (200 - 80) + 80),
@@ -54,8 +54,8 @@ export function SocialMediaView({ content }: SocialMediaViewProps) {
   const parseSocialMedia = (md: string): SocialPost[] => {
     const posts: SocialPost[] = [];
 
-    // Split by ### headers (looking for triple hash at line start)
-    const sections = md.split(/(?=^### )/m);
+    // Split by ### headers with numbers (e.g., "### 1. Instagram Post")
+    const sections = md.split(/(?=^###\s+\d+\.\s+)/m);
 
     sections.forEach((section) => {
       const trimmedSection = section.trim();
@@ -66,45 +66,68 @@ export function SocialMediaView({ content }: SocialMediaViewProps) {
       const lines = trimmedSection.split('\n');
       if (lines.length === 0) return;
 
-      // Extract platform from header (e.g., "### LinkedIn Post 1" or "### Twitter Thread")
+      // Extract platform from header (e.g., "### 1. Instagram Post")
       const headerLine = lines[0].trim();
-      const headerText = headerLine.replace(/^###\s+/, '').trim();
+      const headerMatch = headerLine.match(/###\s+\d+\.\s+(.+)/);
+      if (!headerMatch) return;
 
+      const headerText = headerMatch[1].trim();
       let platform = '';
-      // Match common platform names
-      if (headerText.toLowerCase().includes('linkedin')) platform = 'LinkedIn';
-      else if (headerText.toLowerCase().includes('twitter') || headerText.toLowerCase().includes('tweet')) platform = 'Twitter';
+
+      // Match common platform names and rebrand Twitter to X.com
+      if (headerText.toLowerCase().includes('instagram')) platform = 'Instagram';
+      else if (headerText.toLowerCase().includes('twitter') || headerText.toLowerCase().includes('tweet') || headerText.toLowerCase().includes('x.com')) platform = 'X.com';
       else if (headerText.toLowerCase().includes('facebook')) platform = 'Facebook';
-      else if (headerText.toLowerCase().includes('instagram')) platform = 'Instagram';
+      else if (headerText.toLowerCase().includes('linkedin')) platform = 'LinkedIn';
       else if (headerText.toLowerCase().includes('tiktok')) platform = 'TikTok';
       else {
-        // Use first word as platform name
-        platform = headerText.split(/\s+/)[0];
+        // Extract platform name from header text (e.g., "Instagram Post" -> "Instagram")
+        const words = headerText.split(/\s+/);
+        platform = words[0];
       }
 
-      // Extract content and hashtags from remaining lines
+      // Parse structured content fields
       let content = '';
       let hashtags: string[] = [];
       let timing = '';
+      let captureContent = false;
 
       for (let i = 1; i < lines.length; i++) {
         const line = lines[i].trim();
 
-        // Skip empty lines at the start
-        if (!line && !content) continue;
+        // Skip empty lines before we start capturing content
+        if (!line && !captureContent) continue;
 
-        // Stop at next section marker (## or ###)
-        if (line.startsWith('##')) break;
+        // Stop at next section marker
+        if (line.startsWith('###')) break;
 
-        // Extract hashtags - they usually appear as standalone lines starting with #
-        if (line.startsWith('#') && line.includes('#')) {
-          const tags = line.split(/\s+/).filter(tag => tag.startsWith('#'));
-          hashtags.push(...tags);
-        } else if (line) {
-          // Add to content (but skip any lines that look like markdown headers)
-          if (!line.startsWith('#')) {
-            content += (content ? '\n' : '') + line;
+        // Extract Caption/Copy
+        if (line.startsWith('**Caption:**') || line.startsWith('**Copy:**')) {
+          captureContent = true;
+          const contentAfterLabel = line.replace(/\*\*(Caption|Copy):\*\*/, '').trim();
+          if (contentAfterLabel) {
+            content += contentAfterLabel;
           }
+        }
+        // Extract Hashtags
+        else if (line.startsWith('**Hashtags:**')) {
+          captureContent = false;
+          const hashtagText = line.replace('**Hashtags:**', '').trim();
+          hashtags = hashtagText.split(/\s+/).filter(tag => tag.startsWith('#'));
+        }
+        // Extract Suggested Posting Time
+        else if (line.startsWith('**Suggested Posting Time:**')) {
+          timing = line.replace('**Suggested Posting Time:**', '').trim();
+        }
+        // Stop capturing content when we hit other structured fields
+        else if (line.startsWith('**Image Description:**') ||
+                 line.startsWith('**Expected Engagement Hooks:**') ||
+                 line.startsWith('**Visual:**')) {
+          captureContent = false;
+        }
+        // Capture content lines
+        else if (captureContent && line) {
+          content += (content ? '\n' : '') + line;
         }
       }
 
@@ -129,7 +152,7 @@ export function SocialMediaView({ content }: SocialMediaViewProps) {
     const lower = platform.toLowerCase();
     if (lower.includes('instagram')) return Instagram;
     if (lower.includes('facebook')) return Facebook;
-    if (lower.includes('twitter') || lower.includes('x.com')) return Twitter;
+    if (lower.includes('x.com') || lower.includes('twitter')) return Twitter;
     if (lower.includes('linkedin')) return Linkedin;
     return MessageSquare;
   };
@@ -138,7 +161,7 @@ export function SocialMediaView({ content }: SocialMediaViewProps) {
     const lower = platform.toLowerCase();
     if (lower.includes('instagram')) return { bg: 'from-pink-500 to-purple-600', icon: 'text-pink-600', border: 'border-pink-200', cardBg: 'bg-pink-50' };
     if (lower.includes('facebook')) return { bg: 'from-blue-500 to-blue-700', icon: 'text-blue-600', border: 'border-blue-200', cardBg: 'bg-blue-50' };
-    if (lower.includes('twitter') || lower.includes('x.com')) return { bg: 'from-sky-400 to-sky-600', icon: 'text-sky-600', border: 'border-sky-200', cardBg: 'bg-sky-50' };
+    if (lower.includes('x.com') || lower.includes('twitter')) return { bg: 'from-gray-800 to-black', icon: 'text-gray-800', border: 'border-gray-300', cardBg: 'bg-gray-50' };
     if (lower.includes('linkedin')) return { bg: 'from-blue-600 to-blue-800', icon: 'text-blue-700', border: 'border-blue-300', cardBg: 'bg-blue-50' };
     return { bg: 'from-gray-500 to-gray-700', icon: 'text-gray-600', border: 'border-gray-200', cardBg: 'bg-gray-50' };
   };
