@@ -1,4 +1,4 @@
-import { Instagram, Facebook, Twitter, Linkedin, Hash, Calendar } from 'lucide-react';
+import { Instagram, Facebook, Twitter, Linkedin, Hash, Calendar, Heart, MessageCircle, Share2, TrendingUp } from 'lucide-react';
 
 interface SocialMediaViewProps {
   content: string;
@@ -9,9 +9,48 @@ interface SocialPost {
   content: string;
   hashtags: string[];
   timing?: string;
+  engagement?: {
+    likes: number;
+    comments: number;
+    shares: number;
+  };
 }
 
 export function SocialMediaView({ content }: SocialMediaViewProps) {
+  const generateDummyEngagement = (platform: string) => {
+    const lower = platform.toLowerCase();
+    if (lower.includes('instagram')) {
+      return {
+        likes: Math.floor(Math.random() * (5000 - 2000) + 2000),
+        comments: Math.floor(Math.random() * (350 - 150) + 150),
+        shares: Math.floor(Math.random() * (800 - 300) + 300)
+      };
+    } else if (lower.includes('linkedin')) {
+      return {
+        likes: Math.floor(Math.random() * (800 - 300) + 300),
+        comments: Math.floor(Math.random() * (100 - 40) + 40),
+        shares: Math.floor(Math.random() * (200 - 80) + 80)
+      };
+    } else if (lower.includes('twitter') || lower.includes('x.com')) {
+      return {
+        likes: Math.floor(Math.random() * (3000 - 1200) + 1200),
+        comments: Math.floor(Math.random() * (200 - 80) + 80),
+        shares: Math.floor(Math.random() * (600 - 250) + 250)
+      };
+    } else if (lower.includes('facebook')) {
+      return {
+        likes: Math.floor(Math.random() * (4000 - 1800) + 1800),
+        comments: Math.floor(Math.random() * (300 - 120) + 120),
+        shares: Math.floor(Math.random() * (700 - 280) + 280)
+      };
+    }
+    return {
+      likes: Math.floor(Math.random() * (2000 - 800) + 800),
+      comments: Math.floor(Math.random() * (150 - 60) + 60),
+      shares: Math.floor(Math.random() * (400 - 150) + 150)
+    };
+  };
+
   const parseSocialMedia = (md: string): SocialPost[] => {
     const posts: SocialPost[] = [];
     const sections = md.split(/(?=##\s+Post\s+\d+|##\s+\d+\.)/);
@@ -41,12 +80,14 @@ export function SocialMediaView({ content }: SocialMediaViewProps) {
       });
 
       if (platform && content) {
-        posts.push({
+        const postData: SocialPost = {
           platform: platform.replace(/[:\-*]/g, '').trim(),
           content: content.trim(),
           hashtags,
-          timing
-        });
+          timing,
+          engagement: generateDummyEngagement(platform)
+        };
+        posts.push(postData);
       }
     });
 
@@ -116,8 +157,40 @@ export function SocialMediaView({ content }: SocialMediaViewProps) {
                   </p>
                 </div>
 
+                {post.engagement && (
+                  <div className={`mb-4 pb-4 border-b ${colors.border}`}>
+                    <div className="flex items-center gap-2 mb-2">
+                      <TrendingUp className="w-4 h-4 text-gray-500" />
+                      <span className="text-xs font-semibold text-gray-500 uppercase tracking-wide">Expected Engagement</span>
+                    </div>
+                    <div className="grid grid-cols-3 gap-4">
+                      <div className={`${colors.cardBg} rounded-lg p-3`}>
+                        <div className="flex items-center gap-2 mb-1">
+                          <Heart className={`w-4 h-4 ${colors.icon}`} />
+                          <span className="text-xs text-gray-600 font-medium">Likes</span>
+                        </div>
+                        <p className="text-lg font-bold text-gray-900">{post.engagement.likes.toLocaleString()}</p>
+                      </div>
+                      <div className={`${colors.cardBg} rounded-lg p-3`}>
+                        <div className="flex items-center gap-2 mb-1">
+                          <MessageCircle className={`w-4 h-4 ${colors.icon}`} />
+                          <span className="text-xs text-gray-600 font-medium">Comments</span>
+                        </div>
+                        <p className="text-lg font-bold text-gray-900">{post.engagement.comments.toLocaleString()}</p>
+                      </div>
+                      <div className={`${colors.cardBg} rounded-lg p-3`}>
+                        <div className="flex items-center gap-2 mb-1">
+                          <Share2 className={`w-4 h-4 ${colors.icon}`} />
+                          <span className="text-xs text-gray-600 font-medium">Shares</span>
+                        </div>
+                        <p className="text-lg font-bold text-gray-900">{post.engagement.shares.toLocaleString()}</p>
+                      </div>
+                    </div>
+                  </div>
+                )}
+
                 {post.hashtags.length > 0 && (
-                  <div className={`pt-4 border-t ${colors.border}`}>
+                  <div className="pt-4">
                     <div className="flex items-start gap-2">
                       <Hash className={`w-5 h-5 ${colors.icon} flex-shrink-0 mt-1`} />
                       <div className="flex flex-wrap gap-2">

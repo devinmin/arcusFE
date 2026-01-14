@@ -86,7 +86,7 @@ export function AdCopyView({ content }: AdCopyViewProps) {
           platform,
           headline: headline || body.substring(0, 50) + '...',
           body: body.trim(),
-          cta: cta || 'Learn More',
+          cta: cta || 'Shop Now',
           format,
           targeting
         });
