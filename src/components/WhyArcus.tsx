@@ -10,9 +10,10 @@ interface WhyArcusProps {
   onShowProduct: (product: string) => void;
   onShowCodeModal: () => void;
   onShowFAQ: () => void;
+  onShowAbout: () => void;
 }
 
-export default function WhyArcus({ onClose, onShowComingSoon, onShowContact, onShowProduct, onShowCodeModal, onShowFAQ }: WhyArcusProps) {
+export default function WhyArcus({ onClose, onShowComingSoon, onShowContact, onShowProduct, onShowCodeModal, onShowFAQ, onShowAbout }: WhyArcusProps) {
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
@@ -24,7 +25,7 @@ export default function WhyArcus({ onClose, onShowComingSoon, onShowContact, onS
         onShowProduct={onShowProduct}
         onHowItWorksClick={onClose}
         onShowWhyArcus={() => {}}
-        onShowAbout={onClose}
+        onShowAbout={onShowAbout}
         onShowCodeModal={onShowCodeModal}
       />
 
@@ -373,7 +374,7 @@ export default function WhyArcus({ onClose, onShowComingSoon, onShowContact, onS
         onLogoClick={onClose}
         onShowProduct={onShowProduct}
         onShowWhyArcus={() => {}}
-        onShowAbout={onClose}
+        onShowAbout={onShowAbout}
         onShowComingSoon={onShowComingSoon}
         onShowContact={onShowContact}
         onShowFAQ={onShowFAQ}

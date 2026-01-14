@@ -189,6 +189,7 @@ function App() {
           onShowProduct={(product) => navigateTo('agents', product as ProductCategory)}
           onShowCodeModal={() => setShowCodeModal(true)}
           onShowFAQ={() => navigateTo('faq')}
+          onShowAbout={() => navigateTo('about')}
         />
         {showCodeModal && (
           <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-6">
