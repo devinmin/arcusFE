@@ -54,8 +54,13 @@ export function SocialMediaView({ content }: SocialMediaViewProps) {
   const parseSocialMedia = (md: string): SocialPost[] => {
     const posts: SocialPost[] = [];
 
-    // Split by ### headers with numbers (e.g., "### 1. Instagram Post")
-    const sections = md.split(/(?=^###\s+\d+\.\s+)/m);
+    // Try numbered format first (e.g., "### 1. Instagram Post")
+    let sections = md.split(/(?=^###\s+\d+\.\s+)/m);
+
+    // If no numbered sections found, try regular ### format
+    if (sections.length <= 1 || !sections[0].match(/###\s+\d+\.\s+/)) {
+      sections = md.split(/(?=^### )/m);
+    }
 
     sections.forEach((section) => {
       const trimmedSection = section.trim();
@@ -66,12 +71,19 @@ export function SocialMediaView({ content }: SocialMediaViewProps) {
       const lines = trimmedSection.split('\n');
       if (lines.length === 0) return;
 
-      // Extract platform from header (e.g., "### 1. Instagram Post")
+      // Extract platform from header
       const headerLine = lines[0].trim();
-      const headerMatch = headerLine.match(/###\s+\d+\.\s+(.+)/);
-      if (!headerMatch) return;
+      let headerText = '';
 
-      const headerText = headerMatch[1].trim();
+      // Try numbered format first
+      const numberedMatch = headerLine.match(/###\s+\d+\.\s+(.+)/);
+      if (numberedMatch) {
+        headerText = numberedMatch[1].trim();
+      } else {
+        // Fall back to regular format
+        headerText = headerLine.replace(/^###\s+/, '').trim();
+      }
+
       let platform = '';
 
       // Match common platform names and rebrand Twitter to X.com
@@ -95,13 +107,10 @@ export function SocialMediaView({ content }: SocialMediaViewProps) {
       for (let i = 1; i < lines.length; i++) {
         const line = lines[i].trim();
 
-        // Skip empty lines before we start capturing content
-        if (!line && !captureContent) continue;
-
         // Stop at next section marker
         if (line.startsWith('###')) break;
 
-        // Extract Caption/Copy
+        // Extract Caption/Copy - start capturing
         if (line.startsWith('**Caption:**') || line.startsWith('**Copy:**')) {
           captureContent = true;
           const contentAfterLabel = line.replace(/\*\*(Caption|Copy):\*\*/, '').trim();
@@ -109,25 +118,42 @@ export function SocialMediaView({ content }: SocialMediaViewProps) {
             content += contentAfterLabel;
           }
         }
-        // Extract Hashtags
+        // Extract Hashtags - stop capturing content
         else if (line.startsWith('**Hashtags:**')) {
           captureContent = false;
           const hashtagText = line.replace('**Hashtags:**', '').trim();
-          hashtags = hashtagText.split(/\s+/).filter(tag => tag.startsWith('#'));
+          if (hashtagText) {
+            hashtags = hashtagText.split(/\s+/).filter(tag => tag.startsWith('#'));
+          }
         }
         // Extract Suggested Posting Time
         else if (line.startsWith('**Suggested Posting Time:**')) {
           timing = line.replace('**Suggested Posting Time:**', '').trim();
         }
-        // Stop capturing content when we hit other structured fields
+        // Stop capturing content when we hit other structured fields (but keep capturing for unknown ** fields after caption has started)
         else if (line.startsWith('**Image Description:**') ||
                  line.startsWith('**Expected Engagement Hooks:**') ||
                  line.startsWith('**Visual:**')) {
           captureContent = false;
         }
-        // Capture content lines
-        else if (captureContent && line) {
+        // If we haven't started capturing yet and hit a ** field that's not caption, skip it
+        else if (!captureContent && line.startsWith('**')) {
+          continue;
+        }
+        // Capture content lines (including empty lines if we're in content mode)
+        else if (captureContent) {
+          if (line) {
+            content += (content ? '\n' : '') + line;
+          }
+        }
+        // Fallback: if no structured format detected, capture all non-hashtag content
+        else if (!line.startsWith('#') && !line.startsWith('**') && line) {
           content += (content ? '\n' : '') + line;
+        }
+        // Extract hashtags from lines starting with #
+        else if (line.startsWith('#')) {
+          const tags = line.split(/\s+/).filter(tag => tag.startsWith('#'));
+          hashtags.push(...tags);
         }
       }
 
